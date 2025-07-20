@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacred Celebrations - Traditional Event Planning</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./style/culture.css">
+</head>
+<body>
+    <!-- Section 1: Hero Banner -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="heading">Cultural & Religious Event Planning</h1>
+            <p>Honoring Traditions with Grace, Detail, and Devotion</p>
+            <a href="#events" class="cta-btn">Explore Rituals</a>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Timeline animation on scroll
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        timelineItems.forEach(item => {
+            timelineObserver.observe(item);
+        });
+
+        // FAQ Accordion functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const icon = question.querySelector('i');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all FAQ items
+                faqItems.forEach(faqItem => {
+                    faqItem.classList.remove('active');
+                    const faqIcon = faqItem.querySelector('.faq-question i');
+                    faqIcon.classList.remove('fa-minus');
+                    faqIcon.classList.add('fa-plus');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                    icon.classList.remove('fa-plus');
+                    icon.classList.add('fa-minus');
+                }
+            });
+        });
+
+        // Video play button functionality
+        const playBtn = document.querySelector('.play-btn');
+        const videoPlaceholder = document.querySelector('.video-placeholder');
+        
+        playBtn.addEventListener('click', () => {
+            // Create a simple animation effect
+            playBtn.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                playBtn.style.transform = 'scale(1)';
+                // In a real implementation, this would start video playback
+                alert('Video would play here. This is a demonstration of the interactive element.');
+            }, 150);
+        });
+
+        // Event cards hover effect enhancement
+        const eventCards = document.querySelectorAll('.event-card');
+        eventCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const icon = card.querySelector('.event-icon');
+                icon.style.transform = 'scale(1.2) rotate(5deg)';
+                icon.style.transition = 'all 0.3s ease';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                const icon = card.querySelector('.event-icon');
+                icon.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+
+        // Gallery lightbox effect
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const title = item.querySelector('h3').textContent;
+                const subtitle = item.querySelector('p').textContent;
+                
+                // Simple lightbox simulation
+                const lightbox = document.createElement('div');
+                lightbox.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.9);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 1000;
+                    color: white;
+                    text-align: center;
+                    cursor: pointer;
+                `;
+                
+                lightbox.innerHTML = `
+                    <div>
+                        <h2 style="margin-bottom: 1rem; font-family: 'Playfair Display', serif;">${title}</h2>
+                        <p style="font-size: 1.2rem; margin-bottom: 2rem;">${subtitle}</p>
+                        <div style="width: 400px; height: 300px; background: linear-gradient(45deg, #d4af37, #f4a300); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                            Gallery Image Placeholder
+                        </div>
+                        <p style="margin-top: 2rem; opacity: 0.7;">Click to close</p>
+                    </div>
+                `;
+                
+                lightbox.addEventListener('click', () => {
+                    document.body.removeChild(lightbox);
+                });
+                
+                document.body.appendChild(lightbox);
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add floating animation to feature icons with staggered timing
+        const featureIcons = document.querySelectorAll('.feature-icon');
+        featureIcons.forEach((icon, index) => {
+            icon.style.animationDelay = `${index * 0.2}s`;
+        });
+
+        // Testimonial slider functionality (simple version)
+        const testimonials = [
+            {
+                text: "The team created such a beautiful and spiritual atmosphere for our daughter's naming ceremony. Every detail was perfect and the pandit was so knowledgeable. Our family felt truly blessed.",
+                author: "Priya & Raj Sharma",
+                event: "Naamkaran Ceremony"
+            },
+            {
+                text: "Our wedding ceremony was absolutely divine. The mandap decoration was breathtaking and the coordination was flawless. Thank you for making our special day so memorable.",
+                author: "Anita & Vikram Patel",
+                event: "Traditional Wedding"
+            },
+            {
+                text: "The Diwali celebration organized by the team brought our entire community together. The arrangements were authentic and the spiritual energy was incredible.",
+                author: "Meera Agarwal",
+                event: "Diwali Festival"
+            }
+        ];
+
+        let currentTestimonial = 0;
+        const testimonialElement = document.querySelector('.testimonial');
+
+        function updateTestimonial() {
+            const current = testimonials[currentTestimonial];
+            testimonialElement.innerHTML = `
+                <p>${current.text}</p>
+                <div class="testimonial-author">- ${current.author}<br><small>${current.event}</small></div>
+            `;
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        }
+
+        // Auto-rotate testimonials every 5 seconds
+        setInterval(updateTestimonial, 5000);
+
+        // Add entrance animations for sections
+        const sections = document.querySelectorAll('.section');
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.8s ease';
+            sectionObserver.observe(section);
+        });
+
+        // Add ripple effect to buttons
+        const buttons = document.querySelectorAll('.cta-btn');
+        buttons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255,255,255,0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple animation to CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Mobile menu handling (if needed)
+        function handleMobileView() {
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                // Adjust animations for mobile
+                const heroContent = document.querySelector('.hero-content');
+                if (heroContent) {
+                    heroContent.style.padding = '1rem';
+                }
+                
+                // Disable parallax on mobile for performance
+                window.removeEventListener('scroll', () => {});
+            }
+        }
+
+        window.addEventListener('resize', handleMobileView);
+        handleMobileView(); // Call on initial load
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Contact form handling (if contact section is added)
+        function handleContactForm() {
+            // This would handle form submissions in a real implementation
+            console.log('Contact form functionality ready');
+        }
+
+        // Initialize all functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            handleContactForm();
+            console.log('Sacred Celebrations website loaded successfully!');
+        });
+
+    </script>
+
+
+
+    <!-- Section 2: Types of Events We Organize -->
+    <section class="section" id="events">
+        <h2 class="heading">Sacred Celebrations We Create</h2>
+        <div class="events-grid">
+            <div class="event-card">
+                <div class="event-icon">🪔</div>
+                <h3 class="heading">Poojas & Havans</h3>
+                <p>Traditional fire ceremonies and worship rituals conducted with authentic Vedic practices and sacred chants.</p>
+            </div>
+            <div class="event-card">
+                <div class="event-icon">🎉</div>
+                <h3 class="heading">Traditional Weddings</h3>
+                <p>Complete wedding ceremonies honoring ancient customs with beautiful mandap decorations and ritual arrangements.</p>
+            </div>
+            <div class="event-card">
+                <div class="event-icon">🌙</div>
+                <h3 class="heading">Navratri & Diwali</h3>
+                <p>Festive celebrations with elaborate decorations, cultural programs, and community gatherings filled with joy.</p>
+            </div>
+            <div class="event-card">
+                <div class="event-icon">📿</div>
+                <h3 class="heading">Spiritual Gatherings</h3>
+                <p>Satsangs and spiritual meetings that create peaceful environments for prayer and meditation.</p>
+            </div>
+            <div class="event-card">
+                <div class="event-icon">🧒</div>
+                <h3 class="heading">Naamkaran Ceremonies</h3>
+                <p>Naming ceremonies performed with traditional rituals to welcome new members into the family.</p>
+            </div>
+            <div class="event-card">
+                <div class="event-icon">🏵️</div>
+                <h3 class="heading">Cultural Ceremonies</h3>
+                <p>Jain, Vaishnav, and Brahmin ceremonies conducted according to specific community traditions and customs.</p>
+            </div>
+            <div class="event-card">
+                <div class="event-icon">📜</div>
+                <h3 class="heading">Upanayan Sanskar</h3>
+                <p>Sacred thread ceremonies marking important spiritual milestones in traditional Hindu culture.</p>
+            </div>
+            <div class="event-card">
+                <div class="event-icon">🎶</div>
+                <h3 class="heading">Bhajan & Kirtan</h3>
+                <p>Devotional music gatherings with professional sound arrangements and spiritual ambiance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: What We Offer -->
+    <section class="offerings">
+        <div class="section">
+            <h2 class="heading">Complete Ritual Arrangements</h2>
+            <div class="offerings-content">
+                <div>
+                    <ul class="offerings-list">
+                        <li><i class="fas fa-user-tie"></i>Certified Pandits / Purohits</li>
+                        <li><i class="fas fa-leaf"></i>Ritual Materials & Samagri</li>
+                        <li><i class="fas fa-home"></i>Decorated Mandaps & Altars</li>
+                        <li><i class="fas fa-chair"></i>Seating Arrangement for Guests</li>
+                        <li><i class="fas fa-seedling"></i>Floral Garlands & Lighting</li>
+                        <li><i class="fas fa-gift"></i>Prasadam & Bhog Setup</li>
+                        <li><i class="fas fa-clock"></i>Timetable & Ceremony Coordination</li>
+                        <li><i class="fas fa-music"></i>Cultural Sound System / Chants</li>
+                    </ul>
+                </div>
+                <div class="offerings-image">
+                    <div>
+                        <i class="fas fa-om" style="font-size: 4rem; margin-bottom: 1rem; display: block;"></i>
+                        <p>Sacred Arrangements<br>Crafted with Devotion</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Spiritual Process Timeline -->
+    <section class="timeline">
+        <div class="section">
+            <h2 class="heading">Our Sacred Planning Process</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="heading">Ritual Selection & Consultation</h3>
+                        <p>We begin with understanding your spiritual needs and family traditions to recommend the perfect ceremony.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="heading">Customization & Location Prep</h3>
+                        <p>Tailoring the ceremony details and preparing the sacred space according to your preferences and traditions.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="heading">Samagri & Pandit Booking</h3>
+                        <p>Arranging all ritual materials and booking qualified priests for your auspicious occasion.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-hands-praying"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="heading">Ceremony Day Coordination</h3>
+                        <p>Complete management of the ceremony ensuring smooth flow and spiritual sanctity throughout.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="heading">Post-Ritual Services</h3>
+                        <p>Taking care of cleanup and prasadam distribution, leaving you with only sacred memories.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Festival Gallery -->
+    <section class="gallery">
+        <div class="section">
+            <h2 class="heading">Celebrations We've Managed</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-overlay">
+                        <h3>Ganesh Pooja</h3>
+                        <p>2024 Community Celebration</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-overlay">
+                        <h3>Durga Puja</h3>
+                        <p>Traditional Bengali Ceremony</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-overlay">
+                        <h3>Holi Festival</h3>
+                        <p>Colorful Spring Celebration</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-overlay">
+                        <h3>Wedding Mandap</h3>
+                        <p>Sacred Union Ceremony</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-overlay">
+                        <h3>Havan Ceremony</h3>
+                        <p>Fire Worship Ritual</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-overlay">
+                        <h3>Guru Purnima</h3>
+                        <p>Teacher Appreciation Day</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Family Testimonials -->
+    <section class="testimonials">
+        <div class="section">
+            <h2 class="heading">What Families Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <p>The team created such a beautiful and spiritual atmosphere for our daughter's naming ceremony. Every detail was perfect and the pandit was so knowledgeable. Our family felt truly blessed.</p>
+                    <div class="testimonial-author">- Priya & Raj Sharma<br><small>Naamkaran Ceremony</small></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Divine Touch - Unique Features -->
+    <section class="features">
+        <div class="section">
+            <h2 class="heading">What Makes Us Unique</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">📿</div>
+                    <h3 class="heading">Ritual Authenticity</h3>
+                    <p>Guaranteed traditional practices following ancient scriptures and customs</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🧘</div>
+                    <h3 class="heading">Soulful Ambience</h3>
+                    <p>Creating peaceful, meditative environments that enhance spiritual experience</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌺</div>
+                    <h3 class="heading">Fresh Floral Decor</h3>
+                    <p>Beautiful arrangements using fresh flowers and traditional decorative elements</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎤</div>
+                    <h3 class="heading">Spiritual Sound</h3>
+                    <p>Professional audio arrangements for chants, mantras, and ceremonial music</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🕊️</div>
+                    <h3 class="heading">Respect for All Faiths</h3>
+                    <p>Honoring diverse religious traditions with equal reverence and understanding</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌿</div>
+                    <h3 class="heading">Eco-Friendly Approach</h3>
+                    <p>Sustainable practices while maintaining traditional authenticity</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Final CTA -->
+    <section class="final-cta">
+        <h2 class="heading">Let's Create a Sacred Experience Together</h2>
+        <p>Reach out to begin your cultural or spiritual event with elegance and care.</p>
+        <a href="#contact" class="cta-btn">Book a Ritual Planner</a>
+    </section>
+
+    <!-- Section 9: Embedded Video -->
+    <section class="video-section">
+        <div class="section">
+            <h2 class="heading">Feel the Energy of Tradition</h2>
+            <div class="video-container">
+                <div class="video-placeholder">
+                    <div class="play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top: 1rem; color: #666;">Experience the divine atmosphere of our ceremonies</p>
+        </div>
+    </section>
+
+    <!-- Section 10: FAQ Accordion -->
+    <section class="faq">
+        <div class="section">
+            <h2 class="heading">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you provide bilingual or regional language pandits?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we have certified pandits who are fluent in Hindi, English, Gujarati, Sanskrit, and other regional languages to ensure you understand every aspect of the ceremony.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I customize the ceremony based on family traditions?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! We work closely with families to incorporate specific traditions, customs, and preferences while maintaining the spiritual authenticity of the ceremony.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you conduct eco-friendly havans?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer eco-friendly havan options using natural, biodegradable materials while preserving the traditional sanctity of the fire ceremony.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is online/live-streamed ritual support available?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we provide live streaming services for family members who cannot attend in person, ensuring everyone can participate in the sacred ceremony.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do we book a specific date or Muhurat?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our pandits can help determine auspicious dates and timings (muhurat) according to traditional calculations, or we can work with dates you've already selected.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script>
+        const timelineItem = document.querySelectorAll('.timeline-item');
+      
+        function handleScrollAnimations() {
+          const triggerPoint = window.innerHeight * 0.85;
+      
+          timelineItem.forEach(item => {
+            const itemTop = item.getBoundingClientRect().top;
+      
+            if (itemTop < triggerPoint && !item.classList.contains('animate')) {
+              item.classList.add('animate');
+            }
+          });
+        }
+      
+        window.addEventListener('scroll', handleScrollAnimations);
+        window.addEventListener('load', handleScrollAnimations);
+      </script>
+      
+      
+
+
+
+</body>
+</html>
