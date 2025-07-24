@@ -56,35 +56,55 @@
             </div>
             <div class="themes-carousel">
                 <div class="theme-card">
-                    <div class="theme-image">🌸</div>
+                    <div class="theme-image">
+                        <div class="gallery-item">
+                            <img src="../../photos/baby01.avif" alt="">
+                        </div>
+                    </div>
                     <div class="theme-content">
                         <h3>Boho Baby Bliss</h3>
                         <p class="theme-tagline">Natural textures, pampas grass, and earthy tones</p>
                     </div>
                 </div>
                 <div class="theme-card">
-                    <div class="theme-image">👑</div>
+                    <div class="theme-image">
+                        <div class="gallery-item">
+                            <img src="../../photos/baby02.avif" alt="">
+                        </div>
+                    </div>
                     <div class="theme-content">
                         <h3>Royal Prince/Princess</h3>
                         <p class="theme-tagline">Elegant golds and soft pastels fit for royalty</p>
                     </div>
                 </div>
                 <div class="theme-card">
-                    <div class="theme-image">🧸</div>
+                    <div class="theme-image">
+                        <div class="gallery-item">
+                            <img src="../../photos/baby03.jpg" alt="">
+                        </div>
+                    </div>
                     <div class="theme-content">
                         <h3>Teddy Wonderland</h3>
                         <p class="theme-tagline">Cozy browns and creams with adorable accents</p>
                     </div>
                 </div>
                 <div class="theme-card">
-                    <div class="theme-image">✨</div>
+                    <div class="theme-image">
+                        <div class="gallery-item">
+                            <img src="../../photos/baby05.jpeg" alt="">
+                        </div>
+                    </div>
                     <div class="theme-content">
                         <h3>Minimal Chic</h3>
                         <p class="theme-tagline">Clean lines and sophisticated simplicity</p>
                     </div>
                 </div>
                 <div class="theme-card">
-                    <div class="theme-image">🌿</div>
+                    <div class="theme-image">
+                        <div class="gallery-item">
+                            <img src="../../photos/baby04.webp" alt="">
+                        </div>
+                    </div>
                     <div class="theme-content">
                         <h3>Botanical Baby Bloom</h3>
                         <p class="theme-tagline">Lush greenery and delicate floral arrangements</p>
@@ -103,27 +123,39 @@
             </div>
             <div class="gallery-grid">
                 <div class="gallery-item" onclick="openGallery(1)">
-                    📸
+                    <!-- <div class="gallery-item"> -->
+                        <img src="../../photos/baby06.jpg" alt="">
+                    <!-- </div> -->
                     <div class="gallery-caption">Amrita's Boho Baby Shower</div>
                 </div>
                 <div class="gallery-item" onclick="openGallery(2)">
-                    🎨
+                    <!-- <div class="gallery-item"> -->
+                        <img src="../../photos/baby07.jpg" alt="">
+                    <!-- </div> -->
                     <div class="gallery-caption">Royal Prince Theme Celebration</div>
                 </div>
                 <div class="gallery-item" onclick="openGallery(3)">
-                    🌺
+                    <!-- <div class="gallery-item"> -->
+                        <img src="../../photos/baby08.webp" alt="">
+                    <!-- </div> -->
                     <div class="gallery-caption">Botanical Bloom Baby Shower</div>
                 </div>
                 <div class="gallery-item" onclick="openGallery(4)">
-                    ✨
+                    <!-- <div class="gallery-item"> -->
+                        <img src="../../photos/baby09.avif" alt="">
+                    <!-- </div> -->
                     <div class="gallery-caption">Minimal Chic Elegance</div>
                 </div>
                 <div class="gallery-item" onclick="openGallery(5)">
-                    💝
+                    <!-- <div class="gallery-item"> -->
+                        <img src="../../photos/baby10.jpg" alt="">
+                    <!-- </div> -->
                     <div class="gallery-caption">Teddy Wonderland Setup</div>
                 </div>
                 <div class="gallery-item" onclick="openGallery(6)">
-                    🎪
+                    <!-- <div class="gallery-item"> -->
+                        <img src="../../photos/baby11.jpg" alt="">
+                    <!-- </div> -->
                     <div class="gallery-caption">Whimsical Circus Theme</div>
                 </div>
             </div>
@@ -251,10 +283,22 @@
             </div>
             <div class="video-container">
                 <div class="video-placeholder">
-                    🎥
-                    <div class="play-button">
-                        <div style="width: 0; height: 0; border-left: 20px solid #333; border-top: 12px solid transparent; border-bottom: 12px solid transparent; margin-left: 5px;"></div>
+                    
+
+
+                    <div class="video-embed-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/nz987_lf5Iw?si=B6yafZ-tkUr_shrb" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
                     </div>
+
+
+                    <!-- <div class="play-button">
+                        <div style="width: 0; height: 0; border-left: 20px solid #333; border-top: 12px solid transparent; border-bottom: 12px solid transparent; margin-left: 5px;"></div>
+                    </div> -->
                 </div>
                 <p style="margin-top: 20px; font-style: italic; color: #666;">Aanya's Baby Bloom Bash in Mumbai – Styled by LUX</p>
             </div>
@@ -333,9 +377,9 @@
     </section>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/919999999999" class="whatsapp-float" target="_blank">
+    <!-- <a href="https://wa.me/919999999999" class="whatsapp-float" target="_blank">
         📱
-    </a>
+    </a> -->
 
     <!-- Planning Modal -->
     <div id="planningModal" class="modal">
@@ -409,9 +453,13 @@
         <div class="modal-content" style="max-width: 800px; padding: 20px;">
             <span class="close" onclick="closeModal('galleryModal')">&times;</span>
             <div id="galleryContent" style="text-align: center;">
-                <div style="width: 100%; height: 400px; background: linear-gradient(45deg, #f8d7e9, #d4ecff); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white; margin-bottom: 20px;">
+                
+                <img id="modalImage" src="" alt="Gallery Image" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 15px; margin-bottom: 20px;" />
+
+                
+                <!-- <div style="width: 100%; height: 400px; background: linear-gradient(45deg, #f8d7e9, #d4ecff); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white; margin-bottom: 20px;">
                     📷
-                </div>
+                </div> -->
                 <h3 id="galleryTitle">Beautiful Baby Shower Gallery</h3>
                 <p id="galleryDescription">Professional photography capturing every precious moment of your celebration</p>
             </div>
@@ -475,6 +523,16 @@
 
         // Gallery functions
         function openGallery(imageId) {
+            const images = [
+                '', 
+                '../../photos/baby06.jpg',
+                '../../photos/baby07.jpg',
+                '../../photos/baby08.webp',
+                '../../photos/baby09.avif',
+                '../../photos/baby10.jpg',
+                '../../photos/baby11.jpg'
+            ];
+            
             const titles = [
                 '', 'Amrita\'s Boho Baby Shower', 'Royal Prince Theme Celebration', 
                 'Botanical Bloom Baby Shower', 'Minimal Chic Elegance', 
@@ -490,6 +548,7 @@
                 'A playful and colorful circus-themed celebration'
             ];
             
+            document.getElementById('modalImage').src = images[imageId];
             document.getElementById('galleryTitle').innerText = titles[imageId];
             document.getElementById('galleryDescription').innerText = descriptions[imageId];
             openModal('galleryModal');

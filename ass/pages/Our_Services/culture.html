@@ -78,19 +78,45 @@
             });
         });
 
-        // Video play button functionality
+   
+   
+   
         const playBtn = document.querySelector('.play-btn');
         const videoPlaceholder = document.querySelector('.video-placeholder');
-        
+
         playBtn.addEventListener('click', () => {
-            // Create a simple animation effect
             playBtn.style.transform = 'scale(0.8)';
             setTimeout(() => {
                 playBtn.style.transform = 'scale(1)';
-                // In a real implementation, this would start video playback
-                alert('Video would play here. This is a demonstration of the interactive element.');
+                videoPlaceholder.innerHTML = `
+                    <iframe width="100%" height="400"
+                        src="https://www.youtube.com/embed/F-Cax4TJoBE?si=29JzJDJDi5fPeLvI"
+                        title="YouTube video" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                `;
             }, 150);
         });
+
+   
+   
+   
+   
+   
+   
+        // // Video play button functionality
+        // const playBtn = document.querySelector('.play-btn');
+        // const videoPlaceholder = document.querySelector('.video-placeholder');
+        
+        // playBtn.addEventListener('click', () => {
+        //     // Create a simple animation effect
+        //     playBtn.style.transform = 'scale(0.8)';
+        //     setTimeout(() => {
+        //         playBtn.style.transform = 'scale(1)';
+        //         // In a real implementation, this would start video playback
+        //         alert('Video would play here. This is a demonstration of the interactive element.');
+        //     }, 150);
+        // });
 
         // Event cards hover effect enhancement
         const eventCards = document.querySelectorAll('.event-card');
@@ -372,7 +398,7 @@
                         <li><i class="fas fa-music"></i>Cultural Sound System / Chants</li>
                     </ul>
                 </div>
-                <div class="offerings-image">
+                <div class="offerings-image" >
                     <div>
                         <i class="fas fa-om" style="font-size: 4rem; margin-bottom: 1rem; display: block;"></i>
                         <p>Sacred Arrangements<br>Crafted with Devotion</p>
@@ -441,37 +467,37 @@
         <div class="section">
             <h2 class="heading">Celebrations We've Managed</h2>
             <div class="gallery-grid">
-                <div class="gallery-item">
+                <div class="gallery-item" style="background-image: url('../../photos/culture00.jpg');">
                     <div class="gallery-overlay">
                         <h3>Ganesh Pooja</h3>
                         <p>2024 Community Celebration</p>
                     </div>
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item" style="background-image: url('../../photos/culture03.jpg');">
                     <div class="gallery-overlay">
                         <h3>Durga Puja</h3>
                         <p>Traditional Bengali Ceremony</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-overlay">
+                <div class="gallery-item" style="background-image: url('../../photos/culture04.png');">
+                    <div class="gallery-overlay" >
                         <h3>Holi Festival</h3>
                         <p>Colorful Spring Celebration</p>
                     </div>
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item" style="background-image: url('../../photos/culture05.jpg');">
                     <div class="gallery-overlay">
                         <h3>Wedding Mandap</h3>
                         <p>Sacred Union Ceremony</p>
                     </div>
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item" style="background-image: url('../../photos/culture06.jpeg');">
                     <div class="gallery-overlay">
                         <h3>Havan Ceremony</h3>
                         <p>Fire Worship Ritual</p>
                     </div>
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item" style="background-image: url('../../photos/culture07.jpg');">
                     <div class="gallery-overlay">
                         <h3>Guru Purnima</h3>
                         <p>Teacher Appreciation Day</p>
@@ -541,7 +567,7 @@
     </section>
 
     <!-- Section 9: Embedded Video -->
-    <section class="video-section">
+    <!-- <section class="video-section">
         <div class="section">
             <h2 class="heading">Feel the Energy of Tradition</h2>
             <div class="video-container">
@@ -553,7 +579,7 @@
             </div>
             <p style="margin-top: 1rem; color: #666;">Experience the divine atmosphere of our ceremonies</p>
         </div>
-    </section>
+    </section> -->
 
     <!-- Section 10: FAQ Accordion -->
     <section class="faq">

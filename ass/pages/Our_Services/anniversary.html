@@ -10,6 +10,10 @@
 <body>
     <!-- Music Toggle -->
     <button class="music-toggle" id="musicToggle" aria-label="Toggle Music">🎵</button>
+    <audio id="backgroundMusic" loop>
+        <source src="../../music/Arctic Monkeys - I Wanna Be Yours (Instrumental) - Meekail (2).mp3" type="audio/mpeg">
+        
+    </audio>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -142,7 +146,7 @@
                     <div class="gallery-overlay">Click to view memory</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?w=400&h=400&fit=crop" alt="Romantic dinner setup">
+                    <img src="../../photos/anni01.jpg" alt="Romantic dinner setup">
                     <div class="gallery-overlay">Click to view memory</div>
                 </div>
                 <div class="gallery-item">
@@ -243,7 +247,7 @@
     </section>
 
     <!-- Highlight Reel Video -->
-    <section class="video-section">
+    <!-- <section class="video-section">
         <div class="container">
             <h2 class="section-title">Watch a Love Story Come to Life</h2>
             <div class="video-container">
@@ -252,10 +256,10 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Plan Your Day – Inquiry Form -->
-    <section class="contact-section" id="contact">
+    <!-- <section class="contact-section" id="contact">
         <div class="container">
             <h2 class="section-title">Plan Your Perfect Day</h2>
             <form class="contact-form" id="contactForm">
@@ -288,13 +292,23 @@
                 <button type="submit" class="submit-button">Let's Begin Planning</button>
             </form>
         </div>
-    </section>
+    </section> -->
+
+    <div class="contact-section">
+        <div class="container">
+            <div class="contact-form">
+                <button type="submit" class="submit-button">Let's Begin Planning</button>
+            </div>
+        </div>
+    </div>    
+    
+
 
     <!-- Floating WhatsApp Contact -->
-    <div class="whatsapp-float">
+    <!-- <div class="whatsapp-float">
         <div class="whatsapp-tooltip">Chat with Our Planner</div>
         📱
-    </div>
+    </div> -->
 
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
@@ -312,7 +326,7 @@
         });
 
         // Music toggle functionality
-        let isPlaying = false;
+       /* let isPlaying = false;
         const musicToggle = document.getElementById('musicToggle');
         
         musicToggle.addEventListener('click', function() {
@@ -324,7 +338,30 @@
                 this.textContent = '🎵';
                 this.style.animation = 'none';
             }
+        }); */
+
+
+        let isPlaying = false;
+        const musicToggle = document.getElementById('musicToggle');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+
+        musicToggle.addEventListener('click', function () {
+            isPlaying = !isPlaying;
+
+            if (isPlaying) {
+                backgroundMusic.play();
+                this.textContent = '🔊'; // Change icon if you want
+                this.style.animation = 'bounce 2s infinite';
+            } else {
+                backgroundMusic.pause();
+                backgroundMusic.currentTime = 0; // Reset to start
+                this.textContent = '🎵';
+                this.style.animation = 'none';
+            }
         });
+
+
+
 
         // Scroll animations using Intersection Observer
         const observerOptions = {
