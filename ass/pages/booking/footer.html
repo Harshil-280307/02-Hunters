@@ -3,181 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lux Events Footer</title>
     <link rel="stylesheet" href="../booking/footer.css">
-    </head>
+    <title>Responsive Footer</title>
 </head>
-<body class="luxe-footer-wrapper">
-    <!-- Demo content to show footer positioning -->
-    <div class="luxe-demo-content-area">
-        <p>This is demo content to show the footer below. In your actual website, this would be your main content.</p>
-    </div>
+<body>
 
-    <!-- FOOTER STARTS HERE -->
-    <footer class="luxe-footer-main">
-        <div class="luxe-footer-decoration-overlay">
-            <div class="luxe-decoration-circle-element"></div>
-            <div class="luxe-decoration-circle-element"></div>
-            <div class="luxe-decoration-circle-element"></div>
+    
+<!-- //////////////////////////////////////////////Footer//////////////////////////////////////////////////////////////////// -->
+
+
+<footer class="premium-events-footer-wrapper">
+        <div class="premium-events-bg-decoration">
+            <div class="premium-events-floating-shape"></div>
+            <div class="premium-events-floating-shape"></div>
+            <div class="premium-events-floating-shape"></div>
         </div>
         
-        <div class="luxe-footer-content-wrapper">
-            <div class="luxe-footer-grid-container">
-                <!-- Company Info -->
-                <div class="luxe-footer-section-block">
-                    <h3>Lux Events</h3>
-                    <p>Creating extraordinary experiences through luxury event planning and management. We transform your vision into unforgettable moments that exceed expectations.</p>
-                    <div class="luxe-social-icons-container">
-                        <a href="#" class="luxe-social-media-icon facebook" title="Follow us on Facebook" aria-label="Facebook" onclick="openFacebook()">f</a>
-                        <a href="#" class="luxe-social-media-icon instagram" title="Follow us on Instagram" aria-label="Instagram" onclick="openInstagram()">📷</a>
-                        <a href="#" class="luxe-social-media-icon twitter" title="Follow us on Twitter" aria-label="Twitter" onclick="openTwitter()">🐦</a>
-                        <a href="#" class="luxe-social-media-icon whatsapp" title="Chat with us on WhatsApp" aria-label="WhatsApp" onclick="openWhatsApp()">💬</a>
-                        <a href="#" class="luxe-social-media-icon linkedin" title="Connect on LinkedIn" aria-label="LinkedIn" onclick="openLinkedIn()">in</a>
+        <div class="premium-events-content-container">
+            <div class="premium-events-main-grid">
+                <!-- Company Information -->
+                <div class="premium-events-section-block">
+                    <h3>Premium Events</h3>
+                    <p>Crafting extraordinary luxury experiences through innovative event planning and flawless execution. We specialize in transforming your dreams into magnificent reality with unparalleled attention to detail.</p>
+                    <div class="premium-events-social-wrapper">
+                        <a href="#" class="premium-events-social-button facebook-btn" title="Join us on Facebook" onclick="handleFacebook()">f</a>
+                        <a href="#" class="premium-events-social-button instagram-btn" title="Follow our Instagram" onclick="handleInstagram()">📷</a>
+                        <a href="#" class="premium-events-social-button twitter-btn" title="Connect on Twitter" onclick="handleTwitter()">🐦</a>
+                        <a href="#" class="premium-events-social-button whatsapp-btn" title="WhatsApp us" onclick="handleWhatsApp()">💬</a>
+                        <a href="#" class="premium-events-social-button linkedin-btn" title="LinkedIn Profile" onclick="handleLinkedIn()">in</a>
                     </div>
                 </div>
 
-                <!-- Services -->
-                <div class="luxe-footer-section-block">
-                    <h3>Services</h3>
+                <!-- Our Services -->
+                <div class="premium-events-section-block">
+                    <h3>Our Services</h3>
                     <ul>
-                        <li class="luxe-footer-nav-item" onclick="navigateTo('corporate-events')">Corporate Events</li>
-                        <li class="luxe-footer-nav-item" onclick="navigateTo('wedding-planning')">Wedding Planning</li>
-                        <li class="luxe-footer-nav-item" onclick="navigateTo('private-parties')">Private Parties</li>
-                        <li class="luxe-footer-nav-item" onclick="navigateTo('gala-dinners')">Gala Dinners</li>
-                        <li class="luxe-footer-nav-item" onclick="navigateTo('product-launches')">Product Launches</li>
-                        <li class="luxe-footer-nav-item" onclick="navigateTo('conference-management')">Conference Management</li>
-                        <li class="luxe-footer-nav-item" onclick="navigateTo('venue-selection')">Venue Selection</li>
-                        <li class="luxe-footer-nav-item" onclick="navigateTo('catering-services')">Catering Services</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('luxury-weddings')">Luxury Weddings</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('corporate-galas')">Corporate Galas</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('exclusive-parties')">Exclusive Parties</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('premium-dinners')">Premium Dinners</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('brand-launches')">Brand Launches</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('event-consulting')">Event Consulting</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('venue-sourcing')">Venue Sourcing</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('luxury-catering')">Luxury Catering</li>
                     </ul>
                 </div>
 
-                <!-- Quick Links -->
-                <div class="luxe-footer-section-block">
-                    <h3>Quick Links</h3>
+                <!-- Navigation Menu -->
+                <div class="premium-events-section-block">
+                    <h3>Navigation</h3>
                     <ul>
-                        <li class="luxe-footer-nav-item" onclick="navigateTo('about')">Home</li>
-                        <li class="luxe-footer-nav-item" onclick="navigateTo('portfolio')">About</li>
-                        <li class="luxe-footer-nav-item" onclick="navigateTo('testimonials')">Service</li>
-                        <li class="luxe-footer-nav-item" onclick="navigateTo('blog')">Event</li>
-                        <li class="luxe-footer-nav-item" onclick="navigateTo('careers')">Packages</li>
-                        <li class="luxe-footer-nav-item" onclick="navigateTo('press')">Gallery</li>
-                        <li class="luxe-footer-nav-item" onclick="navigateTo('awards')">Inquiry</li>
-                        <li class="luxe-footer-nav-item" onclick="navigateTo('partnership')">Partnership</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('homepage')">Homepage</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('about-us')">About Us</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('our-services')">Our Services</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('portfolio')">Portfolio</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('pricing')">Pricing</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('testimonials')">Testimonials</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('contact-us')">Contact Us</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('partnerships')">Partnerships</li>
                     </ul>
                 </div>
 
-                <!-- Contact Info Only -->
-                <div class="luxe-footer-section-block">
-                    <h3>Contact Info</h3>
-                    <div class="luxe-contact-information-section">
-                        <div class="luxe-contact-info-item" onclick="openMaps()">
-                            <span class="luxe-contact-icon-symbol">📍</span>
-                            <span>123 Luxury Avenue, Premium District, City 12345</span>
-                        </div>
-                        <div class="luxe-contact-info-item" onclick="callPhone()">
-                            <span class="luxe-contact-icon-symbol">📞</span>
-                            <span>+1 (555) 123-LUXE</span>
-                        </div>
-                        <div class="luxe-contact-info-item" onclick="sendEmail()">
-                            <span class="luxe-contact-icon-symbol">✉️</span>
-                            <span>hello@luxevents.com</span>
-                        </div>
-                        <div class="luxe-contact-info-item">
-                            <span class="luxe-contact-icon-symbol">🕐</span>
-                            <span>Mon - Sat: 9AM - 8PM</span>
-                        </div>
+                <!-- Contact Details -->
+                <div class="premium-events-section-block">
+                    <h3>Contact Details</h3>
+                    <div class="premium-events-contact-detail" onclick="openLocationMap()">
+                        <span class="premium-events-contact-symbol">📍</span>
+                        <span>456 Elite Boulevard, Prestige Quarter, Metropolitan 67890</span>
+                    </div>
+                    <div class="premium-events-contact-detail" onclick="initiatePhoneCall()">
+                        <span class="premium-events-contact-symbol">📞</span>
+                        <span>+1 (555) 789-ELITE</span>
+                    </div>
+                    <div class="premium-events-contact-detail" onclick="composeEmail()">
+                        <span class="premium-events-contact-symbol">✉️</span>
+                        <span>info@premiumevents.com</span>
+                    </div>
+                    <div class="premium-events-contact-detail">
+                        <span class="premium-events-contact-symbol">🕐</span>
+                        <span>Monday - Saturday: 8AM - 9PM</span>
                     </div>
                 </div>
             </div>
 
-            <div class="luxe-footer-bottom-section">
-                <div class="luxe-brand-logo-text">Lux Events</div>
-                <div class="luxe-footer-navigation-links">
-                    <a href="#" onclick="navigateTo('privacy')">Privacy Policy</a>
-                    <a href="#" onclick="navigateTo('terms')">Terms of Service</a>
-                    <a href="#" onclick="navigateTo('cookies')">Cookie Policy</a>
-                    <a href="#" onclick="navigateTo('accessibility')">Accessibility</a>
-                    <a href="#" onclick="navigateTo('sitemap')">Sitemap</a>
+            <div class="premium-events-footer-base">
+                <div class="premium-events-brand-title">Premium Events</div>
+                <div class="premium-events-bottom-links">
+                    <a href="#" onclick="goToPage('privacy-policy')">Privacy Policy</a>
+                    <a href="#" onclick="goToPage('terms-conditions')">Terms & Conditions</a>
+                    <a href="#" onclick="goToPage('cookie-policy')">Cookie Policy</a>
+                    <a href="#" onclick="goToPage('accessibility')">Accessibility</a>
+                    <a href="#" onclick="goToPage('site-map')">Site Map</a>
                 </div>
             </div>
             
-            <div class="luxe-copyright-notice-text">
-                <p>&copy; 2025 Lux Events. All rights reserved. | Crafting luxury experiences since 2010.</p>
+            <div class="premium-events-copyright-text">
+                <p>&copy; 2025 Premium Events. All rights reserved. | Designing luxury experiences since 2015.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scroll to Top Button -->
-    <button class="luxe-scroll-to-top-btn" onclick="scrollToTop()" aria-label="Scroll to top">↑</button>
+    <!-- Scroll to Top -->
+    <button class="premium-events-scroll-button" onclick="scrollToPageTop()" aria-label="Scroll to top">↑</button>
+</body>
 
     <script>
-        // Enhanced Interactive Functions
-        function navigateTo(page) {
-            console.log('Navigating to:', page);
-            // In a real website, this would navigate to the actual page
-            alert(`Navigation to ${page} page would happen here`);
+        // Page Navigation Functions
+        function goToPage(pageName) {
+            console.log('Navigating to:', pageName);
+            alert(`Would navigate to ${pageName} page`);
         }
 
-        function openMaps() {
-            // In a real website, this would open Google Maps
-            window.open('https://maps.google.com/?q=123+Luxury+Avenue+Premium+District', '_blank');
+        // Contact Action Functions
+        function openLocationMap() {
+            window.open('https://maps.google.com/?q=456+Elite+Boulevard+Prestige+Quarter', '_blank');
         }
 
-        function callPhone() {
-            window.open('tel:+15551235893');
+        function initiatePhoneCall() {
+            window.open('tel:+15557893548');
         }
 
-        function sendEmail() {
-            window.open('mailto:hello@luxevents.com?subject=Inquiry from Website');
+        function composeEmail() {
+            window.open('mailto:info@premiumevents.com?subject=Website Inquiry');
         }
 
-        // Social Media Functions
-        function openFacebook() {
-            window.open('https://facebook.com/luxevents', '_blank');
+        // Social Media Handler Functions
+        function handleFacebook() {
+            window.open('https://facebook.com/premiumevents', '_blank');
         }
 
-        function openInstagram() {
-            window.open('https://instagram.com/luxevents', '_blank');
+        function handleInstagram() {
+            window.open('https://instagram.com/premiumevents', '_blank');
         }
 
-        function openTwitter() {
-            window.open('https://twitter.com/luxevents', '_blank');
+        function handleTwitter() {
+            window.open('https://twitter.com/premiumevents', '_blank');
         }
 
-        function openWhatsApp() {
-            // WhatsApp business number - replace with your actual WhatsApp business number
-            window.open('https://wa.me/15551235893?text=Hi! I\'m interested in your luxury event planning services.', '_blank');
+        function handleWhatsApp() {
+            window.open('https://wa.me/15557893548?text=Hello! I\'m interested in your premium event planning services.', '_blank');
         }
 
-        function openLinkedIn() {
-            window.open('https://linkedin.com/company/luxevents', '_blank');
+        function handleLinkedIn() {
+            window.open('https://linkedin.com/company/premiumevents', '_blank');
         }
 
-        // Scroll to Top Functionality
-        function scrollToTop() {
+        // Scroll to Top Function
+        function scrollToPageTop() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         }
 
-        // Show/Hide Scroll to Top Button
+        // Show/Hide Scroll Button on Scroll
         window.addEventListener('scroll', function() {
-            const scrollBtn = document.querySelector('.luxe-scroll-to-top-btn');
-            if (window.pageYOffset > 300) {
-                scrollBtn.classList.add('luxe-scroll-visible');
+            const scrollButton = document.querySelector('.premium-events-scroll-button');
+            if (window.pageYOffset > 400) {
+                scrollButton.classList.add('show-button');
             } else {
-                scrollBtn.classList.remove('luxe-scroll-visible');
+                scrollButton.classList.remove('show-button');
             }
         });
 
-        // Add click event prevention for demo
-        document.querySelectorAll('.luxe-social-media-icon').forEach(icon => {
-            icon.addEventListener('click', function(e) {
+        // Prevent default click behavior for social links in demo
+        document.querySelectorAll('.premium-events-social-button').forEach(button => {
+            button.addEventListener('click', function(e) {
                 e.preventDefault();
-                // The onclick functions will still execute
             });
         });
     </script>
+
 </body>
 </html>
