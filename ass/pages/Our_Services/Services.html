@@ -7,8 +7,57 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="./style/services.css">
+    <link rel="stylesheet" href="./style/nav.css">
 </head>
 <body>
+
+
+    <!-- nav section -->
+    <nav class="modern-cream-navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="#home" class="navbar-logo">
+                <div class="logo-icon"><img src="../../photos/001.png" width="100%" height="100%"></div>
+                <span class="logo-text">LUX EVENTS</span>
+            </a>
+            
+            <ul class="navbar-menu" id="navbarMenu">
+                <li class="navbar-item">
+                    <a href="#home" class="navbar-link">Home</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#about" class="navbar-link">About</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="Services.html" class="navbar-link">Services</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#portfolio" class="navbar-link">Packages</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#contact" class="navbar-link">Gallery</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#contact" class="navbar-link">Inquiry</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#get-started" class="navbar-cta">
+                        <span>Get Started</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="mobile-toggle" id="mobileToggle">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -103,7 +152,9 @@
     <!-- Features Section -->
     <section class="features fade-in">
         <div class="container">
-            <h2 class="section-title">Why Choose LUX Events</h2>
+            <center>
+                <h2 class="section-title">Why Choose LUX Events</h2>
+            </center>
             <div class="divider"></div>
             <div class="features-grid">
                 <div class="feature-item">
@@ -145,8 +196,10 @@
     <!-- Process Section -->
     <section class="process fade-in">
         <div class="container">
-            <h2 class="section-title">Our Process</h2>
-            <p class="section-subtitle">From Initial Consultation to Perfect Execution</p>
+            <center>
+                <h2 class="section-title">Our Process</h2>
+                <p class="section-subtitle">From Initial Consultation to Perfect Execution</p>
+            </center>
             <div class="divider"></div>
             <div class="process-timeline">
                 <div class="process-step">
@@ -179,92 +232,118 @@
         </div>
     </section>
 
-    <!-- WhatsApp Float Button -->
+    <!-- WhatsApp Float Button
+
+    
     <a href="https://wa.me/1234567890" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
-    </a>
+    </a> -->
 
     <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Counter animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-count'));
-                const increment = target / 100;
-                let current = 0;
-                
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    
-                    if (target === 4.9) {
-                        counter.textContent = current.toFixed(1);
-                    } else {
-                        counter.textContent = Math.floor(current);
-                    }
-                }, 20);
-            });
-        }
-
-        // Trigger counter animation when features section is visible
-        const featuresSection = document.querySelector('.features');
-        const featuresObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    featuresObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        featuresObserver.observe(featuresSection);
-
-        // Add loading animation
-        window.addEventListener('load', function() {
-            document.body.style.opacity = '1';
-        });
-
-        // Service card hover effects
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
+       
     </script>
+
+<footer class="premium-events-footer-wrapper">
+    <div class="premium-events-bg-decoration">
+        <div class="premium-events-floating-shape"></div>
+        <div class="premium-events-floating-shape"></div>
+        <div class="premium-events-floating-shape"></div>
+    </div>
+    
+    <div class="premium-events-content-container">
+        <div class="premium-events-main-grid">
+            <!-- Company Information -->
+            <div class="premium-events-section-block">
+                <h3>Premium Events</h3>
+                <p>Crafting extraordinary luxury experiences through innovative event planning and flawless execution. We specialize in transforming your dreams into magnificent reality with unparalleled attention to detail.</p>
+                <div class="premium-events-social-wrapper">
+                    <a href="#" class="premium-events-social-button facebook-btn" title="Join us on Facebook" onclick="handleFacebook()">f</a>
+                    <a href="#" class="premium-events-social-button instagram-btn" title="Follow our Instagram" onclick="handleInstagram()">📷</a>
+                    <a href="#" class="premium-events-social-button twitter-btn" title="Connect on Twitter" onclick="handleTwitter()">🐦</a>
+                    <a href="#" class="premium-events-social-button whatsapp-btn" title="WhatsApp us" onclick="handleWhatsApp()">💬</a>
+                    <a href="#" class="premium-events-social-button linkedin-btn" title="LinkedIn Profile" onclick="handleLinkedIn()">in</a>
+                </div>
+            </div>
+
+            <!-- Our Services -->
+            <div class="premium-events-section-block">
+                <h3>Our Services</h3>
+                <ul>
+                    <li class="premium-events-nav-link" onclick="goToPage('luxury-weddings')">Luxury Weddings</li>
+                    <li class="premium-events-nav-link" onclick="goToPage('corporate-galas')">Corporate Galas</li>
+                    <li class="premium-events-nav-link" onclick="goToPage('exclusive-parties')">Exclusive Parties</li>
+                    <li class="premium-events-nav-link" onclick="goToPage('premium-dinners')">Premium Dinners</li>
+                    <li class="premium-events-nav-link" onclick="goToPage('brand-launches')">Brand Launches</li>
+                    <li class="premium-events-nav-link" onclick="goToPage('event-consulting')">Event Consulting</li>
+                    <li class="premium-events-nav-link" onclick="goToPage('venue-sourcing')">Venue Sourcing</li>
+                    <li class="premium-events-nav-link" onclick="goToPage('luxury-catering')">Luxury Catering</li>
+                </ul>
+            </div>
+
+            <!-- Navigation Menu -->
+            <div class="premium-events-section-block">
+                <h3>Navigation</h3>
+                <ul>
+                    <li class="premium-events-nav-link" onclick="goToPage('homepage')">Homepage</li>
+                    <li class="premium-events-nav-link" onclick="goToPage('about-us')">About Us</li>
+                    <li class="premium-events-nav-link" onclick="goToPage('our-services')">Our Services</li>
+                    <li class="premium-events-nav-link" onclick="goToPage('portfolio')">Portfolio</li>
+                    <li class="premium-events-nav-link" onclick="goToPage('pricing')">Pricing</li>
+                    <li class="premium-events-nav-link" onclick="goToPage('testimonials')">Testimonials</li>
+                    <li class="premium-events-nav-link" onclick="goToPage('contact-us')">Contact Us</li>
+                    <li class="premium-events-nav-link" onclick="goToPage('partnerships')">Partnerships</li>
+                </ul>
+            </div>
+
+            <!-- Contact Details -->
+            <div class="premium-events-section-block">
+                <h3>Contact Details</h3>
+                <div class="premium-events-contact-detail" onclick="openLocationMap()">
+                    <span class="premium-events-contact-symbol">📍</span>
+                    <span>456 Elite Boulevard, Prestige Quarter, Metropolitan 67890</span>
+                </div>
+                <div class="premium-events-contact-detail" onclick="initiatePhoneCall()">
+                    <span class="premium-events-contact-symbol">📞</span>
+                    <span>+1 (555) 789-ELITE</span>
+                </div>
+                <div class="premium-events-contact-detail" onclick="composeEmail()">
+                    <span class="premium-events-contact-symbol">✉️</span>
+                    <span>info@premiumevents.com</span>
+                </div>
+                <div class="premium-events-contact-detail">
+                    <span class="premium-events-contact-symbol">🕐</span>
+                    <span>Monday - Saturday: 8AM - 9PM</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="premium-events-footer-base">
+            <div class="premium-events-brand-title">Premium Events</div>
+            <div class="premium-events-bottom-links">
+                <a href="#" onclick="goToPage('privacy-policy')">Privacy Policy</a>
+                <a href="#" onclick="goToPage('terms-conditions')">Terms & Conditions</a>
+                <a href="#" onclick="goToPage('cookie-policy')">Cookie Policy</a>
+                <a href="#" onclick="goToPage('accessibility')">Accessibility</a>
+                <a href="#" onclick="goToPage('site-map')">Site Map</a>
+            </div>
+        </div>
+        
+        <div class="premium-events-copyright-text">
+            <p>&copy; 2025 Premium Events. All rights reserved. | Designing luxury experiences since 2015.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Scroll to Top -->
+<button class="premium-events-scroll-button" onclick="scrollToPageTop()" aria-label="Scroll to top">↑</button>
+</body>
+
+
+<!-- <script src="./javascript/"></script> -->
+
+<script src="./javascript/services.js"></script>
+
+<script src="./javascript/nav.js"></script>
+
 </body>
 </html>
