@@ -3,456 +3,728 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Inquiry - Wedding Planner</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .header {
-            background: linear-gradient(135deg, #ff6b6b, #ffd93d, #74b9ff);
-            padding: 40px 30px;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.1);
-            z-index: 1;
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            animation: fadeInDown 1s ease-out;
-        }
-
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.95;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-
-        .form-container {
-            padding: 40px;
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 25px;
-        }
-
-        .form-group {
-            position: relative;
-            animation: fadeInLeft 0.8s ease-out;
-        }
-
-        .form-group:nth-child(even) {
-            animation: fadeInRight 0.8s ease-out;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #2d3436;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px 20px;
-            border: 3px solid transparent;
-            border-radius: 15px;
-            font-size: 1rem;
-            background: linear-gradient(135deg, #fff, #f8f9ff);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            outline: none;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(116, 75, 162, 0.3);
-            border-color: #764ba2;
-            background: linear-gradient(135deg, #fff, #f0f8ff);
-        }
-
-        .form-group input[type="email"] {
-            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-        }
-
-        .form-group input[type="tel"] {
-            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
-        }
-
-        .form-group input[type="date"] {
-            background: linear-gradient(135deg, #fff3e0, #ffcc02);
-        }
-
-        .form-group input[type="number"] {
-            background: linear-gradient(135deg, #e8f5e8, #a5d6a7);
-        }
-
-        .form-group select {
-            background: linear-gradient(135deg, #fce4ec, #f8bbd9);
-            cursor: pointer;
-        }
-
-        .full-width {
-            grid-column: 1 / -1;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-            background: linear-gradient(135deg, #f1f8e9, #dcedc8);
-        }
-
-        .budget-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 10px;
-        }
-
-        .budget-option {
-            position: relative;
-        }
-
-        .budget-option input[type="radio"] {
-            opacity: 0;
-            position: absolute;
-        }
-
-        .budget-option label {
-            display: flex;
-            align-items: center;
-            padding: 12px 20px;
-            background: linear-gradient(135deg, #fff, #f5f5f5);
-            border: 2px solid #ddd;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: normal;
-            text-transform: none;
-            letter-spacing: normal;
-            font-size: 0.95rem;
-        }
-
-        .budget-option input[type="radio"]:checked + label {
-            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
-            border-color: #ff6b6b;
-            color: white;
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24, #ff9ff3, #54a0ff);
-            background-size: 300% 300%;
-            border: none;
-            border-radius: 50px;
-            color: white;
-            font-size: 1.3rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
-            animation: gradient 3s ease infinite;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.6);
-            animation-duration: 1s;
-        }
-
-        .submit-btn:active {
-            transform: translateY(-1px);
-        }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Floating elements decoration */
-        .floating-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .floating-circle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .floating-circle:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-circle:nth-child(2) {
-            width: 60px;
-            height: 60px;
-            top: 60%;
-            right: 15%;
-            animation-delay: 2s;
-        }
-
-        .floating-circle:nth-child(3) {
-            width: 40px;
-            height: 40px;
-            top: 40%;
-            left: 80%;
-            animation-delay: 4s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        @media (max-width: 768px) {
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .form-container {
-                padding: 25px;
-            }
-            
-            .budget-options {
-                justify-content: center;
-            }
-        }
-    </style>
+    <title>Event Planning Inquiry - DreamEvents</title>
+    <link rel="stylesheet" href="inquriy.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="floating-elements">
-                <div class="floating-circle"></div>
-                <div class="floating-circle"></div>
-                <div class="floating-circle"></div>
-            </div>
-            <div class="header-content">
-                <h1>✨ Event Inquiry ✨</h1>
-                <p>Let's plan your perfect celebration together!</p>
+
+<nav class="modern-cream-navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="#home" class="navbar-logo">
+                <div class="logo-icon"><img src="../../../photos/001.png" width="100%" height="100%"></div>
+                <span class="logo-text">LUX EVENTS</span>
+            </a>
+            
+            <ul class="navbar-menu" id="navbarMenu">
+                <li class="navbar-item">
+                    <a href="#home" class="navbar-link">Home</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#about" class="navbar-link">About</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#services" class="navbar-link">Services</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#portfolio" class="navbar-link">Packages</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#contact" class="navbar-link">Gallery</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#contact" class="navbar-link">Inquiry</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#get-started" class="navbar-cta">
+                        <span>Get Started</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="mobile-toggle" id="mobileToggle">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
             </div>
         </div>
-        
-        <div class="form-container">
-            <form id="inquiryForm">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="fullName">👤 Full Name</label>
-                        <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
-                    </div>
+    </nav>
+
+
+    <script>
+        class ModernNavbar {
+            constructor() {
+                this.navbar = document.getElementById('navbar');
+                this.mobileToggle = document.getElementById('mobileToggle');
+                this.navbarMenu = document.getElementById('navbarMenu');
+                this.hamburgerLines = document.querySelectorAll('.hamburger-line');
+                this.lastScrollTop = 0;
+                this.scrollThreshold = 100;
+                
+                this.init();
+            }
+
+            init() {
+                this.setupMobileMenu();
+                this.setupScrollEffects();
+                this.setupSmoothScrolling();
+                this.setupHoverEffects();
+                this.setupKeyboardNavigation();
+            }
+
+            setupMobileMenu() {
+                this.mobileToggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.toggleMobileMenu();
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!this.navbar.contains(e.target) && 
+                        this.navbarMenu.classList.contains('mobile-active')) {
+                        this.closeMobileMenu();
+                    }
+                });
+
+                // Close menu on link click
+                document.querySelectorAll('.navbar-link, .navbar-cta').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 768) {
+                            this.closeMobileMenu();
+                        }
+                    });
+                });
+
+                // Handle resize
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 768) {
+                        this.closeMobileMenu();
+                    }
+                });
+            }
+
+            toggleMobileMenu() {
+                const isActive = this.navbarMenu.classList.contains('mobile-active');
+                
+                if (isActive) {
+                    this.closeMobileMenu();
+                } else {
+                    this.openMobileMenu();
+                }
+            }
+
+            openMobileMenu() {
+                this.navbarMenu.classList.add('mobile-active');
+                this.hamburgerLines.forEach(line => line.classList.add('active'));
+                document.body.style.overflow = 'hidden';
+            }
+
+            closeMobileMenu() {
+                this.navbarMenu.classList.remove('mobile-active');
+                this.hamburgerLines.forEach(line => line.classList.remove('active'));
+                document.body.style.overflow = '';
+            }
+
+            setupScrollEffects() {
+                let ticking = false;
+
+                const updateNavbar = () => {
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                     
-                    <div class="form-group">
-                        <label for="phone">📞 Phone Number</label>
-                        <input type="tel" id="phone" name="phone" required placeholder="+1 (555) 123-4567">
-                    </div>
+                    // Add scrolled class
+                    if (scrollTop > 50) {
+                        this.navbar.classList.add('scrolled');
+                    } else {
+                        this.navbar.classList.remove('scrolled');
+                    }
+
+                    // Hide/show navbar based on scroll direction
+                    if (scrollTop > this.scrollThreshold) {
+                        if (scrollTop > this.lastScrollTop && scrollTop > 200) {
+                            // Scrolling down
+                            this.navbar.classList.add('hidden');
+                        } else {
+                            // Scrolling up
+                            this.navbar.classList.remove('hidden');
+                        }
+                    }
                     
-                    <div class="form-group">
-                        <label for="email">📧 Email Address</label>
-                        <input type="email" id="email" name="email" required placeholder="your@email.com">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="eventType">🎉 Event Type</label>
-                        <select id="eventType" name="eventType" required>
-                            <option value="">Select your event type</option>
-                            <option value="wedding">💍 Wedding</option>
-                            <option value="engagement">💕 Engagement Party</option>
-                            <option value="birthday">🎂 Birthday Party</option>
-                            <option value="anniversary">🥂 Anniversary</option>
-                            <option value="corporate">🏢 Corporate Event</option>
-                            <option value="baby-shower">👶 Baby Shower</option>
-                            <option value="graduation">🎓 Graduation Party</option>
-                            <option value="other">✨ Other</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="preferredDate">📅 Preferred Date</label>
-                        <input type="date" id="preferredDate" name="preferredDate" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="guestCount">👥 Guest Count</label>
-                        <input type="number" id="guestCount" name="guestCount" required min="1" max="1000" placeholder="Expected number of guests">
-                    </div>
+                    this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+                    ticking = false;
+                };
+
+                window.addEventListener('scroll', () => {
+                    if (!ticking) {
+                        requestAnimationFrame(updateNavbar);
+                        ticking = true;
+                    }
+                }, { passive: true });
+            }
+
+            setupSmoothScrolling() {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const target = document.querySelector(anchor.getAttribute('href'));
+                        
+                        if (target) {
+                            const offsetTop = target.offsetTop - 80;
+                            window.scrollTo({
+                                top: offsetTop,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                });
+            }
+
+            setupHoverEffects() {
+                // Enhanced hover effects for links
+                document.querySelectorAll('.navbar-link, .navbar-cta').forEach(element => {
+                    element.addEventListener('mouseenter', (e) => {
+                        const rect = e.target.getBoundingClientRect();
+                        const ripple = document.createElement('div');
+                        ripple.style.cssText = `
+                            position: absolute;
+                            border-radius: 50%;
+                            background: rgba(139, 69, 19, 0.2);
+                            transform: scale(0);
+                            animation: ripple 0.6s linear;
+                            left: ${e.clientX - rect.left - 10}px;
+                            top: ${e.clientY - rect.top - 10}px;
+                            width: 20px;
+                            height: 20px;
+                            pointer-events: none;
+                        `;
+                        
+                        element.style.position = 'relative';
+                        element.appendChild(ripple);
+                        
+                        setTimeout(() => {
+                            ripple.remove();
+                        }, 600);
+                    });
+                });
+
+                // CSS for ripple animation
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes ripple {
+                        to {
+                            transform: scale(4);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            setupKeyboardNavigation() {
+                // Enhanced keyboard accessibility
+                document.querySelectorAll('.navbar-link, .navbar-cta, .mobile-toggle').forEach(element => {
+                    element.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            element.click();
+                        }
+                    });
+                });
+
+                // Focus management
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.navbarMenu.classList.contains('mobile-active')) {
+                        this.closeMobileMenu();
+                        this.mobileToggle.focus();
+                    }
+                });
+            }
+        }
+
+        // Initialize navbar when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new ModernNavbar();
+        });
+
+        // Add floating particles effect
+        function createFloatingParticles() {
+            const particleContainer = document.createElement('div');
+            particleContainer.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 1;
+                overflow: hidden;
+            `;
+            document.body.appendChild(particleContainer);
+
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: absolute;
+                    width: 4px;
+                    height: 4px;
+                    background: rgba(139, 69, 19, 0.1);
+                    border-radius: 50%;
+                    animation: float-${i} ${8 + Math.random() * 4}s linear infinite;
+                    left: ${Math.random() * 100}%;
+                    animation-delay: ${Math.random() * 8}s;
+                `;
+                
+                const keyframes = `
+                    @keyframes float-${i} {
+                        0% {
+                            transform: translateY(100vh) rotate(0deg);
+                            opacity: 0;
+                        }
+                        10% {
+                            opacity: 1;
+                        }
+                        90% {
+                            opacity: 1;
+                        }
+                        100% {
+                            transform: translateY(-100px) rotate(360deg);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                
+                const style = document.createElement('style');
+                style.textContent = keyframes;
+                document.head.appendChild(style);
+                
+                particleContainer.appendChild(particle);
+            }
+        }
+
+        // Initialize particles
+        setTimeout(createFloatingParticles, 1000);
+    </script>
+
+
+
+
+
+
+    <div class="container">
+        <header>
+            <div class="logo floating">✨ DreamEvents ✨</div>
+            <div class="tagline">Creating Magical Moments Since 2009</div>
+        </header>
+
+        <div class="hero-section">
+            <h1>Event Planning Inquiry</h1>
+            <p>Discover our comprehensive event planning services and let us transform your special occasions into unforgettable memories with our expertise and creativity.</p>
+        </div>
+
+        <div class="services-section">
+            <h2 class="section-title">Our Specialty Events</h2>
+            <div class="services-grid">
+                <div class="service-card" onclick="openModal('wedding')">
+                    <div class="service-icon">💒</div>
+                    <h3>Wedding Planning</h3>
+                    <p>Complete wedding coordination from intimate ceremonies to grand celebrations. We handle venue selection, catering, décor, entertainment, and every detail to make your dream wedding come true.</p>
+                    <button class="card-button">Inquire Now</button>
                 </div>
                 
-                <div class="form-group full-width">
-                    <label>💰 Budget Range</label>
-                    <div class="budget-options">
-                        <div class="budget-option">
-                            <input type="radio" id="budget1" name="budget" value="under-5k" required>
-                            <label for="budget1">Under $5,000</label>
-                        </div>
-                        <div class="budget-option">
-                            <input type="radio" id="budget2" name="budget" value="5k-10k">
-                            <label for="budget2">$5,000 - $10,000</label>
-                        </div>
-                        <div class="budget-option">
-                            <input type="radio" id="budget3" name="budget" value="10k-25k">
-                            <label for="budget3">$10,000 - $25,000</label>
-                        </div>
-                        <div class="budget-option">
-                            <input type="radio" id="budget4" name="budget" value="25k-50k">
-                            <label for="budget4">$25,000 - $50,000</label>
-                        </div>
-                        <div class="budget-option">
-                            <input type="radio" id="budget5" name="budget" value="over-50k">
-                            <label for="budget5">Over $50,000</label>
-                        </div>
-                    </div>
+                <div class="service-card" onclick="openModal('birthday')">
+                    <div class="service-icon">🎂</div>
+                    <h3>Birthday Parties</h3>
+                    <p>Memorable birthday celebrations for all ages with creative themes, custom decorations, entertainment, and delicious cakes. From kids' parties to milestone birthdays, we make every year special.</p>
+                    <button class="card-button">Inquire Now</button>
                 </div>
                 
-                <div class="form-group full-width">
-                    <label for="message">💭 Message</label>
-                    <textarea id="message" name="message" placeholder="Tell us about your dream event! Include any special requirements, themes, or ideas you have in mind..."></textarea>
+                <div class="service-card" onclick="openModal('corporate')">
+                    <div class="service-icon">🏢</div>
+                    <h3>Corporate Events</h3>
+                    <p>Professional corporate gatherings, conferences, product launches, and team building events. We ensure seamless execution with sophisticated styling and flawless logistics.</p>
+                    <button class="card-button">Inquire Now</button>
                 </div>
                 
-                <button type="submit" class="submit-btn">Send Inquiry 🚀</button>
-            </form>
+                <div class="service-card" onclick="openModal('babyshower')">
+                    <div class="service-icon">👶</div>
+                    <h3>Baby Shower</h3>
+                    <p>Beautiful baby shower celebrations with adorable themes, elegant decorations, fun games, and delightful treats to welcome the new arrival with joy and love.</p>
+                    <button class="card-button">Inquire Now</button>
+                </div>
+                
+                <div class="service-card" onclick="openModal('anniversary')">
+                    <div class="service-icon">💕</div>
+                    <h3>Anniversaries</h3>
+                    <p>Romantic anniversary celebrations honoring love stories and milestones. From intimate dinners to grand parties, we create meaningful moments that celebrate your journey together.</p>
+                    <button class="card-button">Inquire Now</button>
+                </div>
+                
+                <div class="service-card" onclick="openModal('prewedding')">
+                    <div class="service-icon">📸</div>
+                    <h3>Pre-Wedding / Photoshoot Setup</h3>
+                    <p>Stunning pre-wedding and photoshoot setups with beautiful backdrops, props, and styling. We create picture-perfect environments that capture your love story beautifully.</p>
+                    <button class="card-button">Inquire Now</button>
+                </div>
+                
+                <div class="service-card" onclick="openModal('religious')">
+                    <div class="service-icon">🕉️</div>
+                    <h3>Religious Events</h3>
+                    <p>Sacred religious ceremonies and celebrations including pujas, festivals, christenings, and spiritual gatherings. We respect traditions while adding elegant touches to honor your faith.</p>
+                    <button class="card-button">Inquire Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="experience-section scroll-reveal">
+            <h2>15 Years of Excellence</h2>
+            <p>Since 2009, we've been transforming dreams into reality with our passionate team of event planners, designers, and coordinators. Our experience spans across all types of celebrations, ensuring every detail is perfect.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">800+</span>
+                    <span class="stat-label">Weddings Planned</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1500+</span>
+                    <span class="stat-label">Events Organized</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Happy Clients</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section scroll-reveal">
+            <h2>Ready to Plan Your Perfect Event?</h2>
+            <p>Contact us today for a free consultation and let's start planning your unforgettable celebration!</p>
+            
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h4>📞 Call Us</h4>
+                    <p>+1 (555) 123-4567<br>Available 9AM - 8PM</p>
+                </div>
+                <div class="contact-item">
+                    <h4>✉️ Email Us</h4>
+                    <p>info@dreamevents.com<br>Quick response guaranteed</p>
+                </div>
+                <div class="contact-item">
+                    <h4>📍 Visit Our Office</h4>
+                    <p>123 Event Plaza<br>Celebration City, CC 12345</p>
+                </div>
+                <div class="contact-item">
+                    <h4>💬 Free Consultation</h4>
+                    <p>Book your free planning<br>session today</p>
+                </div>
+            </div>
+            
+            <a href="#" class="cta-button">Get Your Free Quote</a>
         </div>
     </div>
 
+    <!-- Modal for Inquiry Forms -->
+
     <script>
-        document.getElementById('inquiryForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Modal data for different event types
+        const eventData = {
+            wedding: {
+                icon: '💒',
+                title: 'Wedding Planning Inquiry',
+                placeholder: 'Tell us about your dream wedding - ceremony style, reception preferences, theme ideas, special traditions, photography needs, and any specific requirements...'
+            },
+            birthday: {
+                icon: '🎂',
+                title: 'Birthday Party Inquiry',
+                placeholder: 'Share details about the birthday celebration - age of birthday person, party theme, entertainment preferences, venue type, special activities, and any specific requests...'
+            },
+            corporate: {
+                icon: '🏢',
+                title: 'Corporate Event Inquiry',
+                placeholder: 'Describe your corporate event needs - event type, company size, presentation requirements, catering preferences, networking activities, and professional objectives...'
+            },
+            babyshower: {
+                icon: '👶',
+                title: 'Baby Shower Inquiry',
+                placeholder: 'Tell us about your baby shower vision - gender reveal, color scheme, game preferences, gift table setup, refreshment style, and decorative themes...'
+            },
+            anniversary: {
+                icon: '💕',
+                title: 'Anniversary Celebration Inquiry',
+                placeholder: 'Share your anniversary celebration ideas - years being celebrated, romantic themes, dining preferences, entertainment style, photo opportunities, and special memories...'
+            },
+            prewedding: {
+                icon: '📸',
+                title: 'Pre-Wedding Photoshoot Inquiry',
+                placeholder: 'Describe your pre-wedding photoshoot vision - location preferences, setup style, props needed, backdrop themes, lighting requirements, and creative concepts...'
+            },
+            religious: {
+                icon: '🕉️',
+                title: 'Religious Event Inquiry',
+                placeholder: 'Tell us about your religious celebration - ceremony type, traditional requirements, decoration preferences, catering needs, guest capacity, and cultural specifications...'
+            }
+        };
+
+        // Open modal function
+        function openModal(eventType) {
+            const modal = document.getElementById('inquiryModal');
+            const modalIcon = document.getElementById('modalIcon');
+            const modalTitle = document.getElementById('modalTitle');
+            const requirementsTextarea = document.getElementById('requirements');
             
-            // Add a nice success animation
-            const btn = document.querySelector('.submit-btn');
-            const originalText = btn.innerHTML;
+            const data = eventData[eventType];
+            modalIcon.textContent = data.icon;
+            modalTitle.textContent = data.title;
+            requirementsTextarea.placeholder = data.placeholder;
             
-            btn.innerHTML = '✓ Inquiry Sent!';
-            btn.style.background = 'linear-gradient(135deg, #00b894, #00cec9)';
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal function
+        function closeModal() {
+            const modal = document.getElementById('inquiryModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
             
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.style.background = '';
-                alert('Thank you! Your inquiry has been submitted successfully. We\'ll get back to you soon!');
-            }, 2000);
+            // Reset form
+            document.querySelector('.inquiry-form').reset();
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('inquiryModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
         });
 
-        // Add some interactive effects
-        document.querySelectorAll('input, select, textarea').forEach(field => {
-            field.addEventListener('focus', function() {
-                this.parentElement.style.transform = 'scale(1.02)';
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Form submission
+        function submitForm(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Show success message (in real implementation, send to server)
+            alert('Thank you for your inquiry! We will contact you within 24 hours to discuss your event planning needs.');
+            
+            // Close modal and reset form
+            closeModal();
+        }
+
+        // Scroll reveal animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('revealed');
+                }
+            }
+        }
+        
+        window.addEventListener('scroll', reveal);
+        
+        // Add smooth scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add some interactive hover effects
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            serviceCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.cursor = 'pointer';
+                });
             });
             
-            field.addEventListener('blur', function() {
-                this.parentElement.style.transform = 'scale(1)';
+            // Initial reveal check
+            reveal();
+        });
+        
+        // Add parallax effect to floating elements
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const floating = document.querySelector('.floating');
+            if (floating) {
+                floating.style.transform = `translateY(${scrolled * 0.1}px)`;
+            }
+        });
+    </script>
+
+
+
+
+
+    <footer class="premium-events-footer-wrapper">
+        <div class="premium-events-bg-decoration">
+            <div class="premium-events-floating-shape"></div>
+            <div class="premium-events-floating-shape"></div>
+            <div class="premium-events-floating-shape"></div>
+        </div>
+        
+        <div class="premium-events-content-container">
+            <div class="premium-events-main-grid">
+                <!-- Company Information -->
+                <div class="premium-events-section-block">
+                    <h3>Premium Events</h3>
+                    <p>Crafting extraordinary luxury experiences through innovative event planning and flawless execution. We specialize in transforming your dreams into magnificent reality with unparalleled attention to detail.</p>
+                    <div class="premium-events-social-wrapper">
+                        <a href="#" class="premium-events-social-button facebook-btn" title="Join us on Facebook" onclick="handleFacebook()">f</a>
+                        <a href="#" class="premium-events-social-button instagram-btn" title="Follow our Instagram" onclick="handleInstagram()">📷</a>
+                        <a href="#" class="premium-events-social-button twitter-btn" title="Connect on Twitter" onclick="handleTwitter()">🐦</a>
+                        <a href="#" class="premium-events-social-button whatsapp-btn" title="WhatsApp us" onclick="handleWhatsApp()">💬</a>
+                        <a href="#" class="premium-events-social-button linkedin-btn" title="LinkedIn Profile" onclick="handleLinkedIn()">in</a>
+                    </div>
+                </div>
+
+                <!-- Our Services -->
+                <div class="premium-events-section-block">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li class="premium-events-nav-link" onclick="goToPage('luxury-weddings')">Luxury Weddings</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('corporate-galas')">Corporate Galas</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('exclusive-parties')">Exclusive Parties</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('premium-dinners')">Premium Dinners</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('brand-launches')">Brand Launches</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('event-consulting')">Event Consulting</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('venue-sourcing')">Venue Sourcing</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('luxury-catering')">Luxury Catering</li>
+                    </ul>
+                </div>
+
+                <!-- Navigation Menu -->
+                <div class="premium-events-section-block">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li class="premium-events-nav-link" onclick="goToPage('homepage')">Homepage</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('about-us')">About Us</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('our-services')">Our Services</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('portfolio')">Portfolio</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('pricing')">Pricing</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('testimonials')">Testimonials</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('contact-us')">Contact Us</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('partnerships')">Partnerships</li>
+                    </ul>
+                </div>
+
+                <!-- Contact Details -->
+                <div class="premium-events-section-block">
+                    <h3>Contact Details</h3>
+                    <div class="premium-events-contact-detail" onclick="openLocationMap()">
+                        <span class="premium-events-contact-symbol">📍</span>
+                        <span>456 Elite Boulevard, Prestige Quarter, Metropolitan 67890</span>
+                    </div>
+                    <div class="premium-events-contact-detail" onclick="initiatePhoneCall()">
+                        <span class="premium-events-contact-symbol">📞</span>
+                        <span>+1 (555) 789-ELITE</span>
+                    </div>
+                    <div class="premium-events-contact-detail" onclick="composeEmail()">
+                        <span class="premium-events-contact-symbol">✉️</span>
+                        <span>info@premiumevents.com</span>
+                    </div>
+                    <div class="premium-events-contact-detail">
+                        <span class="premium-events-contact-symbol">🕐</span>
+                        <span>Monday - Saturday: 8AM - 9PM</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="premium-events-footer-base">
+                <div class="premium-events-brand-title">Premium Events</div>
+                <div class="premium-events-bottom-links">
+                    <a href="#" onclick="goToPage('privacy-policy')">Privacy Policy</a>
+                    <a href="#" onclick="goToPage('terms-conditions')">Terms & Conditions</a>
+                    <a href="#" onclick="goToPage('cookie-policy')">Cookie Policy</a>
+                    <a href="#" onclick="goToPage('accessibility')">Accessibility</a>
+                    <a href="#" onclick="goToPage('site-map')">Site Map</a>
+                </div>
+            </div>
+            
+            <div class="premium-events-copyright-text">
+                <p>&copy; 2025 Premium Events. All rights reserved. | Designing luxury experiences since 2015.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="premium-events-scroll-button" onclick="scrollToPageTop()" aria-label="Scroll to top">↑</button>
+</body>
+
+    <script>
+        // Page Navigation Functions
+        function goToPage(pageName) {
+            console.log('Navigating to:', pageName);
+            alert(`Would navigate to ${pageName} page`);
+        }
+
+        // Contact Action Functions
+        function openLocationMap() {
+            window.open('https://maps.google.com/?q=456+Elite+Boulevard+Prestige+Quarter', '_blank');
+        }
+
+        function initiatePhoneCall() {
+            window.open('tel:+15557893548');
+        }
+
+        function composeEmail() {
+            window.open('mailto:info@premiumevents.com?subject=Website Inquiry');
+        }
+
+        // Social Media Handler Functions
+        function handleFacebook() {
+            window.open('https://facebook.com/premiumevents', '_blank');
+        }
+
+        function handleInstagram() {
+            window.open('https://instagram.com/premiumevents', '_blank');
+        }
+
+        function handleTwitter() {
+            window.open('https://twitter.com/premiumevents', '_blank');
+        }
+
+        function handleWhatsApp() {
+            window.open('https://wa.me/15557893548?text=Hello! I\'m interested in your premium event planning services.', '_blank');
+        }
+
+        function handleLinkedIn() {
+            window.open('https://linkedin.com/company/premiumevents', '_blank');
+        }
+
+        // Scroll to Top Function
+        function scrollToPageTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/Hide Scroll Button on Scroll
+        window.addEventListener('scroll', function() {
+            const scrollButton = document.querySelector('.premium-events-scroll-button');
+            if (window.pageYOffset > 400) {
+                scrollButton.classList.add('show-button');
+            } else {
+                scrollButton.classList.remove('show-button');
+            }
+        });
+
+        // Prevent default click behavior for social links in demo
+        document.querySelectorAll('.premium-events-social-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
             });
         });
     </script>
