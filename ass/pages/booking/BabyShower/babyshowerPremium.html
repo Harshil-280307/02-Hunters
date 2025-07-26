@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Shower Events - Pricing Packages</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #2d3436;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #636e72;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+            justify-items: center;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out;
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(102, 126, 234, 0.25);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .pricing-card:hover .badge {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .pricing-card:hover .price-amount {
+            transform: scale(1.05);
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        .package-title {
+            font-size: 1.8rem;
+            color: #2d3436;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .price {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .price-currency {
+            font-size: 1.2rem;
+            vertical-align: top;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .features li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+            color: #2d3436;
+            font-size: 0.95rem;
+        }
+
+        .features li::before {
+            content: '💎';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            font-size: 1rem;
+        }
+
+        .add-ons-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        .add-ons-section h3 {
+            text-align: center;
+            font-size: 2rem;
+            color: #2d3436;
+            margin-bottom: 30px;
+        }
+
+        .add-ons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .add-on-item {
+            background: rgba(102, 126, 234, 0.05);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+        }
+
+        .add-on-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .add-on-item:hover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.15);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.25);
+        }
+
+        .add-on-item:hover::before {
+            left: 100%;
+        }
+
+        .add-on-item:hover .add-on-title {
+            color: #667eea;
+            transform: scale(1.05);
+        }
+
+        .add-on-item:hover .add-on-price {
+            transform: scale(1.1);
+            text-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .add-on-item:hover .selection-indicator {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        .add-on-item.selected {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            animation: selectedPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes selectedPulse {
+            0%, 100% {
+                box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            }
+            50% {
+                box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+            }
+        }
+
+        .add-on-item.selected .add-on-title {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .add-on-item.selected .add-on-price {
+            color: #764ba2;
+            font-weight: bold;
+        }
+
+        .add-on-item.selected .selection-indicator {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+            background: #667eea;
+            color: white;
+        }
+
+        .add-on-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .add-on-title {
+            font-weight: bold;
+            color: #2d3436;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .add-on-price {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .add-on-description {
+            color: #636e72;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .add-on-item.selected .add-on-description {
+            color: #2d3436;
+        }
+
+        .selection-indicator {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.2);
+            border: 2px solid #667eea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            opacity: 0;
+            transform: scale(0) rotate(-180deg);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .hover-instruction {
+            text-align: center;
+            color: #636e72;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            font-style: italic;
+            animation: fadeIn 1s ease-out 1s both;
+        }
+
+        .total-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 50px;
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.3);
+            animation: fadeIn 1s ease-out 0.7s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .total-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .total-section h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .total-breakdown {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideInItem 0.5s ease calc(var(--delay, 0s)) both;
+        }
+
+        .breakdown-item:nth-child(1) { --delay: 0.1s; }
+        .breakdown-item:nth-child(2) { --delay: 0.2s; }
+        .breakdown-item:nth-child(3) { --delay: 0.3s; }
+        .breakdown-item:nth-child(4) { --delay: 0.4s; }
+        .breakdown-item:nth-child(5) { --delay: 0.5s; }
+        .breakdown-item:nth-child(6) { --delay: 0.6s; }
+        .breakdown-item:nth-child(7) { --delay: 0.7s; }
+        .breakdown-item:nth-child(8) { --delay: 0.8s; }
+        .breakdown-item:nth-child(9) { --delay: 0.9s; }
+
+        @keyframes slideInItem {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .breakdown-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 10px;
+            padding-top: 15px;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+            animation: totalGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes totalGlow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            }
+        }
+
+        .cta-button {
+            width: 100%;
+            max-width: 400px;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 auto;
+            display: block;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta-button:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-out 0.8s both;
+        }
+
+        .contact-form h3 {
+            text-align: center;
+            color: #2d3436;
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #2d3436;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .form-note {
+            text-align: center;
+            color: #636e72;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+
+        .contact-info h3 {
+            color: #2d3436;
+            margin-bottom: 10px;
+        }
+
+        .contact-info p {
+            color: #636e72;
+            margin: 5px 0;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Mobile tap support */
+        @media (max-width: 768px) {
+            .hover-instruction {
+                font-size: 0.9rem;
+            }
+            
+            .add-on-item {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .add-ons-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form {
+                padding: 30px 20px;
+                margin: 40px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .pricing-card {
+                padding: 25px 20px;
+            }
+            
+            .add-ons-section {
+                padding: 30px 20px;
+            }
+            
+            .total-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✨ Baby Shower Events - Premium ✨</h1>
+            <p>Choose your perfect package and add-ons to create magical moments for your special celebration</p>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Premium Package -->
+            <div class="pricing-card" data-package="premium">
+                <div class="badge">Premium Choice</div>
+                <h2 class="package-title">Premium Package</h2>
+                <div class="price">
+                    <span class="price-amount">
+                        <span class="price-currency">₹</span>66,999
+                    </span>
+                </div>
+                <ul class="features">
+                    <li>Premium venue decoration with balloons & draping</li>
+                    <li>Elegant backdrop with professional lighting</li>
+                    <li>Table arrangements with floral centerpieces</li>
+                    <li>Custom welcome board with personalized message</li>
+                    <li>Enhanced lighting setup with mood lighting</li>
+                    <li>Professional photo props & accessories</li>
+                    <li>Basic photography session (1 hour included)</li>
+                    <li>Coordinator for 5-6 hours full support</li>
+                    <li>Setup, event management & cleanup included</li>
+                    <li>Welcome drinks arrangement for guests</li>
+                    <li>Basic game station with prizes</li>
+                    <li>Personalized party favors (25 pieces)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Add-ons Section -->
+        <div class="add-ons-section">
+            <h3>🌸 Additional Services & Add-ons</h3>
+            <p class="hover-instruction">✨ Hover over (or tap on mobile) any service to add it to your package</p>
+            <div class="add-ons-grid" id="addOnsGrid">
+                <!-- Add-ons will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Total Section -->
+        <div class="total-section">
+            <h3>💰 Your Total Estimate</h3>
+            <div class="total-breakdown" id="totalBreakdown">
+                <div class="breakdown-item">
+                    <span>Premium Package</span>
+                    <span>₹66,999</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>Total Amount</span>
+                    <span id="totalAmount">₹0</span>
+                </div>
+            </div>
+            <button class="cta-button" onclick="scrollToForm()">Get Detailed Quote</button>
+        </div>
+
+        <div class="contact-form" id="contactForm">
+            <h3>📝 Get Your Custom Quote</h3>
+            <form id="bookingForm" onsubmit="submitForm(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+91 98765 43210">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDate">Preferred Event Date *</label>
+                        <input type="date" id="eventDate" name="eventDate" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="guests">Expected Guests</label>
+                        <select id="guests" name="guests">
+                            <option value="">Select guest count</option>
+                            <option value="10-20">10-20 guests</option>
+                            <option value="21-30">21-30 guests</option>
+                            <option value="31-50">31-50 guests</option>
+                            <option value="51-100">51-100 guests</option>
+                            <option value="100+">100+ guests</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="venue">Venue Type</label>
+                        <select id="venue" name="venue">
+                            <option value="">Select venue type</option>
+                            <option value="home">Home/Residence</option>
+                            <option value="hall">Community Hall</option>
+                            <option value="hotel">Hotel/Restaurant</option>
+                            <option value="outdoor">Outdoor Venue</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="theme">Preferred Theme/Colors</label>
+                    <input type="text" id="theme" name="theme" placeholder="e.g., Pink & Gold, Baby Blue, Floral, etc.">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Special Requirements/Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us about any special requirements or additional details..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Send Quote Request</button>
+                <p class="form-note">We'll contact you within 24 hours with a detailed quote based on your selections.</p>
+            </form>
+        </div>
+
+        <div class="contact-info">
+            <h3>📞 Or Contact Us Directly</h3>
+            <p><strong>Phone:</strong> +91 98765 43210</p>
+            <p><strong>Email:</strong> info@babyshowerevents.com</p>
+            <p><strong>Available:</strong> 9 AM - 8 PM (All Days)</p>
+            <p><strong>WhatsApp:</strong> Quick booking & instant quotes</p>
+        </div>
+    </div>
+
+    <script>
+        // Add-ons data - updated pricing for medium package
+        const addOns = [
+            { id: 'photography', title: 'Extended Photography (3hrs)', price: 7000, description: 'Professional photographer for 3 hours with 100+ edited photos' },
+            { id: 'videography', title: 'Premium Videography Service', price: 12000, description: 'Professional video coverage with cinematic highlights reel' },
+            { id: 'flowers', title: 'Luxury Floral Arrangements', price: 5500, description: 'Premium fresh flower decorations and elaborate centerpieces' },
+            { id: 'cake', title: 'Designer Themed Cake (3kg)', price: 4000, description: 'Multi-tier personalized baby shower themed cake' },
+            { id: 'catering', title: 'Premium Catering Service', price: 18000, description: 'Complete gourmet meal service for 50 guests' },
+            { id: 'entertainment', title: 'Live Entertainment Package', price: 9000, description: 'Professional entertainer/musician for 3 hours' },
+            { id: 'favors', title: 'Premium Personalized Favors', price: 2500, description: 'Luxury custom party favors for guests (pack of 50)' },
+            { id: 'games', title: 'Deluxe Game Station Setup', price: 3500, description: 'Multiple game arrangements with premium prizes' },
+            { id: 'mehendi', title: 'Mehendi Artist', price: 4500, description: 'Professional mehendi artist for 2 hours' },
+            { id: 'maternity', title: 'Maternity Photoshoot', price: 6000, description: 'Professional maternity photoshoot with props' }
+        ];
+
+        let selectedPackage = 'premium';
+        let selectedPackagePrice = 66999;
+        let selectedAddOns = [];
+
+        // Initialize add-ons
+        function initializeAddOns() {
+            const addOnsGrid = document.getElementById('addOnsGrid');
+            addOnsGrid.innerHTML = '';
+            
+            addOns.forEach(addon => {
+                const addOnDiv = document.createElement('div');
+                addOnDiv.className = 'add-on-item';
+                addOnDiv.setAttribute('data-addon-id', addon.id);
+                
+                addOnDiv.innerHTML = `
+                    <div class="add-on-header">
+                        <span class="add-on-title">${addon.title}</span>
+                        <span class="add-on-price">₹${addon.price.toLocaleString()}</span>
+                        <div class="selection-indicator">✓</div>
+                    </div>
+                    <div class="add-on-description">${addon.description}</div>
+                `;
+                
+                // Add hover and click event listeners
+                addOnDiv.addEventListener('mouseenter', () => toggleAddOn(addon.id, addon.price, true));
+                addOnDiv.addEventListener('mouseleave', () => {
+                    // Only remove on mouse leave if not permanently selected
+                    if (!addOnDiv.classList.contains('selected')) {
+                        toggleAddOn(addon.id, addon.price, false);
+                    }
+                });
+                addOnDiv.addEventListener('click', () => {
+                    // Toggle permanent selection on click
+                    const isSelected = addOnDiv.classList.contains('selected');
+                    if (isSelected) {
+                        addOnDiv.classList.remove('selected');
+                        toggleAddOn(addon.id, addon.price, false);
+                    } else {
+                        addOnDiv.classList.add('selected');
+                        toggleAddOn(addon.id, addon.price, true);
+                    }
+                });
+                
+                // For mobile touch support
+                addOnDiv.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    const isSelected = addOnDiv.classList.contains('selected');
+                    if (isSelected) {
+                        addOnDiv.classList.remove('selected');
+                        toggleAddOn(addon.id, addon.price, false);
+                    } else {
+                        addOnDiv.classList.add('selected');
+                        toggleAddOn(addon.id, addon.price, true);
+                    }
+                });
+                
+                addOnsGrid.appendChild(addOnDiv);
+            });
+
+            updateTotal();
+        }
+
+        function toggleAddOn(addOnId, price, isAdding) {
+            const addon = addOns.find(item => item.id === addOnId);
+            
+            if (isAdding) {
+                // Add to selection if not already there
+                if (!selectedAddOns.find(item => item.id === addOnId)) {
+                    selectedAddOns.push(addon);
+                }
+            } else {
+                // Remove from selection
+                selectedAddOns = selectedAddOns.filter(item => item.id !== addOnId);
+            }
+            
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const totalBreakdown = document.getElementById('totalBreakdown');
+            const totalAmount = document.getElementById('totalAmount');
+            
+            let breakdownHTML = '';
+            let total = selectedPackagePrice; // Always include medium package
+            
+            // Always show premium package
+            breakdownHTML += `
+                <div class="breakdown-item">
+                    <span>Premium Package</span>
+                    <span>₹${selectedPackagePrice.toLocaleString()}</span>
+                </div>
+            `;
+            
+            selectedAddOns.forEach(addon => {
+                breakdownHTML += `
+                    <div class="breakdown-item">
+                        <span>${addon.title}</span>
+                        <span>₹${addon.price.toLocaleString()}</span>
+                    </div>
+                `;
+                total += addon.price;
+            });
+            
+            breakdownHTML += `
+                <div class="breakdown-item">
+                    <span>Total Amount</span>
+                    <span>₹${total.toLocaleString()}</span>
+                </div>
+            `;
+            
+            totalBreakdown.innerHTML = breakdownHTML;
+            totalAmount.textContent = `₹${total.toLocaleString()}`;
+        }
+
+        function scrollToForm() {
+            document.getElementById('contactForm').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            if (!data.name || !data.phone || !data.eventDate) {
+                alert('Please fill in all required fields (Name, Phone, and Event Date).');
+                return;
+            }
+            
+            let packageDetails = 'Premium Package (₹66,999)';
+                
+            let addOnDetails = selectedAddOns.length > 0 ? 
+                selectedAddOns.map(addon => `${addon.title} (₹${addon.price.toLocaleString()})`).join(', ') : 
+                'No add-ons selected';
+                
+            const totalCost = selectedPackagePrice + selectedAddOns.reduce((sum, addon) => sum + addon.price, 0);
+            
+            const message = `🎀 Baby Shower Event Quote Request 🎀
+            
+👤 Name: ${data.name}
+📱 Phone: ${data.phone}
+📧 Email: ${data.email || 'Not provided'}
+📅 Event Date: ${data.eventDate}
+👥 Guests: ${data.guests || 'Not specified'}
+🏢 Venue: ${data.venue || 'Not specified'}
+🎨 Theme: ${data.theme || 'Not specified'}
+
+📦 Selected Package: ${packageDetails}
+🌸 Add-ons: ${addOnDetails}
+💰 Total Estimated Cost: ₹${totalCost.toLocaleString()}
+
+📝 Message: ${data.message || 'No additional message'}
+
+Please provide a detailed quote based on these selections. Thank you!`;
+            
+            const phoneNumber = '919876543210';
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            
+            window.open(whatsappURL, '_blank');
+            alert('Thank you for your inquiry! You will be redirected to WhatsApp to send your details. We will contact you within 24 hours with a detailed quote.');
+            
+            event.target.reset();
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAddOns();
+            updateTotal();
+        });
+    </script>
+</body>
+</html>

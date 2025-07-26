@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Parties - Choose Your Package</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #ff6b9d 0%, #4ecdc4 25%, #45b7d1 50%, #f9ca24 75%, #ff6b9d 100%);
+            background-size: 400% 400%;
+            animation: rainbowGradient 15s ease infinite;
+            min-height: 100vh;
+            padding: 20px;
+            color: #2c3e50;
+            overflow-x: hidden;
+        }
+
+        @keyframes rainbowGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating birthday elements animation */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .birthday-element {
+            position: absolute;
+            font-size: 24px;
+            animation: float 10s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .birthday-element:nth-child(odd) {
+            animation-duration: 12s;
+        }
+
+        .birthday-element:nth-child(even) {
+            animation-duration: 8s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Previous Button Styles */
+        .navigation-section {
+            margin-bottom: 30px;
+        }
+
+        .previous-btn-link {
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .previous-btn {
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            box-shadow: 0 8px 20px rgba(44, 62, 80, 0.3);
+        }
+
+        .previous-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.4s ease;
+        }
+
+        .previous-btn:hover {
+            background: linear-gradient(45deg, #ff6b9d, #4ecdc4);
+            transform: translateY(-4px) scale(1.08);
+            box-shadow: 0 15px 35px rgba(255, 107, 157, 0.4);
+        }
+
+        .previous-btn:hover::before {
+            left: 100%;
+        }
+
+        .previous-btn::after {
+            content: '← ';
+            margin-right: 10px;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .previous-btn:hover::after {
+            transform: translateX(-5px);
+            color: #fff;
+        }
+
+        .header {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(44, 62, 80, 0.3);
+            color: #fff;
+            text-stroke: 2px #2c3e50;
+            -webkit-text-stroke: 2px #2c3e50;
+            animation: partyGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes partyGlow {
+            0% {
+                text-shadow: 2px 2px 4px rgba(44, 62, 80, 0.3), 0 0 10px rgba(255, 107, 157, 0.6);
+            }
+            100% {
+                text-shadow: 2px 2px 20px rgba(255, 107, 157, 0.8), 0 0 30px rgba(78, 205, 196, 0.6);
+            }
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(44, 62, 80, 0.5);
+            animation: fadeIn 1.5s ease-out 0.5s both;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 20px 40px rgba(44, 62, 80, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            border: 3px solid transparent;
+            animation: slideInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes slideInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card:hover {
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 0 35px 70px rgba(44, 62, 80, 0.3);
+            border-color: #ff6b9d;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #ff6b9d, #4ecdc4, #45b7d1, #f9ca24);
+            transition: left 0.6s ease;
+        }
+
+        .card:hover::before {
+            left: 0;
+        }
+
+        .card.basic::before {
+            background: linear-gradient(90deg, #ff6b9d, #ff8fab);
+        }
+
+        .card.medium::before {
+            background: linear-gradient(90deg, #4ecdc4, #26d0ce);
+        }
+
+        .card.premium::before {
+            background: linear-gradient(90deg, #45b7d1, #3742fa);
+        }
+
+        .card.custom::before {
+            background: linear-gradient(90deg, #f9ca24, #f0932b);
+        }
+
+        .card-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #fff;
+            transition: all 0.4s ease;
+            animation: bounce 2s infinite;
+            box-shadow: 0 10px 20px rgba(255, 107, 157, 0.3);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-15px);
+            }
+            60% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.2) rotate(360deg);
+            animation: none;
+            box-shadow: 0 15px 30px rgba(255, 107, 157, 0.5);
+        }
+
+        .basic .card-icon {
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+        }
+
+        .medium .card-icon {
+            background: linear-gradient(135deg, #4ecdc4, #26d0ce);
+        }
+
+        .premium .card-icon {
+            background: linear-gradient(135deg, #45b7d1, #3742fa);
+        }
+
+        .custom .card-icon {
+            background: linear-gradient(135deg, #f9ca24, #f0932b);
+        }
+
+        .card h3 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .card:hover h3 {
+            color: #ff6b9d;
+        }
+
+        .card .price {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .price {
+            transform: scale(1.15);
+        }
+
+        .basic .price {
+            color: #ff6b9d;
+        }
+
+        .medium .price {
+            color: #4ecdc4;
+        }
+
+        .premium .price {
+            color: #45b7d1;
+        }
+
+        .custom .price {
+            color: #f9ca24;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .features li {
+            padding: 10px 0;
+            color: #34495e;
+            position: relative;
+            opacity: 0;
+            animation: fadeInLeft 0.5s ease-out forwards;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(52, 73, 94, 0.1);
+        }
+
+        .features li:last-child {
+            border-bottom: none;
+        }
+
+        .features li:nth-child(1) { animation-delay: 0.8s; }
+        .features li:nth-child(2) { animation-delay: 0.9s; }
+        .features li:nth-child(3) { animation-delay: 1.0s; }
+        .features li:nth-child(4) { animation-delay: 1.1s; }
+        .features li:nth-child(5) { animation-delay: 1.2s; }
+        .features li:nth-child(6) { animation-delay: 1.3s; }
+        .features li:nth-child(7) { animation-delay: 1.4s; }
+
+        @keyframes fadeInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .features li::before {
+            content: '🎉';
+            margin-right: 12px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .card:hover .features li::before {
+            transform: scale(1.3) rotate(360deg);
+        }
+
+        .basic .features li::before { content: '🎈'; }
+        .medium .features li::before { content: '🎂'; }
+        .premium .features li::before { content: '🎊'; }
+        .custom .features li::before { content: '🌟'; }
+
+        .btn {
+            text-decoration: none;
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            color: #fff;
+            border: none;
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            text-align: center;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 107, 157, 0.4);
+        }
+
+        .basic .btn {
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+        }
+
+        .medium .btn {
+            background: linear-gradient(135deg, #4ecdc4, #26d0ce);
+        }
+
+        .premium .btn {
+            background: linear-gradient(135deg, #45b7d1, #3742fa);
+        }
+
+        .custom .btn {
+            background: linear-gradient(135deg, #f9ca24, #f0932b);
+            color: #2c3e50;
+        }
+
+        .selected {
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 0 35px 70px rgba(255, 107, 157, 0.5);
+            border: 4px solid #ff6b9d;
+            animation: partyPulse 2s infinite;
+        }
+
+        @keyframes partyPulse {
+            0% {
+                border-color: #ff6b9d;
+                box-shadow: 0 35px 70px rgba(255, 107, 157, 0.5);
+            }
+            25% {
+                border-color: #4ecdc4;
+                box-shadow: 0 35px 70px rgba(78, 205, 196, 0.5);
+            }
+            50% {
+                border-color: #45b7d1;
+                box-shadow: 0 35px 70px rgba(69, 183, 209, 0.5);
+            }
+            75% {
+                border-color: #f9ca24;
+                box-shadow: 0 35px 70px rgba(249, 202, 36, 0.5);
+            }
+            100% {
+                border-color: #ff6b9d;
+                box-shadow: 0 35px 70px rgba(255, 107, 157, 0.5);
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 62, 80, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 50px;
+            border-radius: 25px;
+            text-align: center;
+            max-width: 500px;
+            margin: 20px;
+            border: 3px solid #ff6b9d;
+            animation: modalSlideIn 0.5s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 107, 157, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes modalSlideIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .close {
+            float: right;
+            font-size: 32px;
+            cursor: pointer;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .close:hover {
+            color: #ff6b9d;
+            transform: rotate(90deg) scale(1.3);
+        }
+
+        /* Birthday confetti animation */
+        .confetti {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: #ff6b9d;
+            animation: confetti-fall 3s linear infinite;
+            pointer-events: none;
+            z-index: 1000;
+            border-radius: 50%;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .confetti:nth-child(odd) {
+            background: #4ecdc4;
+            animation-duration: 2.5s;
+        }
+
+        .confetti:nth-child(even) {
+            background: #f9ca24;
+            animation-duration: 3.5s;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(45deg, #f9ca24, #f0932b);
+            color: #2c3e50;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transform: rotate(12deg);
+            box-shadow: 0 8px 20px rgba(249, 202, 36, 0.4);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .card:hover .popular-badge {
+            transform: rotate(0deg) scale(1.1);
+            box-shadow: 0 12px 30px rgba(249, 202, 36, 0.6);
+        }
+
+        .popular-badge::before {
+            content: '⭐';
+            margin-right: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+                max-width: 700px;
+            }
+
+            .card {
+                padding: 30px;
+            }
+
+            .card-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .header p {
+                font-size: 1.1rem;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            .card h3 {
+                font-size: 1.7rem;
+            }
+
+            .card .price {
+                font-size: 2.4rem;
+            }
+
+            .card-icon {
+                width: 75px;
+                height: 75px;
+                font-size: 2rem;
+            }
+
+            .features li {
+                font-size: 0.95rem;
+                padding: 8px 0;
+            }
+
+            .btn {
+                padding: 15px 25px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+                -webkit-text-stroke: 1px #2c3e50;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .card h3 {
+                font-size: 1.5rem;
+            }
+
+            .card .price {
+                font-size: 2rem;
+            }
+
+            .card-icon {
+                width: 65px;
+                height: 65px;
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+
+            .features li {
+                font-size: 0.9rem;
+                padding: 6px 0;
+            }
+
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+
+            .modal-content {
+                padding: 30px;
+                margin: 15px;
+            }
+
+            .popular-badge {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            .card h3 {
+                font-size: 1.3rem;
+            }
+
+            .card .price {
+                font-size: 1.8rem;
+            }
+
+            .card-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements"></div>
+    
+    <div class="container">
+        <!-- Navigation Section with Previous Button -->
+        <div class="navigation-section">
+            <a href="../index.html" class="previous-btn-link">
+                <button class="previous-btn">Previous</button>
+            </a>
+        </div>
+
+        <div class="header">
+            <h1>🎉 Birthday Parties</h1>
+            <p>Choose the perfect package for an unforgettable celebration</p>
+        </div>
+
+        <div class="cards-container">
+            <!-- Basic Package -->
+            <div class="card basic" onclick="selectCard(this, 'basic')">
+                <div class="card-icon">🎈</div>
+                <h3>Basic Fun</h3>
+                <div class="price">₹20,999</div>
+                <ul class="features">
+                    <li>Balloon decoration setup</li>
+                    <li>Basic theme decorations</li>
+                    <li>Birthday banner & signage</li>
+                    <li>Simple games & activities</li>
+                    <li>Basic photography (30 photos)</li>
+                    <li>Party cleanup service</li>
+                    <li>Birthday cake arrangement</li>
+                </ul>
+                <a href="../birthday/BasicBirthday.html" class="btn" onclick="event.stopPropagation(); orderPackage('basic', 8999)">Choose Basic Fun</a>
+            </div>
+
+            <!-- Medium Package -->
+            <div class="card medium" onclick="selectCard(this, 'medium')">
+                <div class="popular-badge">Most Popular</div>
+                <div class="card-icon">🎂</div>
+                <h3>Premium Party</h3>
+                <div class="price">₹35,999</div>
+                <ul class="features">
+                    <li>Premium themed decorations</li>
+                    <li>Balloon arch & centerpieces</li>
+                    <li>Interactive games & entertainment</li>
+                    <li>Professional DJ & music</li>
+                    <li>Photography + videography</li>
+                    <li>Custom birthday cake</li>
+                    <li>Party favors for guests</li>
+                </ul>
+                <a href="../birthday/MediumBirthday.html" class="btn" onclick="event.stopPropagation(); orderPackage('medium', 18999)">Choose Premium</a>
+            </div>
+
+            <!-- Premium Package -->
+            <div class="card premium" onclick="selectCard(this, 'premium')">
+                <div class="card-icon">🎊</div>
+                <h3>Ultimate Bash</h3>
+                <div class="price">₹35,999</div>
+                <ul class="features">
+                    <li>Luxury theme & venue decoration</li>
+                    <li>Professional entertainment show</li>
+                    <li>Full catering & beverage service</li>
+                    <li>Professional photographer & videographer</li>
+                    <li>Custom cake & dessert table</li>
+                    <li>Party coordinator & staff</li>
+                    <li>Premium party favors & gifts</li>
+                </ul>
+                <a href="../birthday/PremiumBirthday.html" class="btn" onclick="event.stopPropagation(); orderPackage('premium', 35999)">Choose Ultimate</a>
+            </div>
+
+            <!-- Custom Package -->
+            <div class="card custom" onclick="selectCard(this, 'custom')">
+                <div class="card-icon">🌟</div>
+                <h3>Custom Dream</h3>
+                <div class="price">Custom</div>
+                <ul class="features">
+                    <li>Fully customizable theme</li>
+                    <li>Unlimited creative possibilities</li>
+                    <li>Personal party planner</li>
+                    <li>Flexible budget options</li>
+                    <li>Unique entertainment choices</li>
+                    <li>Personalized everything</li>
+                    <li>Your vision brought to life</li>
+                </ul>
+                <a href="../birthday/CustomBirthday.html" class="btn" onclick="event.stopPropagation(); openCustomModal()">Create Custom</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for custom package -->
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCustomModal()">&times;</span>
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">🎨 Custom Birthday Party Consultation</h2>
+            <p style="color: #34495e; margin-bottom: 25px; font-size: 1.1rem;">
+                Let's create the birthday party of your dreams! Our party planning experts will contact you within 24 hours to discuss your unique vision.
+            </p>
+            <button class="btn" onclick="requestConsultation()" style="background: linear-gradient(135deg, #f9ca24, #f0932b); color: #2c3e50; width: auto; padding: 15px 25px;">
+                🎉 Request Consultation
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let selectedPackage = null;
+
+        // Create floating birthday elements
+        function createFloatingElements() {
+            const elementsContainer = document.querySelector('.floating-elements');
+            const elements = ['🎈', '🎂', '🎉', '🎊', '🌟', '🎁', '🍰', '🎭'];
+            
+            setInterval(() => {
+                const element = document.createElement('div');
+                element.className = 'birthday-element';
+                element.textContent = elements[Math.floor(Math.random() * elements.length)];
+                element.style.left = Math.random() * 100 + 'vw';
+                element.style.color = ['#ff6b9d', '#4ecdc4', '#45b7d1', '#f9ca24', '#f0932b'][Math.floor(Math.random() * 5)];
+                element.style.animationDuration = (Math.random() * 4 + 8) + 's';
+                elementsContainer.appendChild(element);
+                
+                setTimeout(() => {
+                    element.remove();
+                }, 15000);
+            }, 1500);
+        }
+
+        function selectCard(card, packageType) {
+            // Remove previous selection
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+            
+            // Add selection to clicked card
+            card.classList.add('selected');
+            selectedPackage = packageType;
+            
+            // Create celebration effect
+            createConfetti();
+        }
+
+        function createConfetti() {
+            const colors = ['#ff6b9d', '#4ecdc4', '#45b7d1', '#f9ca24', '#f0932b'];
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 2 + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 4000);
+                }, i * 50);
+            }
+        }
+
+        function orderPackage(packageType, price) {
+            createConfetti();
+            setTimeout(() => {
+                alert(`🎉 You selected the ${packageType.charAt(0).toUpperCase() + packageType.slice(1)} Birthday Package for ₹${price.toLocaleString('en-IN')}! Let's make this birthday unforgettable! 🎂`);
+            }, 500);
+        }
+
+        function openCustomModal() {
+            document.getElementById('customModal').style.display = 'flex';
+        }
+
+        function closeCustomModal() {
+            document.getElementById('customModal').style.display = 'none';
+        }
+
+        function requestConsultation() {
+            createConfetti();
+            setTimeout(() => {
+                alert('🌟 Thank you! Our birthday party experts will contact you within 24 hours to plan the perfect celebration! 🎉');
+                closeCustomModal();
+            }, 1000);
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('customModal');
+            if (event.target == modal) {
+                closeCustomModal();
+            }
+        }
+
+        // Initialize animations
+        window.addEventListener('load', () => {
+            createFloatingElements();
+        });
+
+        // Add some party atmosphere with random confetti bursts
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                createConfetti();
+            }
+        }, 10000);
+    </script>
+</body>
+</html>
