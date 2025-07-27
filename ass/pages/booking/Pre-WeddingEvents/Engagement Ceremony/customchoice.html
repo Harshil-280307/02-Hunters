@@ -1,0 +1,2445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anniversary & Engagement Ceremony Builder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #1a0033 0%, #330066 25%, #4d0099 50%, #6600cc 75%, #7733ff 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #f0f0f0;
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4d79ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3)); }
+            to { filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6)); }
+        }
+
+        .header p {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            opacity: 0.9;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-out 0.5s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 30px;
+            align-items: start;
+        }
+
+        @media (max-width: 1200px) {
+            .main-layout {
+                grid-template-columns: 1fr 320px;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .categories-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .category-section {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            animation: slideInUp 0.8s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .category-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.8s ease;
+            opacity: 0;
+        }
+
+        .category-section:hover::before {
+            animation: shimmer 1.5s ease-in-out;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 1; }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+        }
+
+        .category-section:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        .category-title {
+            color: #ffffff;
+            font-size: clamp(1.2rem, 2.5vw, 2rem);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .category-total {
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            color: #1a0033;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .category-total:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .items-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .items-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        .item-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            animation: cardFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .item-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .item-card:hover::before {
+            left: 100%;
+        }
+
+        .item-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.5);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+        }
+
+        .item-card:hover .item-icon {
+            transform: scale(1.3) rotate(15deg);
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+        }
+
+        .item-card:hover .item-title {
+            color: #ffd93d;
+            text-shadow: 0 0 10px rgba(255, 217, 61, 0.5);
+        }
+
+        .item-card:hover .item-price {
+            transform: scale(1.1);
+            color: #ff6b6b;
+            text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+        }
+
+        .item-card.selected {
+            border-color: #ffd93d;
+            background: linear-gradient(135deg, rgba(255, 217, 61, 0.3) 0%, rgba(255, 107, 107, 0.2) 100%);
+            box-shadow: 0 20px 40px rgba(255, 217, 61, 0.3);
+            transform: translateY(-10px) scale(1.02);
+            animation: selectedGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes selectedGlow {
+            from { box-shadow: 0 20px 40px rgba(255, 217, 61, 0.3); }
+            to { box-shadow: 0 25px 50px rgba(255, 217, 61, 0.5); }
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .item-icon {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: 10px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .item-select {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #ffffff;
+            border-radius: 6px;
+            cursor: pointer;
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .item-select:hover {
+            transform: scale(1.2) rotate(15deg);
+            border-color: #ffd93d;
+            box-shadow: 0 0 15px rgba(255, 217, 61, 0.5);
+        }
+
+        .item-card.selected .item-select {
+            background: linear-gradient(135deg, #ffd93d, #ff6b6b);
+            transform: scale(1.2);
+            border-color: #ffffff;
+        }
+
+        .item-card.selected .item-select::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .item-title {
+            color: #ffffff;
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: bold;
+            margin-bottom: 10px;
+            transition: all 0.4s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .item-price {
+            color: #ffd93d;
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            font-weight: bold;
+            margin-bottom: 12px;
+            transition: all 0.4s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .item-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .item-features {
+            list-style: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .item-card:hover .item-features {
+            opacity: 1;
+        }
+
+        .item-features li {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+            padding: 3px 0;
+            transition: all 0.3s ease;
+        }
+
+        .item-features li:hover {
+            color: #ffd93d;
+            padding-left: 8px;
+            text-shadow: 0 0 5px rgba(255, 217, 61, 0.3);
+        }
+
+        .item-features li::before {
+            content: '•';
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .item-card:hover .item-features li::before {
+            color: #ffd93d;
+            transform: scale(1.2);
+        }
+
+        .quantity-control {
+            display: none;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .item-card.selected .quantity-control {
+            display: flex;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .qty-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .qty-btn:hover {
+            transform: scale(1.3) rotate(15deg);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .qty-btn:active {
+            transform: scale(0.9);
+        }
+
+        .qty-display {
+            min-width: 40px;
+            text-align: center;
+            font-weight: bold;
+            color: #ffd93d;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .summary-sidebar {
+            position: sticky;
+            top: 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            color: #ffffff;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+            transition: all 0.5s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: sidebarFloat 8s ease-in-out infinite;
+        }
+
+        @keyframes sidebarFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 968px) {
+            .summary-sidebar {
+                position: static;
+                order: -1;
+                max-height: none;
+            }
+        }
+
+        .summary-sidebar:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.4);
+        }
+
+        .summary-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .summary-title {
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .total-items {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .total-items:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.15));
+            transform: scale(1.05);
+        }
+
+        .summary-categories {
+            margin-bottom: 25px;
+        }
+
+        .summary-category {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .summary-category:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            transform: translateX(8px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .summary-category-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .summary-item:hover {
+            color: #ffd93d;
+            padding-left: 8px;
+            text-shadow: 0 0 5px rgba(255, 217, 61, 0.3);
+        }
+
+        .grand-total {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            border-radius: 20px;
+            margin-bottom: 25px;
+            transition: all 0.4s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .grand-total:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.15));
+            transform: scale(1.03);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .grand-total-amount {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: bold;
+            color: #ffd93d;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: totalPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes totalPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .savings-info {
+            font-size: 1rem;
+            opacity: 0.9;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            color: #ffffff;
+            border: 2px solid transparent;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.15));
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .filter-tab {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            font-weight: bold;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .filter-tab:hover::before {
+            left: 100%;
+        }
+
+        .filter-tab:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .filter-tab.active {
+            background: linear-gradient(135deg, #ffd93d, #ff6b6b);
+            color: #1a0033;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 217, 61, 0.4);
+        }
+
+        .filter-tab.active:hover {
+            transform: translateY(-8px) scale(1.05);
+        }
+
+        /* Form Styles */
+        .checkout-form {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            animation: modalFadeIn 0.5s ease-out;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .form-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: modalSlideIn 0.6s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translate(-50%, -60%) scale(0.9); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        .form-header h2 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            color: #ffffff;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            font-size: 1rem;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #ffd93d;
+            box-shadow: 0 0 0 4px rgba(255, 217, 61, 0.2);
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .checkbox-input {
+            width: 20px;
+            height: 20px;
+            accent-color: #ffd93d;
+        }
+
+        .checkbox-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 35px;
+        }
+
+        @media (max-width: 600px) {
+            .form-buttons {
+                flex-direction: column;
+            }
+        }
+
+        .form-btn {
+            flex: 1;
+            padding: 18px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .form-btn-primary {
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            color: #ffffff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .form-btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .form-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .order-summary-section {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .order-summary-title {
+            color: #ffd93d;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            color: #ffd93d;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(255, 217, 61, 0.3);
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #4ecdc4, #6bcf7f);
+            color: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            display: none;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .success-message.show {
+            display: block;
+            animation: successSlideIn 0.8s ease-out;
+        }
+
+        @keyframes successSlideIn {
+            from { opacity: 0; transform: translateY(-30px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .success-message h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #ffd93d, #ff6b6b);
+        }
+
+        /* Loading Animation */
+        @keyframes loading {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading {
+            animation: loading 2s linear infinite;
+        }
+
+        /* Responsive Typography */
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .category-section {
+                padding: 20px;
+            }
+            
+            .item-card {
+                padding: 20px;
+            }
+            
+            .summary-sidebar {
+                padding: 20px;
+            }
+            
+            .form-container {
+                padding: 25px;
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💍 Anniversary & Engagement Ceremony Builder</h1>
+            <p>Create magical moments with our complete celebration packages!</p>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <h3>🎊 Custom Package Created Successfully!</h3>
+            <p>Your personalized celebration package has been submitted. We'll contact you within 2 hours!</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <div class="filter-tab active" onclick="filterCategory('all')">All Items</div>
+            <div class="filter-tab" onclick="filterCategory('digital')">Digital</div>
+            <div class="filter-tab" onclick="filterCategory('print')">Print</div>
+            <div class="filter-tab" onclick="filterCategory('video')">Video</div>
+            <div class="filter-tab" onclick="filterCategory('music')">Music</div>
+            <div class="filter-tab" onclick="filterCategory('engagement')">Engagement</div>
+            <div class="filter-tab" onclick="filterCategory('premium')">Premium</div>
+        </div>
+
+        <div class="main-layout">
+            <div class="categories-container">
+                <!-- Digital Cards & Designs -->
+                <div class="category-section" data-category="digital">
+                    <div class="category-header">
+                        <div class="category-title">
+                            💻 Digital Cards & Designs
+                        </div>
+                        <div class="category-total" id="digital-total">₹0</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card" data-price="1999" data-category="digital" onclick="toggleItem(this, 'basic-digital-card', 1999)">
+                            <div class="item-header">
+                                <div class="item-icon">💌</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Basic Digital Card</div>
+                            <div class="item-price">₹1,999</div>
+                            <div class="item-description">Beautiful digital anniversary card with custom text</div>
+                            <ul class="item-features">
+                                <li>5 premium templates</li>
+                                <li>Custom message</li>
+                                <li>HD quality</li>
+                                <li>Email delivery</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="3999" data-category="digital" onclick="toggleItem(this, 'premium-digital-card', 3999)">
+                            <div class="item-header">
+                                <div class="item-icon">✨</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Premium Digital Card</div>
+                            <div class="item-price">₹3,999</div>
+                            <div class="item-description">Luxury digital card with animations and music</div>
+                            <ul class="item-features">
+                                <li>20+ premium templates</li>
+                                <li>Animated elements</li>
+                                <li>Background music</li>
+                                <li>Multiple formats</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="2499" data-category="digital" onclick="toggleItem(this, 'interactive-card', 2499)">
+                            <div class="item-header">
+                                <div class="item-icon">🎮</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Interactive Digital Card</div>
+                            <div class="item-price">₹2,499</div>
+                            <div class="item-description">Interactive elements with clickable features</div>
+                            <ul class="item-features">
+                                <li>Clickable elements</li>
+                                <li>Photo gallery</li>
+                                <li>Music player</li>
+                                <li>Social sharing</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="1499" data-category="digital" onclick="toggleItem(this, 'e-invitation', 1499)">
+                            <div class="item-header">
+                                <div class="item-icon">📧</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Digital Invitation</div>
+                            <div class="item-price">₹1,499</div>
+                            <div class="item-description">Send beautiful digital invitations to guests</div>
+                            <ul class="item-features">
+                                <li>RSVP tracking</li>
+                                <li>Guest list management</li>
+                                <li>Multiple designs</li>
+                                <li>WhatsApp ready</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('e-invitation', -1)">-</button>
+                                <span class="qty-display" id="qty-e-invitation">1</span>
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('e-invitation', 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Engagement Ceremony Specials -->
+                <div class="category-section" data-category="engagement">
+                    <div class="category-header">
+                        <div class="category-title">
+                            💍 Engagement Ceremony Specials
+                        </div>
+                        <div class="category-total" id="engagement-total">₹0</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card" data-price="8999" data-category="engagement" onclick="toggleItem(this, 'engagement-invitation-suite', 8999)">
+                            <div class="item-header">
+                                <div class="item-icon">💍</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Complete Engagement Invitation Suite</div>
+                            <div class="item-price">₹8,999</div>
+                            <div class="item-description">Full invitation package for your engagement ceremony</div>
+                            <ul class="item-features">
+                                <li>Digital + Print invitations</li>
+                                <li>Save the date cards</li>
+                                <li>RSVP management</li>
+                                <li>Social media templates</li>
+                                <li>WhatsApp invitation video</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="12999" data-category="engagement" onclick="toggleItem(this, 'engagement-ceremony-film', 12999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎬</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Engagement Ceremony Documentation</div>
+                            <div class="item-price">₹12,999</div>
+                            <div class="item-description">Professional video coverage of your engagement</div>
+                            <ul class="item-features">
+                                <li>4-hour coverage</li>
+                                <li>Highlight reel (5-8 mins)</li>
+                                <li>Full ceremony recording</li>
+                                <li>Drone shots included</li>
+                                <li>Same-day preview</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="6999" data-category="engagement" onclick="toggleItem(this, 'ring-ceremony-album', 6999)">
+                            <div class="item-header">
+                                <div class="item-icon">📸</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Ring Ceremony Photo Album</div>
+                            <div class="item-price">₹6,999</div>
+                            <div class="item-description">Beautiful album capturing the ring exchange moments</div>
+                            <ul class="item-features">
+                                <li>Professional photographer</li>
+                                <li>100+ edited photos</li>
+                                <li>Premium album (50 pages)</li>
+                                <li>Digital gallery access</li>
+                                <li>Family group shots</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="4999" data-category="engagement" onclick="toggleItem(this, 'engagement-decoration-guide', 4999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎨</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Engagement Decoration Planning</div>
+                            <div class="item-price">₹4,999</div>
+                            <div class="item-description">Complete decoration planning and design consultation</div>
+                            <ul class="item-features">
+                                <li>Theme selection</li>
+                                <li>Color coordination</li>
+                                <li>Vendor recommendations</li>
+                                <li>3D visualization</li>
+                                <li>Budget planning</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="3999" data-category="engagement" onclick="toggleItem(this, 'engagement-playlist', 3999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎵</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Engagement Ceremony Playlist</div>
+                            <div class="item-price">₹3,999</div>
+                            <div class="item-description">Curated music for your engagement ceremony</div>
+                            <ul class="item-features">
+                                <li>Entry music selection</li>
+                                <li>Ring exchange songs</li>
+                                <li>Reception playlist</li>
+                                <li>Regional music options</li>
+                                <li>DJ coordination</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="2999" data-category="engagement" onclick="toggleItem(this, 'engagement-favors', 2999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎁</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Custom Engagement Favors</div>
+                            <div class="item-price">₹2,999</div>
+                            <div class="item-description">Personalized gifts for engagement guests</div>
+                            <ul class="item-features">
+                                <li>50 custom favor boxes</li>
+                                <li>Personalized tags</li>
+                                <li>Traditional sweets</li>
+                                <li>Mini photo frames</li>
+                                <li>Thank you cards</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('engagement-favors', -1)">-</button>
+                                <span class="qty-display" id="qty-engagement-favors">1</span>
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('engagement-favors', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="item-card" data-price="5999" data-category="engagement" onclick="toggleItem(this, 'mehendi-package', 5999)">
+                            <div class="item-header">
+                                <div class="item-icon">🤲</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Mehendi Ceremony Package</div>
+                            <div class="item-price">₹5,999</div>
+                            <div class="item-description">Complete mehendi ceremony documentation</div>
+                            <ul class="item-features">
+                                <li>Mehendi artist coordination</li>
+                                <li>Photography coverage</li>
+                                <li>Decoration planning</li>
+                                <li>Music playlist</li>
+                                <li>Memory book creation</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="15999" data-category="engagement" onclick="toggleItem(this, 'complete-engagement-package', 15999)">
+                            <div class="item-header">
+                                <div class="item-icon">👑</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Complete Engagement Package</div>
+                            <div class="item-price">₹15,999</div>
+                            <div class="item-description">Everything you need for a perfect engagement</div>
+                            <ul class="item-features">
+                                <li>All invitation services</li>
+                                <li>Photography + videography</li>
+                                <li>Decoration consultation</li>
+                                <li>Music curation</li>
+                                <li>Guest coordination</li>
+                                <li>Day-of management</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo & Video Services -->
+                <div class="category-section" data-category="video">
+                    <div class="category-header">
+                        <div class="category-title">
+                            📸 Photo & Video Services
+                        </div>
+                        <div class="category-total" id="video-total">₹0</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card" data-price="4999" data-category="video" onclick="toggleItem(this, 'photo-slideshow', 4999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎬</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Photo Slideshow Video</div>
+                            <div class="item-price">₹4,999</div>
+                            <div class="item-description">Professional slideshow with your photos</div>
+                            <ul class="item-features">
+                                <li>Up to 50 photos</li>
+                                <li>Background music</li>
+                                <li>Smooth transitions</li>
+                                <li>HD export</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('photo-slideshow', -1)">-</button>
+                                <span class="qty-display" id="qty-photo-slideshow">1</span>
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('photo-slideshow', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="item-card" data-price="12999" data-category="video" onclick="toggleItem(this, 'love-story-film', 12999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎥</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Love Story Film</div>
+                            <div class="item-price">₹12,999</div>
+                            <div class="item-description">Cinematic love story with professional editing</div>
+                            <ul class="item-features">
+                                <li>10-15 minute film</li>
+                                <li>Professional narration</li>
+                                <li>Cinematic effects</li>
+                                <li>4K quality</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="7999" data-category="video" onclick="toggleItem(this, 'anniversary-documentary', 7999)">
+                            <div class="item-header">
+                                <div class="item-icon">📹</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Anniversary Documentary</div>
+                            <div class="item-price">₹7,999</div>
+                            <div class="item-description">Documentary-style video of your journey</div>
+                            <ul class="item-features">
+                                <li>Interview footage</li>
+                                <li>Timeline creation</li>
+                                <li>Family testimonials</li>
+                                <li>Professional editing</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="2999" data-category="video" onclick="toggleItem(this, 'photo-enhancement', 2999)">
+                            <div class="item-header">
+                                <div class="item-icon">✨</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">AI Photo Enhancement</div>
+                            <div class="item-price">₹2,999</div>
+                            <div class="item-description">AI-powered photo restoration and enhancement</div>
+                            <ul class="item-features">
+                                <li>Color correction</li>
+                                <li>Noise reduction</li>
+                                <li>Sharpening</li>
+                                <li>Up to 100 photos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Music & Audio -->
+                <div class="category-section" data-category="music">
+                    <div class="category-header">
+                        <div class="category-title">
+                            🎵 Music & Audio Services
+                        </div>
+                        <div class="category-total" id="music-total">₹0</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card" data-price="3499" data-category="music" onclick="toggleItem(this, 'custom-song', 3499)">
+                            <div class="item-header">
+                                <div class="item-icon">🎼</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Custom Anniversary Song</div>
+                            <div class="item-price">₹3,499</div>
+                            <div class="item-description">Personalized song with your names and story</div>
+                            <ul class="item-features">
+                                <li>Original lyrics</li>
+                                <li>Professional recording</li>
+                                <li>Your choice of genre</li>
+                                <li>High-quality audio</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="5999" data-category="music" onclick="toggleItem(this, 'voice-message', 5999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎤</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Celebrity Voice Message</div>
+                            <div class="item-price">₹5,999</div>
+                            <div class="item-description">Professional voice artist records your message</div>
+                            <ul class="item-features">
+                                <li>Professional voice artist</li>
+                                <li>Custom script</li>
+                                <li>Multiple takes</li>
+                                <li>Studio quality</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="1999" data-category="music" onclick="toggleItem(this, 'music-playlist', 1999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎧</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Curated Music Playlist</div>
+                            <div class="item-price">₹1,999</div>
+                            <div class="item-description">Romantic playlist curated for your taste</div>
+                            <ul class="item-features">
+                                <li>50+ songs</li>
+                                <li>Multiple genres</li>
+                                <li>Streaming links</li>
+                                <li>Download options</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="4499" data-category="music" onclick="toggleItem(this, 'instrumental-cover', 4499)">
+                            <div class="item-header">
+                                <div class="item-icon">🎹</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Instrumental Cover</div>
+                            <div class="item-price">₹4,499</div>
+                            <div class="item-description">Instrumental version of your favorite song</div>
+                            <ul class="item-features">
+                                <li>Any song of choice</li>
+                                <li>Multiple instruments</li>
+                                <li>Professional arrangement</li>
+                                <li>Studio recording</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Physical Products -->
+                <div class="category-section" data-category="print">
+                    <div class="category-header">
+                        <div class="category-title">
+                            🎁 Physical Products & Gifts
+                        </div>
+                        <div class="category-total" id="print-total">₹0</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card" data-price="3999" data-category="print" onclick="toggleItem(this, 'photo-album', 3999)">
+                            <div class="item-header">
+                                <div class="item-icon">📖</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Premium Photo Album</div>
+                            <div class="item-price">₹3,999</div>
+                            <div class="item-description">Hardcover photo album with premium printing</div>
+                            <ul class="item-features">
+                                <li>50 pages</li>
+                                <li>Premium paper</li>
+                                <li>Custom cover</li>
+                                <li>Gift packaging</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('photo-album', -1)">-</button>
+                                <span class="qty-display" id="qty-photo-album">1</span>
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('photo-album', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="item-card" data-price="2499" data-category="print" onclick="toggleItem(this, 'anniversary-poster', 2499)">
+                            <div class="item-header">
+                                <div class="item-icon">🖼️</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Custom Anniversary Poster</div>
+                            <div class="item-price">₹2,499</div>
+                            <div class="item-description">Large format poster with your photos and text</div>
+                            <ul class="item-features">
+                                <li>A1 size (24x36 inches)</li>
+                                <li>High-quality print</li>
+                                <li>Custom design</li>
+                                <li>Frame options</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('anniversary-poster', -1)">-</button>
+                                <span class="qty-display" id="qty-anniversary-poster">1</span>
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('anniversary-poster', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="item-card" data-price="1999" data-category="print" onclick="toggleItem(this, 'photo-frames', 1999)">
+                            <div class="item-header">
+                                <div class="item-icon">🖨️</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Custom Photo Frames</div>
+                            <div class="item-price">₹1,999</div>
+                            <div class="item-description">Set of 5 custom photo frames with your pictures</div>
+                            <ul class="item-features">
+                                <li>5 different sizes</li>
+                                <li>Premium quality</li>
+                                <li>Custom printing</li>
+                                <li>Ready to hang</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('photo-frames', -1)">-</button>
+                                <span class="qty-display" id="qty-photo-frames">1</span>
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('photo-frames', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="item-card" data-price="2999" data-category="print" onclick="toggleItem(this, 'canvas-print', 2999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎨</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Canvas Print</div>
+                            <div class="item-price">₹2,999</div>
+                            <div class="item-description">Museum-quality canvas print of your favorite photo</div>
+                            <ul class="item-features">
+                                <li>16x20 inches</li>
+                                <li>Gallery wrap</li>
+                                <li>Fade-resistant</li>
+                                <li>Ready to hang</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('canvas-print', -1)">-</button>
+                                <span class="qty-display" id="qty-canvas-print">1</span>
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('canvas-print', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="item-card" data-price="3499" data-category="print" onclick="toggleItem(this, 'memory-box', 3499)">
+                            <div class="item-header">
+                                <div class="item-icon">📦</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Anniversary Memory Box</div>
+                            <div class="item-price">₹3,499</div>
+                            <div class="item-description">Wooden keepsake box with custom engraving</div>
+                            <ul class="item-features">
+                                <li>Handcrafted wood</li>
+                                <li>Laser engraving</li>
+                                <li>Velvet interior</li>
+                                <li>Lock and key</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Services -->
+                <div class="category-section" data-category="premium">
+                    <div class="category-header">
+                        <div class="category-title">
+                            👑 Premium & Luxury Services
+                        </div>
+                        <div class="category-total" id="premium-total">₹0</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card" data-price="15999" data-category="premium" onclick="toggleItem(this, 'professional-photoshoot', 15999)">
+                            <div class="item-header">
+                                <div class="item-icon">📷</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Professional Photoshoot</div>
+                            <div class="item-price">₹15,999</div>
+                            <div class="item-description">2-hour professional photography session</div>
+                            <ul class="item-features">
+                                <li>Professional photographer</li>
+                                <li>2-hour session</li>
+                                <li>50+ edited photos</li>
+                                <li>Multiple locations</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="25999" data-category="premium" onclick="toggleItem(this, 'luxury-package', 25999)">
+                            <div class="item-header">
+                                <div class="item-icon">💎</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Complete Luxury Package</div>
+                            <div class="item-price">₹25,999</div>
+                            <div class="item-description">Everything included - the ultimate celebration experience</div>
+                            <ul class="item-features">
+                                <li>All digital products</li>
+                                <li>Premium photo album</li>
+                                <li>Custom song</li>
+                                <li>Professional video</li>
+                                <li>Photoshoot included</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="8999" data-category="premium" onclick="toggleItem(this, 'drone-videography', 8999)">
+                            <div class="item-header">
+                                <div class="item-icon">🚁</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Drone Videography</div>
+                            <div class="item-price">₹8,999</div>
+                            <div class="item-description">Aerial drone footage for your celebration video</div>
+                            <ul class="item-features">
+                                <li>Professional drone pilot</li>
+                                <li>4K aerial footage</li>
+                                <li>Cinematic shots</li>
+                                <li>Weather backup plan</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="12999" data-category="premium" onclick="toggleItem(this, 'event-planning', 12999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎉</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Complete Event Planning</div>
+                            <div class="item-price">₹12,999</div>
+                            <div class="item-description">Complete event planning and coordination</div>
+                            <ul class="item-features">
+                                <li>Venue selection</li>
+                                <li>Decoration planning</li>
+                                <li>Guest coordination</li>
+                                <li>Day-of management</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Express Services -->
+                <div class="category-section" data-category="digital">
+                    <div class="category-header">
+                        <div class="category-title">
+                            ⚡ Express & Add-on Services
+                        </div>
+                        <div class="category-total" id="express-total">₹0</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card" data-price="2999" data-category="digital" onclick="toggleItem(this, 'rush-delivery', 2999)">
+                            <div class="item-header">
+                                <div class="item-icon">🚀</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Rush Delivery (24 Hours)</div>
+                            <div class="item-price">₹2,999</div>
+                            <div class="item-description">Get your order completed within 24 hours</div>
+                            <ul class="item-features">
+                                <li>Priority processing</li>
+                                <li>Dedicated team</li>
+                                <li>24-hour guarantee</li>
+                                <li>Real-time updates</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="1999" data-category="digital" onclick="toggleItem(this, 'extra-revisions', 1999)">
+                            <div class="item-header">
+                                <div class="item-icon">🔄</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Unlimited Revisions</div>
+                            <div class="item-price">₹1,999</div>
+                            <div class="item-description">Unlimited changes until you're 100% satisfied</div>
+                            <ul class="item-features">
+                                <li>No revision limits</li>
+                                <li>Quick turnaround</li>
+                                <li>Satisfaction guarantee</li>
+                                <li>Direct designer contact</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="1499" data-category="digital" onclick="toggleItem(this, 'social-media-kit', 1499)">
+                            <div class="item-header">
+                                <div class="item-icon">📱</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Social Media Kit</div>
+                            <div class="item-price">₹1,499</div>
+                            <div class="item-description">Optimized versions for all social platforms</div>
+                            <ul class="item-features">
+                                <li>Instagram stories</li>
+                                <li>Facebook posts</li>
+                                <li>WhatsApp status</li>
+                                <li>Profile covers</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="799" data-category="digital" onclick="toggleItem(this, 'whatsapp-stickers', 799)">
+                            <div class="item-header">
+                                <div class="item-icon">😊</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Custom WhatsApp Stickers</div>
+                            <div class="item-price">₹799</div>
+                            <div class="item-description">Personalized WhatsApp sticker pack</div>
+                            <ul class="item-features">
+                                <li>20 custom stickers</li>
+                                <li>Your photos used</li>
+                                <li>Easy installation</li>
+                                <li>Shareable pack</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Sidebar -->
+            <div class="summary-sidebar">
+                <div class="summary-header">
+                    <div class="summary-title">🛒 Your Custom Order</div>
+                    <div class="total-items" id="totalItems">0 items selected</div>
+                </div>
+                
+                <div class="summary-categories" id="summaryCategories">
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>💻 Digital</span>
+                            <span id="digital-summary-total">₹0</span>
+                        </div>
+                        <div id="digital-summary-items"></div>
+                    </div>
+                    
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>💍 Engagement</span>
+                            <span id="engagement-summary-total">₹0</span>
+                        </div>
+                        <div id="engagement-summary-items"></div>
+                    </div>
+                    
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>📸 Video</span>
+                            <span id="video-summary-total">₹0</span>
+                        </div>
+                        <div id="video-summary-items"></div>
+                    </div>
+                    
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>🎵 Music</span>
+                            <span id="music-summary-total">₹0</span>
+                        </div>
+                        <div id="music-summary-items"></div>
+                    </div>
+                    
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>🎁 Print</span>
+                            <span id="print-summary-total">₹0</span>
+                        </div>
+                        <div id="print-summary-items"></div>
+                    </div>
+                    
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>👑 Premium</span>
+                            <span id="premium-summary-total">₹0</span>
+                        </div>
+                        <div id="premium-summary-items"></div>
+                    </div>
+                    
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>⚡ Express</span>
+                            <span id="express-summary-total">₹0</span>
+                        </div>
+                        <div id="express-summary-items"></div>
+                    </div>
+                </div>
+
+                <div class="grand-total">
+                    <div class="grand-total-amount" id="grandTotal">₹0</div>
+                    <div class="savings-info" id="savingsInfo">Select items to see total</div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="proceedToCheckout()" id="checkoutBtn" disabled>
+                        Proceed to Checkout
+                    </button>
+                    <button class="btn btn-secondary" onclick="clearAll()">
+                        Clear All Selections
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Form Modal -->
+    <div class="checkout-form" id="checkoutForm">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>🎊 Complete Your Celebration Order</h2>
+                <p>Fill in your details to create your perfect celebration package</p>
+            </div>
+
+            <form id="celebrationForm" onsubmit="submitOrder(event)">
+                <!-- Order Summary -->
+                <div class="order-summary-section">
+                    <div class="order-summary-title">📋 Order Summary</div>
+                    <div id="formOrderSummary"></div>
+                </div>
+
+                <!-- Personal Information -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Full Name *</label>
+                        <input type="text" class="form-input" name="fullName" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number *</label>
+                        <input type="tel" class="form-input" name="phone" placeholder="+91 98765 43210" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email Address *</label>
+                    <input type="email" class="form-input" name="email" placeholder="your@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Celebration Type *</label>
+                    <select class="form-select" name="celebrationType" required>
+                        <option value="">Select celebration type</option>
+                        <option value="anniversary">Wedding Anniversary</option>
+                        <option value="engagement">Engagement Ceremony</option>
+                        <option value="both">Both Anniversary & Engagement</option>
+                        <option value="other">Other (specify in notes)</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Celebration Date</label>
+                        <input type="date" class="form-input" name="celebrationDate">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Number of Guests</label>
+                        <select class="form-select" name="guestCount">
+                            <option value="">Select guest count</option>
+                            <option value="intimate">Intimate (10-25)</option>
+                            <option value="small">Small (25-50)</option>
+                            <option value="medium">Medium (50-100)</option>
+                            <option value="large">Large (100-200)</option>
+                            <option value="grand">Grand (200+)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Delivery Address</label>
+                    <textarea class="form-textarea" name="address" placeholder="Enter your complete address for physical deliveries"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-input" name="city" placeholder="Enter your city">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Pincode</label>
+                        <input type="text" class="form-input" name="pincode" placeholder="123456">
+                    </div>
+                </div>
+
+                <!-- Special Requests -->
+                <div class="form-group">
+                    <label class="form-label">Your Love Story / Special Message</label>
+                    <textarea class="form-textarea" name="loveStory" placeholder="Share your beautiful love story, special moments, or any specific message you'd like to include in your celebration materials..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Theme Preferences</label>
+                    <select class="form-select" name="themePreference">
+                        <option value="">Choose your preferred theme</option>
+                        <option value="traditional">Traditional Indian</option>
+                        <option value="modern">Modern & Contemporary</option>
+                        <option value="vintage">Vintage & Classic</option>
+                        <option value="royal">Royal & Luxurious</option>
+                        <option value="rustic">Rustic & Natural</option>
+                        <option value="destination">Destination Wedding</option>
+                        <option value="custom">Custom Theme (specify in notes)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Color Preferences</label>
+                    <select class="form-select" name="colorPreference">
+                        <option value="">Choose preferred colors</option>
+                        <option value="romantic-red">Romantic Red & Pink</option>
+                        <option value="elegant-gold">Elegant Gold & Cream</option>
+                        <option value="royal-purple">Royal Purple & Silver</option>
+                        <option value="classic-black">Classic Black & White</option>
+                        <option value="soft-pastels">Soft Pastels</option>
+                        <option value="vibrant-colors">Vibrant Colors</option>
+                        <option value="traditional">Traditional Indian Colors</option>
+                        <option value="custom">Custom (specify in notes)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Music Preferences</label>
+                    <select class="form-select" name="musicPreference">
+                        <option value="">Choose music style</option>
+                        <option value="romantic-bollywood">Romantic Bollywood</option>
+                        <option value="classical-indian">Classical Indian</option>
+                        <option value="western-romantic">Western Romantic</option>
+                        <option value="instrumental">Instrumental</option>
+                        <option value="regional">Regional/Folk Music</option>
+                        <option value="mixed">Mixed Genres</option>
+                        <option value="custom">Custom Playlist</option>
+                    </select>
+                </div>
+
+                <!-- Timeline -->
+                <div class="form-group">
+                    <label class="form-label">When do you need this? *</label>
+                    <select class="form-select" name="timeline" required>
+                        <option value="">Select timeline</option>
+                        <option value="urgent">Urgent (Within 3 days - Rush charges apply)</option>
+                        <option value="1-week">Within 1 week</option>
+                        <option value="2-weeks">Within 2 weeks</option>
+                        <option value="1-month">Within 1 month</option>
+                        <option value="flexible">I'm flexible with timing</option>
+                    </select>
+                </div>
+
+                <!-- Additional Services -->
+                <div class="form-group">
+                    <label class="form-label">Additional Services</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="additionalServices" value="consultation" id="consultation">
+                        <label class="checkbox-label" for="consultation">Free design consultation call</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="additionalServices" value="preview" id="preview">
+                        <label class="checkbox-label" for="preview">Preview before final delivery</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="additionalServices" value="updates" id="updates">
+                        <label class="checkbox-label" for="updates">Regular progress updates via WhatsApp</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="additionalServices" value="coordination" id="coordination">
+                        <label class="checkbox-label" for="coordination">Event day coordination support</label>
+                    </div>
+                </div>
+
+                <!-- Budget Information -->
+                <div class="form-group">
+                    <label class="form-label">Budget Range (Optional)</label>
+                    <select class="form-select" name="budgetRange">
+                        <option value="">Select your budget range</option>
+                        <option value="under-10k">Under ₹10,000</option>
+                        <option value="10k-25k">₹10,000 - ₹25,000</option>
+                        <option value="25k-50k">₹25,000 - ₹50,000</option>
+                        <option value="50k-100k">₹50,000 - ₹1,00,000</option>
+                        <option value="above-100k">Above ₹1,00,000</option>
+                        <option value="no-limit">Budget is not a constraint</option>
+                    </select>
+                </div>
+
+                <!-- Payment Information -->
+                <div class="form-group">
+                    <label class="form-label">Preferred Payment Method</label>
+                    <select class="form-select" name="paymentMethod">
+                        <option value="">Select payment method</option>
+                        <option value="upi">UPI (Google Pay, PhonePe, Paytm)</option>
+                        <option value="bank-transfer">Bank Transfer/NEFT</option>
+                        <option value="card">Credit/Debit Card</option>
+                        <option value="installments">EMI/Installments</option>
+                        <option value="cash">Cash (for local deliveries)</option>
+                    </select>
+                </div>
+
+                <!-- Special Notes -->
+                <div class="form-group">
+                    <label class="form-label">Special Instructions / Notes</label>
+                    <textarea class="form-textarea" name="specialNotes" placeholder="Any special instructions, specific requirements, or questions you'd like to share with our team..."></textarea>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="terms" id="terms" required>
+                        <label class="checkbox-label" for="terms">I agree to the terms and conditions and privacy policy *</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="marketing" id="marketing">
+                        <label class="checkbox-label" for="marketing">Send me updates about new services and special offers</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="whatsapp" id="whatsapp">
+                        <label class="checkbox-label" for="whatsapp">Contact me via WhatsApp for faster communication</label>
+                    </div>
+                </div>
+
+                <!-- Form Buttons -->
+                <div class="form-buttons">
+                    <button type="submit" class="form-btn form-btn-primary">
+                        🎊 Submit Order - ₹<span id="formTotal">0</span>
+                    </button>
+                    <button type="button" class="form-btn form-btn-secondary" onclick="closeForm()">
+                        ← Back to Selection
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let selectedItems = {};
+        let itemQuantities = {};
+        let categoryTotals = {
+            digital: 0,
+            engagement: 0,
+            video: 0,
+            music: 0,
+            print: 0,
+            premium: 0,
+            express: 0
+        };
+        let grandTotal = 0;
+        let totalItemCount = 0;
+
+        function toggleItem(element, itemId, price) {
+            const category = element.getAttribute('data-category');
+            
+            if (selectedItems[itemId]) {
+                // Deselect item with animation
+                element.classList.remove('selected');
+                element.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    element.style.transform = '';
+                }, 200);
+                
+                delete selectedItems[itemId];
+                delete itemQuantities[itemId];
+            } else {
+                // Select item with animation
+                element.classList.add('selected');
+                element.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    element.style.transform = '';
+                }, 200);
+                
+                selectedItems[itemId] = {
+                    price: price,
+                    category: category,
+                    element: element,
+                    title: element.querySelector('.item-title').textContent
+                };
+                itemQuantities[itemId] = 1;
+                
+                // Initialize quantity display if it exists
+                const qtyDisplay = element.querySelector(`#qty-${itemId}`);
+                if (qtyDisplay) {
+                    qtyDisplay.textContent = '1';
+                }
+            }
+            
+            updateSummary();
+        }
+
+        function updateQuantity(itemId, change) {
+            if (!selectedItems[itemId]) return;
+            
+            let currentQty = itemQuantities[itemId] || 1;
+            let newQty = Math.max(1, currentQty + change);
+            
+            itemQuantities[itemId] = newQty;
+            
+            const qtyDisplay = document.getElementById(`qty-${itemId}`);
+            if (qtyDisplay) {
+                qtyDisplay.textContent = newQty;
+                qtyDisplay.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    qtyDisplay.style.transform = 'scale(1)';
+                }, 200);
+            }
+            
+            updateSummary();
+        }
+
+        function updateSummary() {
+            // Reset category totals
+            Object.keys(categoryTotals).forEach(cat => categoryTotals[cat] = 0);
+            grandTotal = 0;
+            totalItemCount = 0;
+
+            // Clear summary items
+            Object.keys(categoryTotals).forEach(cat => {
+                const summaryContainer = document.getElementById(`${cat}-summary-items`);
+                if (summaryContainer) {
+                    summaryContainer.innerHTML = '';
+                }
+            });
+
+            // Calculate totals and populate summary
+            Object.keys(selectedItems).forEach(itemId => {
+                const item = selectedItems[itemId];
+                const quantity = itemQuantities[itemId] || 1;
+                const itemTotal = item.price * quantity;
+                let category = item.category;
+                
+                // Map engagement category to engagement
+                if (category === 'engagement') {
+                    category = 'engagement';
+                }
+
+                // Add to category total
+                if (categoryTotals.hasOwnProperty(category)) {
+                    categoryTotals[category] += itemTotal;
+                } else {
+                    // If category doesn't exist in our totals, add to digital
+                    categoryTotals.digital += itemTotal;
+                    category = 'digital';
+                }
+                
+                grandTotal += itemTotal;
+                totalItemCount += quantity;
+
+                // Add to summary display
+                const summaryContainer = document.getElementById(`${category}-summary-items`);
+                if (summaryContainer) {
+                    const summaryItem = document.createElement('div');
+                    summaryItem.className = 'summary-item';
+                    summaryItem.innerHTML = `
+                        <span>${item.title}${quantity > 1 ? ` (${quantity}×)` : ''}</span>
+                        <span>₹${itemTotal.toLocaleString('en-IN')}</span>
+                    `;
+                    summaryContainer.appendChild(summaryItem);
+                }
+            });
+
+            // Update category totals in header and summary
+            Object.keys(categoryTotals).forEach(category => {
+                const headerTotal = document.getElementById(`${category}-total`);
+                const summaryTotal = document.getElementById(`${category}-summary-total`);
+                
+                if (headerTotal) {
+                    headerTotal.textContent = `₹${categoryTotals[category].toLocaleString('en-IN')}`;
+                    if (categoryTotals[category] > 0) {
+                        headerTotal.style.animation = 'pulse 0.5s ease-in-out';
+                        setTimeout(() => {
+                            headerTotal.style.animation = '';
+                        }, 500);
+                    }
+                }
+                if (summaryTotal) {
+                    summaryTotal.textContent = `₹${categoryTotals[category].toLocaleString('en-IN')}`;
+                }
+            });
+
+            // Update grand total and item count with animation
+            const grandTotalElement = document.getElementById('grandTotal');
+            const totalItemsElement = document.getElementById('totalItems');
+            
+            grandTotalElement.textContent = `₹${grandTotal.toLocaleString('en-IN')}`;
+            totalItemsElement.textContent = `${totalItemCount} item${totalItemCount !== 1 ? 's' : ''} selected`;
+            
+            if (grandTotal > 0) {
+                grandTotalElement.style.animation = 'totalPulse 0.8s ease-in-out';
+                setTimeout(() => {
+                    grandTotalElement.style.animation = '';
+                }, 800);
+            }
+
+            // Update savings info
+            const savingsElement = document.getElementById('savingsInfo');
+            if (grandTotal > 50000) {
+                savingsElement.textContent = '🎉 Excellent! Premium VIP support included';
+                savingsElement.style.color = '#4ecdc4';
+            } else if (grandTotal > 25000) {
+                savingsElement.textContent = '✨ Great! You qualify for premium support';
+                savingsElement.style.color = '#ffd93d';
+            } else if (grandTotal > 10000) {
+                savingsElement.textContent = `Add ₹${(25000 - grandTotal).toLocaleString('en-IN')} more for premium support`;
+                savingsElement.style.color = '#ff6b6b';
+            } else {
+                savingsElement.textContent = totalItemCount > 0 ? 'Custom package created' : 'Select items to see total';
+                savingsElement.style.color = 'rgba(255, 255, 255, 0.8)';
+            }
+
+            // Enable/disable checkout button with animation
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            const wasDisabled = checkoutBtn.disabled;
+            
+            checkoutBtn.disabled = totalItemCount === 0;
+            checkoutBtn.textContent = totalItemCount === 0 ? 'Select Items to Continue' : `Checkout (₹${grandTotal.toLocaleString('en-IN')})`;
+            
+            if (wasDisabled && totalItemCount > 0) {
+                checkoutBtn.style.animation = 'buttonActivate 0.5s ease-out';
+                setTimeout(() => {
+                    checkoutBtn.style.animation = '';
+                }, 500);
+            }
+        }
+
+        function filterCategory(category) {
+            // Update active tab with animation
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+                if (tab === event.target) {
+                    tab.classList.add('active');
+                    tab.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        tab.style.transform = '';
+                    }, 300);
+                }
+            });
+
+            // Show/hide category sections with staggered animation
+            const sections = document.querySelectorAll('.category-section');
+            sections.forEach((section, index) => {
+                if (category === 'all') {
+                    section.style.display = 'block';
+                    section.style.animation = `slideInUp 0.6s ease-out ${index * 0.1}s both`;
+                } else {
+                    const sectionCategory = section.getAttribute('data-category');
+                    if (sectionCategory === category) {
+                        section.style.display = 'block';
+                        section.style.animation = 'slideInUp 0.6s ease-out both';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        function clearAll() {
+            // Animate items being deselected
+            Object.keys(selectedItems).forEach((itemId, index) => {
+                const element = selectedItems[itemId].element;
+                setTimeout(() => {
+                    element.classList.remove('selected');
+                    element.style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        element.style.transform = '';
+                    }, 200);
+                }, index * 50);
+            });
+
+            // Reset all data
+            selectedItems = {};
+            itemQuantities = {};
+            Object.keys(categoryTotals).forEach(cat => categoryTotals[cat] = 0);
+            grandTotal = 0;
+            totalItemCount = 0;
+
+            // Reset quantity displays
+            document.querySelectorAll('.qty-display').forEach(display => {
+                display.textContent = '1';
+            });
+
+            setTimeout(() => {
+                updateSummary();
+            }, 500);
+        }
+
+        function proceedToCheckout() {
+            if (totalItemCount === 0) {
+                // Show animated alert
+                const checkoutBtn = document.getElementById('checkoutBtn');
+                checkoutBtn.style.animation = 'shake 0.5s ease-in-out';
+                setTimeout(() => {
+                    checkoutBtn.style.animation = '';
+                }, 500);
+                return;
+            }
+
+            // Update form order summary
+            updateFormOrderSummary();
+            
+            // Show checkout form with animation
+            const checkoutForm = document.getElementById('checkoutForm');
+            checkoutForm.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function updateFormOrderSummary() {
+            const summaryContainer = document.getElementById('formOrderSummary');
+            summaryContainer.innerHTML = '';
+
+            // Add selected items
+            Object.keys(selectedItems).forEach(itemId => {
+                const item = selectedItems[itemId];
+                const quantity = itemQuantities[itemId] || 1;
+                const itemTotal = item.price * quantity;
+
+                const orderItem = document.createElement('div');
+                orderItem.className = 'order-item';
+                orderItem.innerHTML = `
+                    <span>${item.title}${quantity > 1 ? ` (${quantity}×)` : ''}</span>
+                    <span>₹${itemTotal.toLocaleString('en-IN')}</span>
+                `;
+                summaryContainer.appendChild(orderItem);
+            });
+
+            // Add total
+            const totalItem = document.createElement('div');
+            totalItem.className = 'order-item';
+            totalItem.innerHTML = `
+                <span>Total Amount</span>
+                <span>₹${grandTotal.toLocaleString('en-IN')}</span>
+            `;
+            summaryContainer.appendChild(totalItem);
+
+            // Update form total
+            document.getElementById('formTotal').textContent = grandTotal.toLocaleString('en-IN');
+        }
+
+        function closeForm() {
+            const checkoutForm = document.getElementById('checkoutForm');
+            const formContainer = checkoutForm.querySelector('.form-container');
+            
+            formContainer.style.animation = 'modalSlideOut 0.4s ease-in both';
+            setTimeout(() => {
+                checkoutForm.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                formContainer.style.animation = '';
+            }, 400);
+        }
+
+        function submitOrder(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const orderData = {
+                selectedItems: selectedItems,
+                quantities: itemQuantities,
+                categoryTotals: categoryTotals,
+                grandTotal: grandTotal,
+                totalItems: totalItemCount,
+                customerInfo: Object.fromEntries(formData),
+                orderDate: new Date().toISOString(),
+                orderId: 'CEL' + Date.now()
+            };
+
+            console.log('Complete Celebration Order Submitted:', orderData);
+
+            // Show loading animation on submit button
+            const submitBtn = event.target.querySelector('.form-btn-primary');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<div class="loading">🎊</div> Processing...';
+            submitBtn.disabled = true;
+
+            // Simulate processing time
+            setTimeout(() => {
+                // Close form
+                closeForm();
+
+                // Show success message
+                const successMessage = document.getElementById('successMessage');
+                successMessage.classList.add('show');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Reset after success
+                setTimeout(() => {
+                    clearAll();
+                    document.getElementById('celebrationForm').reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    
+                    setTimeout(() => {
+                        successMessage.classList.remove('show');
+                    }, 5000);
+                }, 2000);
+            }, 1500);
+        }
+
+        // Add CSS animations
+        const additionalStyles = `
+            @keyframes buttonActivate {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+                100% { transform: scale(1); }
+            }
+
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+
+            @keyframes modalSlideOut {
+                from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                to { opacity: 0; transform: translate(-50%, -60%) scale(0.9); }
+            }
+        `;
+
+        // Add styles to document
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = additionalStyles;
+        document.head.appendChild(styleSheet);
+
+        // Close form when clicking outside
+        document.getElementById('checkoutForm').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeForm();
+            }
+        });
+
+        // Prevent form close when clicking inside form container
+        document.querySelector('.form-container').addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const checkoutForm = document.getElementById('checkoutForm');
+                if (checkoutForm.style.display === 'block') {
+                    closeForm();
+                }
+            }
+        });
+
+        // Initialize the page with staggered animations
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSummary();
+            
+            // Animate elements on load
+            const sections = document.querySelectorAll('.category-section');
+            sections.forEach((section, index) => {
+                section.style.animation = `slideInUp 0.8s ease-out ${index * 0.1}s both`;
+            });
+
+            // Add hover effects to cards
+            document.querySelectorAll('.item-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-15px) scale(1.05)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('selected')) {
+                        this.style.transform = '';
+                    }
+                });
+            });
+        });
+
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add intersection observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideInUp 0.8s ease-out both';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all category sections
+        document.querySelectorAll('.category-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

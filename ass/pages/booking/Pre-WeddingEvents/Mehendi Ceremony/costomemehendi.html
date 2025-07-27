@@ -1,0 +1,2671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Mehendi Package Builder - Price on Request</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #e8f5e8 0%, #d4f4d4 50%, #b8e6b8 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #2d5016;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            text-align: center;
+            color: #1a4a0f;
+            margin-bottom: 40px;
+            animation: slideDown 1s ease-out 0.3s both;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(26, 74, 15, 0.2);
+            background: linear-gradient(135deg, #2d7016, #4a9428);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            opacity: 0.9;
+            color: #2d5016;
+            margin-bottom: 20px;
+        }
+
+        .price-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            animation: pulseGlow 3s infinite;
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-badge::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { 
+                transform: scale(1); 
+                box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+            }
+            50% { 
+                transform: scale(1.05); 
+                box-shadow: 0 12px 35px rgba(76, 175, 80, 0.5);
+            }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+            animation: slideInFromSides 1.2s ease-out 0.6s both;
+        }
+
+        @keyframes slideInFromSides {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 1024px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .categories-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .category-section {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fdf8 100%);
+            border-radius: 25px;
+            padding: clamp(20px, 4vw, 30px);
+            box-shadow: 0 15px 35px rgba(45, 80, 22, 0.12);
+            border: 2px solid #c8e6c9;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            animation: cascadeIn 0.8s ease-out;
+        }
+
+        @keyframes cascadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(50px) scale(0.9);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .category-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(200, 230, 201, 0.2), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .category-section:hover::before {
+            left: 100%;
+        }
+
+        .category-section:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(45, 80, 22, 0.2);
+            border-color: #a5d6a7;
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #c8e6c9;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .category-title {
+            color: #1a4a0f;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .category-total {
+            background: linear-gradient(135deg, #81c784, #a5d6a7);
+            color: #2d5016;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            white-space: nowrap;
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .category-total:hover {
+            transform: scale(1.1) rotate(2deg);
+            box-shadow: 0 8px 20px rgba(45, 80, 22, 0.3);
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .items-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .item-card {
+            background: linear-gradient(135deg, #fefffe 0%, #f8fdf8 100%);
+            border: 2px solid #c8e6c9;
+            border-radius: 20px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+            animation: cardSlideUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        @keyframes cardSlideUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px) scale(0.95);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .item-card:nth-child(1) { animation-delay: 0.1s; }
+        .item-card:nth-child(2) { animation-delay: 0.2s; }
+        .item-card:nth-child(3) { animation-delay: 0.3s; }
+        .item-card:nth-child(4) { animation-delay: 0.4s; }
+        .item-card:nth-child(5) { animation-delay: 0.5s; }
+        .item-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .item-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(165, 214, 167, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .item-card:hover::before {
+            left: 100%;
+        }
+
+        .item-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(45, 80, 22, 0.25);
+            border-color: #81c784;
+        }
+
+        .item-card:hover .item-icon {
+            transform: scale(1.3) rotate(10deg);
+            filter: drop-shadow(0 5px 15px rgba(45, 80, 22, 0.3));
+        }
+
+        .item-card:hover .item-title {
+            color: #1a4a0f;
+            transform: translateX(5px);
+        }
+
+        .item-card:hover .price-on-request {
+            transform: scale(1.1);
+            color: #2e7d32;
+        }
+
+        .item-card.selected {
+            border-color: #4CAF50;
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+            box-shadow: 0 20px 40px rgba(76, 175, 80, 0.3);
+            transform: translateY(-8px) scale(1.02);
+            animation: selectPulse 0.6s ease-out;
+        }
+
+        @keyframes selectPulse {
+            0% { transform: translateY(-8px) scale(1.02); }
+            50% { transform: translateY(-12px) scale(1.05); }
+            100% { transform: translateY(-8px) scale(1.02); }
+        }
+
+        .item-card.selected:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(76, 175, 80, 0.4);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .item-icon {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            filter: drop-shadow(0 2px 8px rgba(45, 80, 22, 0.2));
+        }
+
+        .item-select {
+            width: 22px;
+            height: 22px;
+            border: 3px solid #4CAF50;
+            border-radius: 6px;
+            cursor: pointer;
+            position: relative;
+            background: #ffffff;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            flex-shrink: 0;
+        }
+
+        .item-select:hover {
+            transform: scale(1.15) rotate(5deg);
+            border-color: #2e7d32;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+        }
+
+        .item-card.selected .item-select {
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            transform: scale(1.15);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.5);
+        }
+
+        .item-card.selected .item-select::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: bold;
+            animation: checkmark 0.4s ease-out;
+        }
+
+        @keyframes checkmark {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            50% { transform: translate(-50%, -50%) scale(1.3); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .item-title {
+            color: #1a4a0f;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            font-weight: bold;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            line-height: 1.3;
+        }
+
+        .price-on-request {
+            color: #4CAF50;
+            font-size: clamp(1.1rem, 2.5vw, 1.2rem);
+            font-weight: bold;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .item-description {
+            color: #2d5016;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+
+        .item-features {
+            list-style: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .item-card:hover .item-features {
+            opacity: 1;
+        }
+
+        .item-features li {
+            color: #2d5016;
+            font-size: clamp(0.75rem, 1.8vw, 0.85rem);
+            padding: 3px 0;
+            transition: all 0.3s ease;
+            transform: translateX(0);
+        }
+
+        .item-features li:hover {
+            color: #1a4a0f;
+            transform: translateX(8px);
+        }
+
+        .item-features li::before {
+            content: '🌿';
+            color: #4CAF50;
+            font-weight: bold;
+            margin-right: 8px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .item-card:hover .item-features li::before {
+            transform: scale(1.2);
+            color: #2e7d32;
+        }
+
+        .quantity-control {
+            display: none;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #c8e6c9;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .item-card.selected .quantity-control {
+            display: flex;
+        }
+
+        .qty-btn {
+            background: linear-gradient(135deg, #81c784, #a5d6a7);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            color: #2d5016;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 4px 12px rgba(45, 80, 22, 0.2);
+        }
+
+        .qty-btn:hover {
+            transform: scale(1.25) rotate(10deg);
+            box-shadow: 0 8px 20px rgba(45, 80, 22, 0.4);
+            background: linear-gradient(135deg, #66bb6a, #81c784);
+        }
+
+        .qty-btn:active {
+            transform: scale(0.9);
+        }
+
+        .qty-display {
+            min-width: 35px;
+            text-align: center;
+            font-weight: bold;
+            color: #1a4a0f;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .summary-sidebar {
+            position: sticky;
+            top: 20px;
+            background: linear-gradient(135deg, #81c784, #a5d6a7);
+            color: #2d5016;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(45, 80, 22, 0.3);
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            animation: slideInRight 1s ease-out 0.8s both;
+        }
+
+        @media (max-width: 1024px) {
+            .summary-sidebar {
+                position: static;
+                order: -1;
+                max-height: none;
+            }
+        }
+
+        .summary-sidebar:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(45, 80, 22, 0.4);
+        }
+
+        .summary-header {
+            text-align: center;
+            margin-bottom: 25px;
+            animation: bounceIn 0.8s ease-out 1s both;
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .summary-title {
+            font-size: clamp(1.3rem, 3vw, 1.6rem);
+            margin-bottom: 15px;
+            color: #1a4a0f;
+        }
+
+        .total-items {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            backdrop-filter: blur(10px);
+        }
+
+        .total-items:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(1.05);
+        }
+
+        .summary-categories {
+            margin-bottom: 25px;
+        }
+
+        .summary-category {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .summary-category:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(8px) scale(1.02);
+        }
+
+        .summary-category-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            color: #1a4a0f;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            color: rgba(45, 80, 22, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .summary-item:hover {
+            color: rgba(26, 74, 15, 1);
+            transform: translateX(5px);
+        }
+
+        .grand-total {
+            text-align: center;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 20px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .grand-total:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: scale(1.03);
+        }
+
+        .grand-total-amount {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: bold;
+            color: #1a4a0f;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px rgba(76, 175, 80, 0.3)); }
+            to { filter: drop-shadow(0 0 20px rgba(76, 175, 80, 0.6)); }
+        }
+
+        .savings-info {
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            opacity: 0.8;
+            color: #2d5016;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.4s ease;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ffffff, #f8fdf8);
+            color: #1a4a0f;
+            border: 3px solid #4CAF50;
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(76, 175, 80, 0.5);
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+        }
+
+        .btn-primary:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.3);
+            color: #2d5016;
+            border: 2px solid rgba(45, 80, 22, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(45, 80, 22, 0.3);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: slideUp 1s ease-out 0.4s both;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .filter-tab {
+            padding: 12px 25px;
+            background: #ffffff;
+            border: 2px solid #c8e6c9;
+            border-radius: 30px;
+            color: #1a4a0f;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            font-weight: bold;
+            font-size: clamp(0.85rem, 2vw, 1rem);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(200, 230, 201, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .filter-tab:hover::before {
+            left: 100%;
+        }
+
+        .filter-tab:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(45, 80, 22, 0.25);
+            border-color: #81c784;
+        }
+
+        .filter-tab.active {
+            background: linear-gradient(135deg, #81c784, #a5d6a7);
+            color: #1a4a0f;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(45, 80, 22, 0.3);
+        }
+
+        .filter-tab.active:hover {
+            transform: translateY(-8px) scale(1.05);
+        }
+
+        /* Form Styles with Green Theme */
+        .checkout-form {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .form-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fdf8 100%);
+            border-radius: 25px;
+            padding: clamp(20px, 5vw, 40px);
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 60px rgba(45, 80, 22, 0.4);
+            border: 2px solid #c8e6c9;
+            animation: modalSlide 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes modalSlide {
+            from { 
+                opacity: 0; 
+                transform: translate(-50%, -50%) scale(0.7); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translate(-50%, -50%) scale(1); 
+            }
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header h2 {
+            color: #1a4a0f;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .form-header p {
+            color: #2d5016;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            color: #1a4a0f;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #c8e6c9;
+            border-radius: 15px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: #2d5016;
+            background: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+            transform: translateY(-2px);
+            background: #f8fdf8;
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .checkbox-input {
+            width: 20px;
+            height: 20px;
+            accent-color: #4CAF50;
+        }
+
+        .checkbox-label {
+            color: #2d5016;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            cursor: pointer;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 480px) {
+            .form-buttons {
+                flex-direction: column;
+            }
+        }
+
+        .form-btn {
+            flex: 1;
+            padding: 18px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.4s ease;
+        }
+
+        .form-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .form-btn-primary {
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            color: #ffffff;
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+        }
+
+        .form-btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(76, 175, 80, 0.5);
+        }
+
+        .form-btn-secondary {
+            background: #c8e6c9;
+            color: #2d5016;
+            border: 2px solid #81c784;
+        }
+
+        .form-btn-secondary:hover {
+            background: #81c784;
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        .order-summary-section {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border: 2px solid #a5d6a7;
+        }
+
+        .order-summary-title {
+            color: #1a4a0f;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #a5d6a7;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            color: #1a4a0f;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            margin-top: 10px;
+            padding-top: 15px;
+            border-top: 2px solid #81c784;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #81c784, #a5d6a7);
+            color: #1a4a0f;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            display: none;
+            box-shadow: 0 20px 40px rgba(45, 80, 22, 0.3);
+            border: 2px solid #4CAF50;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: successSlide 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes successSlide {
+            from { 
+                opacity: 0; 
+                transform: translateY(-30px) scale(0.9); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+
+        .success-message h3 {
+            font-size: clamp(1.3rem, 3vw, 1.6rem);
+            margin-bottom: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Additional responsive adjustments */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .category-section {
+                padding: 15px;
+            }
+            
+            .summary-sidebar {
+                padding: 20px;
+            }
+        }
+
+        /* Floating animations for decorative elements */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Loading animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #c8e6c9;
+            border-radius: 50%;
+            border-top-color: #4CAF50;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Gradient text animation */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated-gradient {
+            background: linear-gradient(-45deg, #4CAF50, #66BB6A, #81c784, #a5d6a7);
+            background-size: 400% 400%;
+            animation: gradientShift 3s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Ripple effect */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .ripple:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 1;
+            }
+            20% {
+                transform: scale(25, 25);
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(40, 40);
+            }
+        }
+
+        /* Scroll animations */
+        .scroll-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .scroll-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Enhanced hover effects */
+        .enhanced-hover {
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .enhanced-hover:hover {
+            transform: rotateX(10deg) rotateY(10deg);
+        }
+
+        /* Particle effect background */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(76, 175, 80, 0.3);
+            border-radius: 50%;
+            animation: particleFloat 15s infinite linear;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Interactive elements */
+        .interactive-element {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .interactive-element:hover {
+            filter: brightness(1.1) saturate(1.2);
+        }
+
+        /* Progress indicator */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #c8e6c9;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #66BB6A);
+            border-radius: 2px;
+            transition: width 0.5s ease;
+            animation: progressGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes progressGlow {
+            from { box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); }
+            to { box-shadow: 0 0 20px rgba(76, 175, 80, 0.8); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle background -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="animated-gradient">🌺 Custom Mehendi Package Builder</h1>
+            <p>Create your perfect mehendi ceremony with our complete service collection!</p>
+            <div class="price-badge ripple">💰 Price on Request - Get Custom Quote</div>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <h3>🎊 Custom Mehendi Package Created Successfully!</h3>
+            <p>Your personalized mehendi package has been submitted. We'll contact you within 2 hours with a custom quote!</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <div class="filter-tab active ripple" onclick="filterCategory('all')">All Services</div>
+            <div class="filter-tab ripple" onclick="filterCategory('artist')">Mehendi Artists</div>
+            <div class="filter-tab ripple" onclick="filterCategory('design')">Design Services</div>
+            <div class="filter-tab ripple" onclick="filterCategory('decor')">Decoration</div>
+            <div class="filter-tab ripple" onclick="filterCategory('photography')">Photography</div>
+            <div class="filter-tab ripple" onclick="filterCategory('premium')">Premium</div>
+        </div>
+
+        <div class="main-layout">
+            <div class="categories-container">
+                <!-- Mehendi Artists & Services -->
+                <div class="category-section scroll-fade-in" data-category="artist">
+                    <div class="category-header">
+                        <div class="category-title">
+                            🎨 Professional Mehendi Artists
+                        </div>
+                        <div class="category-total" id="artist-total">Price on Request</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card interactive-element" data-category="artist" onclick="toggleItem(this, 'bridal-mehendi-artist', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">👰</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Bridal Mehendi Artist</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Expert bridal mehendi artist with intricate designs</div>
+                            <ul class="item-features">
+                                <li>Intricate bridal patterns</li>
+                                <li>Traditional & modern designs</li>
+                                <li>Premium quality henna</li>
+                                <li>4-6 hours session</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="artist" onclick="toggleItem(this, 'guest-mehendi-artist', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">👥</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Guest Mehendi Artists</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Multiple artists for guest mehendi application</div>
+                            <ul class="item-features">
+                                <li>Team of 3-5 artists</li>
+                                <li>Quick & beautiful designs</li>
+                                <li>Simultaneous service</li>
+                                <li>All materials included</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn ripple" onclick="event.stopPropagation(); updateQuantity('guest-mehendi-artist', -1)">-</button>
+                                <span class="qty-display" id="qty-guest-mehendi-artist">1</span>
+                                <button class="qty-btn ripple" onclick="event.stopPropagation(); updateQuantity('guest-mehendi-artist', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="artist" onclick="toggleItem(this, 'arabic-mehendi-artist', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">🌙</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Arabic Mehendi Specialist</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Specialist in bold Arabic mehendi patterns</div>
+                            <ul class="item-features">
+                                <li>Bold Arabic patterns</li>
+                                <li>Quick application</li>
+                                <li>Contemporary styles</li>
+                                <li>Perfect for all occasions</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="artist" onclick="toggleItem(this, 'rajasthani-mehendi-artist', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">🏰</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Rajasthani Mehendi Artist</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Traditional Rajasthani mehendi patterns</div>
+                            <ul class="item-features">
+                                <li>Traditional Rajasthani designs</li>
+                                <li>Intricate detailing</li>
+                                <li>Cultural authenticity</li>
+                                <li>Experienced artist</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="artist" onclick="toggleItem(this, 'white-mehendi-artist', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">⚪</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">White Mehendi Artist</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Modern white mehendi for contemporary brides</div>
+                            <ul class="item-features">
+                                <li>White henna application</li>
+                                <li>Modern patterns</li>
+                                <li>Perfect for photos</li>
+                                <li>Unique & trendy</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="artist" onclick="toggleItem(this, 'glitter-mehendi-artist', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">✨</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Glitter Mehendi Artist</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Sparkling mehendi with glitter accents</div>
+                            <ul class="item-features">
+                                <li>Glitter & stone work</li>
+                                <li>Glamorous finish</li>
+                                <li>Perfect for festivities</li>
+                                <li>All materials included</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Design & Pattern Services -->
+                <div class="category-section scroll-fade-in" data-category="design">
+                    <div class="category-header">
+                        <div class="category-title">
+                            📋 Custom Design Services
+                        </div>
+                        <div class="category-total" id="design-total">Price on Request</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card interactive-element" data-category="design" onclick="toggleItem(this, 'custom-design-creation', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">🎨</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Custom Design Creation</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Personalized mehendi designs based on your story</div>
+                            <ul class="item-features">
+                                <li>Personalized patterns</li>
+                                <li>Name & date incorporation</li>
+                                <li>Story-based designs</li>
+                                <li>Digital preview</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="design" onclick="toggleItem(this, 'digital-design-portfolio', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">💻</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Digital Design Portfolio</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Extensive collection of mehendi designs to choose from</div>
+                            <ul class="item-features">
+                                <li>500+ design options</li>
+                                <li>Categorized collection</li>
+                                <li>High-resolution images</li>
+                                <li>Print-ready formats</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="design" onclick="toggleItem(this, 'design-consultation', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">💬</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Design Consultation</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">One-on-one consultation to plan your mehendi designs</div>
+                            <ul class="item-features">
+                                <li>Personal consultation</li>
+                                <li>Design planning</li>
+                                <li>Color coordination</li>
+                                <li>Timeline planning</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="design" onclick="toggleItem(this, 'trial-session', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">🧪</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Mehendi Trial Session</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Trial session to test designs and colors</div>
+                            <ul class="item-features">
+                                <li>Pre-wedding trial</li>
+                                <li>Design finalization</li>
+                                <li>Color testing</li>
+                                <li>Timing estimation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Decoration & Setup -->
+                <div class="category-section scroll-fade-in" data-category="decor">
+                    <div class="category-header">
+                        <div class="category-title">
+                            🎪 Mehendi Ceremony Decoration
+                        </div>
+                        <div class="category-total" id="decor-total">Price on Request</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card interactive-element" data-category="decor" onclick="toggleItem(this, 'complete-venue-decoration', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">🏺</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Complete Venue Decoration</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Full venue decoration with traditional elements</div>
+                            <ul class="item-features">
+                                <li>Marigold & flower arrangements</li>
+                                <li>Traditional seating setup</li>
+                                <li>Backdrop creation</li>
+                                <li>Lighting arrangements</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="decor" onclick="toggleItem(this, 'bridal-seating-setup', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">🪑</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Bridal Seating Setup</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Special decorated seating arrangement for bride</div>
+                            <ul class="item-features">
+                                <li>Decorated low seating</li>
+                                <li>Cushions & bolsters</li>
+                                <li>Floral arrangements</li>
+                                <li>Photo-perfect setup</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="decor" onclick="toggleItem(this, 'traditional-props', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">🎭</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Traditional Props & Accessories</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Authentic props to enhance the ceremony ambiance</div>
+                            <ul class="item-features">
+                                <li>Traditional thali sets</li>
+                                <li>Decorative pitchers</li>
+                                <li>Wooden stools</li>
+                                <li>Brass accessories</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn ripple" onclick="event.stopPropagation(); updateQuantity('traditional-props', -1)">-</button>
+                                <span class="qty-display" id="qty-traditional-props">1</span>
+                                <button class="qty-btn ripple" onclick="event.stopPropagation(); updateQuantity('traditional-props', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="decor" onclick="toggleItem(this, 'floral-jewelry', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">🌸</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Fresh Floral Jewelry</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Beautiful fresh flower jewelry for the bride</div>
+                            <ul class="item-features">
+                                <li>Gajra & hair accessories</li>
+                                <li>Floral bangles</li>
+                                <li>Fresh flower necklaces</li>
+                                <li>Matching accessories</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="decor" onclick="toggleItem(this, 'entrance-decoration', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">🚪</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Entrance Decoration</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Grand entrance decoration with welcome elements</div>
+                            <ul class="item-features">
+                                <li>Floral welcome arch</li>
+                                <li>Traditional torans</li>
+                                <li>Welcome signage</li>
+                                <li>Pathway decoration</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="decor" onclick="toggleItem(this, 'ceiling-decor', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">☂️</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Ceiling & Canopy Decoration</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Overhead decoration with drapes and hangings</div>
+                            <ul class="item-features">
+                                <li>Colorful fabric draping</li>
+                                <li>Hanging decorations</li>
+                                <li>Paper lanterns</li>
+                                <li>String lights</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photography & Videography -->
+                <div class="category-section scroll-fade-in" data-category="photography">
+                    <div class="category-header">
+                        <div class="category-title">
+                            📸 Photography & Videography
+                        </div>
+                        <div class="category-total" id="photography-total">Price on Request</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card interactive-element" data-category="photography" onclick="toggleItem(this, 'professional-photographer', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">📷</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Professional Photographer</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Expert photographer for mehendi ceremony coverage</div>
+                            <ul class="item-features">
+                                <li>Full ceremony coverage</li>
+                                <li>High-resolution images</li>
+                                <li>Candid & posed shots</li>
+                                <li>Professional editing</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="photography" onclick="toggleItem(this, 'videographer', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">🎥</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Professional Videographer</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Complete videography service for your mehendi</div>
+                            <ul class="item-features">
+                                <li>4K video recording</li>
+                                <li>Drone shots (if allowed)</li>
+                                <li>Professional editing</li>
+                                <li>Music synchronization</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="photography" onclick="toggleItem(this, 'mehendi-photoshoot', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">🤳</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Dedicated Mehendi Photoshoot</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Special photoshoot showcasing mehendi designs</div>
+                            <ul class="item-features">
+                                <li>Design close-ups</li>
+                                <li>Artistic compositions</li>
+                                <li>Multiple angles</li>
+                                <li>Professional lighting</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="photography" onclick="toggleItem(this, 'instant-printing', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">🖨️</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Instant Photo Printing</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">On-the-spot photo printing for guests</div>
+                            <ul class="item-features">
+                                <li>Instant photo printing</li>
+                                <li>Photo booth setup</li>
+                                <li>Custom frames</li>
+                                <li>Unlimited prints</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="photography" onclick="toggleItem(this, 'social-media-package', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">📱</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Social Media Package</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Optimized content for social media sharing</div>
+                            <ul class="item-features">
+                                <li>Instagram-ready photos</li>
+                                <li>Story templates</li>
+                                <li>Hashtag suggestions</li>
+                                <li>Quick turnaround</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium & Luxury Services -->
+                <div class="category-section scroll-fade-in" data-category="premium">
+                    <div class="category-header">
+                        <div class="category-title">
+                            👑 Premium & Luxury Services
+                        </div>
+                        <div class="category-total" id="premium-total">Price on Request</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card interactive-element" data-category="premium" onclick="toggleItem(this, 'celebrity-mehendi-artist', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">⭐</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Celebrity Mehendi Artist</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Renowned celebrity mehendi artist for your special day</div>
+                            <ul class="item-features">
+                                <li>Celebrity artist</li>
+                                <li>Exclusive designs</li>
+                                <li>Premium service</li>
+                                <li>Media coverage ready</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="premium" onclick="toggleItem(this, 'complete-luxury-package', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">💎</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Complete Luxury Package</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">All-inclusive luxury mehendi ceremony package</div>
+                            <ul class="item-features">
+                                <li>Everything included</li>
+                                <li>Premium artists team</li>
+                                <li>Luxury decoration</li>
+                                <li>Professional coverage</li>
+                                <li>VIP service</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="premium" onclick="toggleItem(this, 'destination-mehendi', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">🏖️</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Destination Mehendi Service</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Complete mehendi service at your destination venue</div>
+                            <ul class="item-features">
+                                <li>Travel anywhere</li>
+                                <li>Complete team</li>
+                                <li>All equipment included</li>
+                                <li>Logistics handled</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="premium" onclick="toggleItem(this, 'mehendi-ceremony-planning', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">🎉</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Complete Event Planning</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Full-service mehendi ceremony planning and coordination</div>
+                            <ul class="item-features">
+                                <li>Complete event planning</li>
+                                <li>Vendor coordination</li>
+                                <li>Timeline management</li>
+                                <li>Day-of coordination</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="premium" onclick="toggleItem(this, 'mehendi-aftercare', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">💆</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Mehendi Aftercare Service</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Professional aftercare to ensure perfect color development</div>
+                            <ul class="item-features">
+                                <li>Color enhancement treatment</li>
+                                <li>Care instructions</li>
+                                <li>Follow-up service</li>
+                                <li>Touch-up if needed</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="premium" onclick="toggleItem(this, 'mehendi-party-entertainment', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">🎵</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Mehendi Party Entertainment</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Live entertainment during mehendi application</div>
+                            <ul class="item-features">
+                                <li>Folk singers</li>
+                                <li>Traditional musicians</li>
+                                <li>Dance performances</li>
+                                <li>Interactive activities</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add-on Services -->
+                <div class="category-section scroll-fade-in" data-category="design">
+                    <div class="category-header">
+                        <div class="category-title">
+                            ⚡ Express & Add-on Services
+                        </div>
+                        <div class="category-total" id="express-total">Price on Request</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card interactive-element" data-category="design" onclick="toggleItem(this, 'same-day-service', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">🚀</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Same Day Booking Service</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Emergency same-day mehendi service booking</div>
+                            <ul class="item-features">
+                                <li>Emergency service</li>
+                                <li>Quick response</li>
+                                <li>Premium charges apply</li>
+                                <li>Subject to availability</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="design" onclick="toggleItem(this, 'mehendi-supplies', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">🧴</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Premium Mehendi Supplies</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">High-quality henna and application supplies</div>
+                            <ul class="item-features">
+                                <li>Organic henna paste</li>
+                                <li>Professional cones</li>
+                                <li>Essential oils</li>
+                                <li>Aftercare products</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn ripple" onclick="event.stopPropagation(); updateQuantity('mehendi-supplies', -1)">-</button>
+                                <span class="qty-display" id="qty-mehendi-supplies">1</span>
+                                <button class="qty-btn ripple" onclick="event.stopPropagation(); updateQuantity('mehendi-supplies', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="design" onclick="toggleItem(this, 'mehendi-removal', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">🧽</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Mehendi Removal Service</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Professional mehendi removal after the celebrations</div>
+                            <ul class="item-features">
+                                <li>Safe removal process</li>
+                                <li>Skin-friendly products</li>
+                                <li>No irritation</li>
+                                <li>Quick & effective</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="design" onclick="toggleItem(this, 'mehendi-stencils', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">📐</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Custom Mehendi Stencils</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Personalized stencils for consistent designs</div>
+                            <ul class="item-features">
+                                <li>Custom patterns</li>
+                                <li>Reusable stencils</li>
+                                <li>Perfect consistency</li>
+                                <li>Quick application</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn ripple" onclick="event.stopPropagation(); updateQuantity('mehendi-stencils', -1)">-</button>
+                                <span class="qty-display" id="qty-mehendi-stencils">1</span>
+                                <button class="qty-btn ripple" onclick="event.stopPropagation(); updateQuantity('mehendi-stencils', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="design" onclick="toggleItem(this, 'mehendi-care-kit', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">🎁</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Mehendi Care Kit</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Complete care kit for mehendi maintenance</div>
+                            <ul class="item-features">
+                                <li>Aftercare instructions</li>
+                                <li>Essential oils</li>
+                                <li>Protective gloves</li>
+                                <li>Care products</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn ripple" onclick="event.stopPropagation(); updateQuantity('mehendi-care-kit', -1)">-</button>
+                                <span class="qty-display" id="qty-mehendi-care-kit">1</span>
+                                <button class="qty-btn ripple" onclick="event.stopPropagation(); updateQuantity('mehendi-care-kit', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="item-card interactive-element" data-category="design" onclick="toggleItem(this, 'mehendi-consultation', 0)">
+                            <div class="item-header">
+                                <div class="item-icon">📞</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Video Consultation</div>
+                            <div class="price-on-request">Price on Request</div>
+                            <div class="item-description">Pre-ceremony consultation via video call</div>
+                            <ul class="item-features">
+                                <li>Design discussion</li>
+                                <li>Color preferences</li>
+                                <li>Timeline planning</li>
+                                <li>Preparation tips</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Sidebar -->
+            <div class="summary-sidebar enhanced-hover">
+                <div class="summary-header">
+                    <div class="summary-title">🛒 Your Mehendi Package</div>
+                    <div class="total-items" id="totalItems">0 services selected</div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+                
+                <div class="summary-categories" id="summaryCategories">
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>🎨 Artists</span>
+                            <span id="artist-summary-total">-</span>
+                        </div>
+                        <div id="artist-summary-items"></div>
+                    </div>
+                    
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>📋 Design</span>
+                            <span id="design-summary-total">-</span>
+                        </div>
+                        <div id="design-summary-items"></div>
+                    </div>
+                    
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>🎪 Decor</span>
+                            <span id="decor-summary-total">-</span>
+                        </div>
+                        <div id="decor-summary-items"></div>
+                    </div>
+                    
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>📸 Photography</span>
+                            <span id="photography-summary-total">-</span>
+                        </div>
+                        <div id="photography-summary-items"></div>
+                    </div>
+                    
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>👑 Premium</span>
+                            <span id="premium-summary-total">-</span>
+                        </div>
+                        <div id="premium-summary-items"></div>
+                    </div>
+                    
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>⚡ Express</span>
+                            <span id="express-summary-total">-</span>
+                        </div>
+                        <div id="express-summary-items"></div>
+                    </div>
+                </div>
+
+                <div class="grand-total">
+                    <div class="grand-total-amount" id="grandTotal">Price on Request</div>
+                    <div class="savings-info" id="savingsInfo">Select services to create your package</div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary ripple" onclick="proceedToCheckout()" id="checkoutBtn" disabled>
+                        Get Custom Quote
+                    </button>
+                    <button class="btn btn-secondary ripple" onclick="clearAll()">
+                        Clear All Selections
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Form Modal -->
+    <div class="checkout-form" id="checkoutForm">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>🌺 Get Your Custom Mehendi Quote</h2>
+                <p>Fill in your details to get a personalized quote for your mehendi package</p>
+            </div>
+
+            <form id="mehendiForm" onsubmit="submitOrder(event)">
+                <!-- Order Summary -->
+                <div class="order-summary-section">
+                    <div class="order-summary-title">📋 Selected Services</div>
+                    <div id="formOrderSummary"></div>
+                </div>
+
+                <!-- Event Information -->
+                <div class="form-group">
+                    <label class="form-label">Event Date *</label>
+                    <input type="date" class="form-input interactive-element" name="eventDate" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Event Time</label>
+                        <input type="time" class="form-input interactive-element" name="eventTime" placeholder="e.g., 2:00 PM">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Duration (Hours)</label>
+                        <select class="form-select interactive-element" name="duration">
+                            <option value="">Select duration</option>
+                            <option value="2-3">2-3 hours</option>
+                            <option value="3-4">3-4 hours</option>
+                            <option value="4-6">4-6 hours</option>
+                            <option value="6-8">6-8 hours</option>
+                            <option value="full-day">Full day</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Your Name *</label>
+                        <input type="text" class="form-input interactive-element" name="customerName" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number *</label>
+                        <input type="tel" class="form-input interactive-element" name="phoneNumber" placeholder="Enter your phone number" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email Address *</label>
+                    <input type="email" class="form-input interactive-element" name="email" placeholder="Enter your email address" required>
+                </div>
+
+                <!-- Venue Information -->
+                <div class="form-group">
+                    <label class="form-label">Venue Address *</label>
+                    <textarea class="form-textarea interactive-element" name="venueAddress" placeholder="Enter complete venue address" required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">City *</label>
+                        <input type="text" class="form-input interactive-element" name="city" placeholder="Enter your city" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Pincode *</label>
+                        <input type="text" class="form-input interactive-element" name="pincode" placeholder="123456" required>
+                    </div>
+                </div>
+
+                <!-- Guest Information -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Number of Guests Expected</label>
+                        <select class="form-select interactive-element" name="guestCount">
+                            <option value="">Select guest count</option>
+                            <option value="10-20">10-20 people</option>
+                            <option value="20-50">20-50 people</option>
+                            <option value="50-100">50-100 people</option>
+                            <option value="100-200">100-200 people</option>
+                            <option value="200+">200+ people</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">How many need mehendi?</label>
+                        <select class="form-select interactive-element" name="mehendiCount">
+                            <option value="">Select count</option>
+                            <option value="bride-only">Bride only</option>
+                            <option value="1-5">1-5 people</option>
+                            <option value="5-10">5-10 people</option>
+                            <option value="10-20">10-20 people</option>
+                            <option value="20+">20+ people</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Mehendi Preferences -->
+                <div class="form-group">
+                    <label class="form-label">Mehendi Style Preference</label>
+                    <select class="form-select interactive-element" name="mehendiStyle">
+                        <option value="">Choose preferred style</option>
+                        <option value="traditional-indian">Traditional Indian</option>
+                        <option value="arabic">Arabic</option>
+                        <option value="rajasthani">Rajasthani</option>
+                        <option value="modern-contemporary">Modern & Contemporary</option>
+                        <option value="bridal-heavy">Heavy Bridal Designs</option>
+                        <option value="simple-elegant">Simple & Elegant</option>
+                        <option value="mixed-styles">Mix of Styles</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Color Preferences</label>
+                    <select class="form-select interactive-element" name="colorPreference">
+                        <option value="">Choose color theme</option>
+                        <option value="traditional-green">Traditional Green & Gold</option>
+                        <option value="pink-green">Pink & Green</option>
+                        <option value="emerald-gold">Emerald & Gold</option>
+                        <option value="sage-cream">Sage & Cream</option>
+                        <option value="forest-natural">Forest & Natural</option>
+                        <option value="vibrant-green">Vibrant Green Mix</option>
+                        <option value="custom">Custom (specify in notes)</option>
+                    </select>
+                </div>
+
+                <!-- Special Requirements -->
+                <div class="form-group">
+                    <label class="form-label">Special Requirements or Design Ideas</label>
+                    <textarea class="form-textarea interactive-element" name="specialRequirements" placeholder="Tell us about any specific design ideas, names to include, themes, or special requirements..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Budget Range (Optional)</label>
+                    <select class="form-select interactive-element" name="budgetRange">
+                        <option value="">Select budget range</option>
+                        <option value="5000-10000">₹5,000 - ₹10,000</option>
+                        <option value="10000-25000">₹10,000 - ₹25,000</option>
+                        <option value="25000-50000">₹25,000 - ₹50,000</option>
+                        <option value="50000-100000">₹50,000 - ₹1,00,000</option>
+                        <option value="100000+">₹1,00,000+</option>
+                        <option value="flexible">Flexible - want best options</option>
+                    </select>
+                </div>
+
+                <!-- Contact Preferences -->
+                <div class="form-group">
+                    <label class="form-label">Preferred Contact Method</label>
+                    <select class="form-select interactive-element" name="contactMethod">
+                        <option value="">Select preferred method</option>
+                        <option value="whatsapp">WhatsApp</option>
+                        <option value="phone-call">Phone Call</option>
+                        <option value="email">Email</option>
+                        <option value="video-call">Video Call</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Best Time to Contact</label>
+                    <select class="form-select interactive-element" name="contactTime">
+                        <option value="">Select best time</option>
+                        <option value="morning">Morning (9 AM - 12 PM)</option>
+                        <option value="afternoon">Afternoon (12 PM - 5 PM)</option>
+                        <option value="evening">Evening (5 PM - 8 PM)</option>
+                        <option value="anytime">Anytime</option>
+                    </select>
+                </div>
+
+                <!-- Additional Services -->
+                <div class="form-group">
+                    <label class="form-label">Additional Services Needed</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="additionalServices" value="venue-visit" id="venue-visit">
+                        <label class="checkbox-label" for="venue-visit">Pre-event venue visit</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="additionalServices" value="trial-session" id="trial-session">
+                        <label class="checkbox-label" for="trial-session">Trial mehendi session</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="additionalServices" value="backup-artist" id="backup-artist">
+                        <label class="checkbox-label" for="backup-artist">Backup artist arrangement</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="additionalServices" value="transport" id="transport">
+                        <label class="checkbox-label" for="transport">Transportation for artists</label>
+                    </div>
+                </div>
+
+                <!-- Urgency -->
+                <div class="form-group">
+                    <label class="form-label">How urgently do you need the quote? *</label>
+                    <select class="form-select interactive-element" name="urgency" required>
+                        <option value="">Select urgency</option>
+                        <option value="asap">ASAP - within 2 hours</option>
+                        <option value="today">Within today</option>
+                        <option value="24-hours">Within 24 hours</option>
+                        <option value="few-days">Within few days</option>
+                        <option value="flexible">I'm flexible</option>
+                    </select>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="terms" id="terms" required>
+                        <label class="checkbox-label" for="terms">I agree to the terms and conditions and privacy policy *</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="marketing" id="marketing">
+                        <label class="checkbox-label" for="marketing">Send me updates about mehendi trends and special offers</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="whatsapp-updates" id="whatsapp-updates">
+                        <label class="checkbox-label" for="whatsapp-updates">Get updates via WhatsApp</label>
+                    </div>
+                </div>
+
+                <!-- Form Buttons -->
+                <div class="form-buttons">
+                    <button type="submit" class="form-btn form-btn-primary ripple">
+                        🌺 Get Custom Quote Now
+                    </button>
+                    <button type="button" class="form-btn form-btn-secondary ripple" onclick="closeForm()">
+                        ← Back to Selection
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let selectedItems = {};
+        let itemQuantities = {};
+        let categoryTotals = {
+            artist: 0,
+            design: 0,
+            decor: 0,
+            photography: 0,
+            premium: 0,
+            express: 0
+        };
+        let totalItemCount = 0;
+
+        // Initialize particle system
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 15 + 's';
+                    particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                    particlesContainer.appendChild(particle);
+                    
+                    // Remove particle after animation
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.parentNode.removeChild(particle);
+                        }
+                    }, 25000);
+                }, i * 500);
+            }
+        }
+
+        // Scroll animations
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.scroll-fade-in');
+            const windowHeight = window.innerHeight;
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Enhanced toggle item with animations
+        function toggleItem(element, itemId, price) {
+            const category = element.getAttribute('data-category');
+            
+            if (selectedItems[itemId]) {
+                // Deselect item with animation
+                element.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    element.classList.remove('selected');
+                    element.style.transform = '';
+                    delete selectedItems[itemId];
+                    delete itemQuantities[itemId];
+                    updateSummary();
+                }, 150);
+            } else {
+                // Select item with animation
+                element.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    element.classList.add('selected');
+                    element.style.transform = '';
+                    selectedItems[itemId] = {
+                        price: price,
+                        category: category,
+                        element: element,
+                        title: element.querySelector('.item-title').textContent
+                    };
+                    itemQuantities[itemId] = 1;
+                    
+                    // Initialize quantity display if it exists
+                    const qtyDisplay = element.querySelector(`#qty-${itemId}`);
+                    if (qtyDisplay) {
+                        qtyDisplay.textContent = '1';
+                    }
+                    updateSummary();
+                }, 150);
+            }
+        }
+
+        function updateQuantity(itemId, change) {
+            if (!selectedItems[itemId]) return;
+            
+            let currentQty = itemQuantities[itemId] || 1;
+            let newQty = Math.max(1, currentQty + change);
+            
+            itemQuantities[itemId] = newQty;
+            
+            const qtyDisplay = document.getElementById(`qty-${itemId}`);
+            if (qtyDisplay) {
+                // Animate quantity change
+                qtyDisplay.style.transform = 'scale(1.3)';
+                qtyDisplay.textContent = newQty;
+                setTimeout(() => {
+                    qtyDisplay.style.transform = '';
+                }, 200);
+            }
+            
+            updateSummary();
+        }
+
+        function updateSummary() {
+            // Reset category totals
+            Object.keys(categoryTotals).forEach(cat => categoryTotals[cat] = 0);
+            totalItemCount = 0;
+
+            // Clear summary items with animation
+            Object.keys(categoryTotals).forEach(cat => {
+                const summaryContainer = document.getElementById(`${cat}-summary-items`);
+                if (summaryContainer) {
+                    summaryContainer.style.opacity = '0.5';
+                    setTimeout(() => {
+                        summaryContainer.innerHTML = '';
+                        summaryContainer.style.opacity = '1';
+                    }, 200);
+                }
+            });
+
+            // Calculate totals and populate summary
+            setTimeout(() => {
+                Object.keys(selectedItems).forEach(itemId => {
+                    const item = selectedItems[itemId];
+                    const quantity = itemQuantities[itemId] || 1;
+                    const category = item.category;
+
+                    // Count items
+                    totalItemCount += quantity;
+
+                    // Add to summary display with animation
+                    const summaryContainer = document.getElementById(`${category}-summary-items`);
+                    if (summaryContainer) {
+                        const summaryItem = document.createElement('div');
+                        summaryItem.className = 'summary-item';
+                        summaryItem.style.opacity = '0';
+                        summaryItem.style.transform = 'translateX(-20px)';
+                        summaryItem.innerHTML = `
+                            <span>${item.title}${quantity > 1 ? ` (${quantity}×)` : ''}</span>
+                            <span>Selected</span>
+                        `;
+                        summaryContainer.appendChild(summaryItem);
+                        
+                        // Animate in
+                        setTimeout(() => {
+                            summaryItem.style.opacity = '1';
+                            summaryItem.style.transform = 'translateX(0)';
+                        }, 100);
+                    }
+                });
+
+                // Update category totals in header and summary
+                Object.keys(categoryTotals).forEach(category => {
+                    const headerTotal = document.getElementById(`${category}-total`);
+                    const summaryTotal = document.getElementById(`${category}-summary-total`);
+                    
+                    if (headerTotal) {
+                        headerTotal.textContent = 'Price on Request';
+                    }
+                    if (summaryTotal) {
+                        summaryTotal.textContent = '-';
+                    }
+                });
+
+                // Update progress bar
+                const progressFill = document.getElementById('progressFill');
+                const progressPercentage = Math.min((totalItemCount / 10) * 100, 100);
+                progressFill.style.width = progressPercentage + '%';
+
+                // Update grand total and item count with animation
+                const grandTotalElement = document.getElementById('grandTotal');
+                const totalItemsElement = document.getElementById('totalItems');
+                
+                grandTotalElement.style.transform = 'scale(1.1)';
+                totalItemsElement.style.transform = 'scale(1.1)';
+                
+                setTimeout(() => {
+                    grandTotalElement.textContent = 'Price on Request';
+                    totalItemsElement.textContent = `${totalItemCount} service${totalItemCount !== 1 ? 's' : ''} selected`;
+                    
+                    grandTotalElement.style.transform = '';
+                    totalItemsElement.style.transform = '';
+                }, 200);
+
+                // Update savings info with enhanced messages
+                const savingsElement = document.getElementById('savingsInfo');
+                if (totalItemCount > 8) {
+                    savingsElement.textContent = '🌟 Ultimate Package - Maximum value expected!';
+                    savingsElement.style.color = '#1a4a0f';
+                } else if (totalItemCount > 5) {
+                    savingsElement.textContent = '✨ Comprehensive Package - Great value expected!';
+                    savingsElement.style.color = '#2d5016';
+                } else if (totalItemCount > 2) {
+                    savingsElement.textContent = '🌿 Multi-service Package - Good combination!';
+                    savingsElement.style.color = '#2d5016';
+                } else {
+                    savingsElement.textContent = totalItemCount > 0 ? '🌱 Custom package created' : 'Select services to create your package';
+                    savingsElement.style.color = '#2d5016';
+                }
+
+                // Enable/disable checkout button with animation
+                const checkoutBtn = document.getElementById('checkoutBtn');
+                const wasDisabled = checkoutBtn.disabled;
+                checkoutBtn.disabled = totalItemCount === 0;
+                checkoutBtn.textContent = totalItemCount === 0 ? 'Select Services to Continue' : `Get Custom Quote (${totalItemCount} services)`;
+                
+                if (wasDisabled && !checkoutBtn.disabled) {
+                    checkoutBtn.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        checkoutBtn.style.transform = '';
+                    }, 300);
+                }
+            }, 250);
+        }
+
+        function filterCategory(category) {
+            // Update active tab with animation
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+                tab.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    tab.style.transform = '';
+                }, 150);
+            });
+            
+            event.target.classList.add('active');
+            event.target.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                event.target.style.transform = '';
+            }, 150);
+
+            // Show/hide category sections with stagger animation
+            const sections = document.querySelectorAll('.category-section');
+            sections.forEach((section, index) => {
+                if (category === 'all') {
+                    setTimeout(() => {
+                        section.style.display = 'block';
+                        section.style.opacity = '0';
+                        section.style.transform = 'translateY(30px)';
+                        setTimeout(() => {
+                            section.style.opacity = '1';
+                            section.style.transform = 'translateY(0)';
+                        }, 50);
+                    }, index * 100);
+                } else {
+                    const sectionCategory = section.getAttribute('data-category');
+                    if (sectionCategory === category) {
+                        section.style.display = 'block';
+                        section.style.opacity = '0';
+                        section.style.transform = 'translateY(30px)';
+                        setTimeout(() => {
+                            section.style.opacity = '1';
+                            section.style.transform = 'translateY(0)';
+                        }, 200);
+                    } else {
+                        section.style.opacity = '0';
+                        section.style.transform = 'translateY(-30px)';
+                        setTimeout(() => {
+                            section.style.display = 'none';
+                        }, 300);
+                    }
+                }
+            });
+        }
+
+        function clearAll() {
+            // Animate clearing all selections
+            const selectedCards = document.querySelectorAll('.item-card.selected');
+            selectedCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.transform = 'scale(0.9)';
+                    card.style.opacity = '0.5';
+                    setTimeout(() => {
+                        card.classList.remove('selected');
+                        card.style.transform = '';
+                        card.style.opacity = '';
+                    }, 200);
+                }, index * 50);
+            });
+
+            // Reset all data
+            selectedItems = {};
+            itemQuantities = {};
+            Object.keys(categoryTotals).forEach(cat => categoryTotals[cat] = 0);
+            totalItemCount = 0;
+
+            // Reset quantity displays
+            document.querySelectorAll('.qty-display').forEach(display => {
+                display.textContent = '1';
+            });
+
+            setTimeout(() => {
+                updateSummary();
+            }, 500);
+        }
+
+        function proceedToCheckout() {
+            if (totalItemCount === 0) {
+                // Shake animation for empty selection
+                const checkoutBtn = document.getElementById('checkoutBtn');
+                checkoutBtn.style.animation = 'shake 0.5s ease-in-out';
+                setTimeout(() => {
+                    checkoutBtn.style.animation = '';
+                }, 500);
+                return;
+            }
+
+            // Update form order summary
+            updateFormOrderSummary();
+            
+            // Show checkout form with animation
+            const form = document.getElementById('checkoutForm');
+            form.style.display = 'block';
+            form.style.opacity = '0';
+            setTimeout(() => {
+                form.style.opacity = '1';
+            }, 50);
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Add shake animation
+        const shakeStyle = document.createElement('style');
+        shakeStyle.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(shakeStyle);
+
+        function updateFormOrderSummary() {
+            const summaryContainer = document.getElementById('formOrderSummary');
+            summaryContainer.innerHTML = '';
+
+            // Add selected items with animation
+            Object.keys(selectedItems).forEach((itemId, index) => {
+                const item = selectedItems[itemId];
+                const quantity = itemQuantities[itemId] || 1;
+
+                setTimeout(() => {
+                    const orderItem = document.createElement('div');
+                    orderItem.className = 'order-item';
+                    orderItem.style.opacity = '0';
+                    orderItem.style.transform = 'translateX(-20px)';
+                    orderItem.innerHTML = `
+                        <span>${item.title}${quantity > 1 ? ` (${quantity}×)` : ''}</span>
+                        <span>Selected</span>
+                    `;
+                    summaryContainer.appendChild(orderItem);
+                    
+                    setTimeout(() => {
+                        orderItem.style.opacity = '1';
+                        orderItem.style.transform = 'translateX(0)';
+                    }, 50);
+                }, index * 100);
+            });
+
+            // Add total
+            setTimeout(() => {
+                const totalItem = document.createElement('div');
+                totalItem.className = 'order-item';
+                totalItem.style.opacity = '0';
+                totalItem.style.transform = 'translateX(-20px)';
+                totalItem.innerHTML = `
+                    <span>Total Services</span>
+                    <span>${totalItemCount} services</span>
+                `;
+                summaryContainer.appendChild(totalItem);
+                
+                setTimeout(() => {
+                    totalItem.style.opacity = '1';
+                    totalItem.style.transform = 'translateX(0)';
+                }, 50);
+            }, Object.keys(selectedItems).length * 100 + 200);
+        }
+
+        function closeForm() {
+            const form = document.getElementById('checkoutForm');
+            form.style.opacity = '0';
+            setTimeout(() => {
+                form.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        function submitOrder(event) {
+            event.preventDefault();
+            
+            // Show loading state
+            const submitBtn = event.target.querySelector('.form-btn-primary');
+            const originalText = submitBtn.textContent;
+            submitBtn.innerHTML = '<span class="loading-spinner"></span> Processing...';
+            submitBtn.disabled = true;
+            
+            const formData = new FormData(event.target);
+            const orderData = {
+                selectedItems: selectedItems,
+                quantities: itemQuantities,
+                totalItems: totalItemCount,
+                customerInfo: Object.fromEntries(formData),
+                orderDate: new Date().toISOString(),
+                orderId: 'MEH' + Date.now()
+            };
+
+            console.log('Complete Mehendi Package Request Submitted:', orderData);
+
+            // Simulate processing time
+            setTimeout(() => {
+                // Close form
+                closeForm();
+
+                // Show success message
+                document.getElementById('successMessage').classList.add('show');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Reset form
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+
+                // Reset after success
+                setTimeout(() => {
+                    clearAll();
+                    document.getElementById('mehendiForm').reset();
+                    setTimeout(() => {
+                        document.getElementById('successMessage').classList.remove('show');
+                    }, 5000);
+                }, 2000);
+            }, 2000);
+        }
+
+        // Close form when clicking outside
+        document.getElementById('checkoutForm').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeForm();
+            }
+        });
+
+        // Prevent form close when clicking inside form container
+        document.querySelector('.form-container').addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSummary();
+            createParticles();
+            handleScrollAnimations();
+            
+            // Continue creating particles periodically
+            setInterval(createParticles, 20000);
+            
+            // Handle scroll animations
+            window.addEventListener('scroll', handleScrollAnimations);
+            
+            // Add enhanced interactions
+            document.querySelectorAll('.interactive-element').forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const form = document.getElementById('checkoutForm');
+                if (form.style.display === 'block') {
+                    closeForm();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

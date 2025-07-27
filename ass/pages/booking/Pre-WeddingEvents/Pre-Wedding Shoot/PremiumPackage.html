@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Luxe Pre-Wedding Package</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #2c1810 0%, #4a2c2a 25%, #8b4513 50%, #cd853f 75%, #daa520 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #2c1810;
+            overflow-x: hidden;
+        }
+
+        /* Floating Diamonds Animation */
+        @keyframes floatingDiamonds {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .floating-diamonds {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .diamond {
+            position: absolute;
+            color: #daa520;
+            font-size: 20px;
+            animation: floatingDiamonds 18s infinite linear;
+        }
+
+        .diamond:nth-child(1) { left: 10%; animation-delay: 0s; font-size: 16px; }
+        .diamond:nth-child(2) { left: 20%; animation-delay: 2s; font-size: 24px; }
+        .diamond:nth-child(3) { left: 30%; animation-delay: 4s; font-size: 18px; }
+        .diamond:nth-child(4) { left: 40%; animation-delay: 6s; font-size: 22px; }
+        .diamond:nth-child(5) { left: 50%; animation-delay: 8s; font-size: 20px; }
+        .diamond:nth-child(6) { left: 60%; animation-delay: 10s; font-size: 16px; }
+        .diamond:nth-child(7) { left: 70%; animation-delay: 12s; font-size: 26px; }
+        .diamond:nth-child(8) { left: 80%; animation-delay: 14s; font-size: 18px; }
+        .diamond:nth-child(9) { left: 90%; animation-delay: 16s; font-size: 24px; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .header {
+            text-align: center;
+            color: #2c1810;
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(-45deg, #daa520, #cd853f, #b8860b, #daa520);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+            text-shadow: 0 0 30px rgba(218, 165, 32, 0.5);
+        }
+
+        .header p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            color: #8b4513;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .sparkle {
+            display: inline-block;
+            animation: sparkle 2s infinite;
+        }
+
+        .premium-package {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 0 25px 50px rgba(218, 165, 32, 0.3);
+            text-align: center;
+            margin-bottom: 40px;
+            border: 4px solid rgba(218, 165, 32, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .premium-package::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, transparent, #daa520, transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .package-icon {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #daa520, #cd853f);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: white;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(218, 165, 32, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 25px rgba(218, 165, 32, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(218, 165, 32, 0); }
+        }
+
+        .premium-package h2 {
+            font-size: 2.8rem;
+            color: #2c1810;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .premium-price {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #daa520, #cd853f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 35px;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 35px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features li {
+            padding: 18px 0;
+            color: #2c1810;
+            font-size: 1.3rem;
+            position: relative;
+            transform: translateX(-20px);
+            opacity: 0;
+            animation: slideInLeft 0.8s ease-out forwards;
+            font-weight: 500;
+        }
+
+        .features li:nth-child(1) { animation-delay: 0.5s; }
+        .features li:nth-child(2) { animation-delay: 0.7s; }
+        .features li:nth-child(3) { animation-delay: 0.9s; }
+        .features li:nth-child(4) { animation-delay: 1.1s; }
+        .features li:nth-child(5) { animation-delay: 1.3s; }
+        .features li:nth-child(6) { animation-delay: 1.5s; }
+        .features li:nth-child(7) { animation-delay: 1.7s; }
+        .features li:nth-child(8) { animation-delay: 1.9s; }
+
+        @keyframes slideInLeft {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .features li::before {
+            content: '💎';
+            margin-right: 15px;
+            font-size: 1.4rem;
+            animation: sparkle 2s infinite;
+        }
+
+        .customer-choice {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 60px;
+            margin-bottom: 40px;
+            box-shadow: 0 25px 50px rgba(218, 165, 32, 0.3);
+            border: 4px solid rgba(218, 165, 32, 0.4);
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .customer-choice h2 {
+            text-align: center;
+            color: #2c1810;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .addon-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 35px;
+        }
+
+        .addon-option {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 248, 220, 0.95));
+            padding: 35px;
+            border-radius: 25px;
+            border: 3px solid rgba(218, 165, 32, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .addon-option:nth-child(1) { animation-delay: 0.6s; }
+        .addon-option:nth-child(2) { animation-delay: 0.7s; }
+        .addon-option:nth-child(3) { animation-delay: 0.8s; }
+        .addon-option:nth-child(4) { animation-delay: 0.9s; }
+        .addon-option:nth-child(5) { animation-delay: 1.0s; }
+        .addon-option:nth-child(6) { animation-delay: 1.1s; }
+        .addon-option:nth-child(7) { animation-delay: 1.2s; }
+        .addon-option:nth-child(8) { animation-delay: 1.3s; }
+        .addon-option:nth-child(9) { animation-delay: 1.4s; }
+        .addon-option:nth-child(10) { animation-delay: 1.5s; }
+
+        .addon-option::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(218, 165, 32, 0.15) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.5s ease;
+        }
+
+        .addon-option:hover::before {
+            transform: scale(1);
+        }
+
+        .addon-option:hover {
+            background: linear-gradient(135deg, rgba(255, 248, 220, 0.98), rgba(255, 235, 205, 0.98));
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(218, 165, 32, 0.4);
+            border-color: rgba(218, 165, 32, 0.6);
+        }
+
+        .addon-option.selected {
+            border-color: #daa520;
+            background: linear-gradient(135deg, rgba(218, 165, 32, 0.15), rgba(205, 133, 63, 0.15));
+            box-shadow: 0 15px 35px rgba(218, 165, 32, 0.5);
+            transform: translateY(-8px) scale(1.03);
+        }
+
+        .addon-option .select-btn {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            background: linear-gradient(45deg, #daa520, #cd853f);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        .addon-option.selected .select-btn {
+            background: linear-gradient(45deg, #cd853f, #8b4513);
+            transform: scale(1.15);
+        }
+
+        .addon-option .select-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 20px rgba(218, 165, 32, 0.5);
+        }
+
+        .addon-option h4 {
+            color: #2c1810;
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .addon-option .price {
+            font-weight: bold;
+            color: #daa520;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .addon-option small {
+            color: #8b4513;
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
+        .customer-form {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 60px;
+            margin-bottom: 40px;
+            box-shadow: 0 25px 50px rgba(218, 165, 32, 0.3);
+            border: 4px solid rgba(218, 165, 32, 0.4);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .customer-form h2 {
+            text-align: center;
+            color: #2c1810;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #2c1810;
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-size: 1.15rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 20px;
+            border: 3px solid rgba(218, 165, 32, 0.4);
+            border-radius: 18px;
+            font-size: 1.05rem;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.95);
+            color: #2c1810;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #daa520;
+            background: #fff;
+            box-shadow: 0 0 25px rgba(218, 165, 32, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        .total-section {
+            background: linear-gradient(135deg, #daa520, #cd853f);
+            color: white;
+            padding: 60px;
+            border-radius: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 25px 50px rgba(218, 165, 32, 0.5);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .total-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            animation: rotate 25s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .total-section h3 {
+            font-size: 2.3rem;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .total-price {
+            font-size: 4.5rem;
+            font-weight: bold;
+            margin: 30px 0;
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+
+        .selected-items {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 3px solid rgba(255, 255, 255, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+
+        .selected-items h4 {
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+        }
+
+        .selected-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding: 10px 0;
+            font-size: 1.15rem;
+        }
+
+        .checkout-btn {
+            background: white;
+            color: #daa520;
+            border: none;
+            padding: 25px 60px;
+            border-radius: 60px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 12px 25px rgba(255, 255, 255, 0.4);
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: 0 25px 50px rgba(255, 255, 255, 0.5);
+            background: linear-gradient(45deg, #fff, #fffaf0);
+        }
+
+        .checkout-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #90EE90, #32CD32);
+            color: #fff;
+            padding: 35px;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+            display: none;
+            box-shadow: 0 20px 40px rgba(50, 205, 50, 0.4);
+            animation: bounceIn 0.8s ease-out;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .addon-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2.8rem;
+            }
+            
+            .total-price {
+                font-size: 3.2rem;
+            }
+
+            .premium-package,
+            .customer-choice,
+            .customer-form,
+            .total-section {
+                padding: 35px 25px;
+            }
+
+            .addon-option {
+                padding: 25px;
+            }
+
+            .floating-diamonds {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .premium-price {
+                font-size: 3.2rem;
+            }
+
+            .total-price {
+                font-size: 2.8rem;
+            }
+
+            .addon-options {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .premium-package,
+            .customer-choice,
+            .customer-form,
+            .total-section {
+                padding: 25px 20px;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 14px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(218, 165, 32, 0.15);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #daa520, #cd853f);
+            border-radius: 7px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #cd853f, #8b4513);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Diamonds Animation -->
+    <div class="floating-diamonds">
+        <div class="diamond">💎</div>
+        <div class="diamond">✨</div>
+        <div class="diamond">💍</div>
+        <div class="diamond">👑</div>
+        <div class="diamond">💎</div>
+        <div class="diamond">✨</div>
+        <div class="diamond">💍</div>
+        <div class="diamond">👑</div>
+        <div class="diamond">💎</div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1><span class="sparkle">👑</span> Premium Luxe Pre-Wedding Package <span class="sparkle">👑</span></h1>
+            <p>An exquisite celebration of your love story with unparalleled luxury</p>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <h3>🎊 Premium Pre-Wedding Package Booked Successfully!</h3>
+            <p>Thank you for choosing our Premium Luxe Pre-Wedding Package. Our luxury concierge team will contact you within 24 hours to begin planning your extraordinary love story experience!</p>
+        </div>
+
+        <!-- Premium Package -->
+        <div class="premium-package">
+            <div class="package-icon">📸</div>
+            <h2>Premium Luxe Pre-Wedding Experience</h2>
+            <div class="premium-price">₹75,999</div>
+            <ul class="features">
+                <li>Full-Day 8-Hour Cinematic Photo & Video Session</li>
+                <li>300+ Premium Edited High-Resolution Photos</li>
+                <li>4 Breathtaking Luxury Locations of Your Choice</li>
+                <li>Professional Makeup Artist & Hair Stylist Included</li>
+                <li>Cinematic 4K Video Highlights (5-7 minutes)</li>
+                <li>Drone Aerial Photography & Videography</li>
+                <li>Luxury Photo Album (100 pages) + Digital Gallery</li>
+                <li>Professional Wardrobe Consultation & Styling</li>
+            </ul>
+        </div>
+
+        <!-- Customer Choice Add-ons -->
+        <div class="customer-choice">
+            <h2>💫 Elevate Your Luxury Experience</h2>
+            <p style="text-align: center; color: #8b4513; margin-bottom: 35px; font-size: 1.3rem; font-style: italic; font-weight: 600;">
+                Add these exclusive premium enhancements to create an unforgettable pre-wedding experience
+            </p>
+            
+            <div class="addon-options">
+                <div class="addon-option" onclick="toggleAddon(this, 'Helicopter Shoot', 15000)">
+                    <button class="select-btn">Select</button>
+                    <h4>🚁 Helicopter Aerial Photography</h4>
+                    <p class="price">+₹15,000</p>
+                    <small>Exclusive helicopter session for spectacular aerial shots and cinematic sequences</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Extended Videography', 12000)">
+                    <button class="select-btn">Select</button>
+                    <h4>🎬 Extended Cinematic Film</h4>
+                    <p class="price">+₹12,000</p>
+                    <small>15-20 minute documentary-style film with professional editing and sound design</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Designer Outfits', 8000)">
+                    <button class="select-btn">Select</button>
+                    <h4>👗 Designer Outfit Rental</h4>
+                    <p class="price">+₹8,000</p>
+                    <small>Access to premium designer outfits and accessories for both bride and groom</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Luxury Transport', 6000)">
+                    <button class="select-btn">Select</button>
+                    <h4>🚗 Luxury Transportation</h4>
+                    <p class="price">+₹6,000</p>
+                    <small>Premium luxury car service between locations with chauffeur</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Premium Album Set', 10000)">
+                    <button class="select-btn">Select</button>
+                    <h4>📚 Premium Album Collection</h4>
+                    <p class="price">+₹10,000</p>
+                    <small>Luxury parent albums (2x 60-page) + canvas prints + framed portraits</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Exotic Location', 12000)">
+                    <button class="select-btn">Select</button>
+                    <h4>🏰 Exotic Destination Shoot</h4>
+                    <p class="price">+₹12,000</p>
+                    <small>Palace, fort, or luxury resort location with special permissions and setups</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Night Photography', 7500)">
+                    <button class="select-btn">Select</button>
+                    <h4>🌙 Magical Night Session</h4>
+                    <p class="price">+₹7,500</p>
+                    <small>Professional night photography with studio lighting and starry sky effects</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Custom Invitations', 5500)">
+                    <button class="select-btn">Select</button>
+                    <h4>💌 Bespoke Wedding Invitations</h4>
+                    <p class="price">+₹5,500</p>
+                    <small>100 custom-designed wedding invitations using your pre-wedding photos</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Same Day Edit', 9000)">
+                    <button class="select-btn">Select</button>
+                    <h4>⚡ Same Day Highlight Reel</h4>
+                    <p class="price">+₹9,000</p>
+                    <small>Receive a 3-minute edited highlight video on the same day of shooting</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Personal Assistant', 4500)">
+                    <button class="select-btn">Select</button>
+                    <h4>👤 Personal Shoot Assistant</h4>
+                    <p class="price">+₹4,500</p>
+                    <small>Dedicated personal assistant for outfit changes, props, and comfort needs</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Information Form -->
+        <div class="customer-form">
+            <h2>👑 Your Luxury Experience Details</h2>
+            <form id="preweddingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="brideName">Bride's Name *</label>
+                        <input type="text" id="brideName" name="brideName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="groomName">Groom's Name *</label>
+                        <input type="text" id="groomName" name="groomName" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="weddingDate">Wedding Date *</label>
+                        <input type="date" id="weddingDate" name="weddingDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="shootDate">Preferred Shoot Date *</label>
+                        <input type="date" id="shootDate" name="shootDate" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Preferred Luxury Locations</label>
+                    <select id="location" name="location">
+                        <option value="">Choose your premium setting...</option>
+                        <option value="palace">Royal Palace & Heritage Monuments</option>
+                        <option value="resort">Luxury Resort & Private Estates</option>
+                        <option value="beach">Private Beach & Coastline</option>
+                        <option value="mountains">Hill Stations & Mountain Resorts</option>
+                        <option value="vineyard">Vineyards & Wine Estates</option>
+                        <option value="fort">Historic Forts & Castles</option>
+                        <option value="luxury-hotel">5-Star Hotels & Boutique Properties</option>
+                        <option value="botanical">Premium Botanical Gardens</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="theme">Photography Style Preference</label>
+                    <select id="theme" name="theme">
+                        <option value="">Select your luxury style...</option>
+                        <option value="royal">Royal & Regal</option>
+                        <option value="contemporary">Modern Contemporary</option>
+                        <option value="vintage-luxury">Vintage Luxury</option>
+                        <option value="cinematic">Cinematic & Editorial</option>
+                        <option value="classic-elegance">Classic Elegance</option>
+                        <option value="artistic-luxury">Artistic & High Fashion</option>
+                        <option value="cultural-premium">Premium Cultural</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialRequests">Your Love Story & Special Requests</label>
+                    <textarea id="specialRequests" name="specialRequests" placeholder="Share your unique love story, special moments you'd like to capture, specific luxury requirements, or any personalized touches you envision for your premium pre-wedding experience..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address for Premium Service Coordination</label>
+                    <textarea id="address" name="address" placeholder="Enter your complete address for luxury service coordination, album delivery, and consultation meetings..."></textarea>
+                </div>
+            </form>
+        </div>
+
+        <!-- Total Calculator -->
+        <div class="total-section">
+            <h3>💰 Your Premium Investment</h3>
+            <div class="total-price" id="totalPrice">₹75,999</div>
+            
+            <div class="selected-items" id="selectedItems">
+                <h4>Your Premium Package Includes:</h4>
+                <div class="selected-item">
+                    <span>Premium Luxe Pre-Wedding Experience</span>
+                    <span>₹75,999</span>
+                </div>
+            </div>
+
+            <button class="checkout-btn" onclick="submitOrder()">
+                Book Your Luxury Experience 👑
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let selectedAddons = [];
+        let basePrice = 75999;
+
+        function toggleAddon(element, name, price) {
+            const selectBtn = element.querySelector('.select-btn');
+            
+            // Toggle selection state
+            const isSelected = element.classList.contains('selected');
+            
+            if (isSelected) {
+                // Deselect
+                element.classList.remove('selected');
+                selectBtn.textContent = 'Select';
+                selectedAddons = selectedAddons.filter(addon => addon.name !== name);
+            } else {
+                // Select
+                element.classList.add('selected');
+                selectBtn.textContent = 'Selected';
+                selectedAddons.push({ name, price });
+            }
+            
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const addonTotal = selectedAddons.reduce((sum, addon) => sum + addon.price, 0);
+            const total = basePrice + addonTotal;
+            
+            // Format number with commas for Indian currency
+            document.getElementById('totalPrice').textContent = `₹${total.toLocaleString('en-IN')}`;
+            
+            // Update selected items display
+            const selectedItemsDiv = document.getElementById('selectedItems');
+            let itemsHTML = '<h4>Your Premium Package Includes:</h4>';
+            
+            // Base package
+            itemsHTML += `
+                <div class="selected-item">
+                    <span>Premium Luxe Pre-Wedding Experience</span>
+                    <span>₹${basePrice.toLocaleString('en-IN')}</span>
+                </div>
+            `;
+            
+            // Add-ons
+            selectedAddons.forEach(addon => {
+                itemsHTML += `
+                    <div class="selected-item">
+                        <span>${addon.name}</span>
+                        <span>+₹${addon.price.toLocaleString('en-IN')}</span>
+                    </div>
+                `;
+            });
+            
+            selectedItemsDiv.innerHTML = itemsHTML;
+        }
+
+        function submitOrder() {
+            const form = document.getElementById('preweddingForm');
+            const brideName = document.getElementById('brideName').value;
+            const groomName = document.getElementById('groomName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const weddingDate = document.getElementById('weddingDate').value;
+            const shootDate = document.getElementById('shootDate').value;
+
+            // Basic validation
+            if (!brideName || !groomName || !email || !phone || !weddingDate || !shootDate) {
+                alert('Please fill in all required fields (marked with *)');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            // Phone validation (basic)
+            const phoneRegex = /^[0-9]{10}$/;
+            if (!phoneRegex.test(phone.replace(/\D/g, '').slice(-10))) {
+                alert('Please enter a valid 10-digit phone number');
+                return;
+            }
+
+            // Date validation
+            const today = new Date();
+            const selectedShootDate = new Date(shootDate);
+            const selectedWeddingDate = new Date(weddingDate);
+
+            if (selectedShootDate <= today) {
+                alert('Shoot date must be in the future');
+                return;
+            }
+
+            if (selectedWeddingDate <= selectedShootDate) {
+                alert('Wedding date should be after the pre-wedding shoot date');
+                return;
+            }
+
+            // Calculate final total
+            const addonTotal = selectedAddons.reduce((sum, addon) => sum + addon.price, 0);
+            const finalTotal = basePrice + addonTotal;
+
+            // Create order summary
+            const orderData = {
+                customerInfo: {
+                    brideName,
+                    groomName,
+                    email,
+                    phone,
+                    weddingDate,
+                    shootDate,
+                    location: document.getElementById('location').value,
+                    theme: document.getElementById('theme').value,
+                    specialRequests: document.getElementById('specialRequests').value,
+                    address: document.getElementById('address').value
+                },
+                package: 'Premium Luxe Pre-Wedding Experience',
+                basePrice,
+                addons: selectedAddons,
+                total: finalTotal,
+                orderDate: new Date().toISOString()
+            };
+
+            // In a real application, you would send this data to a server
+            console.log('Premium Pre-Wedding Booking Data:', orderData);
+
+            // Show success message with animation
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('show');
+            
+            // Create celebratory effect
+            createConfetti();
+            
+            // Scroll to top to show success message
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Reset form after successful submission
+            setTimeout(() => {
+                form.reset();
+                
+                // Reset addons
+                selectedAddons = [];
+                document.querySelectorAll('.addon-option').forEach(option => {
+                    option.classList.remove('selected');
+                    option.querySelector('.select-btn').textContent = 'Select';
+                });
+                
+                updateTotal();
+                
+                // Hide success message after 10 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 10000);
+            }, 3000);
+        }
+
+        function createConfetti() {
+            const colors = ['#daa520', '#cd853f', '#b8860b', '#ffd700', '#ffb347'];
+            const confettiCount = 60;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-10px';
+                    confetti.style.width = '12px';
+                    confetti.style.height = '12px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.pointerEvents = 'none';
+                    confetti.style.zIndex = '9999';
+                    confetti.style.animation = `fall ${3 + Math.random() * 2}s linear forwards`;
+                    
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 6000);
+                }, i * 120);
+            }
+        }
+
+        // Add CSS for confetti animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                0% {
+                    transform: translateY(-100vh) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTotal();
+            
+            // Set minimum date to tomorrow for shoot date
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const tomorrowString = tomorrow.toISOString().split('T')[0];
+            document.getElementById('shootDate').setAttribute('min', tomorrowString);
+            
+            // Set minimum wedding date to one week after tomorrow
+            const nextWeek = new Date();
+            nextWeek.setDate(nextWeek.getDate() + 8);
+            const nextWeekString = nextWeek.toISOString().split('T')[0];
+            document.getElementById('weddingDate').setAttribute('min', nextWeekString);
+
+            // Update wedding date minimum when shoot date changes
+            document.getElementById('shootDate').addEventListener('change', function() {
+                const shootDate = new Date(this.value);
+                shootDate.setDate(shootDate.getDate() + 1);
+                const minWeddingDate = shootDate.toISOString().split('T')[0];
+                document.getElementById('weddingDate').setAttribute('min', minWeddingDate);
+            });
+        });
+
+        // Add some interactive animations
+        document.querySelectorAll('.addon-option').forEach((option, index) => {
+            option.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.03) rotateX(3deg)';
+            });
+            
+            option.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('selected')) {
+                    this.style.transform = 'translateY(0) scale(1) rotateX(0deg)';
+                } else {
+                    this.style.transform = 'translateY(-8px) scale(1.03) rotateX(0deg)';
+                }
+            });
+        });
+
+        // Add parallax effect to floating diamonds
+        let ticking = false;
+        
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelectorAll('.diamond');
+            const speed = 0.3;
+            
+            parallax.forEach(diamond => {
+                const yPos = -(scrolled * speed);
+                diamond.style.transform = `translateY(${yPos}px)`;
+            });
+            
+            ticking = false;
+        }
+        
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', requestTick);
+
+        // Add smooth reveal animation for form elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe form groups for smooth reveal
+        document.querySelectorAll('.form-group').forEach(group => {
+            group.style.opacity = '0';
+            group.style.transform = 'translateY(30px)';
+            group.style.transition = 'all 0.6s ease-out';
+            observer.observe(group);
+        });
+
+        // Add luxury loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 1s ease-in-out';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

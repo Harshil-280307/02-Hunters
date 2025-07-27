@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traditional Sangam Ceremony Package</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 25%, #fed7aa 50%, #fecaca 75%, #f3e8ff 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease-in-out infinite;
+            min-height: 100vh;
+            padding: 20px;
+            color: #92400e;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            25% {
+                background-position: 100% 50%;
+            }
+            50% {
+                background-position: 50% 100%;
+            }
+            75% {
+                background-position: 0% 100%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Animated Background Elements */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        /* Floating Sacred Elements */
+        .floating-elements {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(202, 138, 4, 0.2);
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.3));
+        }
+
+        .floating-elements:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+            color: rgba(239, 68, 68, 0.15);
+        }
+
+        .floating-elements:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            animation-delay: 2s;
+            color: rgba(168, 85, 247, 0.15);
+        }
+
+        .floating-elements:nth-child(3) {
+            top: 60%;
+            left: 20%;
+            animation-delay: 4s;
+            color: rgba(16, 185, 129, 0.15);
+        }
+
+        .floating-elements:nth-child(4) {
+            top: 80%;
+            right: 10%;
+            animation-delay: 1s;
+            color: rgba(245, 158, 11, 0.15);
+        }
+
+        .floating-diya {
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(245, 158, 11, 0.2);
+            animation: rotate 8s linear infinite;
+            filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.4));
+        }
+
+        .floating-diya:nth-child(5) {
+            top: 30%;
+            left: 5%;
+            animation-delay: 0s;
+            color: rgba(239, 68, 68, 0.2);
+        }
+
+        .floating-diya:nth-child(6) {
+            top: 70%;
+            right: 25%;
+            animation-delay: 3s;
+            color: rgba(168, 85, 247, 0.2);
+        }
+
+        /* Enhanced Color-changing Sparkles */
+        .sparkles {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: linear-gradient(45deg, #f59e0b, #d97706);
+            border-radius: 50%;
+            animation: sparkleColor 4s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+        }
+
+        .sparkles:nth-child(7) {
+            top: 15%;
+            left: 30%;
+            animation-delay: 0s;
+        }
+
+        .sparkles:nth-child(8) {
+            top: 45%;
+            right: 20%;
+            animation-delay: 1s;
+        }
+
+        .sparkles:nth-child(9) {
+            top: 75%;
+            left: 50%;
+            animation-delay: 2s;
+        }
+
+        /* Additional Animated Elements */
+        .floating-mandala {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.05));
+            border: 2px solid rgba(245, 158, 11, 0.2);
+            border-radius: 50%;
+            animation: mandalaSpin 12s linear infinite;
+        }
+
+        .floating-mandala:nth-child(10) {
+            top: 25%;
+            right: 5%;
+            animation-delay: 0s;
+        }
+
+        .floating-mandala:nth-child(11) {
+            top: 65%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+
+        .color-orbs {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            animation: orbFloat 8s ease-in-out infinite;
+            opacity: 0.1;
+        }
+
+        .color-orbs:nth-child(12) {
+            top: 35%;
+            left: 80%;
+            background: radial-gradient(circle, #ef4444, #dc2626);
+            animation-delay: 0s;
+        }
+
+        .color-orbs:nth-child(13) {
+            top: 55%;
+            right: 40%;
+            background: radial-gradient(circle, #a855f7, #7c3aed);
+            animation-delay: 2s;
+        }
+
+        .color-orbs:nth-child(14) {
+            top: 85%;
+            left: 30%;
+            background: radial-gradient(circle, #10b981, #059669);
+            animation-delay: 4s;
+        }
+
+        @keyframes sparkleColor {
+            0% {
+                background: linear-gradient(45deg, #f59e0b, #d97706);
+                transform: scale(0) rotate(0deg);
+                opacity: 0;
+                box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+            }
+            25% {
+                background: linear-gradient(45deg, #ef4444, #dc2626);
+                transform: scale(1) rotate(90deg);
+                opacity: 1;
+                box-shadow: 0 0 15px rgba(239, 68, 68, 0.8);
+            }
+            50% {
+                background: linear-gradient(45deg, #a855f7, #7c3aed);
+                transform: scale(1.2) rotate(180deg);
+                opacity: 1;
+                box-shadow: 0 0 20px rgba(168, 85, 247, 0.8);
+            }
+            75% {
+                background: linear-gradient(45deg, #10b981, #059669);
+                transform: scale(1) rotate(270deg);
+                opacity: 1;
+                box-shadow: 0 0 15px rgba(16, 185, 129, 0.8);
+            }
+            100% {
+                background: linear-gradient(45deg, #f59e0b, #d97706);
+                transform: scale(0) rotate(360deg);
+                opacity: 0;
+                box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+            }
+        }
+
+        @keyframes mandalaSpin {
+            0% {
+                transform: rotate(0deg) scale(1);
+                border-color: rgba(245, 158, 11, 0.2);
+            }
+            25% {
+                transform: rotate(90deg) scale(1.1);
+                border-color: rgba(239, 68, 68, 0.2);
+            }
+            50% {
+                transform: rotate(180deg) scale(1);
+                border-color: rgba(168, 85, 247, 0.2);
+            }
+            75% {
+                transform: rotate(270deg) scale(1.1);
+                border-color: rgba(16, 185, 129, 0.2);
+            }
+            100% {
+                transform: rotate(360deg) scale(1);
+                border-color: rgba(245, 158, 11, 0.2);
+            }
+        }
+
+        @keyframes orbFloat {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px) scale(1);
+                opacity: 0.1;
+            }
+            25% {
+                transform: translateY(-15px) translateX(10px) scale(1.2);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-30px) translateX(-5px) scale(1);
+                opacity: 0.2;
+            }
+            75% {
+                transform: translateY(-15px) translateX(-10px) scale(1.1);
+                opacity: 0.25;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            color: #b45309;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(180, 83, 9, 0.2);
+            color: #b45309;
+            background: linear-gradient(135deg, #b45309, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            color: #d97706;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .traditional-package {
+            background: linear-gradient(135deg, #ffffff 0%, #fefbf3 100%);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(180, 83, 9, 0.15);
+            text-align: center;
+            margin-bottom: 40px;
+            border: 3px solid #fde68a;
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        .traditional-package::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(135deg, transparent, rgba(180, 83, 9, 0.05), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        .traditional-package::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #b45309, #d97706, #f59e0b);
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 25px 25px 0 0;
+        }
+
+        .package-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #b45309, #d97706);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            position: relative;
+            z-index: 2;
+            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(180, 83, 9, 0.3);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .traditional-package h2 {
+            font-size: 2.5rem;
+            color: #92400e;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .traditional-price {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #b45309, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .features li {
+            padding: 15px 0;
+            color: #a16207;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .features li:hover {
+            transform: translateX(10px);
+            color: #b45309;
+        }
+
+        .features li::before {
+            content: '🪔';
+            margin-right: 15px;
+            font-size: 1.3rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-5px);
+            }
+            60% {
+                transform: translateY(-3px);
+            }
+        }
+
+        .customer-choice {
+            background: linear-gradient(135deg, #ffffff 0%, #fefbf3 100%);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(180, 83, 9, 0.15);
+            border: 3px solid #fde68a;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        .customer-choice h2 {
+            text-align: center;
+            color: #92400e;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+        }
+
+        .addon-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .addon-option {
+            background: linear-gradient(135deg, #fefefe 0%, #f8fafc 100%);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid #fde68a;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .addon-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(180, 83, 9, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .addon-option:hover {
+            background: linear-gradient(135deg, #fefbf3 0%, #fef3c7 100%);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(180, 83, 9, 0.2);
+            border-color: #b45309;
+        }
+
+        .addon-option:hover::before {
+            left: 100%;
+        }
+
+        .addon-option.selected {
+            border-color: #d97706;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            box-shadow: 0 12px 30px rgba(217, 119, 6, 0.25);
+            transform: scale(1.03);
+        }
+
+        .addon-option .select-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #b45309, #d97706);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(180, 83, 9, 0.3);
+        }
+
+        .addon-option.selected .select-btn {
+            background: linear-gradient(135deg, #d97706, #b45309);
+            animation: selectedPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes selectedPulse {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3);
+            }
+            50% {
+                box-shadow: 0 6px 25px rgba(217, 119, 6, 0.5);
+            }
+        }
+
+        .addon-option .select-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(180, 83, 9, 0.4);
+        }
+
+        .addon-option h4 {
+            color: #92400e;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .addon-option .price {
+            font-weight: bold;
+            background: linear-gradient(135deg, #b45309, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .addon-option small {
+            color: #a16207;
+            line-height: 1.5;
+            font-size: 1rem;
+        }
+
+        .customer-form {
+            background: linear-gradient(135deg, #ffffff 0%, #fefbf3 100%);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(180, 83, 9, 0.15);
+            border: 3px solid #fde68a;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        .customer-form h2 {
+            text-align: center;
+            color: #92400e;
+            margin-bottom: 35px;
+            font-size: 2.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #92400e;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 18px;
+            border: 2px solid #fde68a;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: linear-gradient(135deg, #fefefe 0%, #fefbf3 100%);
+            color: #92400e;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #b45309;
+            background: #fff;
+            box-shadow: 0 0 15px rgba(180, 83, 9, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        .total-section {
+            background: linear-gradient(135deg, #b45309 0%, #d97706 50%, #f59e0b 100%);
+            color: white;
+            padding: 45px;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(180, 83, 9, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 1s ease-out 0.8s both;
+        }
+
+        .total-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+        .total-section h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .total-price {
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 25px 0;
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .selected-items {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .selected-items h4 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .selected-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            font-size: 1.1rem;
+        }
+
+        .checkout-btn {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            color: #b45309;
+            border: none;
+            padding: 20px 45px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            margin-top: 25px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.4);
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+
+        .checkout-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #fff;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            display: none;
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.3);
+            animation: successSlide 0.6s ease-out;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        @keyframes successSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .addon-options {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .addon-options {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .header p {
+                font-size: 1.1rem;
+            }
+            
+            .total-price {
+                font-size: 3rem;
+            }
+
+            .traditional-package,
+            .customer-choice,
+            .customer-form,
+            .total-section {
+                padding: 25px;
+                margin-bottom: 25px;
+            }
+
+            .package-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+
+            .traditional-package h2 {
+                font-size: 2rem;
+            }
+
+            .traditional-price {
+                font-size: 2.8rem;
+            }
+
+            .floating-elements,
+            .floating-diya {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .traditional-package,
+            .customer-choice,
+            .customer-form,
+            .total-section {
+                padding: 20px;
+            }
+
+            .addon-option {
+                padding: 20px;
+            }
+
+            .total-price {
+                font-size: 2.5rem;
+            }
+
+            .checkout-btn {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Additional smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation for the entire page */
+        .container {
+            opacity: 0;
+            animation: pageLoad 1s ease-out 0.5s both;
+        }
+
+        @keyframes pageLoad {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="floating-elements">🙏</div>
+        <div class="floating-elements">🕉️</div>
+        <div class="floating-elements">🌺</div>
+        <div class="floating-elements">🪷</div>
+        <div class="floating-diya">🪔</div>
+        <div class="floating-diya">🔔</div>
+        <div class="sparkles"></div>
+        <div class="sparkles"></div>
+        <div class="sparkles"></div>
+        <div class="floating-mandala"></div>
+        <div class="floating-mandala"></div>
+        <div class="color-orbs"></div>
+        <div class="color-orbs"></div>
+        <div class="color-orbs"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🕉️ Traditional Sangam Ceremony Package</h1>
+            <p>Honor your sacred traditions with our authentic ceremony arrangements</p>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <h3>🙏 Order Submitted Successfully!</h3>
+            <p>Thank you for choosing our Traditional Sangam Ceremony Package. We'll contact you soon to begin planning your sacred celebration!</p>
+        </div>
+
+        <!-- Traditional Package -->
+        <div class="traditional-package">
+            <div class="package-icon">🛕</div>
+            <h2>Traditional Sangam Ceremony Package</h2>
+            <div class="traditional-price">₹35,000</div>
+            <ul class="features">
+                <li>Traditional Invitation Design</li>
+                <li>Sanskrit Shloka Integration</li>
+                <li>Vedic Calendar Consultation</li>
+                <li>Sacred Ceremony Timeline</li>
+                <li>Traditional Music Selection</li>
+                <li>Ritual Item Checklist</li>
+                <li>Priest Coordination Support</li>
+                <li>Cultural Photography Guide</li>
+            </ul>
+        </div>
+
+        <!-- Customer Choice Add-ons -->
+        <div class="customer-choice">
+            <h2>🪔 Sacred Enhancements</h2>
+            <p style="text-align: center; color: #a16207; margin-bottom: 30px; font-size: 1.2rem;">
+                Add these traditional elements to make your Sangam ceremony more auspicious
+            </p>
+            
+            <div class="addon-options">
+                <div class="addon-option" onclick="toggleAddon(this, 'Vedic Chanting Audio', 1200)">
+                    <button class="select-btn">Select</button>
+                    <h4>🎵 Vedic Chanting Audio</h4>
+                    <p class="price">+₹1,200</p>
+                    <small>Sacred mantras and hymns for the ceremony atmosphere</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Havan Kund Setup', 2500)">
+                    <button class="select-btn">Select</button>
+                    <h4>🔥 Havan Kund Setup Guide</h4>
+                    <p class="price">+₹2,500</p>
+                    <small>Complete fire ceremony setup with safety instructions</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Traditional Decorations', 3200)">
+                    <button class="select-btn">Select</button>
+                    <h4>🌺 Traditional Decoration Package</h4>
+                    <p class="price">+₹3,200</p>
+                    <small>Marigold garlands, rangoli designs, and temple decorations</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Pandit Coordination', 5000)">
+                    <button class="select-btn">Select</button>
+                    <h4>🧙‍♂️ Pandit Coordination Service</h4>
+                    <p class="price">+₹5,000</p>
+                    <small>Expert priest arrangement and ceremony guidance</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Sacred Prasadam', 1800)">
+                    <button class="select-btn">Select</button>
+                    <h4>🍯 Sacred Prasadam Arrangement</h4>
+                    <p class="price">+₹1,800</p>
+                    <small>Traditional sweets and blessed offerings preparation</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Photography Package', 8500)">
+                    <button class="select-btn">Select</button>
+                    <h4>📸 Traditional Photography Package</h4>
+                    <p class="price">+₹8,500</p>
+                    <small>Sacred moments captured with cultural sensitivity</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Puja Items Kit', 2200)">
+                    <button class="select-btn">Select</button>
+                    <h4>🪔 Complete Puja Items Kit</h4>
+                    <p class="price">+₹2,200</p>
+                    <small>All essential items for the ceremony rituals</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Kundali Matching', 3500)">
+                    <button class="select-btn">Select</button>
+                    <h4>⭐ Kundali Matching Service</h4>
+                    <p class="price">+₹3,500</p>
+                    <small>Astrological compatibility analysis by expert astrologer</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Traditional Attire Guide', 1500)">
+                    <button class="select-btn">Select</button>
+                    <h4>👘 Traditional Attire Consultation</h4>
+                    <p class="price">+₹1,500</p>
+                    <small>Guidance on appropriate traditional clothing and accessories</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Scriptural Texts', 1100)">
+                    <button class="select-btn">Select</button>
+                    <h4>📜 Sacred Scriptural Texts</h4>
+                    <p class="price">+₹1,100</p>
+                    <small>Printed Vedic texts and ceremony scripts</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Mehendi Ceremony', 4200)">
+                    <button class="select-btn">Select</button>
+                    <h4>🖌️ Traditional Mehendi Ceremony</h4>
+                    <p class="price">+₹4,200</p>
+                    <small>Professional mehendi artist for bridal hands and feet</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Ganesh Puja Setup', 1800)">
+                    <button class="select-btn">Select</button>
+                    <h4>🐘 Ganesh Puja Setup</h4>
+                    <p class="price">+₹1,800</p>
+                    <small>Special arrangement for blessing removal of obstacles</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Classical Music Ensemble', 6500)">
+                    <button class="select-btn">Select</button>
+                    <h4>🎼 Classical Music Ensemble</h4>
+                    <p class="price">+₹6,500</p>
+                    <small>Traditional musicians for live ceremony music</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Sacred Water Ceremony', 950)">
+                    <button class="select-btn">Select</button>
+                    <h4>💧 Sacred Water Ceremony</h4>
+                    <p class="price">+₹950</p>
+                    <small>Holy water from sacred rivers for purification rituals</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Temple Booking Assistance', 7500)">
+                    <button class="select-btn">Select</button>
+                    <h4>🛕 Temple Booking Assistance</h4>
+                    <p class="price">+₹7,500</p>
+                    <small>Help arranging ceremony at traditional temple venues</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Information Form -->
+        <div class="customer-form">
+            <h2>🙏 Sacred Details</h2>
+            <form id="sangamForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="brideName">Bride's Name *</label>
+                        <input type="text" id="brideName" name="brideName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="groomName">Groom's Name *</label>
+                        <input type="text" id="groomName" name="groomName" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ceremonyDate">Ceremony Date *</label>
+                        <input type="date" id="ceremonyDate" name="ceremonyDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ceremonyVenue">Ceremony Venue</label>
+                        <input type="text" id="ceremonyVenue" name="ceremonyVenue" placeholder="Temple/Home/Hall name">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="familyTradition">Family Tradition</label>
+                        <select id="familyTradition" name="familyTradition">
+                            <option value="">Select tradition...</option>
+                            <option value="south-indian">South Indian</option>
+                            <option value="north-indian">North Indian</option>
+                            <option value="gujarati">Gujarati</option>
+                            <option value="marathi">Marathi</option>
+                            <option value="bengali">Bengali</option>
+                            <option value="punjabi">Punjabi</option>
+                            <option value="rajasthani">Rajasthani</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ceremonyType">Ceremony Type</label>
+                        <select id="ceremonyType" name="ceremonyType">
+                            <option value="">Select type...</option>
+                            <option value="roka">Roka Ceremony</option>
+                            <option value="tilaka">Tilaka Ceremony</option>
+                            <option value="sagai">Sagai/Engagement</option>
+                            <option value="mangni">Mangni Ceremony</option>
+                            <option value="ring-ceremony">Ring Ceremony</option>
+                            <option value="combined">Combined Ceremony</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="expectedGuests">Expected Guests</label>
+                        <select id="expectedGuests" name="expectedGuests">
+                            <option value="">Select range...</option>
+                            <option value="family-only">Family Only (10-20)</option>
+                            <option value="close-relatives">Close Relatives (20-50)</option>
+                            <option value="extended-family">Extended Family (50-100)</option>
+                            <option value="community">Community (100-200)</option>
+                            <option value="large-gathering">Large Gathering (200+)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="preferredLanguage">Preferred Language</label>
+                        <select id="preferredLanguage" name="preferredLanguage">
+                            <option value="">Select language...</option>
+                            <option value="hindi">Hindi</option>
+                            <option value="sanskrit">Sanskrit</option>
+                            <option value="gujarati">Gujarati</option>
+                            <option value="marathi">Marathi</option>
+                            <option value="tamil">Tamil</option>
+                            <option value="telugu">Telugu</option>
+                            <option value="bengali">Bengali</option>
+                            <option value="punjabi">Punjabi</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialRequests">Special Religious Requirements</label>
+                    <textarea id="specialRequests" name="specialRequests" placeholder="Any specific rituals, dietary restrictions, or special arrangements needed..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="deliveryAddress">Address for Delivery/Service</label>
+                    <textarea id="deliveryAddress" name="deliveryAddress" placeholder="Complete address where services will be provided..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="budgetRange">Budget Range</label>
+                        <select id="budgetRange" name="budgetRange">
+                            <option value="">Select range...</option>
+                            <option value="basic">Basic (₹35,000 - ₹50,000)</option>
+                            <option value="standard">Standard (₹50,000 - ₹75,000)</option>
+                            <option value="premium">Premium (₹75,000 - ₹1,00,000)</option>
+                            <option value="luxury">Luxury (₹1,00,000+)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="timeframe">Ceremony Timeframe</label>
+                        <select id="timeframe" name="timeframe">
+                            <option value="">Select timeframe...</option>
+                            <option value="morning">Morning (6 AM - 12 PM)</option>
+                            <option value="afternoon">Afternoon (12 PM - 6 PM)</option>
+                            <option value="evening">Evening (6 PM - 10 PM)</option>
+                            <option value="full-day">Full Day Event</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Total Calculator -->
+        <div class="total-section">
+            <h3>🪔 Sacred Investment</h3>
+            <div class="total-price" id="totalPrice">₹35,000</div>
+            
+            <div class="selected-items" id="selectedItems">
+                <h4>Sacred Package Includes:</h4>
+                <div class="selected-item">
+                    <span>Traditional Sangam Ceremony Package</span>
+                    <span>₹35,000</span>
+                </div>
+            </div>
+
+            <button class="checkout-btn" onclick="submitOrder()">
+                Book Sacred Ceremony 🛕
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let selectedAddons = [];
+        let basePrice = 35000;
+
+        function toggleAddon(element, name, price) {
+            const selectBtn = element.querySelector('.select-btn');
+            
+            // Toggle selection state
+            const isSelected = element.classList.contains('selected');
+            
+            if (isSelected) {
+                // Deselect
+                element.classList.remove('selected');
+                selectBtn.textContent = 'Select';
+                selectedAddons = selectedAddons.filter(addon => addon.name !== name);
+            } else {
+                // Select
+                element.classList.add('selected');
+                selectBtn.textContent = 'Selected ✓';
+                selectedAddons.push({ name, price });
+            }
+            
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const addonTotal = selectedAddons.reduce((sum, addon) => sum + addon.price, 0);
+            const total = basePrice + addonTotal;
+            
+            // Format number with commas for Indian currency
+            document.getElementById('totalPrice').textContent = `₹${total.toLocaleString('en-IN')}`;
+            
+            // Update selected items display
+            const selectedItemsDiv = document.getElementById('selectedItems');
+            let itemsHTML = '<h4>Sacred Package Includes:</h4>';
+            
+            // Base package
+            itemsHTML += `
+                <div class="selected-item">
+                    <span>Traditional Sangam Ceremony Package</span>
+                    <span>₹${basePrice.toLocaleString('en-IN')}</span>
+                </div>
+            `;
+            
+            // Add-ons
+            selectedAddons.forEach(addon => {
+                itemsHTML += `
+                    <div class="selected-item">
+                        <span>${addon.name}</span>
+                        <span>+₹${addon.price.toLocaleString('en-IN')}</span>
+                    </div>
+                `;
+            });
+            
+            selectedItemsDiv.innerHTML = itemsHTML;
+        }
+
+        function submitOrder() {
+            const form = document.getElementById('sangamForm');
+            const brideName = document.getElementById('brideName').value;
+            const groomName = document.getElementById('groomName').value;
+            const email = document.getElementById('email').value;
+            const ceremonyDate = document.getElementById('ceremonyDate').value;
+
+            // Basic validation
+            if (!brideName || !groomName || !email || !ceremonyDate) {
+                alert('Please fill in all required fields (marked with *)');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            // Date validation (ceremony date should be in the future)
+            const selectedDate = new Date(ceremonyDate);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            if (selectedDate < today) {
+                alert('Please select a future date for your ceremony');
+                return;
+            }
+
+            // Calculate final total
+            const addonTotal = selectedAddons.reduce((sum, addon) => sum + addon.price, 0);
+            const finalTotal = basePrice + addonTotal;
+
+            // Create order summary
+            const orderData = {
+                customerInfo: {
+                    brideName,
+                    groomName,
+                    email,
+                    phone: document.getElementById('phone').value,
+                    ceremonyDate,
+                    ceremonyVenue: document.getElementById('ceremonyVenue').value,
+                    familyTradition: document.getElementById('familyTradition').value,
+                    ceremonyType: document.getElementById('ceremonyType').value,
+                    expectedGuests: document.getElementById('expectedGuests').value,
+                    preferredLanguage: document.getElementById('preferredLanguage').value,
+                    specialRequests: document.getElementById('specialRequests').value,
+                    deliveryAddress: document.getElementById('deliveryAddress').value,
+                    budgetRange: document.getElementById('budgetRange').value,
+                    timeframe: document.getElementById('timeframe').value
+                },
+                package: 'Traditional Sangam Ceremony Package',
+                basePrice,
+                addons: selectedAddons,
+                total: finalTotal,
+                orderDate: new Date().toISOString()
+            };
+
+            // In a real application, you would send this data to a server
+            console.log('Sangam Ceremony Order Data:', orderData);
+
+            // Show success message with animation
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('show');
+            
+            // Scroll to top to show success message
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Add confetti effect (simple version)
+            createConfetti();
+
+            // Reset form after successful submission
+            setTimeout(() => {
+                form.reset();
+                
+                // Reset addons
+                selectedAddons = [];
+                document.querySelectorAll('.addon-option').forEach(option => {
+                    option.classList.remove('selected');
+                    option.querySelector('.select-btn').textContent = 'Select';
+                });
+                
+                updateTotal();
+                
+                // Hide success message after 6 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 6000);
+            }, 2000);
+        }
+
+        // Enhanced confetti effect with more colors and patterns
+        function createConfetti() {
+            const colors = ['#b45309', '#d97706', '#f59e0b', '#10b981', '#dc2626', '#a855f7', '#3b82f6', '#f97316'];
+            const shapes = ['circle', 'square', 'triangle'];
+            const confettiCount = 80;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                confetti.style.position = 'fixed';
+                confetti.style.width = Math.random() * 8 + 6 + 'px';
+                confetti.style.height = confetti.style.width;
+                confetti.style.backgroundColor = color;
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = '-20px';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.zIndex = '9999';
+                confetti.style.boxShadow = `0 0 6px ${color}`;
+                
+                if (shape === 'circle') {
+                    confetti.style.borderRadius = '50%';
+                } else if (shape === 'triangle') {
+                    confetti.style.width = '0';
+                    confetti.style.height = '0';
+                    confetti.style.backgroundColor = 'transparent';
+                    confetti.style.borderLeft = '6px solid transparent';
+                    confetti.style.borderRight = '6px solid transparent';
+                    confetti.style.borderBottom = `12px solid ${color}`;
+                }
+                
+                const animationDuration = Math.random() * 3 + 2;
+                const rotationSpeed = Math.random() * 360 + 180;
+                confetti.style.animation = `confettiFall ${animationDuration}s linear forwards, confettiRotate ${animationDuration}s linear infinite`;
+                
+                document.body.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    if (confetti.parentNode) {
+                        confetti.remove();
+                    }
+                }, animationDuration * 1000 + 1000);
+            }
+        }
+
+        // Enhanced confetti animation styles
+        const confettiStyles = document.createElement('style');
+        confettiStyles.textContent = `
+            @keyframes confettiFall {
+                to {
+                    transform: translateY(${window.innerHeight + 100}px) translateX(${Math.random() * 200 - 100}px);
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes confettiRotate {
+                to {
+                    transform: rotate(720deg);
+                }
+            }
+        `;
+        document.head.appendChild(confettiStyles);
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTotal();
+            
+            // Set minimum date to today for ceremony date
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('ceremonyDate').setAttribute('min', today);
+            
+            // Add smooth entrance animations to addon options
+            const addonOptions = document.querySelectorAll('.addon-option');
+            addonOptions.forEach((option, index) => {
+                option.style.animation = `slideInUp 0.6s ease-out ${0.1 * index}s both`;
+            });
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.addon-option, .form-group');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease-out';
+                observer.observe(el);
+            });
+        });
+
+        // Add hover effects
+        document.querySelectorAll('.addon-option').forEach(option => {
+            option.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            option.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('selected')) {
+                    this.style.transform = 'translateY(0) scale(1)';
+                }
+            });
+        });
+
+        // Enhanced form validation with better UX
+        document.querySelectorAll('input, textarea, select').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+                
+                // Real-time validation
+                if (this.required && !this.value) {
+                    this.style.borderColor = '#ef4444';
+                } else if (this.type === 'email' && this.value) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    this.style.borderColor = emailRegex.test(this.value) ? '#10b981' : '#ef4444';
+                } else if (this.value) {
+                    this.style.borderColor = '#10b981';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
