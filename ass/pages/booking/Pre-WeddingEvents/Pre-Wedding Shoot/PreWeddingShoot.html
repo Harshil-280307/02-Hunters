@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-Wedding Shoot - Create Your Love Story</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533a7b 75%, #8b5a8c 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #f5f5f5;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background Effects */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        /* Floating Hearts Animation */
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.3;
+            animation: floatHeart 15s infinite linear;
+            color: #ff6b9d;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+                transform: translateY(90vh) rotate(36deg) scale(0.8);
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) scale(1.2);
+                opacity: 0.4;
+            }
+            90% {
+                opacity: 0.3;
+                transform: translateY(10vh) rotate(324deg) scale(0.9);
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        /* Camera Flash Effect */
+        .camera-flash {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.3) 30%, transparent 70%);
+            animation: cameraFlash 8s infinite ease-in-out;
+            opacity: 0;
+        }
+
+        @keyframes cameraFlash {
+            0%, 90%, 100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            5% {
+                opacity: 1;
+                transform: scale(2);
+            }
+            10% {
+                opacity: 0.5;
+                transform: scale(1.5);
+            }
+        }
+
+        /* Romantic Particles */
+        .romantic-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500, #e55039);
+            animation: particleFloat 12s infinite ease-in-out;
+            opacity: 0.6;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translateY(100vh) translateX(0) scale(0.3);
+                opacity: 0;
+            }
+            25% {
+                transform: translateY(75vh) translateX(50px) scale(0.8);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(50vh) translateX(-30px) scale(1);
+                opacity: 0.6;
+            }
+            75% {
+                transform: translateY(25vh) translateX(80px) scale(0.9);
+                opacity: 0.4;
+            }
+        }
+
+        /* Lens Flare Effect */
+        .lens-flare {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, transparent, rgba(255,107,157,0.3), transparent, rgba(196,69,105,0.3), transparent);
+            animation: lensRotate 20s infinite linear;
+            opacity: 0.4;
+        }
+
+        @keyframes lensRotate {
+            0% {
+                transform: rotate(0deg) scale(0.5);
+            }
+            50% {
+                transform: rotate(180deg) scale(1.2);
+            }
+            100% {
+                transform: rotate(360deg) scale(0.5);
+            }
+        }
+
+        /* Animated Background Gradient */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(255, 107, 157, 0.1) 0%,
+                rgba(196, 69, 105, 0.1) 25%,
+                rgba(248, 181, 0, 0.1) 50%,
+                rgba(229, 80, 57, 0.1) 75%,
+                rgba(139, 90, 140, 0.1) 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 18s ease infinite;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 1.2s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-80px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500, #e55039);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+            text-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
+        }
+
+        @keyframes titleGlow {
+            0% {
+                filter: brightness(1) saturate(1);
+                text-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
+            }
+            100% {
+                filter: brightness(1.3) saturate(1.2);
+                text-shadow: 0 0 50px rgba(255, 107, 157, 0.6);
+            }
+        }
+
+        .header p {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            color: #ff6b9d;
+            animation: fadeIn 2s ease-out 0.5s both;
+            font-style: italic;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0.9;
+            }
+        }
+
+        /* Package Cards Section */
+        .packages-section {
+            margin: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: slideInFromLeft 1.2s ease-out;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #c44569, #ff6b9d, #f8b500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b9d, #c44569, #f8b500);
+            border-radius: 2px;
+            animation: expandLine 1.5s ease-out 0.8s both;
+        }
+
+        @keyframes expandLine {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100px;
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-120px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #e55039;
+            animation: fadeIn 2s ease-out 1s both;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-bottom: 80px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .package-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 107, 157, 0.3);
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            animation: slideInUp 1s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .package-card:nth-child(1) { animation-delay: 0.2s; }
+        .package-card:nth-child(2) { animation-delay: 0.4s; }
+        .package-card:nth-child(3) { animation-delay: 0.6s; }
+        .package-card:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes slideInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(80px) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .package-card:hover {
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 
+                0 40px 80px rgba(255, 107, 157, 0.3),
+                0 0 50px rgba(196, 69, 105, 0.2);
+            border-color: #ff6b9d;
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .package-card:hover::before {
+            left: 100%;
+        }
+
+        .package-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #ff6b9d, #c44569, #f8b500, #e55039);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .package-card:hover::after {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            transition: all 0.4s ease;
+            animation: iconPulse 2s ease-in-out infinite alternate;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes iconPulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(255, 107, 157, 0.3);
+            }
+            100% {
+                transform: scale(1.1);
+                box-shadow: 0 0 40px rgba(255, 107, 157, 0.6);
+            }
+        }
+
+        .package-card:hover .card-icon {
+            transform: scale(1.2) rotate(360deg);
+            animation: none;
+            background: linear-gradient(135deg, #f8b500, #e55039);
+        }
+
+        .card-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: iconShimmer 3s linear infinite;
+        }
+
+        @keyframes iconShimmer {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .package-card h3 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: #ff6b9d;
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
+        }
+
+        .package-card:hover h3 {
+            color: #f8b500;
+            transform: scale(1.05);
+            text-shadow: 0 4px 20px rgba(248, 181, 0, 0.5);
+        }
+
+        .package-price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #c44569;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 15px rgba(196, 69, 105, 0.4);
+        }
+
+        .package-card:hover .package-price {
+            color: #e55039;
+            transform: scale(1.15);
+            text-shadow: 0 4px 25px rgba(229, 80, 57, 0.6);
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .features-list li {
+            padding: 12px 0;
+            color: #f5f5f5;
+            position: relative;
+            opacity: 0;
+            animation: fadeInLeft 0.6s ease-out forwards;
+            transition: all 0.3s ease;
+        }
+
+        .features-list li:nth-child(1) { animation-delay: 1s; }
+        .features-list li:nth-child(2) { animation-delay: 1.1s; }
+        .features-list li:nth-child(3) { animation-delay: 1.2s; }
+        .features-list li:nth-child(4) { animation-delay: 1.3s; }
+        .features-list li:nth-child(5) { animation-delay: 1.4s; }
+        .features-list li:nth-child(6) { animation-delay: 1.5s; }
+        .features-list li:nth-child(7) { animation-delay: 1.6s; }
+        .features-list li:nth-child(8) { animation-delay: 1.7s; }
+
+        @keyframes fadeInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .features-list li::before {
+            content: '📸';
+            margin-right: 15px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .package-card:hover .features-list li {
+            transform: translateX(10px);
+            color: #fff;
+        }
+
+        .package-card:hover .features-list li::before {
+            transform: scale(1.3) rotate(15deg);
+        }
+
+        .book-btn {
+            text-decoration: none;
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .book-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .book-btn:hover::before {
+            left: 100%;
+        }
+
+        .book-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 
+                0 20px 40px rgba(255, 107, 157, 0.4),
+                0 0 30px rgba(255, 107, 157, 0.3);
+            background: linear-gradient(135deg, #f8b500, #e55039);
+        }
+
+        .custom-package {
+            border: 3px solid #26c6da;
+            background: linear-gradient(135deg, rgba(38,198,218,0.1) 0%, rgba(171,71,188,0.1) 100%);
+            position: relative;
+        }
+
+        .custom-package::before {
+            content: '🎨 CUSTOM 🎨';
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: linear-gradient(45deg, #26c6da, #ab47bc);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            animation: customBadge 2.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes customBadge {
+            0% {
+                transform: scale(1) rotate(-2deg);
+                box-shadow: 0 5px 15px rgba(38, 198, 218, 0.3);
+            }
+            100% {
+                transform: scale(1.1) rotate(2deg);
+                box-shadow: 0 10px 30px rgba(38, 198, 218, 0.6);
+            }
+        }
+
+        /* Custom Package Hover Effects */
+        .custom-package:hover {
+            border-color: #ab47bc;
+            box-shadow: 
+                0 40px 80px rgba(38, 198, 218, 0.3),
+                0 0 50px rgba(171, 71, 188, 0.2);
+        }
+
+        .custom-package .card-icon {
+            background: linear-gradient(135deg, #26c6da, #ab47bc);
+        }
+
+        .custom-package:hover .card-icon {
+            background: linear-gradient(135deg, #ab47bc, #26c6da);
+        }
+
+        .custom-package h3 {
+            color: #26c6da;
+        }
+
+        .custom-package:hover h3 {
+            color: #ab47bc;
+        }
+
+        .custom-package .package-price {
+            color: #ab47bc;
+            font-size: 2.2rem;
+        }
+
+        .custom-package:hover .package-price {
+            color: #26c6da;
+        }
+
+        .custom-package .book-btn {
+            background: linear-gradient(135deg, #26c6da, #ab47bc);
+        }
+
+        .custom-package .book-btn:hover {
+            background: linear-gradient(135deg, #ab47bc, #26c6da);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 46, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(38, 198, 218, 0.3);
+            padding: 50px;
+            border-radius: 25px;
+            text-align: center;
+            max-width: 600px;
+            margin: 20px;
+            animation: modalSlideIn 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(38,198,218,0.1), transparent, rgba(171,71,188,0.1), transparent);
+            animation: shimmer 4s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes modalSlideIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal h2 {
+            color: #26c6da;
+            margin-bottom: 25px;
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #26c6da, #ab47bc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal p {
+            color: #f5f5f5;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 35px;
+            cursor: pointer;
+            color: #ff6b9d;
+            transition: all 0.3s ease;
+            background: none;
+            border: none;
+        }
+
+        .close:hover {
+            color: #ab47bc;
+            transform: rotate(90deg) scale(1.2);
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            margin: 100px 0;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 60px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500, #e55039);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            animation: galleryFloat 1s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.5s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes galleryFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 25px 50px rgba(255, 107, 157, 0.3);
+        }
+
+        .gallery-item::before {
+            content: '📷';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            opacity: 0.8;
+            animation: cameraIcon 3s ease-in-out infinite;
+        }
+
+        @keyframes cameraIcon {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+
+        .gallery-item::after {
+            content: 'Sample Photo';
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 107, 157, 0.3);
+            border-radius: 25px;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 80px 0;
+            animation: slideInUp 1s ease-out 0.8s both;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b9d, #f8b500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-section p {
+            font-size: 1.2rem;
+            color: #f5f5f5;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            color: #ff6b9d;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .contact-item span {
+            color: #f5f5f5;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 1000px;
+            }
+            
+            .cards-container {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 3rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .package-card {
+                padding: 30px;
+            }
+
+            .package-price {
+                font-size: 2.2rem;
+            }
+
+            .card-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+
+            .book-btn {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+
+            .gallery-item {
+                height: 200px;
+            }
+
+            .gallery-item::before {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .package-card {
+                padding: 20px;
+            }
+
+            .package-price {
+                font-size: 2rem;
+            }
+
+            .card-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(26, 26, 46, 0.8);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #ff6b9d, #c44569);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #f8b500, #e55039);
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>📸 Pre-Wedding Shoot</h1>
+            <p>Capture Your Love Story in Cinematic Beauty</p>
+        </div>
+
+        <!-- Packages Section -->
+        <div class="packages-section">
+            <div class="section-header">
+                <h2>✨ Choose Your Dream Package</h2>
+                <p>Professional pre-wedding photography and videography services tailored for your unique love story</p>
+            </div>
+
+            <div class="cards-container">
+                <!-- Classic Romance Package -->
+                <div class="package-card" onclick="selectPackage(this, 'classic')">
+                    <div class="card-icon">💕</div>
+                    <h3>Classic Romance</h3>
+                    <div class="package-price">₹45,999</div>
+                    <ul class="features-list">
+                        <li>4-Hour Photo Session</li>
+                        <li>2 Location Shoots</li>
+                        <li>150+ Edited Photos</li>
+                        <li>Cinematic Video (3 min)</li>
+                        <li>Professional Styling Guide</li>
+                        <li>Digital Gallery Access</li>
+                        <li>USB with All Photos</li>
+                    </ul>
+                    <a href="../Pre-Wedding Shoot/ClassicRomance.html" class="book-btn" onclick="event.stopPropagation(); bookPackage('Classic Romance', 45999)">Book Now</a>
+                </div>
+
+                <!-- Premium Package - Now with uniform animations -->
+                <div class="package-card" onclick="selectPackage(this, 'premium')">
+                    <div class="card-icon">👑</div>
+                    <h3>Premium Package</h3>
+                    <div class="package-price">₹75,999</div>
+                    <ul class="features-list">
+                        <li>8-Hour Photo Session</li>
+                        <li>4 Premium Locations</li>
+                        <li>300+ Edited Photos</li>
+                        <li>Cinematic Video (8 min)</li>
+                        <li>Drone Aerial Shots</li>
+                        <li>Professional Makeup Artist</li>
+                        <li>Premium Photo Album</li>
+                        <li>Same Day Preview</li>
+                    </ul>
+                    <a href="../Pre-Wedding Shoot/PremiumPackage.html" class="book-btn" onclick="event.stopPropagation(); bookPackage('Premium Package', 75999)">Book Premium</a>
+                </div>
+
+                <!-- Luxury Dreams Package -->
+                <div class="package-card" onclick="selectPackage(this, 'luxury')">
+                    <div class="card-icon">💎</div>
+                    <h3>Luxury Dreams</h3>
+                    <div class="package-price">₹1,25,999</div>
+                    <ul class="features-list">
+                        <li>Full Day Coverage (12 hrs)</li>
+                        <li>6 Exotic Locations</li>
+                        <li>500+ Edited Photos</li>
+                        <li>Feature Film Style Video (15 min)</li>
+                        <li>Professional Styling Team</li>
+                        <li>Luxury Transport Included</li>
+                        <li>Premium Canvas Prints</li>
+                        <li>Live Social Media Updates</li>
+                    </ul>
+                    <a href="../Pre-Wedding Shoot/LuxuryDreams.html" class="book-btn" onclick="event.stopPropagation(); bookPackage('Luxury Dreams', 125999)">Book Luxury</a>
+                </div>
+
+                <!-- Custom Package -->
+                <div class="package-card custom-package" onclick="selectPackage(this, 'custom')">
+                    <div class="card-icon">🎨</div>
+                    <h3>Custom Package</h3>
+                    <div class="package-price">On Request</div>
+                    <ul class="features-list">
+                        <li>Personalized Consultation</li>
+                        <li>Custom Location Selection</li>
+                        <li>Tailored Photography Style</li>
+                        <li>Flexible Duration</li>
+                        <li>Special Themes & Props</li>
+                        <li>Unique Video Concepts</li>
+                        <li>Bespoke Editing Style</li>
+                    </ul>
+                    <a href="../Pre-Wedding Shoot/CustomPackage.html" class="book-btn" onclick="event.stopPropagation(); openCustomModal()">Get Quote</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for custom package -->
+        <div id="customModal" class="modal">
+            <div class="modal-content">
+                <button class="close" onclick="closeCustomModal()">&times;</button>
+                <h2>🎨 Custom Package Consultation</h2>
+                <p>
+                    Let's create something unique for your love story! Our creative team will work with you to design a personalized pre-wedding shoot that perfectly captures your vision and style.
+                </p>
+                <p>
+                    <strong>What's Included:</strong><br>
+                    • Personal consultation with our creative director<br>
+                    • Custom location scouting<br>
+                    • Tailored styling and concept development<br>
+                    • Flexible pricing based on your requirements
+                </p>
+                <button class="book-btn" onclick="requestConsultation()">
+                    Request Free Consultation
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedPackage = null;
+
+        // Create romantic floating elements
+        function createFloatingElements() {
+            const elementsContainer = document.querySelector('.floating-elements');
+            
+            // Romantic elements
+            const romanticElements = ['💕', '💖', '💗', '💝', '🌹', '🌺', '🦋', '✨', '💫', '⭐', '🌙', '💐'];
+            
+            // Create floating hearts and romantic elements
+            setInterval(() => {
+                const element = document.createElement('div');
+                element.className = 'floating-heart';
+                element.textContent = romanticElements[Math.floor(Math.random() * romanticElements.length)];
+                element.style.left = Math.random() * 100 + 'vw';
+                element.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                element.style.fontSize = (Math.random() * 15 + 18) + 'px';
+                elementsContainer.appendChild(element);
+                
+                setTimeout(() => {
+                    element.remove();
+                }, 25000);
+            }, 2000);
+
+            // Create camera flash effects
+            setInterval(() => {
+                const flash = document.createElement('div');
+                flash.className = 'camera-flash';
+                flash.style.left = Math.random() * 100 + 'vw';
+                flash.style.top = Math.random() * 100 + 'vh';
+                flash.style.animationDelay = Math.random() * 2 + 's';
+                elementsContainer.appendChild(flash);
+                
+                setTimeout(() => {
+                    flash.remove();
+                }, 10000);
+            }, 4000);
+
+            // Create romantic particles
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'romantic-particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (Math.random() * 6 + 12) + 's';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                elementsContainer.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 18000);
+            }, 1500);
+
+            // Create lens flare effects
+            setInterval(() => {
+                const flare = document.createElement('div');
+                flare.className = 'lens-flare';
+                flare.style.left = Math.random() * 100 + 'vw';
+                flare.style.top = Math.random() * 100 + 'vh';
+                flare.style.animationDelay = Math.random() * 5 + 's';
+                elementsContainer.appendChild(flare);
+                
+                setTimeout(() => {
+                    flare.remove();
+                }, 25000);
+            }, 8000);
+        }
+
+        function selectPackage(card, packageType) {
+            // Remove previous selection
+            document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
+            
+            // Add selection to clicked card
+            card.classList.add('selected');
+            selectedPackage = packageType;
+            
+            // Create celebration effect
+            createCelebrationEffect();
+            
+            // Add special selection animation
+            card.style.animation = 'selectionPulse 1.5s ease-in-out';
+            setTimeout(() => {
+                card.style.animation = '';
+            }, 1500);
+        }
+
+        function createCelebrationEffect() {
+            const colors = ['#ff6b9d', '#c44569', '#f8b500', '#e55039', '#26c6da', '#ab47bc'];
+            const symbols = ['💕', '💖', '✨', '🌟', '💫', '🎉', '🎊'];
+            
+            // Create confetti burst
+            for (let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-10px';
+                    confetti.style.fontSize = (Math.random() * 10 + 15) + 'px';
+                    confetti.style.zIndex = '1000';
+                    confetti.style.pointerEvents = 'none';
+                    confetti.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                    confetti.style.animation = `confettiFall ${Math.random() * 2 + 3}s linear infinite`;
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }, i * 50);
+            }
+        }
+
+        function bookPackage(packageName, price) {
+            createCelebrationEffect();
+            
+            // Add visual feedback
+            const button = event.target;
+            button.style.transform = 'scale(1.1)';
+            button.style.background = 'linear-gradient(135deg, #26c6da, #ab47bc)';
+            
+            setTimeout(() => {
+                button.style.transform = '';
+                button.style.background = '';
+            }, 300);
+            
+            setTimeout(() => {
+                alert(`🎉 Congratulations! You've selected the ${packageName} package for ₹${price.toLocaleString('en-IN')}!\n\n💕 Our team will contact you within 24 hours to discuss your dream pre-wedding shoot. Get ready to create magical memories! ✨`);
+            }, 500);
+        }
+
+        // Enhanced scroll animations with intersection observer
+        function handleScrollAnimations() {
+            const cards = document.querySelectorAll('.package-card');
+            const sections = document.querySelectorAll('.section-header');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0) scale(1)';
+                        
+                        // Add stagger effect for cards
+                        if (entry.target.classList.contains('package-card')) {
+                            const index = Array.from(entry.target.parentNode.children).indexOf(entry.target);
+                            entry.target.style.animationDelay = (index * 0.2) + 's';
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            cards.forEach(card => observer.observe(card));
+            sections.forEach(section => observer.observe(section));
+        }
+
+        // Parallax effect for floating elements
+        function addParallaxEffect() {
+            let ticking = false;
+            
+            function updateParallax() {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+                
+                document.querySelectorAll('.floating-heart').forEach((element, index) => {
+                    const speed = 0.3 + (index % 4) * 0.1;
+                    element.style.transform += ` translateY(${scrolled * speed}px)`;
+                });
+
+                document.querySelectorAll('.romantic-particle').forEach((particle, index) => {
+                    const speed = 0.2 + (index % 3) * 0.1;
+                    particle.style.transform += ` translateY(${scrolled * speed}px)`;
+                });
+
+                ticking = false;
+            }
+            
+            function requestTick() {
+                if (!ticking) {
+                    requestAnimationFrame(updateParallax);
+                    ticking = true;
+                }
+            }
+            
+            window.addEventListener('scroll', requestTick);
+        }
+
+        // Enhanced hover effects
+        function addEnhancedHoverEffects() {
+            const cards = document.querySelectorAll('.package-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    // Create hover glow effect
+                    card.style.boxShadow = '0 40px 80px rgba(255, 107, 157, 0.4), 0 0 50px rgba(196, 69, 105, 0.3)';
+                    
+                    // Animate features list
+                    const features = card.querySelectorAll('.features-list li');
+                    features.forEach((feature, index) => {
+                        setTimeout(() => {
+                            feature.style.transform = 'translateX(15px) scale(1.05)';
+                            feature.style.color = '#fff';
+                        }, index * 30);
+                    });
+                    
+                    // Animate card icon
+                    const icon = card.querySelector('.card-icon');
+                    icon.style.transform = 'scale(1.3) rotate(360deg)';
+                    icon.style.background = 'linear-gradient(135deg, #f8b500, #e55039)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.boxShadow = '';
+                    
+                    const features = card.querySelectorAll('.features-list li');
+                    features.forEach(feature => {
+                        feature.style.transform = 'translateX(0) scale(1)';
+                        feature.style.color = '#f5f5f5';
+                    });
+                    
+                    const icon = card.querySelector('.card-icon');
+                    icon.style.transform = 'scale(1) rotate(0deg)';
+                    icon.style.background = 'linear-gradient(135deg, #ff6b9d, #c44569)';
+                });
+            });
+        }
+
+        // Mobile touch effects
+        function addMobileTouchEffects() {
+            if ('ontouchstart' in window) {
+                document.querySelectorAll('.package-card').forEach(element => {
+                    element.addEventListener('touchstart', () => {
+                        element.style.transform = 'scale(0.95)';
+                    });
+                    
+                    element.addEventListener('touchend', () => {
+                        setTimeout(() => {
+                            element.style.transform = '';
+                        }, 150);
+                    });
+                });
+            }
+        }
+
+        function openCustomModal() {
+            document.getElementById('customModal').style.display = 'flex';
+            createCelebrationEffect();
+        }
+
+        function closeCustomModal() {
+            document.getElementById('customModal').style.display = 'none';
+        }
+
+        function requestConsultation() {
+            createCelebrationEffect();
+            setTimeout(() => {
+                alert('🌟 Thank you for your interest in our custom packages!\n\nOur creative team will contact you within 24 hours to discuss your vision and create a personalized quote for your dream pre-wedding shoot. ✨');
+                closeCustomModal();
+            }, 1000);
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('customModal');
+            if (event.target == modal) {
+                closeCustomModal();
+            }
+        }
+
+        // Add custom CSS animations dynamically
+        function addCustomAnimations() {
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes selectionPulse {
+                    0%, 100% {
+                        transform: translateY(-20px) scale(1.05);
+                        box-shadow: 0 40px 80px rgba(255, 107, 157, 0.3);
+                    }
+                    50% {
+                        transform: translateY(-25px) scale(1.08);
+                        box-shadow: 0 50px 100px rgba(255, 107, 157, 0.5);
+                    }
+                }
+                
+                @keyframes confettiFall {
+                    0% {
+                        transform: translateY(-10px) rotate(0deg);
+                        opacity: 1;
+                    }
+                    100% {
+                        transform: translateY(100vh) rotate(720deg);
+                        opacity: 0;
+                    }
+                }
+                
+                .selected {
+                    border-color: #f8b500 !important;
+                    background: linear-gradient(135deg, rgba(248,181,0,0.2) 0%, rgba(229,80,57,0.2) 100%) !important;
+                    transform: translateY(-20px) scale(1.05);
+                    box-shadow: 0 40px 80px rgba(248, 181, 0, 0.4) !important;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Initialize all animations and effects
+        window.addEventListener('load', () => {
+            createFloatingElements();
+            handleScrollAnimations();
+            addParallaxEffect();
+            addEnhancedHoverEffects();
+            addMobileTouchEffects();
+            addCustomAnimations();
+            
+            // Add entrance animation for the entire page
+            document.body.style.opacity = '0';
+            document.body.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                document.body.style.transition = 'all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                document.body.style.opacity = '1';
+                document.body.style.transform = 'translateY(0)';
+            }, 200);
+        });
+
+        // Add keyboard navigation support
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                const focusedElement = document.activeElement;
+                if (focusedElement.classList.contains('package-card')) {
+                    focusedElement.click();
+                }
+            }
+        });
+
+        // Performance optimization
+        const throttle = (func, limit) => {
+            let inThrottle;
+            return function() {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            };
+        };
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
