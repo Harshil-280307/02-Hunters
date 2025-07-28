@@ -1,0 +1,2321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Birthday Event Builder - Choose Everything</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe6f2 50%, #e6f3ff 100%);
+            min-height: 100vh;
+            padding: 10px;
+            color: #4a4a4a;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: #ff6b35;
+            margin-bottom: 30px;
+            animation: bounceIn 1s ease-out;
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(255, 107, 53, 0.3);
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 2s ease-in-out infinite alternate;
+        }
+
+        .header p {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            opacity: 0.9;
+            color: #e55a2b;
+            margin-bottom: 20px;
+            animation: slideInUp 0.8s ease-out 0.3s both;
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .summary-sidebar {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 100;
+                border-radius: 20px 20px 0 0;
+                max-height: none;
+                height: auto;
+                box-shadow: 0 -10px 30px rgba(255, 107, 53, 0.3);
+                transform: translateY(0);
+                transition: transform 0.3s ease;
+            }
+
+            .summary-sidebar.collapsed {
+                height: 80px;
+                overflow: hidden;
+                transform: translateY(0);
+            }
+
+            .mobile-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: #4a4a4a;
+                font-size: 1.2rem;
+                font-weight: bold;
+                cursor: pointer;
+                padding: 10px;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255,255,255,0.3);
+                transition: all 0.3s ease;
+            }
+
+            .mobile-toggle:hover {
+                background: rgba(255,255,255,0.1);
+            }
+
+            .categories-container {
+                margin-bottom: 120px;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .mobile-toggle {
+                display: none;
+            }
+        }
+
+        .categories-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .category-section {
+            background: linear-gradient(135deg, #ffffff 0%, #fffaf7 100%);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.12);
+            border: 2px solid #ffd4a3;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .category-section:nth-child(1) { animation-delay: 0.1s; }
+        .category-section:nth-child(2) { animation-delay: 0.2s; }
+        .category-section:nth-child(3) { animation-delay: 0.3s; }
+        .category-section:nth-child(4) { animation-delay: 0.4s; }
+        .category-section:nth-child(5) { animation-delay: 0.5s; }
+        .category-section:nth-child(6) { animation-delay: 0.6s; }
+
+        .category-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 107, 53, 0.18);
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ffd4a3;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .category-title {
+            color: #ff6b35;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: wobble 1s ease-in-out;
+        }
+
+        .category-total {
+            background: linear-gradient(135deg, #ffd4a3, #ffe4b5);
+            color: #4a4a4a;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            white-space: nowrap;
+            animation: flash 2s ease-in-out infinite;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .items-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .item-card {
+            background: linear-gradient(135deg, #fefefe 0%, #fffaf7 100%);
+            border: 2px solid #ffd4a3;
+            border-radius: 12px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            transform: translateY(0);
+            animation: slideInScale 0.5s ease-out;
+        }
+
+        .item-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.25);
+            border-color: #ffb366;
+        }
+
+        .item-card.selected {
+            border-color: #ff6b35;
+            background: linear-gradient(135deg, #ffe4b5 0%, #ffd4a3 100%);
+            box-shadow: 0 15px 30px rgba(255, 107, 53, 0.3);
+            animation: selectedPulse 0.5s ease-out;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .item-icon {
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .item-card:hover .item-icon {
+            transform: scale(1.2) rotate(5deg);
+            animation-play-state: paused;
+        }
+
+        .item-select {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ff6b35;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            background: #ffffff;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .item-card.selected .item-select {
+            background: #ff6b35;
+            animation: checkmarkPop 0.3s ease-out;
+        }
+
+        .item-card.selected .item-select::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .item-title {
+            color: #ff6b35;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            font-weight: bold;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .item-price {
+            color: #e55a2b;
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            font-weight: bold;
+            margin-bottom: 8px;
+            animation: priceGlow 2s ease-in-out infinite alternate;
+        }
+
+        .item-description {
+            color: #6a6a6a;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .item-features {
+            list-style: none;
+        }
+
+        .item-features li {
+            color: #6a6a6a;
+            font-size: clamp(0.75rem, 2vw, 0.85rem);
+            padding: 2px 0;
+            opacity: 0;
+            animation: fadeInLeft 0.5s ease-out forwards;
+        }
+
+        .item-features li:nth-child(1) { animation-delay: 0.1s; }
+        .item-features li:nth-child(2) { animation-delay: 0.2s; }
+        .item-features li:nth-child(3) { animation-delay: 0.3s; }
+        .item-features li:nth-child(4) { animation-delay: 0.4s; }
+
+        .item-features li::before {
+            content: '🎉';
+            margin-right: 8px;
+            animation: spin 2s linear infinite;
+        }
+
+        .quantity-control {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #ffd4a3;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .item-card.selected .quantity-control {
+            display: flex;
+        }
+
+        .qty-btn {
+            background: linear-gradient(135deg, #ffd4a3, #ffe4b5);
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            color: #4a4a4a;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-btn:hover {
+            transform: scale(1.15);
+            background: linear-gradient(135deg, #ffb366, #ffd4a3);
+            box-shadow: 0 4px 8px rgba(255, 107, 53, 0.3);
+        }
+
+        .qty-btn:active {
+            transform: scale(0.95);
+        }
+
+        .qty-display {
+            min-width: 25px;
+            text-align: center;
+            font-weight: bold;
+            color: #ff6b35;
+            font-size: 1.1rem;
+        }
+
+        .summary-sidebar {
+            position: sticky;
+            top: 20px;
+            background: linear-gradient(135deg, #ffd4a3, #ffe4b5);
+            color: #4a4a4a;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(255, 107, 53, 0.25);
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        .summary-header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .summary-title {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 8px;
+            animation: titlePulse 2s ease-in-out infinite;
+        }
+
+        .total-items {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            animation: countUp 0.5s ease-out;
+        }
+
+        .summary-categories {
+            margin-bottom: 15px;
+        }
+
+        .summary-category {
+            margin-bottom: 12px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .summary-category:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .summary-category-title {
+            font-weight: bold;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 3px 0;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            color: rgba(74, 74, 74, 0.8);
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .grand-total {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            animation: totalGlow 2s ease-in-out infinite alternate;
+        }
+
+        .grand-total-amount {
+            font-size: clamp(1.8rem, 5vw, 2.2rem);
+            font-weight: bold;
+            color: #4a4a4a;
+            margin-bottom: 5px;
+            animation: numberPulse 1s ease-in-out infinite alternate;
+        }
+
+        .savings-info {
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            opacity: 0.8;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 12px 16px;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ffffff, #fffaf7);
+            color: #ff6b35;
+            border: 2px solid #ff6b35;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+            background: linear-gradient(135deg, #ff6b35, #e55a2b);
+            color: white;
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: #4a4a4a;
+            border: 2px solid rgba(74, 74, 74, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: slideInDown 0.8s ease-out;
+        }
+
+        .filter-tab {
+            padding: 8px 16px;
+            background: #ffffff;
+            border: 2px solid #ffd4a3;
+            border-radius: 20px;
+            color: #ff6b35;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: bold;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, #ffd4a3, #ffe4b5);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .filter-tab:hover::before,
+        .filter-tab.active::before {
+            width: 100%;
+        }
+
+        .filter-tab:hover,
+        .filter-tab.active {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.2);
+            color: #4a4a4a;
+        }
+
+        /* Form Styles */
+        .checkout-form {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .form-container {
+            position: relative;
+            margin: 20px auto;
+            background: linear-gradient(135deg, #ffffff 0%, #fffaf7 100%);
+            border-radius: 15px;
+            padding: 30px;
+            width: 95%;
+            max-width: 600px;
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+            border: 2px solid #ffd4a3;
+            animation: modalSlideIn 0.5s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                margin: 10px;
+                width: calc(100% - 20px);
+                padding: 20px;
+            }
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .form-header h2 {
+            color: #ff6b35;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 8px;
+            animation: titleBounce 0.8s ease-out;
+        }
+
+        .form-header p {
+            color: #e55a2b;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            color: #ff6b35;
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #ffd4a3;
+            border-radius: 8px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: #4a4a4a;
+            background: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #ff6b35;
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+            transform: scale(1.02);
+        }
+
+        .form-textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .checkbox-input {
+            width: 16px;
+            height: 16px;
+            accent-color: #ff6b35;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .checkbox-label {
+            color: #6a6a6a;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            cursor: pointer;
+            line-height: 1.4;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        @media (max-width: 480px) {
+            .form-buttons {
+                flex-direction: column;
+            }
+        }
+
+        .form-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-btn-primary {
+            background: linear-gradient(135deg, #ff6b35, #e55a2b);
+            color: #ffffff;
+        }
+
+        .form-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .form-btn-secondary {
+            background: #ffd4a3;
+            color: #4a4a4a;
+            border: 2px solid #ffb366;
+        }
+
+        .form-btn-secondary:hover {
+            background: #ffb366;
+            transform: translateY(-2px);
+        }
+
+        .order-summary-section {
+            background: linear-gradient(135deg, #fffaf7, #ffe4b5);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #ffd4a3;
+        }
+
+        .order-summary-title {
+            color: #ff6b35;
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            font-weight: bold;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid #ffd4a3;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            color: #ff6b35;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            margin-top: 8px;
+            padding-top: 12px;
+            border-top: 2px solid #ffb366;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #ffd4a3, #ffe4b5);
+            color: #4a4a4a;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 25px;
+            display: none;
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.2);
+            border: 2px solid #ff6b35;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: successPop 0.8s ease-out;
+        }
+
+        .success-message h3 {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 8px;
+        }
+
+        .success-message p {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) translateY(-50px);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                text-shadow: 2px 2px 4px rgba(255, 107, 53, 0.3);
+            }
+            100% {
+                text-shadow: 2px 2px 20px rgba(255, 107, 53, 0.6);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes wobble {
+            0% { transform: rotate(0deg); }
+            15% { transform: rotate(-5deg); }
+            30% { transform: rotate(3deg); }
+            45% { transform: rotate(-3deg); }
+            60% { transform: rotate(2deg); }
+            75% { transform: rotate(-1deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        @keyframes flash {
+            0%, 50%, 100% {
+                opacity: 1;
+            }
+            25%, 75% {
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes selectedPulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes checkmarkPop {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes priceGlow {
+            0% {
+                text-shadow: none;
+            }
+            100% {
+                text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes titlePulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes countUp {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes totalGlow {
+            0% {
+                box-shadow: 0 0 5px rgba(255, 107, 53, 0.2);
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
+            }
+        }
+
+        @keyframes numberPulse {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            10%, 30%, 50%, 70%, 90% {
+                transform: translateX(-5px);
+            }
+            20%, 40%, 60%, 80% {
+                transform: translateX(5px);
+            }
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.7) translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes titleBounce {
+            0% {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            50% {
+                transform: translateY(5px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes successPop {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Mobile specific styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+            
+            .category-section {
+                padding: 15px;
+            }
+            
+            .item-card {
+                padding: 12px;
+            }
+            
+            .summary-sidebar {
+                padding: 15px;
+            }
+
+            .item-card:hover {
+                transform: translateY(-4px) scale(1.01);
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .item-card {
+                border-width: 3px;
+            }
+            
+            .item-card.selected {
+                border-width: 4px;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎂 Custom Birthday Event Builder</h1>
+            <p>Create the perfect celebration - choose from our complete collection!</p>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <h3>🎉 Birthday Event Package Created Successfully!</h3>
+            <p>Your personalized birthday celebration has been submitted. We'll contact you within 2 hours!</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <div class="filter-tab active" onclick="filterCategory('all')">All Services</div>
+            <div class="filter-tab" onclick="filterCategory('digital')">Digital</div>
+            <div class="filter-tab" onclick="filterCategory('decorations')">Decorations</div>
+            <div class="filter-tab" onclick="filterCategory('entertainment')">Entertainment</div>
+            <div class="filter-tab" onclick="filterCategory('catering')">Catering</div>
+            <div class="filter-tab" onclick="filterCategory('premium')">Premium</div>
+        </div>
+
+        <div class="main-layout">
+            <div class="categories-container">
+                <!-- Digital Invitations & Design -->
+                <div class="category-section" data-category="digital">
+                    <div class="category-header">
+                        <div class="category-title">
+                            💌 Digital Invitations & Design
+                        </div>
+                        <div class="category-total" id="digital-total">₹0</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card" data-price="1999" data-category="digital" onclick="toggleItem(this, 'basic-invitation', 1999)">
+                            <div class="item-header">
+                                <div class="item-icon">📱</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Digital Birthday Invitation</div>
+                            <div class="item-price">₹1,999</div>
+                            <div class="item-description">Beautiful digital invitation with RSVP tracking</div>
+                            <ul class="item-features">
+                                <li>15+ premium templates</li>
+                                <li>Custom text & photos</li>
+                                <li>RSVP management</li>
+                                <li>WhatsApp ready</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="3999" data-category="digital" onclick="toggleItem(this, 'animated-invitation', 3999)">
+                            <div class="item-header">
+                                <div class="item-icon">✨</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Animated Video Invitation</div>
+                            <div class="item-price">₹3,999</div>
+                            <div class="item-description">Professional animated video invitation</div>
+                            <ul class="item-features">
+                                <li>45-second video</li>
+                                <li>Custom animations</li>
+                                <li>Birthday music</li>
+                                <li>Social media formats</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="2499" data-category="digital" onclick="toggleItem(this, 'welcome-sign', 2499)">
+                            <div class="item-header">
+                                <div class="item-icon">🎨</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Custom Welcome Signs</div>
+                            <div class="item-price">₹2,499</div>
+                            <div class="item-description">Digital welcome signs for printing</div>
+                            <ul class="item-features">
+                                <li>8 different designs</li>
+                                <li>Print-ready quality</li>
+                                <li>Multiple sizes</li>
+                                <li>Age customization</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('welcome-sign', -1)">-</button>
+                                <span class="qty-display" id="qty-welcome-sign">1</span>
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('welcome-sign', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="item-card" data-price="1499" data-category="digital" onclick="toggleItem(this, 'thank-cards', 1499)">
+                            <div class="item-header">
+                                <div class="item-icon">💕</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Digital Thank You Cards</div>
+                            <div class="item-price">₹1,499</div>
+                            <div class="item-description">Personalized thank you cards for guests</div>
+                            <ul class="item-features">
+                                <li>Unlimited customization</li>
+                                <li>Bulk personalization</li>
+                                <li>High-resolution files</li>
+                                <li>Birthday themed</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Decorations & Setup -->
+                <div class="category-section" data-category="decorations">
+                    <div class="category-header">
+                        <div class="category-title">
+                            🎈 Decorations & Event Setup
+                        </div>
+                        <div class="category-total" id="decorations-total">₹0</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card" data-price="8999" data-category="decorations" onclick="toggleItem(this, 'balloon-arch', 8999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎈</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Premium Balloon Arch</div>
+                            <div class="item-price">₹8,999</div>
+                            <div class="item-description">Stunning balloon arch with age numbers</div>
+                            <ul class="item-features">
+                                <li>12ft wide arch</li>
+                                <li>Premium quality balloons</li>
+                                <li>Age number balloons</li>
+                                <li>Professional installation</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="12999" data-category="decorations" onclick="toggleItem(this, 'backdrop-setup', 12999)">
+                            <div class="item-header">
+                                <div class="item-icon">📸</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Photo Backdrop Setup</div>
+                            <div class="item-price">₹12,999</div>
+                            <div class="item-description">Instagram-worthy photo backdrop</div>
+                            <ul class="item-features">
+                                <li>8x8ft themed backdrop</li>
+                                <li>Birthday props included</li>
+                                <li>Professional lighting</li>
+                                <li>Setup & breakdown</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="5999" data-category="decorations" onclick="toggleItem(this, 'table-centerpieces', 5999)">
+                            <div class="item-header">
+                                <div class="item-icon">🌸</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Table Centerpieces</div>
+                            <div class="item-price">₹5,999</div>
+                            <div class="item-description">Beautiful themed centerpieces for 6 tables</div>
+                            <ul class="item-features">
+                                <li>Fresh flower arrangements</li>
+                                <li>Birthday theme colors</li>
+                                <li>Confetti accents</li>
+                                <li>Vase rental included</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('table-centerpieces', -1)">-</button>
+                                <span class="qty-display" id="qty-table-centerpieces">1</span>
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('table-centerpieces', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="item-card" data-price="3999" data-category="decorations" onclick="toggleItem(this, 'ceiling-draping', 3999)">
+                            <div class="item-header">
+                                <div class="item-icon">✨</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Ceiling Draping & Lights</div>
+                            <div class="item-price">₹3,999</div>
+                            <div class="item-description">Elegant ceiling decoration with party lights</div>
+                            <ul class="item-features">
+                                <li>Colorful fabric draping</li>
+                                <li>LED party lights</li>
+                                <li>Professional installation</li>
+                                <li>Safety compliant</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="2499" data-category="decorations" onclick="toggleItem(this, 'entrance-decor', 2499)">
+                            <div class="item-header">
+                                <div class="item-icon">🚪</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Entrance Decoration</div>
+                            <div class="item-price">₹2,499</div>
+                            <div class="item-description">Grand entrance with birthday theme</div>
+                            <ul class="item-features">
+                                <li>Birthday welcome arch</li>
+                                <li>Themed signage</li>
+                                <li>Balloon clusters</li>
+                                <li>Photo opportunity</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entertainment & Activities -->
+                <div class="category-section" data-category="entertainment">
+                    <div class="category-header">
+                        <div class="category-title">
+                            🎪 Entertainment & Activities
+                        </div>
+                        <div class="category-total" id="entertainment-total">₹0</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card" data-price="7999" data-category="entertainment" onclick="toggleItem(this, 'party-games', 7999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎲</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Birthday Party Games Package</div>
+                            <div class="item-price">₹7,999</div>
+                            <div class="item-description">Complete set of fun birthday party games</div>
+                            <ul class="item-features">
+                                <li>12 different games</li>
+                                <li>Age-appropriate activities</li>
+                                <li>Prize suggestions</li>
+                                <li>Game host guidance</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="15999" data-category="entertainment" onclick="toggleItem(this, 'dj-music', 15999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎵</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">DJ & Music System</div>
+                            <div class="item-price">₹15,999</div>
+                            <div class="item-description">Professional DJ with music system for 4 hours</div>
+                            <ul class="item-features">
+                                <li>Professional DJ</li>
+                                <li>High-quality sound system</li>
+                                <li>Birthday playlist</li>
+                                <li>Microphone included</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="9999" data-category="entertainment" onclick="toggleItem(this, 'photo-booth', 9999)">
+                            <div class="item-header">
+                                <div class="item-icon">📷</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Birthday Photo Booth</div>
+                            <div class="item-price">₹9,999</div>
+                            <div class="item-description">Fun photo booth with instant prints</div>
+                            <ul class="item-features">
+                                <li>Instant print camera</li>
+                                <li>25+ birthday props</li>
+                                <li>Custom photo frames</li>
+                                <li>Memory book option</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="4999" data-category="entertainment" onclick="toggleItem(this, 'magician', 4999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎩</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Birthday Magician</div>
+                            <div class="item-price">₹4,999</div>
+                            <div class="item-description">Professional magician for 1.5 hours</div>
+                            <ul class="item-features">
+                                <li>Interactive magic show</li>
+                                <li>Age-appropriate tricks</li>
+                                <li>Audience participation</li>
+                                <li>Birthday special acts</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="6999" data-category="entertainment" onclick="toggleItem(this, 'face-painting', 6999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎨</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Face Painting Artist</div>
+                            <div class="item-price">₹6,999</div>
+                            <div class="item-description">Professional face painting for 2 hours</div>
+                            <ul class="item-features">
+                                <li>Safe, washable paints</li>
+                                <li>Various designs</li>
+                                <li>Quick & fun</li>
+                                <li>Great for all ages</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Catering & Refreshments -->
+                <div class="category-section" data-category="catering">
+                    <div class="category-header">
+                        <div class="category-title">
+                            🍰 Catering & Birthday Treats
+                        </div>
+                        <div class="category-total" id="catering-total">₹0</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card" data-price="14999" data-category="catering" onclick="toggleItem(this, 'custom-cake', 14999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎂</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Custom Birthday Cake</div>
+                            <div class="item-price">₹14,999</div>
+                            <div class="item-description">Designer birthday cake with theme</div>
+                            <ul class="item-features">
+                                <li>3-tier custom design</li>
+                                <li>Serves 30-35 people</li>
+                                <li>Choice of flavors</li>
+                                <li>Edible decorations</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="8999" data-category="catering" onclick="toggleItem(this, 'party-treats', 8999)">
+                            <div class="item-header">
+                                <div class="item-icon">🧁</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Birthday Treats Platter</div>
+                            <div class="item-price">₹8,999</div>
+                            <div class="item-description">Assorted cupcakes, cookies, and sweets</div>
+                            <ul class="item-features">
+                                <li>60 mini treats</li>
+                                <li>Birthday-themed designs</li>
+                                <li>Multiple flavors</li>
+                                <li>Beautiful presentation</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('party-treats', -1)">-</button>
+                                <span class="qty-display" id="qty-party-treats">1</span>
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('party-treats', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="item-card" data-price="18999" data-category="catering" onclick="toggleItem(this, 'party-catering', 18999)">
+                            <div class="item-header">
+                                <div class="item-icon">🍽️</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Complete Party Catering</div>
+                            <div class="item-price">₹18,999</div>
+                            <div class="item-description">Full meal service for 30 guests</div>
+                            <ul class="item-features">
+                                <li>3-course party meal</li>
+                                <li>Kid-friendly options</li>
+                                <li>Professional service</li>
+                                <li>Table setup included</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="5999" data-category="catering" onclick="toggleItem(this, 'party-beverages', 5999)">
+                            <div class="item-header">
+                                <div class="item-icon">🥤</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Party Beverage Station</div>
+                            <div class="item-price">₹5,999</div>
+                            <div class="item-description">Complete beverage setup with variety</div>
+                            <ul class="item-features">
+                                <li>Hot & cold beverages</li>
+                                <li>Fresh fruit juices</li>
+                                <li>Birthday mocktails</li>
+                                <li>Self-serve station</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="3999" data-category="catering" onclick="toggleItem(this, 'party-snacks', 3999)">
+                            <div class="item-header">
+                                <div class="item-icon">🥨</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Party Snacks & Appetizers</div>
+                            <div class="item-price">₹3,999</div>
+                            <div class="item-description">Assorted snacks and finger foods</div>
+                            <ul class="item-features">
+                                <li>8 different snacks</li>
+                                <li>Kid & adult favorites</li>
+                                <li>Fresh preparation</li>
+                                <li>Party presentation</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('party-snacks', -1)">-</button>
+                                <span class="qty-display" id="qty-party-snacks">1</span>
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('party-snacks', 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Services -->
+                <div class="category-section" data-category="premium">
+                    <div class="category-header">
+                        <div class="category-title">
+                            👑 Premium & Luxury Services
+                        </div>
+                        <div class="category-total" id="premium-total">₹0</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card" data-price="25999" data-category="premium" onclick="toggleItem(this, 'event-coordinator', 25999)">
+                            <div class="item-header">
+                                <div class="item-icon">👩‍💼</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Dedicated Event Coordinator</div>
+                            <div class="item-price">₹25,999</div>
+                            <div class="item-description">Professional event coordinator for the entire day</div>
+                            <ul class="item-features">
+                                <li>Pre-event planning</li>
+                                <li>Day-of coordination</li>
+                                <li>Vendor management</li>
+                                <li>Timeline execution</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="18999" data-category="premium" onclick="toggleItem(this, 'photography', 18999)">
+                            <div class="item-header">
+                                <div class="item-icon">📸</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Professional Photography</div>
+                            <div class="item-price">₹18,999</div>
+                            <div class="item-description">4-hour professional photography session</div>
+                            <ul class="item-features">
+                                <li>Professional photographer</li>
+                                <li>300+ edited photos</li>
+                                <li>Online gallery</li>
+                                <li>Print-ready resolution</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="22999" data-category="premium" onclick="toggleItem(this, 'videography', 22999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎥</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Event Videography</div>
+                            <div class="item-price">₹22,999</div>
+                            <div class="item-description">Complete event filming with highlights reel</div>
+                            <ul class="item-features">
+                                <li>4K video recording</li>
+                                <li>Professional editing</li>
+                                <li>7-minute highlight reel</li>
+                                <li>Raw footage included</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="12999" data-category="premium" onclick="toggleItem(this, 'party-favors', 12999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎁</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Premium Party Favors</div>
+                            <div class="item-price">₹12,999</div>
+                            <div class="item-description">Luxurious take-home gifts for 30 guests</div>
+                            <ul class="item-features">
+                                <li>Personalized items</li>
+                                <li>Premium packaging</li>
+                                <li>Birthday-themed gifts</li>
+                                <li>Thank you tags</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="39999" data-category="premium" onclick="toggleItem(this, 'complete-package', 39999)">
+                            <div class="item-header">
+                                <div class="item-icon">💎</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Complete Luxury Package</div>
+                            <div class="item-price">₹39,999</div>
+                            <div class="item-description">Everything included - the ultimate birthday party</div>
+                            <ul class="item-features">
+                                <li>All decorations</li>
+                                <li>Full catering</li>
+                                <li>Entertainment</li>
+                                <li>Photography</li>
+                                <li>Event coordination</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add-on Services -->
+                <div class="category-section" data-category="digital">
+                    <div class="category-header">
+                        <div class="category-title">
+                            ⚡ Express & Add-on Services
+                        </div>
+                        <div class="category-total" id="express-total">₹0</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card" data-price="4999" data-category="digital" onclick="toggleItem(this, 'rush-planning', 4999)">
+                            <div class="item-header">
+                                <div class="item-icon">🚀</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Rush Planning (1 Week)</div>
+                            <div class="item-price">₹4,999</div>
+                            <div class="item-description">Express event planning within 1 week</div>
+                            <ul class="item-features">
+                                <li>Priority scheduling</li>
+                                <li>Dedicated team</li>
+                                <li>Fast-track approvals</li>
+                                <li>Daily updates</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="2999" data-category="digital" onclick="toggleItem(this, 'cleanup-service', 2999)">
+                            <div class="item-header">
+                                <div class="item-icon">🧹</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Post-Party Cleanup</div>
+                            <div class="item-price">₹2,999</div>
+                            <div class="item-description">Complete cleanup after the party</div>
+                            <ul class="item-features">
+                                <li>Full venue cleanup</li>
+                                <li>Decoration removal</li>
+                                <li>Trash disposal</li>
+                                <li>Leave venue spotless</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="1999" data-category="digital" onclick="toggleItem(this, 'setup-service', 1999)">
+                            <div class="item-header">
+                                <div class="item-icon">🔧</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Early Setup Service</div>
+                            <div class="item-price">₹1,999</div>
+                            <div class="item-description">Setup decorations day before party</div>
+                            <ul class="item-features">
+                                <li>Day-before setup</li>
+                                <li>Venue coordination</li>
+                                <li>Security arrangements</li>
+                                <li>Final touch-ups</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="1499" data-category="digital" onclick="toggleItem(this, 'backup-plan', 1499)">
+                            <div class="item-header">
+                                <div class="item-icon">☂️</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Weather Backup Plan</div>
+                            <div class="item-price">₹1,499</div>
+                            <div class="item-description">Alternative arrangements for outdoor parties</div>
+                            <ul class="item-features">
+                                <li>Indoor venue option</li>
+                                <li>Tent arrangements</li>
+                                <li>Weather monitoring</li>
+                                <li>Quick pivot plan</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="3499" data-category="digital" onclick="toggleItem(this, 'live-streaming', 3499)">
+                            <div class="item-header">
+                                <div class="item-icon">📹</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Live Streaming Service</div>
+                            <div class="item-price">₹3,499</div>
+                            <div class="item-description">Stream your party live for remote guests</div>
+                            <ul class="item-features">
+                                <li>HD live streaming</li>
+                                <li>Multiple camera angles</li>
+                                <li>Interactive chat</li>
+                                <li>Recording included</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="999" data-category="digital" onclick="toggleItem(this, 'playlist-service', 999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎶</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Custom Birthday Playlist</div>
+                            <div class="item-price">₹999</div>
+                            <div class="item-description">Curated playlist for your party</div>
+                            <ul class="item-features">
+                                <li>4-hour playlist</li>
+                                <li>Age-appropriate music</li>
+                                <li>Volume control guide</li>
+                                <li>Birthday classics included</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Sidebar -->
+            <div class="summary-sidebar collapsed" id="summarySidebar">
+                <button class="mobile-toggle" onclick="toggleSidebar()">
+                    <span id="toggleText">View Bill Summary</span> 
+                    <span id="toggleIcon">▲</span>
+                </button>
+                
+                <div class="summary-header">
+                    <div class="summary-title">🎂 Your Birthday Party</div>
+                    <div class="total-items" id="totalItems">0 services selected</div>
+                </div>
+
+                <div class="summary-categories">
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>💌 Digital</span>
+                            <span id="digital-summary-total">₹0</span>
+                        </div>
+                        <div id="digital-summary-items"></div>
+                    </div>
+
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>🎈 Decorations</span>
+                            <span id="decorations-summary-total">₹0</span>
+                        </div>
+                        <div id="decorations-summary-items"></div>
+                    </div>
+
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>🎪 Entertainment</span>
+                            <span id="entertainment-summary-total">₹0</span>
+                        </div>
+                        <div id="entertainment-summary-items"></div>
+                    </div>
+
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>🍰 Catering</span>
+                            <span id="catering-summary-total">₹0</span>
+                        </div>
+                        <div id="catering-summary-items"></div>
+                    </div>
+
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>👑 Premium</span>
+                            <span id="premium-summary-total">₹0</span>
+                        </div>
+                        <div id="premium-summary-items"></div>
+                    </div>
+                </div>
+
+                <div class="grand-total">
+                    <div class="grand-total-amount" id="grandTotal">₹0</div>
+                    <div class="savings-info" id="savingsInfo">Select services to see total</div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="proceedToCheckout()" id="checkoutBtn" disabled>
+                        Book Your Birthday Party
+                    </button>
+                    <button class="btn btn-secondary" onclick="clearAll()">
+                        Clear All Selections
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Form Modal -->
+    <div class="checkout-form" id="checkoutForm">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>🎂 Complete Your Birthday Party Booking</h2>
+                <p>Fill in your details to create the perfect celebration</p>
+            </div>
+
+            <form id="birthdayPartyForm" onsubmit="submitOrder(event)">
+                <!-- Order Summary -->
+                <div class="order-summary-section">
+                    <div class="order-summary-title">📋 Party Summary</div>
+                    <div id="formOrderSummary"></div>
+                </div>
+
+                <!-- Event Details -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Party Date *</label>
+                        <input type="date" class="form-input" name="eventDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Party Time *</label>
+                        <input type="time" class="form-input" name="eventTime" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Party Venue/Address *</label>
+                    <textarea class="form-textarea" name="venue" placeholder="Enter the complete venue address where the birthday party will be held" required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Expected Guests *</label>
+                        <select class="form-select" name="guestCount" required>
+                            <option value="">Select guest count</option>
+                            <option value="5-15">5-15 guests</option>
+                            <option value="15-25">15-25 guests</option>
+                            <option value="25-40">25-40 guests</option>
+                            <option value="40-60">40-60 guests</option>
+                            <option value="60+">60+ guests</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Birthday Person's Age *</label>
+                        <select class="form-select" name="age" required>
+                            <option value="">Select age</option>
+                            <option value="1-5">1-5 years</option>
+                            <option value="6-12">6-12 years</option>
+                            <option value="13-17">13-17 years</option>
+                            <option value="18-30">18-30 years</option>
+                            <option value="31-50">31-50 years</option>
+                            <option value="50+">50+ years</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Personal Information -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Birthday Person's Name *</label>
+                        <input type="text" class="form-input" name="birthdayPersonName" placeholder="Enter the birthday person's name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Contact Person *</label>
+                        <input type="text" class="form-input" name="contactName" placeholder="Party organizer's name" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Phone Number *</label>
+                        <input type="tel" class="form-input" name="phone" placeholder="Your contact number" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address *</label>
+                        <input type="email" class="form-input" name="email" placeholder="your.email@example.com" required>
+                    </div>
+                </div>
+
+                <!-- Theme & Preferences -->
+                <div class="form-group">
+                    <label class="form-label">Preferred Theme/Colors</label>
+                    <select class="form-select" name="theme">
+                        <option value="">Choose a theme</option>
+                        <option value="superhero">Superhero Theme</option>
+                        <option value="princess">Princess Theme</option>
+                        <option value="cartoon">Cartoon Characters</option>
+                        <option value="sports">Sports Theme</option>
+                        <option value="rainbow">Rainbow & Unicorn</option>
+                        <option value="jungle">Jungle Safari</option>
+                        <option value="space">Space Adventure</option>
+                        <option value="vintage">Vintage Classic</option>
+                        <option value="bollywood">Bollywood Theme</option>
+                        <option value="custom">Custom Theme</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Special Requests or Instructions</label>
+                    <textarea class="form-textarea" name="specialRequests" placeholder="Any specific requirements, dietary restrictions, accessibility needs, favorite characters, or special touches you'd like to include..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Food Preferences</label>
+                    <select class="form-select" name="foodPreferences">
+                        <option value="">Select food preference</option>
+                        <option value="vegetarian">Pure Vegetarian</option>
+                        <option value="mixed">Vegetarian + Non-Vegetarian</option>
+                        <option value="vegan">Vegan Options</option>
+                        <option value="kid-friendly">Kid-Friendly Menu</option>
+                        <option value="custom">Custom Menu (specify in notes)</option>
+                    </select>
+                </div>
+
+                <!-- Budget & Timeline -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Planning Timeline</label>
+                        <select class="form-select" name="timeline">
+                            <option value="">How soon is your party?</option>
+                            <option value="rush">Less than 1 week (Rush charges apply)</option>
+                            <option value="1-2weeks">1-2 weeks</option>
+                            <option value="2-4weeks">2-4 weeks</option>
+                            <option value="1-2months">1-2 months</option>
+                            <option value="flexible">More than 2 months</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Budget Range</label>
+                        <select class="form-select" name="budget">
+                            <option value="">Select budget range</option>
+                            <option value="under-25k">Under ₹25,000</option>
+                            <option value="25k-50k">₹25,000 - ₹50,000</option>
+                            <option value="50k-100k">₹50,000 - ₹1,00,000</option>
+                            <option value="100k+">Above ₹1,00,000</option>
+                            <option value="no-limit">No specific limit</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Additional Services -->
+                <div class="form-group">
+                    <label class="form-label">Additional Services Needed</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="additionalServices" value="parking" id="parking">
+                        <label class="checkbox-label" for="parking">Parking coordination</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="additionalServices" value="security" id="security">
+                        <label class="checkbox-label" for="security">Security arrangements</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="additionalServices" value="transport" id="transport">
+                        <label class="checkbox-label" for="transport">Guest transportation</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="additionalServices" value="childcare" id="childcare">
+                        <label class="checkbox-label" for="childcare">Childcare services</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="additionalServices" value="gift-wrapping" id="gift-wrapping">
+                        <label class="checkbox-label" for="gift-wrapping">Gift wrapping station</label>
+                    </div>
+                </div>
+
+                <!-- Communication Preferences -->
+                <div class="form-group">
+                    <label class="form-label">Preferred Communication Method</label>
+                    <select class="form-select" name="communication">
+                        <option value="">How should we contact you?</option>
+                        <option value="whatsapp">WhatsApp</option>
+                        <option value="phone">Phone Calls</option>
+                        <option value="email">Email</option>
+                        <option value="video-call">Video Calls</option>
+                    </select>
+                </div>
+
+                <!-- Payment Information -->
+                <div class="form-group">
+                    <label class="form-label">Payment Preference</label>
+                    <select class="form-select" name="paymentMethod">
+                        <option value="">Select payment method</option>
+                        <option value="advance-50">50% Advance, 50% on Party Day</option>
+                        <option value="advance-30">30% Advance, 70% on Party Day</option>
+                        <option value="full-advance">Full Payment in Advance</option>
+                        <option value="installments">Monthly Installments</option>
+                    </select>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="terms" id="terms" required>
+                        <label class="checkbox-label" for="terms">I agree to the terms and conditions and cancellation policy *</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="updates" id="updates">
+                        <label class="checkbox-label" for="updates">Send me updates about party trends and special offers</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="consultation" id="consultation">
+                        <label class="checkbox-label" for="consultation">Schedule a free consultation call before finalizing</label>
+                    </div>
+                </div>
+
+                <!-- Form Buttons -->
+                <div class="form-buttons">
+                    <button type="submit" class="form-btn form-btn-primary">
+                        🎂 Book Birthday Party - ₹<span id="formTotal">0</span>
+                    </button>
+                    <button type="button" class="form-btn form-btn-secondary" onclick="closeForm()">
+                        ← Back to Selection
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let selectedItems = {};
+        let itemQuantities = {};
+        let categoryTotals = {
+            digital: 0,
+            decorations: 0,
+            entertainment: 0,
+            catering: 0,
+            premium: 0,
+            express: 0
+        };
+        let grandTotal = 0;
+        let totalItemCount = 0;
+        let sidebarCollapsed = window.innerWidth <= 1024;
+
+        function toggleItem(element, itemId, price) {
+            const category = element.getAttribute('data-category');
+            
+            if (selectedItems[itemId]) {
+                // Deselect item
+                element.classList.remove('selected');
+                delete selectedItems[itemId];
+                delete itemQuantities[itemId];
+            } else {
+                // Select item
+                element.classList.add('selected');
+                selectedItems[itemId] = {
+                    price: price,
+                    category: category,
+                    element: element,
+                    title: element.querySelector('.item-title').textContent
+                };
+                itemQuantities[itemId] = 1;
+                
+                // Initialize quantity display if it exists
+                const qtyDisplay = element.querySelector(`#qty-${itemId}`);
+                if (qtyDisplay) {
+                    qtyDisplay.textContent = '1';
+                }
+            }
+            
+            updateSummary();
+        }
+
+        function updateQuantity(itemId, change) {
+            if (!selectedItems[itemId]) return;
+            
+            let currentQty = itemQuantities[itemId] || 1;
+            let newQty = Math.max(1, currentQty + change);
+            
+            itemQuantities[itemId] = newQty;
+            
+            const qtyDisplay = document.getElementById(`qty-${itemId}`);
+            if (qtyDisplay) {
+                qtyDisplay.textContent = newQty;
+            }
+            
+            updateSummary();
+        }
+
+        function updateSummary() {
+            // Reset category totals
+            Object.keys(categoryTotals).forEach(cat => categoryTotals[cat] = 0);
+            grandTotal = 0;
+            totalItemCount = 0;
+
+            // Clear summary items
+            Object.keys(categoryTotals).forEach(cat => {
+                const summaryElement = document.getElementById(`${cat}-summary-items`);
+                if (summaryElement) {
+                    summaryElement.innerHTML = '';
+                }
+            });
+
+            // Calculate totals and populate summary
+            Object.keys(selectedItems).forEach(itemId => {
+                const item = selectedItems[itemId];
+                const quantity = itemQuantities[itemId] || 1;
+                const itemTotal = item.price * quantity;
+                const category = item.category;
+
+                // Add to category total
+                categoryTotals[category] += itemTotal;
+                grandTotal += itemTotal;
+                totalItemCount += quantity;
+
+                // Add to summary display
+                const summaryContainer = document.getElementById(`${category}-summary-items`);
+                if (summaryContainer) {
+                    const summaryItem = document.createElement('div');
+                    summaryItem.className = 'summary-item';
+                    summaryItem.innerHTML = `
+                        <span>${item.title}${quantity > 1 ? ` (${quantity}×)` : ''}</span>
+                        <span>₹${itemTotal.toLocaleString('en-IN')}</span>
+                    `;
+                    summaryContainer.appendChild(summaryItem);
+                }
+            });
+
+            // Update category totals in header and summary
+            Object.keys(categoryTotals).forEach(category => {
+                const headerTotal = document.getElementById(`${category}-total`);
+                const summaryTotal = document.getElementById(`${category}-summary-total`);
+                
+                if (headerTotal) {
+                    headerTotal.textContent = `₹${categoryTotals[category].toLocaleString('en-IN')}`;
+                }
+                if (summaryTotal) {
+                    summaryTotal.textContent = `₹${categoryTotals[category].toLocaleString('en-IN')}`;
+                }
+            });
+
+            // Update grand total and item count
+            document.getElementById('grandTotal').textContent = `₹${grandTotal.toLocaleString('en-IN')}`;
+            document.getElementById('totalItems').textContent = `${totalItemCount} service${totalItemCount !== 1 ? 's' : ''} selected`;
+
+            // Update savings info
+            const savingsElement = document.getElementById('savingsInfo');
+            if (grandTotal > 60000) {
+                savingsElement.textContent = 'Premium party package - complimentary consultation included!';
+                savingsElement.style.color = '#ff6b35';
+            } else if (grandTotal > 30000) {
+                savingsElement.textContent = 'Add ₹' + (60000 - grandTotal).toLocaleString('en-IN') + ' more for premium benefits';
+                savingsElement.style.color = '#e55a2b';
+            } else {
+                savingsElement.textContent = totalItemCount > 0 ? 'Custom birthday party package created' : 'Select services to see total';
+                savingsElement.style.color = '#6a6a6a';
+            }
+
+            // Enable/disable checkout button
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            checkoutBtn.disabled = totalItemCount === 0;
+            checkoutBtn.textContent = totalItemCount === 0 ? 'Select Services to Continue' : `Book Your Party (₹${grandTotal.toLocaleString('en-IN')})`;
+        }
+
+        function filterCategory(category) {
+            // Update active tab
+            document.querySelectorAll('.filter-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Show/hide category sections
+            document.querySelectorAll('.category-section').forEach(section => {
+                if (category === 'all') {
+                    section.style.display = 'block';
+                } else {
+                    const sectionCategory = section.getAttribute('data-category');
+                    section.style.display = sectionCategory === category ? 'block' : 'none';
+                }
+            });
+        }
+
+        function clearAll() {
+            // Reset all data
+            selectedItems = {};
+            itemQuantities = {};
+            Object.keys(categoryTotals).forEach(cat => categoryTotals[cat] = 0);
+            grandTotal = 0;
+            totalItemCount = 0;
+
+            // Remove selected classes
+            document.querySelectorAll('.item-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+
+            // Reset quantity displays
+            document.querySelectorAll('.qty-display').forEach(display => {
+                display.textContent = '1';
+            });
+
+            updateSummary();
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('summarySidebar');
+            const toggleText = document.getElementById('toggleText');
+            const toggleIcon = document.getElementById('toggleIcon');
+            
+            if (sidebarCollapsed) {
+                sidebar.classList.remove('collapsed');
+                toggleText.textContent = 'Hide Bill Summary';
+                toggleIcon.textContent = '▼';
+                sidebarCollapsed = false;
+            } else {
+                sidebar.classList.add('collapsed');
+                toggleText.textContent = 'View Bill Summary';
+                toggleIcon.textContent = '▲';
+                sidebarCollapsed = true;
+            }
+        }
+
+        function proceedToCheckout() {
+            if (totalItemCount === 0) {
+                alert('Please select at least one service to proceed');
+                return;
+            }
+
+            // Update form order summary
+            updateFormOrderSummary();
+            
+            // Show checkout form
+            document.getElementById('checkoutForm').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function updateFormOrderSummary() {
+            const summaryContainer = document.getElementById('formOrderSummary');
+            summaryContainer.innerHTML = '';
+
+            // Add selected items
+            Object.keys(selectedItems).forEach(itemId => {
+                const item = selectedItems[itemId];
+                const quantity = itemQuantities[itemId] || 1;
+                const itemTotal = item.price * quantity;
+
+                const orderItem = document.createElement('div');
+                orderItem.className = 'order-item';
+                orderItem.innerHTML = `
+                    <span>${item.title}${quantity > 1 ? ` (${quantity}×)` : ''}</span>
+                    <span>₹${itemTotal.toLocaleString('en-IN')}</span>
+                `;
+                summaryContainer.appendChild(orderItem);
+            });
+
+            // Add total
+            const totalItem = document.createElement('div');
+            totalItem.className = 'order-item';
+            totalItem.innerHTML = `
+                <span>Total Package Cost</span>
+                <span>₹${grandTotal.toLocaleString('en-IN')}</span>
+            `;
+            summaryContainer.appendChild(totalItem);
+
+            // Update form total
+            document.getElementById('formTotal').textContent = grandTotal.toLocaleString('en-IN');
+        }
+
+        function closeForm() {
+            document.getElementById('checkoutForm').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function submitOrder(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const orderData = {
+                selectedItems: selectedItems,
+                quantities: itemQuantities,
+                categoryTotals: categoryTotals,
+                grandTotal: grandTotal,
+                totalItems: totalItemCount,
+                eventDetails: Object.fromEntries(formData),
+                orderDate: new Date().toISOString(),
+                orderId: 'BP' + Date.now()
+            };
+
+            console.log('Birthday Party Event Booking Submitted:', orderData);
+
+            // Close form
+            closeForm();
+
+            // Show success message
+            document.getElementById('successMessage').classList.add('show');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Reset after success
+            setTimeout(() => {
+                clearAll();
+                document.getElementById('birthdayPartyForm').reset();
+                setTimeout(() => {
+                    document.getElementById('successMessage').classList.remove('show');
+                }, 5000);
+            }, 2000);
+        }
+
+        // Handle window resize
+        function handleResize() {
+            const sidebar = document.getElementById('summarySidebar');
+            if (window.innerWidth > 1024) {
+                sidebar.classList.remove('collapsed');
+                sidebarCollapsed = false;
+            } else {
+                sidebar.classList.add('collapsed');
+                sidebarCollapsed = true;
+            }
+        }
+
+        // Close form when clicking outside
+        document.getElementById('checkoutForm').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeForm();
+            }
+        });
+
+        // Prevent form close when clicking inside form container
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.form-container')) {
+                e.stopPropagation();
+            }
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSummary();
+            handleResize();
+            
+            // Set minimum date to today
+            const dateInput = document.querySelector('input[name="eventDate"]');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.min = today;
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', handleResize);
+
+        // Add smooth scrolling for mobile
+        document.addEventListener('touchstart', function() {}, true);
+
+        // Prevent zoom on input focus for mobile
+        document.addEventListener('touchend', function(event) {
+            const noZoomTag = document.querySelector('meta[name=viewport]');
+            noZoomTag.content = 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no';
+            setTimeout(function() {
+                noZoomTag.content = 'width=device-width, initial-scale=1';
+            }, 500);
+        });
+    </script>
+</body>
+</html>
+                

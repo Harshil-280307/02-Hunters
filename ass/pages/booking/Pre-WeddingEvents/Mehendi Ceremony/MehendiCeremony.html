@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mehendi Ceremony Package</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(-45deg, #2F4F2F, #228B22, #006400, #556B2F);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            padding: 20px;
+            color: #F5F5DC;
+            overflow-x: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        body.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Enhanced floating henna patterns animation */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(47, 79, 47, 0.8), rgba(34, 139, 34, 0.4));
+            border-radius: 50%;
+            animation: float 25s infinite linear;
+        }
+
+        .particle:nth-child(odd) {
+            background: radial-gradient(circle, rgba(245, 245, 220, 0.8), rgba(255, 255, 240, 0.4));
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+
+        .particle:nth-child(3n) {
+            background: radial-gradient(circle, rgba(0, 100, 0, 0.8), rgba(85, 107, 47, 0.4));
+            clip-path: polygon(20% 0%, 80% 0%, 100% 60%, 50% 100%, 0% 60%);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(90vh) rotate(36deg) scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(-10vh) rotate(324deg) scale(0.8);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Henna-themed decorative elements */
+        .decorative-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(47, 79, 47, 0.1);
+            animation: floatShape 20s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%);
+        }
+
+        .shape:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 50%;
+            right: 15%;
+            animation-delay: 5s;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        .shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 10s;
+            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+        }
+
+        @keyframes floatShape {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-section {
+            margin-bottom: 30px;
+            animation: slideInLeft 1s ease;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .prev-btn {
+            background: rgba(47, 79, 47, 0.3);
+            backdrop-filter: blur(10px);
+            color: #F5F5DC;
+            border: 2px solid rgba(47, 79, 47, 0.5);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .prev-btn:hover {
+            background: rgba(47, 79, 47, 0.5);
+            border-color: rgba(47, 79, 47, 0.7);
+            transform: translateX(-5px);
+            box-shadow: 0 10px 25px rgba(47, 79, 47, 0.3);
+        }
+
+        .prev-btn:active {
+            transform: translateX(-3px) scale(0.98);
+        }
+
+        .header {
+            text-align: center;
+            color: #F5F5DC;
+            margin-bottom: 50px;
+            animation: slideInDown 1s ease;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #F5F5DC, #FFFAF0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from { filter: drop-shadow(0 0 10px rgba(245, 245, 220, 0.5)); }
+            to { filter: drop-shadow(0 0 20px rgba(255, 250, 240, 0.8)); }
+        }
+
+        .header p {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 2x2 Grid Layout */
+        .packages-wrapper {
+            margin-bottom: 50px;
+        }
+
+        .package-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .package-card {
+            background: rgba(47, 79, 47, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(47, 79, 47, 0.2);
+            text-align: center;
+            border: 2px solid rgba(245, 245, 220, 0.3);
+            transition: all 0.4s ease;
+            animation: slideInUp 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(244, 164, 96, 0.3), transparent);
+            transition: all 1s ease;
+        }
+
+        .package-card:hover::before {
+            left: 100%;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(47, 79, 47, 0.25);
+        }
+
+        .package-card.selected {
+            border-color: #32CD32;
+            box-shadow: 0 25px 50px rgba(50, 205, 50, 0.3);
+        }
+
+        .package-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #2F4F2F, #228B22);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #F5F5DC;
+            animation: pulse 2s infinite;
+            position: relative;
+        }
+
+        .package-icon::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(135deg, #2F4F2F, #228B22);
+            border-radius: 50%;
+            z-index: -1;
+            animation: rotate 10s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .package-card h2 {
+            font-size: 2.5rem;
+            color: #F5F5DC;
+            margin-bottom: 15px;
+        }
+
+        .package-price {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #F5F5DC, #FFFAF0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .features li {
+            padding: 12px 0;
+            color: #F5F5DC;
+            font-size: 1.1rem;
+            border-bottom: 1px solid rgba(245, 245, 220, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .features li:hover {
+            background: rgba(245, 245, 220, 0.1);
+            padding-left: 10px;
+            transform: translateX(5px);
+        }
+
+        .features li::before {
+            content: '🌿';
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .select-package-link {
+            background: linear-gradient(135deg, #2F4F2F, #228B22);
+            color: #F5F5DC;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .select-package-link.selected {
+            background: linear-gradient(135deg, #228B22, #32CD32);
+        }
+
+        .select-package-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: all 0.6s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .select-package-link:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .select-package-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(47, 79, 47, 0.4);
+            text-decoration: none;
+            color: #F5F5DC;
+        }
+
+        /* Total Calculator */
+        .total-section {
+            background: linear-gradient(135deg, #2F4F2F, #228B22);
+            color: #F5F5DC;
+            padding: 50px;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(47, 79, 47, 0.4);
+            animation: fadeInUp 1s ease 1.5s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .total-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.05) 10px,
+                rgba(255, 255, 255, 0.05) 20px
+            );
+            animation: backgroundMove 20s linear infinite;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .total-price {
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 30px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .checkout-btn {
+            background: rgba(245, 245, 220, 0.2);
+            color: #F5F5DC;
+            border: 2px solid rgba(245, 245, 220, 0.5);
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .checkout-btn:hover {
+            background: rgba(245, 245, 220, 1);
+            color: #2F4F2F;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(245, 245, 220, 0.3);
+        }
+
+        .checkout-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #2F4F2F, #228B22);
+            color: #F5F5DC;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            display: none;
+            box-shadow: 0 15px 35px rgba(47, 79, 47, 0.4);
+        }
+
+        .success-message.show {
+            display: block;
+            animation: successSlide 0.6s ease;
+        }
+
+        @keyframes successSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Mehendi-specific animations */
+        .henna-pattern {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            opacity: 0.1;
+            animation: hennaFloat 15s infinite ease-in-out;
+        }
+
+        .henna-pattern:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .henna-pattern:nth-child(2) {
+            top: 70%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        .henna-pattern:nth-child(3) {
+            bottom: 20%;
+            left: 30%;
+            animation-delay: 6s;
+        }
+
+        @keyframes hennaFloat {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg) scale(1);
+                opacity: 0.1;
+            }
+            25% { 
+                transform: translateY(-15px) rotate(90deg) scale(1.1);
+                opacity: 0.3;
+            }
+            50% { 
+                transform: translateY(0px) rotate(180deg) scale(1);
+                opacity: 0.1;
+            }
+            75% { 
+                transform: translateY(15px) rotate(270deg) scale(0.9);
+                opacity: 0.2;
+            }
+        }
+
+        /* Enhanced animations for henna trail and bloom effects */
+        @keyframes hennaTrailFade {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.3);
+            }
+        }
+
+        @keyframes hennaBloom {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.5);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-50vh) rotate(180deg) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .package-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .total-price {
+                font-size: 2.5rem;
+            }
+            
+            .package-card,
+            .total-section {
+                padding: 30px 20px;
+            }
+
+            .prev-btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .package-price {
+                font-size: 2.5rem;
+            }
+            
+            .total-price {
+                font-size: 2rem;
+            }
+
+            .prev-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+
+            .package-card {
+                padding: 25px 15px;
+            }
+
+            .package-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Loading states */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .selected-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Decorative Shapes -->
+    <div class="decorative-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- Henna Pattern Elements -->
+    <div class="henna-pattern">🌸</div>
+    <div class="henna-pattern">🍃</div>
+    <div class="henna-pattern">🌺</div>
+
+    <div class="container">
+        <!-- Previous Button -->
+        <div class="nav-section">
+            <button class="prev-btn" onclick="goBack()">
+                ← Previous
+            </button>
+        </div>
+
+        <div class="header">
+            <h1>🌿 Mehendi Ceremony Packages</h1>
+            <p>Celebrate the beautiful tradition of henna artistry with elegance</p>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <h3>🎊 Booking Confirmed Successfully!</h3>
+            <p>Thank you for choosing our Mehendi ceremony package. Our team will contact you within 24 hours to discuss your beautiful henna celebration!</p>
+        </div>
+
+        <!-- Package Cards in 2x2 Layout -->
+        <div class="packages-wrapper">
+            <!-- First Row -->
+            <div class="package-row">
+                <!-- Basic Package -->
+                <div class="package-card" id="basic-card">
+                    <div class="package-icon">🌿</div>
+                    <h2>Basic Henna Package</h2>
+                    <div class="package-price">₹28,000</div>
+                    <ul class="features">
+                        <li>Traditional Mehendi Setup & Decoration</li>
+                        <li>2 Professional Henna Artists (4 hours)</li>
+                        <li>Basic Bridal Henna Design</li>
+                        <li>Photography Coverage (3 hours)</li>
+                        <li>Traditional Music & Playlist</li>
+                        <li>Comfortable Seating Arrangements</li>
+                        <li>Basic Refreshments & Snacks</li>
+                        <li>Digital Photo Album (50 photos)</li>
+                    </ul>
+                    <a href="../Mehendi Ceremony/BasicHennaPackage.html" class="select-package-link" onclick="selectPackage('Royal Mehendi', 68999, 'royal-card')">Select Royal Package</a>
+                </div>
+
+                <!-- Premium Package -->
+                <div class="package-card" id="premium-card">
+                    <div class="package-icon">🌺</div>
+                    <h2>Premium Mehendi Package</h2>
+                    <div class="package-price">₹42,999</div>
+                    <ul class="features">
+                        <li>Elaborate Mehendi Mandap & Decor</li>
+                        <li>4 Expert Henna Artists (6 hours)</li>
+                        <li>Intricate Bridal & Family Designs</li>
+                        <li>Professional Photography + Videography</li>
+                        <li>Live Traditional Musicians</li>
+                        <li>Premium Seating with Cushions</li>
+                        <li>Traditional Sweets & Tea Service</li>
+                        <li>Henna Aftercare Kit</li>
+                        <li>Digital + Physical Albums (100 photos)</li>
+                        <li>Mehendi Games & Entertainment</li>
+                    </ul>
+                    <a href="../Mehendi Ceremony/PremiumMehendiPackage.html" class="select-package-link" onclick="selectPackage('Custom Mehendi', 0, 'custom-card')">Select Premium Package</a>
+                </div>
+            </div>
+
+            <!-- Second Row -->
+            <div class="package-row">
+                <!-- Luxury Package -->
+                <div class="package-card" id="royal-card">
+                    <div class="package-icon">👑</div>
+                    <h2>Royal Mehendi Package</h2>
+                    <div class="package-price">₹68,999</div>
+                    <ul class="features">
+                        <li>Grand Royal Mehendi Setup</li>
+                        <li>6 Master Henna Artists (Full Day)</li>
+                        <li>Bridal Arabic & Indian Fusion Designs</li>
+                        <li>Cinematic Photography & Videography</li>
+                        <li>Live Folk Singers & Musicians</li>
+                        <li>Luxury Lounge Areas with Decor</li>
+                        <li>Complete Catering Service</li>
+                        <li>Premium Henna & Aftercare Products</li>
+                        <li>Complete Event Documentation</li>
+                        <li>Traditional Dance Performances</li>
+                        <li>Mehendi Favor Bags for Guests</li>
+                        <li>Floral Jewelry Making Station</li>
+                    </ul>
+                    <a href="../Mehendi Ceremony/RoyalMehendi.html" class="select-package-link" onclick="selectPackage('Royal Mehendi', 68999, 'royal-card')">Select Royal Package</a>
+                </div>
+
+                <!-- Custom Package -->
+                <div class="package-card" id="custom-card">
+                    <div class="package-icon">🎨</div>
+                    <h2>Custom Mehendi Package</h2>
+                    <div class="package-price">Price on Request</div>
+                    <ul class="features">
+                        <li>Personalized Henna Themes</li>
+                        <li>Custom Number of Artists</li>
+                        <li>Specialized Design Requests</li>
+                        <li>Unique Cultural Fusion Styles</li>
+                        <li>Multiple Location Services</li>
+                        <li>Extended Duration Options</li>
+                        <li>Custom Entertainment Programs</li>
+                        <li>Themed Decoration Concepts</li>
+                        <li>Special Dietary Requirements</li>
+                        <li>Personalized Mehendi Favors</li>
+                    </ul>
+                        <a href="../Mehendi Ceremony/costomemehendi.html" class="select-package-link" onclick="selectPackage('Custom Mehendi', 0, 'custom-card')">Request Custom Quote</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Section -->
+        <div class="total-section">
+            <h3 style="font-size: 2.5rem; margin-bottom: 20px; position: relative; z-index: 2;">Selected Package</h3>
+            <div id="selectedItems" style="position: relative; z-index: 2;">
+                <div class="selected-item" style="justify-content: center; color: rgba(255,255,255,0.7);">
+                    <span>Choose your perfect Mehendi ceremony package above</span>
+                </div>
+            </div>
+            <div class="total-price" id="totalPrice"></div>
+            <button class="checkout-btn" onclick="submitBooking()" disabled>Book Mehendi Package</button>
+        </div>
+    </div>
+
+    <script>
+        let selectedPackage = null;
+        let basePrice = 0;
+
+        // Enhanced particle creation with better performance
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 60; // Reduced for better performance
+            const hennaSymbols = ['🌿', '🌸', '🍃', '🌺', '🌼', '🌻'];
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 25 + 's';
+                particle.style.animationDuration = (Math.random() * 15 + 20) + 's';
+                
+                // Add henna symbols to some particles
+                if (Math.random() > 0.7) {
+                    particle.innerHTML = hennaSymbols[Math.floor(Math.random() * hennaSymbols.length)];
+                    particle.style.fontSize = '12px';
+                    particle.style.background = 'transparent';
+                }
+                
+                // Random size variation
+                const size = Math.random() * 6 + 4;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        function selectPackage(packageName, price, cardId) {
+            // Clear previous selections
+            document.querySelectorAll('.package-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelectorAll('.select-package-link').forEach(link => {
+                link.classList.remove('selected');
+                const originalText = link.textContent.includes('Request') ? 'Request Custom Quote' : 
+                                link.textContent.includes('Basic') ? 'Select Basic Package' :
+                                link.textContent.includes('Premium') ? 'Select Premium Package' :
+                                'Select Royal Package';
+                link.textContent = originalText;
+            });
+            
+            // Set new selection
+            selectedPackage = { name: packageName, price: price };
+            basePrice = price;
+            
+            // Update UI
+            const selectedCard = document.getElementById(cardId);
+            const selectedButton = selectedCard.querySelector('.select-package-link');
+            
+            selectedCard.classList.add('selected');
+            selectedButton.classList.add('selected');
+            
+            if (packageName.includes('Custom')) {
+                selectedButton.textContent = 'Custom Quote Requested';
+            } else {
+                selectedButton.textContent = `Selected - ${packageName} Package`;
+            }
+            
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const selectedItemsDiv = document.getElementById('selectedItems');
+            const checkoutBtn = document.querySelector('.checkout-btn');
+            
+            if (selectedPackage) {
+                let itemsHTML = '<h4 style="margin-bottom: 15px;">Package Details:</h4>';
+                
+                if (selectedPackage.name.includes('Custom')) {
+                    document.getElementById('totalPrice').textContent = 'Custom Quote';
+                    itemsHTML += `
+                        <div class="selected-item">
+                            <span>${selectedPackage.name} Package</span>
+                            <span>Price on Request</span>
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('totalPrice').textContent = `₹${selectedPackage.price.toLocaleString('en-IN')}`;
+                    itemsHTML += `
+                        <div class="selected-item">
+                            <span>${selectedPackage.name} Package</span>
+                            <span>₹${selectedPackage.price.toLocaleString('en-IN')}</span>
+                        </div>
+                    `;
+                }
+                
+                selectedItemsDiv.innerHTML = itemsHTML;
+                checkoutBtn.disabled = false;
+            } else {
+                document.getElementById('totalPrice').textContent = '';
+                selectedItemsDiv.innerHTML = `
+                    <div class="selected-item" style="justify-content: center; color: rgba(255,255,255,0.7);">
+                        <span>Choose your perfect Mehendi ceremony package above</span>
+                    </div>
+                `;
+                checkoutBtn.disabled = true;
+            }
+        }
+
+        function submitBooking() {
+            if (!selectedPackage) {
+                alert('Please select a Mehendi package first!');
+                return;
+            }
+
+            // Add loading state
+            document.body.classList.add('loading');
+            
+            // Create booking data
+            const bookingData = {
+                selectedPackage,
+                total: selectedPackage.name.includes('Custom') ? 'Custom Quote' : basePrice,
+                bookingDate: new Date().toISOString(),
+                ceremonyType: 'Mehendi Ceremony'
+            };
+
+            // Simulate API call
+            setTimeout(() => {
+                console.log('Mehendi Ceremony Booking Data:', bookingData);
+                
+                // Remove loading state
+                document.body.classList.remove('loading');
+                
+                // Show success message
+                document.getElementById('successMessage').classList.add('show');
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Reset selection after submission
+                setTimeout(() => {
+                    resetForm();
+                    
+                    // Hide success message after 6 seconds
+                    setTimeout(() => {
+                        document.getElementById('successMessage').classList.remove('show');
+                    }, 6000);
+                }, 2000);
+            }, 1500);
+        }
+
+        function resetForm() {
+            selectedPackage = null;
+            basePrice = 0;
+            
+            document.querySelectorAll('.package-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            document.querySelectorAll('.select-package-link').forEach(link => {
+                link.classList.remove('selected');
+                const originalText = link.textContent.includes('Request') || link.textContent.includes('Custom') ? 'Request Custom Quote' : 
+                                link.innerHTML.includes('Basic') || link.closest('.package-card').querySelector('h2').textContent.includes('Basic') ? 'Select Basic Package' :
+                                link.innerHTML.includes('Premium') || link.closest('.package-card').querySelector('h2').textContent.includes('Premium') ? 'Select Premium Package' :
+                                'Select Royal Package';
+                link.textContent = originalText;
+            });
+            
+            updateTotal();
+        }
+
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                alert('This would take you back to the Pre-Wedding Events page');
+            }
+        }
+
+        // Enhanced henna trail effect
+        function createHennaTrail(e) {
+            const trail = document.createElement('div');
+            trail.style.position = 'fixed';
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+            trail.style.width = '8px';
+            trail.style.height = '8px';
+            trail.style.background = 'rgba(47, 79, 47, 0.6)';
+            trail.style.borderRadius = '50%';
+            trail.style.pointerEvents = 'none';
+            trail.style.zIndex = '1000';
+            trail.style.transform = 'translate(-50%, -50%)';
+            trail.style.animation = 'hennaTrailFade 1s ease-out forwards';
+            
+            document.body.appendChild(trail);
+            
+            setTimeout(() => {
+                if (trail.parentNode) {
+                    trail.parentNode.removeChild(trail);
+                }
+            }, 1000);
+        }
+
+        // Enhanced henna bloom effect
+        function createHennaBloom() {
+            const bloom = document.createElement('div');
+            bloom.innerHTML = '🌸';
+            bloom.style.position = 'fixed';
+            bloom.style.left = Math.random() * window.innerWidth + 'px';
+            bloom.style.top = window.innerHeight + 'px';
+            bloom.style.fontSize = '20px';
+            bloom.style.pointerEvents = 'none';
+            bloom.style.zIndex = '-1';
+            bloom.style.animation = 'hennaBloom 6s ease-out forwards';
+            
+            document.body.appendChild(bloom);
+            
+            setTimeout(() => {
+                if (bloom.parentNode) {
+                    bloom.parentNode.removeChild(bloom);
+                }
+            }, 6000);
+        }
+
+        // Performance optimization: Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    if (entry.target.classList.contains('package-card')) {
+                        setTimeout(() => {
+                            entry.target.style.transform = 'translateY(0) scale(1)';
+                        }, 100);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            updateTotal();
+            
+            // Add loading animation
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 100);
+            
+            // Add interactive effects
+            const cards = document.querySelectorAll('.package-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = (index * 0.2) + 's';
+                
+                // Add henna trail effect
+                card.addEventListener('mousemove', createHennaTrail);
+                
+                // Observe for intersection
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
+
+            // Observe total section
+            const totalSection = document.querySelector('.total-section');
+            totalSection.style.opacity = '0';
+            totalSection.style.transform = 'translateY(30px)';
+            totalSection.style.transition = 'all 0.6s ease';
+            observer.observe(totalSection);
+
+            // Enhanced button effects
+            document.querySelectorAll('.select-package-link, .checkout-btn, .prev-btn').forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.boxShadow = (this.style.boxShadow || '') + ', 0 0 20px rgba(47, 79, 47, 0.5)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = this.style.boxShadow.replace(', 0 0 20px rgba(47, 79, 47, 0.5)', '');
+                });
+            });
+
+            // Create periodic henna blooms
+            setInterval(createHennaBloom, 3000);
+        });
+
+        // Enhanced parallax scroll effects
+        let ticking = false;
+        function updateScrollEffects() {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.header');
+            const speed = scrolled * 0.3; // Reduced for smoother effect
+            
+            if (parallax) {
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+
+            // Animate decorative shapes
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const rate = scrolled * (0.2 + index * 0.05);
+                shape.style.transform = `translateY(${rate}px) rotate(${rate * 0.3}deg)`;
+            });
+
+            // Animate henna patterns
+            const hennaPatterns = document.querySelectorAll('.henna-pattern');
+            hennaPatterns.forEach((pattern, index) => {
+                const rate = scrolled * (0.15 + index * 0.1);
+                pattern.style.transform = `translateY(${rate}px) rotate(${rate * 0.5}deg) scale(${1 + Math.sin(rate * 0.01) * 0.05})`;
+            });
+
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(updateScrollEffects);
+                ticking = true;
+            }
+        });
+
+        // Enhanced touch support
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', function(e) {
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartY - touchEndY;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    const nextSection = document.querySelector('.total-section');
+                    if (nextSection) {
+                        nextSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+        }
+
+        // Enhanced keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.target.classList.contains('select-package-link')) {
+                e.preventDefault();
+                e.target.click();
+            }
+            
+            if (e.key === 'Escape') {
+                // Close any open modals or reset selection
+                const successMessage = document.getElementById('successMessage');
+                if (successMessage.classList.contains('show')) {
+                    successMessage.classList.remove('show');
+                }
+            }
+            
+            // Arrow key navigation
+            if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                const buttons = document.querySelectorAll('.select-package-link');
+                const focusedButton = document.activeElement;
+                const currentIndex = Array.from(buttons).indexOf(focusedButton);
+                
+                if (currentIndex !== -1) {
+                    let nextIndex;
+                    if (e.key === 'ArrowRight') {
+                        nextIndex = (currentIndex + 1) % buttons.length;
+                    } else {
+                        nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+                    }
+                    buttons[nextIndex].focus();
+                    e.preventDefault();
+                }
+            }
+        });
+
+        // Error handling for animations
+        window.addEventListener('error', function(e) {
+            console.log('Animation error caught:', e.error);
+        });
+
+        // Accessibility improvements
+        document.querySelectorAll('.select-package-link').forEach(button => {
+            button.setAttribute('role', 'button');
+            button.setAttribute('tabindex', '0');
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
