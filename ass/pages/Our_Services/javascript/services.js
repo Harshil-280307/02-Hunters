@@ -87,8 +87,12 @@ document.querySelectorAll('.service-card').forEach(card => {
 
 // Page Navigation Functions
 function goToPage(pageName) {
-    console.log('Navigating to:', pageName);
-    alert(`Would navigate to ${pageName} page`);
+
+    const path = `${pageName}`;
+    window.location.href = path;
+
+    // console.log('Navigating to:', pageName);
+    // alert(`Would navigate to ${pageName} page`);
 }
 // Contact Action Functions
 function openLocationMap() {
