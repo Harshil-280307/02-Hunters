@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural Events Heritage Package</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #2c1810 0%, #5d4037 50%, #8d6e63 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 20px;
+            color: #f5f5dc;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background patterns */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(218, 165, 32, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(184, 134, 11, 0.1) 0%, transparent 50%);
+            animation: backgroundShift 15s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-20px) translateY(-10px); }
+            50% { transform: translateX(20px) translateY(10px); }
+            75% { transform: translateX(-10px) translateY(20px); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header::before {
+            content: '🕉️';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0px); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            color: #ffd700;
+            background: linear-gradient(45deg, #ffd700, #ffed4e, #daa520);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes textShimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        .header p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            opacity: 0.9;
+            color: #d4af37;
+        }
+
+        .heritage-package {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.9), rgba(160, 82, 45, 0.8));
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            margin-bottom: 40px;
+            border: 3px solid rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: slideInLeft 1s ease 0.2s both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .heritage-package:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(255, 215, 0, 0.2);
+        }
+
+        .heritage-package::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .package-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #ffd700, #daa520);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #8b4513;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            animation: pulse 2s infinite, rotate 20s linear infinite;
+            position: relative;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .heritage-package h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: #ffd700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .heritage-price {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: priceGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes priceGlow {
+            from { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 215, 0, 0.3); }
+            to { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.6); }
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features li {
+            padding: 15px 0;
+            color: #f5f5dc;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInLeft 0.5s ease forwards;
+        }
+
+        .features li:nth-child(1) { animation-delay: 0.1s; }
+        .features li:nth-child(2) { animation-delay: 0.2s; }
+        .features li:nth-child(3) { animation-delay: 0.3s; }
+        .features li:nth-child(4) { animation-delay: 0.4s; }
+        .features li:nth-child(5) { animation-delay: 0.5s; }
+        .features li:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .features li:hover {
+            color: #ffd700;
+            transform: translateX(10px);
+        }
+
+        .features li::before {
+            content: '🏛️';
+            margin-right: 15px;
+            font-size: 1.3rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-5px); }
+            60% { transform: translateY(-3px); }
+        }
+
+        .customer-choice {
+            background: linear-gradient(135deg, rgba(101, 67, 33, 0.9), rgba(62, 39, 35, 0.8));
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(255, 215, 0, 0.3);
+            animation: slideInRight 1s ease 0.4s both;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .customer-choice h2 {
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 30px;
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .addon-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .addon-option {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.8), rgba(160, 82, 45, 0.6));
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .addon-option:nth-child(1) { animation-delay: 0.1s; }
+        .addon-option:nth-child(2) { animation-delay: 0.2s; }
+        .addon-option:nth-child(3) { animation-delay: 0.3s; }
+        .addon-option:nth-child(4) { animation-delay: 0.4s; }
+        .addon-option:nth-child(5) { animation-delay: 0.5s; }
+        .addon-option:nth-child(6) { animation-delay: 0.6s; }
+        .addon-option:nth-child(7) { animation-delay: 0.7s; }
+        .addon-option:nth-child(8) { animation-delay: 0.8s; }
+        .addon-option:nth-child(9) { animation-delay: 0.9s; }
+        .addon-option:nth-child(10) { animation-delay: 1s; }
+
+        .addon-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .addon-option:hover::before {
+            transform: translateX(100%);
+        }
+
+        .addon-option:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
+        }
+
+        .addon-option.selected {
+            border-color: #ffd700;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(218, 165, 32, 0.2));
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
+            animation: selectedPulse 2s infinite;
+        }
+
+        @keyframes selectedPulse {
+            0%, 100% { box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4); }
+            50% { box-shadow: 0 12px 30px rgba(255, 215, 0, 0.6), 0 0 20px rgba(255, 215, 0, 0.3); }
+        }
+
+        .addon-option .select-btn {
+            position: absolute;
+            top: 0px;
+            right: 2px;
+            background: linear-gradient(135deg, #ffd700, #daa520);
+            color: #8b4513;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .addon-option.selected .select-btn {
+            background: linear-gradient(135deg, #32cd32, #228b22);
+            color: white;
+            animation: checkmark 0.5s ease;
+        }
+
+        @keyframes checkmark {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .addon-option .select-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .addon-option h4 {
+            color: #ffd700;
+            margin-bottom: 10px;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .addon-option .price {
+            font-weight: bold;
+            color: #ffd700;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .addon-option small {
+            color: #f5f5dc;
+            line-height: 1.5;
+            font-size: clamp(0.85rem, 1.8vw, 1rem);
+        }
+
+        .customer-form {
+            background: linear-gradient(135deg, rgba(101, 67, 33, 0.9), rgba(62, 39, 35, 0.8));
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(255, 215, 0, 0.3);
+            animation: slideInUp 1s ease 0.6s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .customer-form h2 {
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 30px;
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #ffd700;
+            font-weight: 500;
+            margin-bottom: 10px;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            font-family: inherit;
+            background: rgba(139, 69, 19, 0.3);
+            backdrop-filter: blur(5px);
+            color: #f5f5dc;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #ffd700;
+            background: rgba(139, 69, 19, 0.5);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            transform: scale(1.02);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .total-section {
+            background: linear-gradient(135deg, #8b4513, #a0522d, #daa520);
+            color: #f5f5dc;
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(139, 69, 19, 0.4);
+            border: 3px solid rgba(255, 215, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            animation: zoomIn 1s ease 0.8s both;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .total-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, rgba(255, 215, 0, 0.1), transparent);
+            animation: rotateGradient 4s linear infinite;
+        }
+
+        @keyframes rotateGradient {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .total-section h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .total-price {
+            font-size: clamp(3rem, 8vw, 4.5rem);
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+            animation: totalPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes totalPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .selected-items {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(245, 245, 220, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .selected-items h4 {
+            margin-bottom: 15px;
+            font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .selected-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            opacity: 0;
+            animation: slideInFromLeft 0.5s ease forwards;
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .checkout-btn {
+            background: linear-gradient(135deg, #ffd700, #daa520);
+            color: #8b4513;
+            border: none;
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.5);
+            background: linear-gradient(135deg, #ffed4e, #ffd700);
+        }
+
+        .checkout-btn:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .checkout-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #32cd32, #228b22);
+            color: #fff;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            display: none;
+            box-shadow: 0 15px 35px rgba(50, 205, 50, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .success-message.show {
+            display: block;
+            animation: successSlideIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        @keyframes successSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .addon-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .heritage-package,
+            .customer-choice,
+            .customer-form,
+            .total-section {
+                padding: 25px;
+            }
+            
+            .addon-option {
+                padding: 25px;
+            }
+            
+            .checkout-btn {
+                padding: 18px 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .heritage-package,
+            .customer-choice,
+            .customer-form,
+            .total-section {
+                padding: 20px;
+            }
+            
+            .addon-option {
+                padding: 20px;
+            }
+            
+            .package-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Cultural decorative elements */
+        .decorative-border {
+            position: relative;
+        }
+
+        .decorative-border::before,
+        .decorative-border::after {
+            content: '🏛️ ⚱️ 🏛️';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            opacity: 0.6;
+        }
+
+        .decorative-border::before {
+            top: -15px;
+        }
+
+        .decorative-border::after {
+            bottom: -15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header decorative-border">
+            <h1>🏛️ Cultural Events Heritage Package</h1>
+            <p>Preserve and celebrate your cultural heritage with our premium documentation services</p>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <h3>🎊 Order Submitted Successfully!</h3>
+            <p>Thank you for choosing our Cultural Events Heritage Package. We'll contact you soon to begin documenting your precious cultural memories!</p>
+        </div>
+
+        <!-- Heritage Package -->
+        <div class="heritage-package">
+            <div class="package-icon">🏛️</div>
+            <h2>Heritage Documentation Package</h2>
+            <div class="heritage-price">₹40,999</div>
+            <ul class="features">
+                <li>Professional Event Photography (200+ photos)</li>
+                <li>Traditional Ceremony Documentation</li>
+                <li>Cultural Artifact Digital Archive</li>
+                <li>Heritage Story Video (10 minutes)</li>
+                <li>Historical Context Research</li>
+                <li>Multi-language Documentation Support</li>
+            </ul>
+        </div>
+
+        <!-- Customer Choice Add-ons -->
+        <div class="customer-choice">
+            <h2>🎭 Enhance Your Heritage Experience</h2>
+            <p style="text-align: center; color: #d4af37; margin-bottom: 30px; font-size: 1.2rem;">
+                Add these specialized services to create a comprehensive cultural documentation
+            </p>
+            
+            <div class="addon-options">
+                <div class="addon-option" onclick="toggleAddon(this, 'Traditional Music Recording', 3500)">
+                    <button class="select-btn">Select</button>
+                    <h4>🎵 Traditional Music Recording</h4>
+                    <p class="price">+₹3,500</p>
+                    <small>Professional recording of traditional songs and musical performances during the event</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Elder Interviews', 4200)">
+                    <button class="select-btn">Select</button>
+                    <h4>👴 Elder Story Interviews</h4>
+                    <p class="price">+₹4,200</p>
+                    <small>In-depth interviews with elders sharing family history and cultural traditions</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Drone Footage', 5500)">
+                    <button class="select-btn">Select</button>
+                    <h4>🚁 Aerial Heritage Shots</h4>
+                    <p class="price">+₹5,500</p>
+                    <small>Stunning drone footage of venues, processions, and cultural landscapes</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Live Streaming', 6800)">
+                    <button class="select-btn">Select</button>
+                    <h4>📡 Live Cultural Streaming</h4>
+                    <p class="price">+₹6,800</p>
+                    <small>HD live streaming for distant family members and cultural preservation archives</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Recipe Documentation', 2800)">
+                    <button class="select-btn">Select</button>
+                    <h4>🍛 Traditional Recipe Archive</h4>
+                    <p class="price">+₹2,800</p>
+                    <small>Document family recipes and cooking traditions with step-by-step video guides</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Costume Catalog', 3200)">
+                    <button class="select-btn">Select</button>
+                    <h4>👘 Traditional Costume Catalog</h4>
+                    <p class="price">+₹3,200</p>
+                    <small>Detailed documentation of traditional attire, jewelry, and cultural accessories</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Digital Museum', 8500)">
+                    <button class="select-btn">Select</button>
+                    <h4>🏛️ Virtual Heritage Museum</h4>
+                    <p class="price">+₹8,500</p>
+                    <small>Interactive digital museum showcasing your family's cultural artifacts and history</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Genealogy Tree', 4500)">
+                    <button class="select-btn">Select</button>
+                    <h4>🌳 Interactive Family Tree</h4>
+                    <p class="price">+₹4,500</p>
+                    <small>Beautifully designed digital family tree with photos and cultural milestones</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Cultural Workshop', 7200)">
+                    <button class="select-btn">Select</button>
+                    <h4>🎨 Traditional Arts Workshop</h4>
+                    <p class="price">+₹7,200</p>
+                    <small>Document traditional art forms, crafts, and cultural practices with expert guidance</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Heritage Book', 9500)">
+                    <button class="select-btn">Select</button>
+                    <h4>📚 Custom Heritage Book</h4>
+                    <p class="price">+₹9,500</p>
+                    <small>Premium printed book with all documentation, stories, and photographs</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Information Form -->
+        <div class="customer-form">
+            <h2>📝 Event Information</h2>
+            <form id="heritageForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="eventType">Type of Cultural Event *</label>
+                        <select id="eventType" name="eventType" required>
+                            <option value="">Select event type...</option>
+                            <option value="wedding">Traditional Wedding</option>
+                            <option value="festival">Cultural Festival</option>
+                            <option value="ceremony">Religious Ceremony</option>
+                            <option value="reunion">Family Reunion</option>
+                            <option value="milestone">Cultural Milestone</option>
+                            <option value="other">Other Cultural Event</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDate">Event Date *</label>
+                        <input type="date" id="eventDate" name="eventDate" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="culturalBackground">Cultural Background *</label>
+                        <input type="text" id="culturalBackground" name="culturalBackground" placeholder="e.g., Gujarati, Tamil, Bengali, Punjabi..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expectedGuests">Expected Guests</label>
+                        <select id="expectedGuests" name="expectedGuests">
+                            <option value="">Select guest count...</option>
+                            <option value="1-50">1-50 people</option>
+                            <option value="51-100">51-100 people</option>
+                            <option value="101-200">101-200 people</option>
+                            <option value="201-500">201-500 people</option>
+                            <option value="500+">500+ people</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventLocation">Event Location/Venue *</label>
+                    <textarea id="eventLocation" name="eventLocation" placeholder="Enter complete address and venue details..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="culturalDetails">Cultural Traditions & Special Elements</label>
+                    <textarea id="culturalDetails" name="culturalDetails" placeholder="Describe specific traditions, rituals, customs, or cultural elements you want us to focus on..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="familyHistory">Family Heritage Story</label>
+                    <textarea id="familyHistory" name="familyHistory" placeholder="Share your family's cultural background, migration story, or heritage you'd like documented..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="preferredLanguage">Documentation Language</label>
+                        <select id="preferredLanguage" name="preferredLanguage">
+                            <option value="english">English</option>
+                            <option value="hindi">Hindi</option>
+                            <option value="gujarati">Gujarati</option>
+                            <option value="tamil">Tamil</option>
+                            <option value="bengali">Bengali</option>
+                            <option value="punjabi">Punjabi</option>
+                            <option value="marathi">Marathi</option>
+                            <option value="other">Other (specify in notes)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="deliveryFormat">Preferred Delivery Format</label>
+                        <select id="deliveryFormat" name="deliveryFormat">
+                            <option value="digital">Digital Only</option>
+                            <option value="physical">Physical + Digital</option>
+                            <option value="cloud">Cloud Archive</option>
+                            <option value="all">All Formats</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialRequests">Special Requirements or Notes</label>
+                    <textarea id="specialRequests" name="specialRequests" placeholder="Any specific shots, moments, people, or cultural aspects you want highlighted..."></textarea>
+                </div>
+            </form>
+        </div>
+
+        <!-- Total Calculator -->
+        <div class="total-section">
+            <h3>🏛️ Your Heritage Investment</h3>
+            <div class="total-price" id="totalPrice">₹15,999</div>
+            
+            <div class="selected-items" id="selectedItems">
+                <h4>Documentation Package Includes:</h4>
+                <div class="selected-item">
+                    <span>Heritage Documentation Package</span>
+                    <span>₹40,999</span>
+                </div>
+            </div>
+
+            <button class="checkout-btn" onclick="submitOrder()">
+                Preserve Our Heritage 🏛️
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let selectedAddons = [];
+        let basePrice = 40999;
+
+        function toggleAddon(element, name, price) {
+            const selectBtn = element.querySelector('.select-btn');
+            
+            // Toggle selection state with animation
+            const isSelected = element.classList.contains('selected');
+            
+            if (isSelected) {
+                // Deselect with animation
+                element.classList.remove('selected');
+                selectBtn.textContent = 'Select';
+                selectBtn.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    selectBtn.style.transform = 'scale(1)';
+                }, 150);
+                selectedAddons = selectedAddons.filter(addon => addon.name !== name);
+            } else {
+                // Select with animation
+                element.classList.add('selected');
+                selectBtn.textContent = '✓ Selected';
+                selectBtn.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    selectBtn.style.transform = 'scale(1)';
+                }, 150);
+                selectedAddons.push({ name, price });
+            }
+            
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const addonTotal = selectedAddons.reduce((sum, addon) => sum + addon.price, 0);
+            const total = basePrice + addonTotal;
+            
+            // Animate price change
+            const priceElement = document.getElementById('totalPrice');
+            priceElement.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                priceElement.textContent = `₹${total.toLocaleString('en-IN')}`;
+                priceElement.style.transform = 'scale(1)';
+            }, 200);
+            
+            // Update selected items display with animations
+            const selectedItemsDiv = document.getElementById('selectedItems');
+            let itemsHTML = '<h4>Documentation Package Includes:</h4>';
+            
+            // Base package
+            itemsHTML += `
+                <div class="selected-item" style="animation-delay: 0.1s;">
+                    <span>Heritage Documentation Package</span>
+                    <span>₹${basePrice.toLocaleString('en-IN')}</span>
+                </div>
+            `;
+            
+            // Add-ons with staggered animation
+            selectedAddons.forEach((addon, index) => {
+                itemsHTML += `
+                    <div class="selected-item" style="animation-delay: ${0.2 + (index * 0.1)}s;">
+                        <span>${addon.name}</span>
+                        <span>+₹${addon.price.toLocaleString('en-IN')}</span>
+                    </div>
+                `;
+            });
+            
+            selectedItemsDiv.innerHTML = itemsHTML;
+        }
+
+        function submitOrder() {
+            const form = document.getElementById('heritageForm');
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const eventType = document.getElementById('eventType').value;
+            const eventDate = document.getElementById('eventDate').value;
+            const culturalBackground = document.getElementById('culturalBackground').value;
+            const eventLocation = document.getElementById('eventLocation').value;
+
+            // Enhanced validation
+            if (!firstName || !lastName || !email || !phone || !eventType || !eventDate || !culturalBackground || !eventLocation) {
+                // Shake animation for error
+                const submitBtn = document.querySelector('.checkout-btn');
+                submitBtn.style.animation = 'shake 0.5s ease-in-out';
+                setTimeout(() => {
+                    submitBtn.style.animation = '';
+                }, 500);
+                
+                alert('Please fill in all required fields (marked with *)');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            // Phone validation (basic)
+            const phoneRegex = /^[0-9]{10}$/;
+            if (!phoneRegex.test(phone.replace(/\D/g, ''))) {
+                alert('Please enter a valid 10-digit phone number');
+                return;
+            }
+
+            // Date validation (event should be in future)
+            const selectedDate = new Date(eventDate);
+            const today = new Date();
+            if (selectedDate <= today) {
+                alert('Event date should be in the future');
+                return;
+            }
+
+            // Calculate final total
+            const addonTotal = selectedAddons.reduce((sum, addon) => sum + addon.price, 0);
+            const finalTotal = basePrice + addonTotal;
+
+            // Create comprehensive order data
+            const orderData = {
+                customerInfo: {
+                    firstName,
+                    lastName,
+                    email,
+                    phone,
+                    eventType,
+                    eventDate,
+                    culturalBackground,
+                    expectedGuests: document.getElementById('expectedGuests').value,
+                    eventLocation,
+                    culturalDetails: document.getElementById('culturalDetails').value,
+                    familyHistory: document.getElementById('familyHistory').value,
+                    preferredLanguage: document.getElementById('preferredLanguage').value,
+                    deliveryFormat: document.getElementById('deliveryFormat').value,
+                    specialRequests: document.getElementById('specialRequests').value
+                },
+                package: 'Cultural Events Heritage Package',
+                basePrice,
+                addons: selectedAddons,
+                total: finalTotal,
+                orderDate: new Date().toISOString(),
+                estimatedDelivery: calculateDeliveryDate(eventDate)
+            };
+
+            // In a real application, this would be sent to a server
+            console.log('Heritage Order Data:', orderData);
+
+            // Animate button before success
+            const submitBtn = document.querySelector('.checkout-btn');
+            submitBtn.style.transform = 'scale(0.95)';
+            submitBtn.textContent = 'Processing...';
+            
+            setTimeout(() => {
+                // Show success message with enhanced animation
+                const successMsg = document.getElementById('successMessage');
+                successMsg.classList.add('show');
+                
+                // Scroll to top smoothly
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Reset form after successful submission
+                setTimeout(() => {
+                    form.reset();
+                    
+                    // Reset addons with animation
+                    selectedAddons = [];
+                    document.querySelectorAll('.addon-option').forEach((option, index) => {
+                        setTimeout(() => {
+                            option.classList.remove('selected');
+                            const btn = option.querySelector('.select-btn');
+                            btn.textContent = 'Select';
+                            btn.style.transform = 'scale(0.8)';
+                            setTimeout(() => {
+                                btn.style.transform = 'scale(1)';
+                            }, 100);
+                        }, index * 50);
+                    });
+                    
+                    updateTotal();
+                    
+                    // Reset button
+                    submitBtn.style.transform = 'scale(1)';
+                    submitBtn.textContent = 'Preserve Our Heritage 🏛️';
+                    
+                    // Hide success message after 8 seconds
+                    setTimeout(() => {
+                        successMsg.classList.remove('show');
+                    }, 8000);
+                }, 2000);
+            }, 1000);
+        }
+
+        function calculateDeliveryDate(eventDate) {
+            const event = new Date(eventDate);
+            const delivery = new Date(event);
+            delivery.setDate(delivery.getDate() + 14); // 2 weeks after event
+            return delivery.toISOString();
+        }
+
+        // Add shake animation for errors
+        const shakeKeyframes = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        
+        const style = document.createElement('style');
+        style.textContent = shakeKeyframes;
+        document.head.appendChild(style);
+
+        // Initialize the page with enhanced animations
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTotal();
+            
+            // Set minimum date to tomorrow for event date
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const tomorrowStr = tomorrow.toISOString().split('T')[0];
+            document.getElementById('eventDate').setAttribute('min', tomorrowStr);
+
+            // Add intersection observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for scroll animations
+            document.querySelectorAll('.addon-option, .form-group').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Add hover sound effect simulation (visual feedback)
+            document.querySelectorAll('.addon-option, .checkout-btn').forEach(el => {
+                el.addEventListener('mouseenter', function() {
+                    this.style.transition = 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                });
+            });
+
+            // Parallax effect for background
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallax = document.querySelector('body::before');
+                if (parallax) {
+                    const speed = scrolled * 0.5;
+                    document.body.style.backgroundPosition = `center ${speed}px`;
+                }
+            });
+        });
+
+        // Add cultural greeting based on time
+        function setCulturalGreeting() {
+            const hour = new Date().getHours();
+            const headerP = document.querySelector('.header p');
+            
+            if (hour < 12) {
+                headerP.textContent = "🙏 Namaste! Preserve and celebrate your cultural heritage with our premium documentation services";
+            } else if (hour < 17) {
+                headerP.textContent = "🙏 Sat Sri Akal! Preserve and celebrate your cultural heritage with our premium documentation services";
+            } else {
+                headerP.textContent = "🙏 Namaskar! Preserve and celebrate your cultural heritage with our premium documentation services";
+            }
+        }
+
+        // Set cultural greeting on load
+        setCulturalGreeting();
+
+        // Add smooth transitions for form inputs
+        document.querySelectorAll('input, textarea, select').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+                this.parentElement.style.transition = 'transform 0.3s ease';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -33,7 +33,7 @@ body {
 /* Hero Section */
 .hero {
     min-height: 100vh;
-    background: linear-gradient(135deg, rgba(254, 254, 254, 0.9), rgba(247, 233, 215, 0.8)),
+    background: linear-gradient(135deg, white,pink),
                 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><radialGradient id="bokeh1" cx="0.3" cy="0.2"><stop offset="0%" stop-color="%23f9d5d3" stop-opacity="0.3"/><stop offset="100%" stop-color="%23f9d5d3" stop-opacity="0"/></radialGradient><radialGradient id="bokeh2" cx="0.7" cy="0.6"><stop offset="0%" stop-color="%23f7e9d7" stop-opacity="0.4"/><stop offset="100%" stop-color="%23f7e9d7" stop-opacity="0"/></radialGradient></defs><circle cx="360" cy="160" r="120" fill="url(%23bokeh1)"/><circle cx="840" cy="480" r="180" fill="url(%23bokeh2)"/><circle cx="200" cy="600" r="100" fill="url(%23bokeh1)"/></svg>') center/cover;
     display: flex;
     align-items: center;
@@ -47,7 +47,8 @@ body {
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
     margin-bottom: 1rem;
-    background: var(--gradient-primary);
+    background: linear-gradient(120deg , violet,cyan,blue,lightgray);
+    /* background: var(--gradient-primary); */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

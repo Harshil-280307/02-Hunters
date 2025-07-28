@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sangam Ceremony Package</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #ffc3a0, #ffeaa7);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            padding: 20px;
+            color: #2c2c54;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating particles animation */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, rgba(255, 107, 157, 0.8), rgba(196, 69, 105, 0.4));
+            border-radius: 50%;
+            animation: float 25s infinite linear;
+        }
+
+        .particle:nth-child(odd) {
+            background: radial-gradient(circle, rgba(255, 195, 160, 0.8), rgba(255, 234, 167, 0.4));
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(90vh) rotate(36deg) scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(-10vh) rotate(324deg) scale(0.8);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Additional decorative elements */
+        .decorative-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 107, 157, 0.1);
+            animation: floatShape 20s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 50%;
+            right: 15%;
+            animation-delay: 5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 10s;
+        }
+
+        @keyframes floatShape {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-section {
+            margin-bottom: 30px;
+            animation: slideInLeft 1s ease;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .prev-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .prev-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateX(-5px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .prev-btn:active {
+            transform: translateX(-3px) scale(0.98);
+        }
+
+        .header {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 50px;
+            animation: slideInDown 1s ease;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #fff, #ffeaa7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5)); }
+            to { filter: drop-shadow(0 0 20px rgba(255, 234, 167, 0.8)); }
+        }
+
+        .header p {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 2x2 Grid Layout */
+        .packages-wrapper {
+            margin-bottom: 50px;
+        }
+
+        .package-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .package-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s ease;
+            animation: slideInUp 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 195, 160, 0.3), transparent);
+            transition: all 1s ease;
+        }
+
+        .package-card:hover::before {
+            left: 100%;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .package-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #fff;
+            animation: pulse 2s infinite;
+            position: relative;
+        }
+
+        .package-icon::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            border-radius: 50%;
+            z-index: -1;
+            animation: rotate 10s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .package-card h2 {
+            font-size: 2.5rem;
+            color: #2c2c54;
+            margin-bottom: 15px;
+        }
+
+        .package-price {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .features li {
+            padding: 12px 0;
+            color: #2c2c54;
+            font-size: 1.1rem;
+            border-bottom: 1px solid rgba(44, 44, 84, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .features li:hover {
+            background: rgba(255, 154, 158, 0.1);
+            padding-left: 10px;
+            transform: translateX(5px);
+        }
+
+        .features li::before {
+            content: '🪷';
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .select-package-link {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .select-package-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: all 0.6s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .select-package-link:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .select-package-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 154, 158, 0.4);
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Total Calculator */
+        .total-section {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            color: #fff;
+            padding: 50px;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(255, 154, 158, 0.4);
+            animation: fadeInUp 1s ease 1.5s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .total-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.05) 10px,
+                rgba(255, 255, 255, 0.05) 20px
+            );
+            animation: backgroundMove 20s linear infinite;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .total-price {
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 30px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .checkout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .checkout-btn:hover {
+            background: rgba(255, 255, 255, 1);
+            color: #ff9a9e;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+            color: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            display: none;
+            box-shadow: 0 15px 35px rgba(0, 210, 255, 0.4);
+        }
+
+        .success-message.show {
+            display: block;
+            animation: successSlide 0.6s ease;
+        }
+
+        @keyframes successSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .package-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .total-price {
+                font-size: 2.5rem;
+            }
+            
+            .package-card,
+            .total-section {
+                padding: 30px 20px;
+            }
+
+            .prev-btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .package-price {
+                font-size: 2.5rem;
+            }
+            
+            .total-price {
+                font-size: 2rem;
+            }
+
+            .prev-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+
+            .package-card {
+                padding: 25px 15px;
+            }
+
+            .package-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Decorative Shapes -->
+    <div class="decorative-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <!-- Previous Button -->
+        <div class="nav-section">
+            <button class="prev-btn" onclick="goBack()">
+                ← Previous
+            </button>
+        </div>
+
+        <div class="header">
+            <h1>🪷 Sangam Ceremony Packages</h1>
+            <p>Celebrate the sacred union of families with traditional elegance</p>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <h3>🎊 Booking Confirmed Successfully!</h3>
+            <p>Thank you for choosing our Sangam ceremony package. Our team will contact you within 24 hours to discuss your sacred ceremony requirements!</p>
+        </div>
+
+        <!-- Package Cards in 2x2 Layout -->
+        <div class="packages-wrapper">
+            <!-- First Row -->
+            <div class="package-row">
+                <!-- Basic Package -->
+                <div class="package-card">
+                    <div class="package-icon">🕉️</div>
+                    <h2>Traditional Package</h2>
+                    <div class="package-price">₹35,000</div>
+                    <ul class="features">
+                        <li>Sacred Ceremony Setup with Mandap</li>
+                        <li>Traditional Photography (3 hours)</li>
+                        <li>Priest & Religious Arrangements</li>
+                        <li>Family Seating Arrangement</li>
+                        <li>Digital Photo Album (75 photos)</li>
+                        <li>Traditional Music System</li>
+                        <li>Basic Floral Decorations</li>
+                        <li>Ceremony Coordination</li>
+                    </ul>
+                    <a href="./TraditionalPackage.html" class="select-package-link" onclick="selectPackage('Traditional', 25000); return false;">Select Traditional Package</a>
+                </div>
+
+                <!-- Premium Package -->
+                <div class="package-card">
+                    <div class="package-icon">👑</div>
+                    <h2>Premium Package</h2>
+                    <div class="package-price">₹45,999</div>
+                    <ul class="features">
+                        <li>Elaborate Mandap with Premium Decor</li>
+                        <li>Professional Photography + Videography (5 hours)</li>
+                        <li>Experienced Priest & Full Rituals</li>
+                        <li>Premium Family Seating with Comfort</li>
+                        <li>Digital + Physical Albums (150 photos)</li>
+                        <li>Traditional Music & Sound System</li>
+                        <li>Extensive Floral & Cultural Decorations</li>
+                        <li>Welcome Refreshments for Families</li>
+                        <li>Dedicated Event Coordinator</li>
+                        <li>Live Streaming for Distant Relatives</li>
+                    </ul>
+                    <a href="./PremiumPackage.html" class="select-package-link" onclick="selectPackage('Premium', 45999); return false;">Select Premium Package</a>
+                </div>
+            </div>
+
+            <!-- Second Row -->
+            <div class="package-row">
+                <!-- Luxury Package -->
+                <div class="package-card">
+                    <div class="package-icon">✨</div>
+                    <h2>Royal Package</h2>
+                    <div class="package-price">₹75,999</div>
+                    <ul class="features">
+                        <li>Grand Royal Mandap with Gold Accents</li>
+                        <li>Full Day Photography & Cinematic Videography</li>
+                        <li>Renowned Priest with Complete Vedic Rituals</li>
+                        <li>Luxurious Family Lounge Areas</li>
+                        <li>Complete Digital Archives & Premium Albums</li>
+                        <li>Live Traditional Musicians & Singers</li>
+                        <li>Royal Floral Arrangements & Stage Setup</li>
+                        <li>Full Family Catering Service</li>
+                        <li>Transportation for Elderly Family Members</li>
+                        <li>Multi-Camera Live Streaming Setup</li>
+                        <li>Traditional Gift Distribution</li>
+                        <li>Post-Ceremony Family Documentation</li>
+                    </ul>
+                    <a href="./RoyalPackage.html" class="select-package-link" onclick="selectPackage('Royal', 75999); return false;">Select Royal Package</a>
+                </div>
+
+                <!-- Custom Package -->
+                <div class="package-card">
+                    <div class="package-icon">🎨</div>
+                    <h2>Custom Package</h2>
+                    <div class="package-price">Price on Request</div>
+                    <ul class="features">
+                        <li>Tailored to Your Family Traditions</li>
+                        <li>Regional & Cultural Customizations</li>
+                        <li>Flexible Ceremony Duration</li>
+                        <li>Custom Mandap Design</li>
+                        <li>Personalized Religious Arrangements</li>
+                        <li>Unique Cultural Elements</li>
+                        <li>Multi-Location Ceremony Options</li>
+                        <li>Specialized Photography Themes</li>
+                        <li>Extended Family Accommodation</li>
+                        <li>Heritage Documentation Services</li>
+                    </ul>
+                    <a href="./CustomPackage.html" class="select-package-link" onclick="selectPackage('Custom', 0); return false;">Request Custom Quote</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    <script>
+        let selectedPackage = null;
+        let selectedAddons = [];
+        let basePrice = 0;
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 60;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 25 + 's';
+                particle.style.animationDuration = (Math.random() * 15 + 20) + 's';
+                
+                // Random size variation
+                const size = Math.random() * 4 + 3;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        function selectPackage(packageName, price) {
+            selectedPackage = { name: packageName, price: price };
+            basePrice = price;
+            
+            // Update link states
+            document.querySelectorAll('.select-package-link').forEach(link => {
+                link.textContent = link.textContent.replace('Selected - ', '').replace('Request Custom Quote', 'Request Custom Quote').replace('Select ', 'Select ');
+                link.style.background = 'linear-gradient(135deg, #ff9a9e, #fecfef)';
+            });
+            
+            if (packageName === 'Custom') {
+                event.target.textContent = `Custom Quote Requested`;
+            } else {
+                event.target.textContent = `Selected - ${packageName} Package`;
+            }
+            event.target.style.background = 'linear-gradient(135deg, #00d2ff, #3a7bd5)';
+            
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const selectedItemsDiv = document.getElementById('selectedItems');
+            let itemsHTML = '<h4>Package Details:</h4>';
+            
+            if (selectedPackage) {
+                if (selectedPackage.name === 'Custom') {
+                    document.getElementById('totalPrice').textContent = 'Custom Quote';
+                    itemsHTML += `
+                        <div class="selected-item" style="display: flex; justify-content: space-between; margin: 10px 0; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.2);">
+                            <span>${selectedPackage.name} Package</span>
+                            <span>Price on Request</span>
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('totalPrice').textContent = `₹${selectedPackage.price.toLocaleString('en-IN')}`;
+                    itemsHTML += `
+                        <div class="selected-item" style="display: flex; justify-content: space-between; margin: 10px 0; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.2);">
+                            <span>${selectedPackage.name} Package</span>
+                            <span>₹${selectedPackage.price.toLocaleString('en-IN')}</span>
+                        </div>
+                    `;
+                }
+            } else {
+                document.getElementById('totalPrice').textContent = '';
+                itemsHTML += `
+                    <div class="selected-item" style="display: flex; justify-content: center; margin: 10px 0; padding: 8px 0; color: rgba(255,255,255,0.7);">
+                        <span>Choose your perfect Sangam ceremony package above</span>
+                    </div>
+                `;
+            }
+            
+            selectedItemsDiv.innerHTML = itemsHTML;
+        }
+
+        function submitBooking() {
+            // Validation
+            if (!selectedPackage) {
+                alert('Please select a package first!');
+                return;
+            }
+
+            // Create booking data
+            const bookingData = {
+                selectedPackage,
+                total: selectedPackage.name === 'Custom' ? 'Custom Quote' : basePrice,
+                bookingDate: new Date().toISOString(),
+                ceremonyType: 'Sangam Ceremony'
+            };
+
+            // In a real application, send this data to server
+            console.log('Sangam Ceremony Booking Data:', bookingData);
+
+            // Show success message
+            document.getElementById('successMessage').classList.add('show');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Reset selection after submission
+            setTimeout(() => {
+                // Reset package selection
+                selectedPackage = null;
+                basePrice = 0;
+                document.querySelectorAll('.select-package-link').forEach(link => {
+                    const originalText = link.textContent.includes('Custom') ? 'Request Custom Quote' : 
+                                    link.textContent.includes('Traditional') ? 'Select Traditional Package' :
+                                    link.textContent.includes('Premium') ? 'Select Premium Package' :
+                                    'Select Royal Package';
+                    link.textContent = originalText;
+                    link.style.background = 'linear-gradient(135deg, #ff9a9e, #fecfef)';
+                });
+                
+                updateTotal();
+                
+                // Hide success message after 6 seconds
+                setTimeout(() => {
+                    document.getElementById('successMessage').classList.remove('show');
+                }, 6000);
+            }, 2000);
+        }
+
+        function goBack() {
+            // In a real application, this would navigate to the previous page
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                // Fallback - could redirect to home page or show message
+                alert('This would take you back to the Pre-Wedding Events page');
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            updateTotal();
+            
+            // Add interactive effects
+            const cards = document.querySelectorAll('.package-card');
+            cards.forEach((card, index) => {
+                // Stagger animation delays
+                card.style.animationDelay = (index * 0.2) + 's';
+                
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('selected')) {
+                        this.style.transform = 'translateY(0) scale(1)';
+                    }
+                });
+            });
+
+            // Add smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Parallax scroll effects
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.header');
+            const speed = scrolled * 0.5;
+            
+            if (parallax) {
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+
+            // Add scroll-based animations for decorative shapes
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const rate = scrolled * (0.3 + index * 0.1);
+                shape.style.transform = `translateY(${rate}px) rotate(${rate * 0.5}deg)`;
+            });
+        });
+
+        // Touch support for mobile devices
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartY = e.changedTouches[0].screenY;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartY - touchEndY;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe up - scroll to next section
+                    const nextSection = document.querySelector('.total-section');
+                    if (nextSection) {
+                        nextSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                } else {
+                    // Swipe down - scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+        }
+
+        // Keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.target.classList.contains('select-package-link')) {
+                e.target.click();
+            }
+            
+            // Arrow key navigation between packages
+            if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                const cards = document.querySelectorAll('.package-card');
+                const focusedCard = document.activeElement.closest('.package-card');
+                if (focusedCard) {
+                    const currentIndex = Array.from(cards).indexOf(focusedCard);
+                    let nextIndex;
+                    
+                    if (e.key === 'ArrowRight') {
+                        nextIndex = (currentIndex + 1) % cards.length;
+                    } else {
+                        nextIndex = (currentIndex - 1 + cards.length) % cards.length;
+                    }
+                    
+                    cards[nextIndex].querySelector('.select-package-link').focus();
+                }
+            }
+        });
+
+        // Performance optimization: Lazy load animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Add special effect for package cards
+                    if (entry.target.classList.contains('package-card')) {
+                        setTimeout(() => {
+                            entry.target.style.transform = 'translateY(0) scale(1)';
+                        }, 100);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        setTimeout(() => {
+            const elementsToAnimate = document.querySelectorAll('.package-card, .total-section');
+            elementsToAnimate.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+        }, 100);
+
+        // Add dynamic particle creation on scroll
+        let particleTimeout;
+        window.addEventListener('scroll', function() {
+            clearTimeout(particleTimeout);
+            particleTimeout = setTimeout(() => {
+                // Add extra particles on scroll
+                const extraParticle = document.createElement('div');
+                extraParticle.className = 'particle';
+                extraParticle.style.left = Math.random() * 100 + '%';
+                extraParticle.style.animationDelay = '0s';
+                extraParticle.style.animationDuration = '5s';
+                document.getElementById('particles').appendChild(extraParticle);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    if (extraParticle.parentNode) {
+                        extraParticle.parentNode.removeChild(extraParticle);
+                    }
+                }, 5000);
+            }, 100);
+        });
+
+        // Add hover sound effect simulation (visual feedback)
+        document.querySelectorAll('.select-package-link, .checkout-btn, .prev-btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.boxShadow = this.style.boxShadow + ', 0 0 20px rgba(255, 255, 255, 0.5)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.boxShadow = this.style.boxShadow.replace(', 0 0 20px rgba(255, 255, 255, 0.5)', '');
+            });
+        });
+
+        // Add loading animation for smooth experience
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '1';
+            document.body.style.transform = 'translateY(0)';
+        });
+
+        // Set initial loading state
+        document.body.style.opacity = '0';
+        document.body.style.transform = 'translateY(20px)';
+        document.body.style.transition = 'all 0.6s ease';
+    </script>
+</body>
+</html>

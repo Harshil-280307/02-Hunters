@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anniversary Celebrations & Pre-Wedding Events - Choose Your Package</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #f7f3e9 0%, #e8dcc0 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #5d4e37;
+            overflow-x: hidden;
+        }
+
+        /* Pre-Wedding Background Animations */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        /* Floating Wedding Elements */
+        .wedding-element {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.15;
+            animation: floatWedding 12s infinite linear;
+        }
+
+        @keyframes floatWedding {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.15;
+                transform: translateY(90vh) rotate(36deg) scale(0.7);
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) scale(1);
+                opacity: 0.2;
+            }
+            90% {
+                opacity: 0.15;
+                transform: translateY(10vh) rotate(324deg) scale(0.8);
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        .wedding-element:nth-child(odd) {
+            animation-duration: 15s;
+            color: rgba(255, 107, 107, 0.15);
+        }
+
+        .wedding-element:nth-child(even) {
+            animation-duration: 18s;
+            color: rgba(78, 205, 196, 0.15);
+        }
+
+        .wedding-element:nth-child(3n) {
+            animation-duration: 20s;
+            color: rgba(254, 202, 87, 0.15);
+        }
+
+        .wedding-element:nth-child(4n) {
+            animation-duration: 14s;
+            color: rgba(165, 94, 234, 0.15);
+        }
+
+        /* Floating Petals Animation */
+        .petal {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50% 0 50% 0;
+            animation: petalFall 8s infinite linear;
+            opacity: 0.1;
+        }
+
+        @keyframes petalFall {
+            0% {
+                transform: translateY(-20px) rotateZ(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.1;
+                transform: translateY(50vh) rotateZ(180deg);
+            }
+            100% {
+                transform: translateY(100vh) rotateZ(360deg);
+                opacity: 0;
+            }
+        }
+
+        .petal:nth-child(odd) {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            animation-duration: 10s;
+        }
+
+        .petal:nth-child(even) {
+            background: linear-gradient(45deg, #4ecdc4, #a55eea);
+            animation-duration: 12s;
+        }
+
+        /* Sparkle Animation */
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            animation: sparkleShine 3s infinite ease-in-out;
+        }
+
+        @keyframes sparkleShine {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+                box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
+            }
+        }
+
+        .sparkle:nth-child(odd) {
+            animation-delay: 0s;
+        }
+
+        .sparkle:nth-child(even) {
+            animation-delay: 1.5s;
+        }
+
+        /* Background Gradient Animation */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(255, 107, 107, 0.03) 0%,
+                rgba(78, 205, 196, 0.03) 25%,
+                rgba(254, 202, 87, 0.03) 50%,
+                rgba(165, 94, 234, 0.03) 75%,
+                rgba(255, 107, 107, 0.03) 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Floating Rings Animation */
+        .ring {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            animation: ringFloat 20s infinite linear;
+        }
+
+        @keyframes ringFloat {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(50vh) translateX(50px) rotate(180deg);
+                opacity: 0.1;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-50px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .ring:nth-child(odd) {
+            border-color: rgba(255, 107, 107, 0.15);
+            animation-duration: 25s;
+        }
+
+        .ring:nth-child(even) {
+            border-color: rgba(78, 205, 196, 0.15);
+            animation-duration: 30s;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: #8b7355;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(139, 115, 85, 0.2);
+            color: #8b7355;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 2px 2px 4px rgba(139, 115, 85, 0.2);
+            }
+            100% {
+                text-shadow: 2px 2px 20px rgba(212, 175, 55, 0.4);
+            }
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            color: #a0956b;
+            animation: fadeIn 1.5s ease-out 0.5s both;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0.9;
+            }
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin: 60px 0 40px 0;
+            animation: slideInFromLeft 1s ease-out;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #5d4e37;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .anniversary-header h2 {
+            color: #8b7355;
+        }
+
+        .prewedding-header h2 {
+            color: #6b4423;
+            background: linear-gradient(45deg, #8b4513, #a0522d, #d2691e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #d4af37, #b8860b);
+            border-radius: 2px;
+            animation: expandLine 1s ease-out 0.5s both;
+        }
+
+        .prewedding-header h2::after {
+            background: linear-gradient(90deg, #d2691e, #8b4513);
+        }
+
+        @keyframes expandLine {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 80px;
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #8b7355;
+            animation: fadeIn 1.5s ease-out 0.8s both;
+        }
+
+        .prewedding-header p {
+            color: #8b4513;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .card {
+            background: #fefcf6;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(139, 115, 85, 0.15);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            border: 2px solid #f0e6d2;
+            animation: slideInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        /* Anniversary Cards */
+        .anniversary-cards .card:nth-child(1) { animation-delay: 0.1s; }
+        .anniversary-cards .card:nth-child(2) { animation-delay: 0.2s; }
+        .anniversary-cards .card:nth-child(3) { animation-delay: 0.3s; }
+        .anniversary-cards .card:nth-child(4) { animation-delay: 0.4s; }
+
+        /* Pre-Wedding Cards */
+        .prewedding-cards .card:nth-child(1) { animation-delay: 0.6s; }
+        .prewedding-cards .card:nth-child(2) { animation-delay: 0.7s; }
+        .prewedding-cards .card:nth-child(3) { animation-delay: 0.8s; }
+        .prewedding-cards .card:nth-child(4) { animation-delay: 0.9s; }
+
+        @keyframes slideInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(139, 115, 85, 0.3);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #d4af37, #cd853f, #daa520, #b8860b);
+            transition: left 0.5s ease;
+        }
+
+        .card:hover::before {
+            left: 0;
+        }
+
+        /* Anniversary Card Colors */
+        .card.basic::before {
+            background: linear-gradient(90deg, #cd853f, #d2b48c);
+        }
+
+        .card.medium::before {
+            background: linear-gradient(90deg, #daa520, #d4af37);
+        }
+
+        .card.premium::before {
+            background: linear-gradient(90deg, #b8860b, #cd853f);
+        }
+
+        .card.custom::before {
+            background: linear-gradient(90deg, #f4a460, #deb887);
+        }
+
+        /* Pre-Wedding Card Colors */
+        .card.engagement::before {
+            background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
+        }
+
+        .card.sangam::before {
+            background: linear-gradient(90deg, #4ecdc4, #45b7b8);
+        }
+
+        .card.mehendi::before {
+            background: linear-gradient(90deg, #feca57, #ff9ff3);
+        }
+
+        .card.prewedding-shoot::before {
+            background: linear-gradient(90deg, #a55eea, #778beb);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #d4af37, #b8860b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #fefcf6;
+            transition: all 0.3s ease;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.1) rotate(360deg);
+            animation: none;
+        }
+
+        /* Anniversary Card Icons */
+        .basic .card-icon {
+            background: linear-gradient(135deg, #cd853f, #a0522d);
+        }
+
+        .medium .card-icon {
+            background: linear-gradient(135deg, #daa520, #b8860b);
+        }
+
+        .premium .card-icon {
+            background: linear-gradient(135deg, #b8860b, #8b7355);
+        }
+
+        .custom .card-icon {
+            background: linear-gradient(135deg, #f4a460, #deb887);
+        }
+
+        /* Pre-Wedding Card Icons */
+        .engagement .card-icon {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+        }
+
+        .sangam .card-icon {
+            background: linear-gradient(135deg, #4ecdc4, #38ada9);
+        }
+
+        .mehendi .card-icon {
+            background: linear-gradient(135deg, #feca57, #ff6348);
+        }
+
+        .prewedding-shoot .card-icon {
+            background: linear-gradient(135deg, #a55eea, #778beb);
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            color: #5d4e37;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .card:hover h3 {
+            color: #d4af37;
+        }
+
+        /* Pre-Wedding Card Hover Colors */
+        .engagement:hover h3 {
+            color: #ff6b6b;
+        }
+
+        .sangam:hover h3 {
+            color: #4ecdc4;
+        }
+
+        .mehendi:hover h3 {
+            color: #feca57;
+        }
+
+        .prewedding-shoot:hover h3 {
+            color: #a55eea;
+        }
+
+        .card .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #8b7355;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .price {
+            transform: scale(1.1);
+        }
+
+        /* Anniversary Prices */
+        .basic .price {
+            color: #cd853f;
+        }
+
+        .medium .price {
+            color: #daa520;
+        }
+
+        .premium .price {
+            color: #b8860b;
+        }
+
+        .custom .price {
+            color: #f4a460;
+        }
+
+        /* Pre-Wedding Prices */
+        .engagement .price {
+            color: #ff6b6b;
+        }
+
+        .sangam .price {
+            color: #4ecdc4;
+        }
+
+        .mehendi .price {
+            color: #feca57;
+        }
+
+        .prewedding-shoot .price {
+            color: #a55eea;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .features li {
+            padding: 8px 0;
+            color: #6b5b3e;
+            position: relative;
+            opacity: 0;
+            animation: fadeInLeft 0.5s ease-out forwards;
+        }
+
+        .features li:nth-child(1) { animation-delay: 0.8s; }
+        .features li:nth-child(2) { animation-delay: 0.9s; }
+        .features li:nth-child(3) { animation-delay: 1.0s; }
+        .features li:nth-child(4) { animation-delay: 1.1s; }
+        .features li:nth-child(5) { animation-delay: 1.2s; }
+        .features li:nth-child(6) { animation-delay: 1.3s; }
+        .features li:nth-child(7) { animation-delay: 1.4s; }
+
+        @keyframes fadeInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .features li::before {
+            content: '✓';
+            color: #d4af37;
+            font-weight: bold;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .features li::before {
+            transform: scale(1.2);
+            color: #b8860b;
+        }
+
+        /* Pre-Wedding Feature Icons */
+        .engagement:hover .features li::before {
+            color: #ff6b6b;
+        }
+
+        .sangam:hover .features li::before {
+            color: #4ecdc4;
+        }
+
+        .mehendi:hover .features li::before {
+            color: #feca57;
+        }
+
+        .prewedding-shoot:hover .features li::before {
+            color: #a55eea;
+        }
+
+        .btn {
+            text-decoration: none;
+            background: linear-gradient(135deg, #d4af37, #b8860b);
+            color: #fefcf6;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Anniversary Button Colors */
+        .basic .btn {
+            background: linear-gradient(135deg, #cd853f, #a0522d);
+        }
+
+        .medium .btn {
+            background: linear-gradient(135deg, #daa520, #b8860b);
+        }
+
+        .premium .btn {
+            background: linear-gradient(135deg, #b8860b, #8b7355);
+        }
+
+        .custom .btn {
+            background: linear-gradient(135deg, #f4a460, #deb887);
+            color: #5d4e37;
+        }
+
+        /* Pre-Wedding Button Colors */
+        .engagement .btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+        }
+
+        .sangam .btn {
+            background: linear-gradient(135deg, #4ecdc4, #38ada9);
+        }
+
+        .mehendi .btn {
+            background: linear-gradient(135deg, #feca57, #ff6348);
+            color: #5d4e37;
+        }
+
+        .prewedding-shoot .btn {
+            background: linear-gradient(135deg, #a55eea, #778beb);
+        }
+
+        .selected {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(139, 115, 85, 0.4);
+            border: 3px solid #d4af37;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                border-color: #d4af37;
+            }
+            50% {
+                border-color: #b8860b;
+            }
+            100% {
+                border-color: #d4af37;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(93, 78, 55, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: #fefcf6;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            margin: 20px;
+            border: 2px solid #f0e6d2;
+            animation: modalSlideIn 0.5s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.05), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes modalSlideIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .close {
+            float: right;
+            font-size: 28px;
+            cursor: pointer;
+            color: #8b7355;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            color: #5d4e37;
+            transform: rotate(90deg) scale(1.2);
+        }
+
+        /* Celebration confetti animation */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #d4af37;
+            animation: confetti-fall 3s linear infinite;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .confetti:nth-child(odd) {
+            background: #b8860b;
+            animation-duration: 2.5s;
+        }
+
+        .confetti:nth-child(even) {
+            background: #cd853f;
+            animation-duration: 3.5s;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                max-width: 900px;
+            }
+            
+            .cards-container {
+                max-width: 750px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                max-width: 500px;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .header p, .section-header p {
+                font-size: 1rem;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .card h3 {
+                font-size: 1.5rem;
+            }
+            
+            .card .price {
+                font-size: 2rem;
+            }
+
+            .card-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.6rem;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            .card .price {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>💐 Pre-Wedding Events</h1>
+            <p>Make every moment before your big day unforgettable with our premium packages</p>
+        </div>
+
+        <!-- Pre-Wedding Events Section -->
+        <div class="section-header prewedding-header">
+            <h2>✨ Choose Your Perfect Pre-Wedding Package</h2>
+            <p>Professional photography and videography services for your special celebrations</p>
+        </div>
+
+        <div class="cards-container prewedding-cards">
+            <!-- Engagement Package -->
+            <div class="card engagement" onclick="selectCard(this, 'engagement')">
+                <div class="card-icon">💍</div>
+                <h3>Engagement Ceremony</h3>
+                <!-- <div class="price"></div> -->
+                <ul class="features">
+                    <li>Full Day Photography (8 hrs)</li>
+                    <li>Cinematic Videography</li>
+                    <li>Drone Coverage</li>
+                    <li>Premium Album (100 photos)</li>
+                    <li>4K Highlight Video (5 min)</li>
+                    <li>Digital Gallery & USB</li>
+                    <li>Same Day Teasers</li>
+                </ul>
+                <a href="../Pre-WeddingEvents/Engagement Ceremony/EngagementCeremony.html" class="btn" onclick="event.stopPropagation(); orderPackage('engagement', 45999)">Book Engagement</a>
+            </div>
+
+            <!-- Sangam Package -->
+            <div class="card sangam" onclick="selectCard(this, 'sangam')">
+                <div class="card-icon">🤝</div>
+                <h3>Sangam Ceremony</h3>
+                <!-- <div class="price">₹38,999</div> -->
+                <ul class="features">
+                    <li>Traditional Rituals Coverage (6 hrs)</li>
+                    <li>Family Portrait Sessions</li>
+                    <li>Cultural Documentation</li>
+                    <li>Premium Photo Book</li>
+                    <li>Ceremonial Video (3 min)</li>
+                    <li>Multi-generational Shots</li>
+                    <li>24-hour Quick Preview</li>
+                </ul>
+                <a href="./Sangam Ceremony/SangamCeremony.html" class="btn" onclick="event.stopPropagation(); orderPackage('sangam', 38999)">Book Sangam</a>
+            </div>
+
+            <!-- Mehendi Package -->
+            <div class="card mehendi" onclick="selectCard(this, 'mehendi')">
+                <div class="card-icon">🎨</div>
+                <h3>Mehendi Ceremony</h3>
+                <!-- <div class="price">₹52,999</div> -->
+                <ul class="features">
+                    <li>Full Day Mehendi Coverage (10 hrs)</li>
+                    <li>Henna Detail Macro Shots</li>
+                    <li>Candid Fun Moments</li>
+                    <li>Professional Lighting Setup</li>
+                    <li>Music Video Style Edit (6 min)</li>
+                    <li>Instagram Reels Package</li>
+                    <li>Live Photo Sharing</li>
+                </ul>
+                <a href="../Pre-WeddingEvents/Mehendi Ceremony/MehendiCeremony.html" class="btn" onclick="event.stopPropagation(); orderPackage('mehendi', 52999)">Book Mehendi</a>
+            </div>
+
+            <!-- Pre-Wedding Shoot Package -->
+            <div class="card prewedding-shoot" onclick="selectCard(this, 'prewedding-shoot')">
+                <div class="card-icon">📸</div>
+                <h3>Pre-Wedding Shoot</h3>
+                <!-- <div class="price">₹65,999</div> -->
+                <ul class="features">
+                    <li>Multiple Location Shoots</li>
+                    <li>Professional Styling & Makeup</li>
+                    <li>Cinematic Video (8 min)</li>
+                    <li>200+ Edited Photos</li>
+                    <li>Outfit & Prop Consultation</li>
+                    <li>Aerial Drone Sequences</li>
+                    <li>Premium Canvas Prints</li>
+                </ul>
+                <a href="../Pre-WeddingEvents/Pre-Wedding Shoot/PreWeddingShoot.html" class="btn" onclick="event.stopPropagation(); orderPackage('prewedding-shoot', 65999)">Book Shoot</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for custom package -->
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCustomModal()">&times;</span>
+            <h2 style="color: #5d4e37; margin-bottom: 20px;">Custom Package Consultation</h2>
+            <p style="color: #8b7355; margin-bottom: 20px;">
+                Let's create something unique for your special occasion! Our team will contact you within 24 hours to discuss your vision.
+            </p>
+            <button class="btn" onclick="requestConsultation()" style="background: linear-gradient(135deg, #f4a460, #deb887); color: #5d4e37;">
+                Request Consultation
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let selectedPackage = null;
+
+        // Create pre-wedding themed floating elements
+        function createFloatingElements() {
+            const elementsContainer = document.querySelector('.floating-elements');
+            
+            // Wedding-themed emojis and symbols
+            const weddingElements = ['💍', '💐', '🌹', '💒', '👰', '🤵', '💎', '🎀', '🦋', '✨', '🌸', '💫'];
+            
+            // Create floating wedding elements
+            setInterval(() => {
+                const element = document.createElement('div');
+                element.className = 'wedding-element';
+                element.textContent = weddingElements[Math.floor(Math.random() * weddingElements.length)];
+                element.style.left = Math.random() * 100 + 'vw';
+                element.style.animationDuration = (Math.random() * 8 + 12) + 's';
+                element.style.fontSize = (Math.random() * 10 + 20) + 'px';
+                elementsContainer.appendChild(element);
+                
+                setTimeout(() => {
+                    element.remove();
+                }, 25000);
+            }, 3000);
+
+            // Create floating petals
+            setInterval(() => {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.animationDelay = Math.random() * 2 + 's';
+                petal.style.animationDuration = (Math.random() * 4 + 8) + 's';
+                elementsContainer.appendChild(petal);
+                
+                setTimeout(() => {
+                    petal.remove();
+                }, 15000);
+            }, 1500);
+
+            // Create sparkles
+            setInterval(() => {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + 'vw';
+                sparkle.style.top = Math.random() * 100 + 'vh';
+                sparkle.style.animationDelay = Math.random() * 3 + 's';
+                elementsContainer.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 6000);
+            }, 2000);
+
+            // Create floating rings
+            setInterval(() => {
+                const ring = document.createElement('div');
+                ring.className = 'ring';
+                ring.style.left = Math.random() * 100 + 'vw';
+                ring.style.animationDuration = (Math.random() * 10 + 20) + 's';
+                elementsContainer.appendChild(ring);
+                
+                setTimeout(() => {
+                    ring.remove();
+                }, 35000);
+            }, 5000);
+        }
+
+        function selectCard(card, packageType) {
+            // Remove previous selection
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+            
+            // Add selection to clicked card
+            card.classList.add('selected');
+            selectedPackage = packageType;
+            
+            // Create celebration effect
+            createConfetti();
+            
+            // Add pulse effect to card
+            card.style.animation = 'pulse 1s ease-in-out';
+            setTimeout(() => {
+                card.style.animation = '';
+            }, 1000);
+        }
+
+        function createConfetti() {
+            const colors = ['#d4af37', '#b8860b', '#cd853f', '#daa520', '#ff6b6b', '#4ecdc4', '#feca57', '#a55eea'];
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 4000);
+                }, i * 100);
+            }
+        }
+
+        function orderPackage(packageType, price) {
+            createConfetti();
+            
+            // Add visual feedback
+            const selectedCard = document.querySelector(`.card.${packageType}`);
+            if (selectedCard) {
+                selectedCard.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    selectedCard.style.transform = '';
+                }, 300);
+            }
+            
+            setTimeout(() => {
+                const packageName = packageType.charAt(0).toUpperCase() + packageType.slice(1).replace('-', ' ');
+                alert(`🎉 You selected the ${packageName} Package for ₹${price.toLocaleString('en-IN')}!\n\nThank you for choosing us. We'll contact you within 24 hours to discuss the details and schedule your event.`);
+            }, 500);
+        }
+
+        function openCustomModal() {
+            document.getElementById('customModal').style.display = 'flex';
+            createConfetti();
+        }
+
+        function closeCustomModal() {
+            document.getElementById('customModal').style.display = 'none';
+        }
+
+        function requestConsultation() {
+            createConfetti();
+            setTimeout(() => {
+                alert('🌟 Thank you for your interest in our custom packages!\n\nOur creative team will contact you within 24 hours to discuss your vision and create a personalized quote for your special occasion.');
+                closeCustomModal();
+            }, 1000);
+        }
+
+        // Enhanced scroll animations
+        function handleScrollAnimations() {
+            const cards = document.querySelectorAll('.card');
+            const sections = document.querySelectorAll('.section-header');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            cards.forEach(card => observer.observe(card));
+            sections.forEach(section => observer.observe(section));
+        }
+
+        // Add parallax effect to floating elements based on scroll
+        function addParallaxEffect() {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const weddingElements = document.querySelectorAll('.wedding-element');
+                const petals = document.querySelectorAll('.petal');
+                const sparkles = document.querySelectorAll('.sparkle');
+                
+                weddingElements.forEach((element, index) => {
+                    const speed = 0.3 + (index % 4) * 0.1;
+                    element.style.transform += ` translateY(${scrolled * speed}px)`;
+                });
+
+                petals.forEach((petal, index) => {
+                    const speed = 0.2 + (index % 3) * 0.1;
+                    petal.style.transform += ` translateY(${scrolled * speed}px)`;
+                });
+
+                sparkles.forEach((sparkle, index) => {
+                    const speed = 0.4 + (index % 2) * 0.2;
+                    sparkle.style.transform += ` translateY(${scrolled * speed}px)`;
+                });
+            });
+        }
+
+        // Enhanced hover effects for cards
+        function addEnhancedHoverEffects() {
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    // Create subtle glow effect
+                    card.style.boxShadow = '0 30px 60px rgba(139, 115, 85, 0.3), 0 0 30px rgba(212, 175, 55, 0.2)';
+                    
+                    // Animate features list
+                    const features = card.querySelectorAll('.features li');
+                    features.forEach((feature, index) => {
+                        setTimeout(() => {
+                            feature.style.transform = 'translateX(5px)';
+                        }, index * 50);
+                    });
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.boxShadow = '';
+                    
+                    const features = card.querySelectorAll('.features li');
+                    features.forEach(feature => {
+                        feature.style.transform = 'translateX(0)';
+                    });
+                });
+            });
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('customModal');
+            if (event.target == modal) {
+                closeCustomModal();
+            }
+        }
+
+        // Add keyboard support for accessibility
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeCustomModal();
+            }
+        });
+
+        // Initialize all animations and effects
+        window.addEventListener('load', () => {
+            createFloatingElements();
+            handleScrollAnimations();
+            addParallaxEffect();
+            addEnhancedHoverEffects();
+            
+            // Add entrance animation for the entire page
+            document.body.style.opacity = '0';
+            document.body.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                document.body.style.transition = 'all 1s ease-out';
+                document.body.style.opacity = '1';
+                document.body.style.transform = 'translateY(0)';
+            }, 100);
+        });
+
+        // Add mobile touch effects
+        if ('ontouchstart' in window) {
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('touchstart', () => {
+                    card.style.transform = 'scale(0.98)';
+                });
+                
+                card.addEventListener('touchend', () => {
+                    setTimeout(() => {
+                        card.style.transform = '';
+                    }, 150);
+                });
+            });
+        }
+
+        // Performance optimization: Throttle scroll events
+        let ticking = false;
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+
+        function updateParallax() {
+            // Parallax updates here
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', requestTick);
+    </script>
+</body>
+</html>

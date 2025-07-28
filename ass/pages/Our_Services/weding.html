@@ -6,8 +6,56 @@
     <title>Wedding Planning - Your Vision, Our Expertise</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./style/weding.css">
+    <link rel="stylesheet" href="./style/nav.css">
 </head>
 <body>
+
+     <!-- nav section -->
+     <nav class="modern-cream-navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="#home" class="navbar-logo">
+                <div class="logo-icon"><img src="../../photos/001.png" width="100%" height="100%"></div>
+                <span class="logo-text">LUX EVENTS</span>
+            </a>
+            
+            <ul class="navbar-menu" id="navbarMenu">
+                <li class="navbar-item">
+                    <a href="#home" class="navbar-link">Home</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#about" class="navbar-link">About</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="Services.html" class="navbar-link">Services</a>
+                </li>
+                <!-- <li class="navbar-item">
+                    <a href="#portfolio" class="navbar-link">Packages</a>
+                </li> -->
+                <li class="navbar-item">
+                    <a href="#contact" class="navbar-link">Gallery</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#contact" class="navbar-link">Inquiry</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#get-started" class="navbar-cta">
+                        <span>BOOK NOW</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="mobile-toggle" id="mobileToggle">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
     <!-- Section 1: Hero Banner -->
     <section class="hero" id="hero">
         <div class="hero-content">
@@ -194,114 +242,37 @@
                 <i class="fas fa-file-download"></i>
                 <h3>Explore Packages, Inspirations, and Pricing</h3>
                 <p>Get our complete wedding planning guide with detailed packages, inspiration gallery, and transparent pricing.</p>
-                <a href="#" class="download-btn" onclick="downloadBrochure()">Download Wedding Brochure</a>
+                <a href="LUX_Wedding_Planning_Guide.pdf" class="download-btn" onclick="downloadBrochure()" download>Download Wedding Brochure</a>
             </div>
         </div>
     </section>
 
     <!-- Section 9: Embedded Video -->
-    <section class="video-block fade-in">
-        <div class="container">
-            <h2 class="section-title" style="color: white;">Behind the Scenes</h2>
-            <div class="video-container">
-                <div class="video-placeholder" onclick="playVideo()">
-                    <i class="fas fa-play"></i>
-                </div>
-                <p class="video-caption">Behind every magical wedding is a story of passion, creativity, and precision.</p>
+  <!-- Section 9: Embedded Video -->
+<section class="video-block fade-in">
+    <div class="container">
+        <h2 class="section-title" style="color: white;">Glam Highlights</h2>
+        <div class="video-container">
+            <div class="video-placeholder" onclick="playVideo()">
+                <i class="fas fa-play"></i>
             </div>
-        </div>
-    </section>
-
-    <script>
-        // Smooth scrolling
-        function scrollToSection(sectionId) {
-            document.getElementById(sectionId).scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
-
-        // Fade in animation on scroll
-        function handleScrollAnimations() {
-            const elements = document.querySelectorAll('.fade-in');
-            const windowHeight = window.innerHeight;
-
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-
-                if (elementTop < windowHeight - elementVisible) {
-                    element.classList.add('visible');
-                }
-            });
-        }
-
-        // Download brochure function
-        function downloadBrochure() {
-            alert('Wedding brochure download would start here. In a real implementation, this would trigger a PDF download.');
-        }
-
-        // Play video function
-        function playVideo() {
-            alert('Video player would open here. In a real implementation, this would open a video lightbox or player.');
-        }
-
-        // Carousel auto-scroll (optional)
-        function autoScrollCarousel() {
-            const carousel = document.querySelector('.carousel');
-            let scrollAmount = 0;
-            const cardWidth = 380; // Card width + gap
-
-            setInterval(() => {
-                if (scrollAmount >= carousel.scrollWidth - carousel.clientWidth) {
-                    scrollAmount = 0;
-                } else {
-                    scrollAmount += cardWidth;
-                }
-                carousel.scrollTo({
-                    left: scrollAmount,
-                    behavior: 'smooth'
-                });
-            }, 4000);
-        }
-
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            handleScrollAnimations();
-            // autoScrollCarousel(); // Uncomment if you want auto-scrolling carousel
-        });
-
-        // Handle scroll events
-        window.addEventListener('scroll', handleScrollAnimations);
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add loading animation
-        window.addEventListener('load', function() {
-            document.body.style.opacity = '1';
-        });
-
-        // Add hover effects for service cards
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
             
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-    </script>
+            <!-- Add actual video (YouTube embed or local MP4) -->
+            <div class="embedded-video" id="videoFrame" style="display: none;">
+                <iframe width="100%" height="400" src="https://www.youtube.com/embed/Co2Ot_nnI-8?si=JfRwU6qlNaRL_Let" 
+                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+
+            <p class="video-caption">See just how stunning every detail truly is — pure elegance in motion.</p>
+        </div>
+    </div>
+</section>
+
+
+
+    <script src="./javascript/weding.js"></script>
+
+    <script src="./javascript/nav.js"></script>
+
 </body>
 </html>

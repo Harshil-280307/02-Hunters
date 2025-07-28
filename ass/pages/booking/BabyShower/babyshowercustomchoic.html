@@ -1,0 +1,1948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Baby Shower Event Builder - Choose Everything</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8f0 50%, #f0f8ff 100%);
+            min-height: 100vh;
+            padding: 10px;
+            color: #4a4a4a;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: #e91e63;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(233, 30, 99, 0.2);
+            background: linear-gradient(135deg, #e91e63, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            opacity: 0.9;
+            color: #ad1457;
+            margin-bottom: 20px;
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .summary-sidebar {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 100;
+                border-radius: 20px 20px 0 0;
+                max-height: none;
+                height: auto;
+                box-shadow: 0 -10px 30px rgba(233, 30, 99, 0.3);
+            }
+
+            .summary-sidebar.collapsed {
+                height: 80px;
+                overflow: hidden;
+            }
+
+            .mobile-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: #4a4a4a;
+                font-size: 1.2rem;
+                font-weight: bold;
+                cursor: pointer;
+                padding: 10px;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255,255,255,0.3);
+            }
+
+            .categories-container {
+                margin-bottom: 120px;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .mobile-toggle {
+                display: none;
+            }
+        }
+
+        .categories-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .category-section {
+            background: linear-gradient(135deg, #ffffff 0%, #fef7f7 100%);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.12);
+            border: 2px solid #f8bbd9;
+            transition: all 0.3s ease;
+        }
+
+        .category-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(233, 30, 99, 0.18);
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f8bbd9;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .category-title {
+            color: #e91e63;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-total {
+            background: linear-gradient(135deg, #f8bbd9, #fce4ec);
+            color: #4a4a4a;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            white-space: nowrap;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .items-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .items-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .item-card {
+            background: linear-gradient(135deg, #fefefe 0%, #fef7f7 100%);
+            border: 2px solid #f8bbd9;
+            border-radius: 12px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(233, 30, 99, 0.2);
+            border-color: #f48fb1;
+        }
+
+        .item-card.selected {
+            border-color: #e91e63;
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.25);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .item-icon {
+            font-size: 1.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .item-card:hover .item-icon {
+            transform: scale(1.1);
+        }
+
+        .item-select {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #e91e63;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            background: #ffffff;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .item-card.selected .item-select {
+            background: #e91e63;
+        }
+
+        .item-card.selected .item-select::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .item-title {
+            color: #e91e63;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            font-weight: bold;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .item-price {
+            color: #ad1457;
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .item-description {
+            color: #6a6a6a;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .item-features {
+            list-style: none;
+        }
+
+        .item-features li {
+            color: #6a6a6a;
+            font-size: clamp(0.75rem, 2vw, 0.85rem);
+            padding: 2px 0;
+        }
+
+        .item-features li::before {
+            content: '•';
+            color: #e91e63;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .quantity-control {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #f8bbd9;
+        }
+
+        .item-card.selected .quantity-control {
+            display: flex;
+        }
+
+        .qty-btn {
+            background: linear-gradient(135deg, #f8bbd9, #fce4ec);
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            color: #4a4a4a;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-btn:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #f48fb1, #f8bbd9);
+        }
+
+        .qty-display {
+            min-width: 25px;
+            text-align: center;
+            font-weight: bold;
+            color: #e91e63;
+        }
+
+        .summary-sidebar {
+            position: sticky;
+            top: 20px;
+            background: linear-gradient(135deg, #f8bbd9, #fce4ec);
+            color: #4a4a4a;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(233, 30, 99, 0.25);
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+
+        .summary-header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .summary-title {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 8px;
+        }
+
+        .total-items {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+        }
+
+        .summary-categories {
+            margin-bottom: 15px;
+        }
+
+        .summary-category {
+            margin-bottom: 12px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .summary-category-title {
+            font-weight: bold;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 3px 0;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            color: rgba(74, 74, 74, 0.8);
+        }
+
+        .grand-total {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .grand-total-amount {
+            font-size: clamp(1.8rem, 5vw, 2.2rem);
+            font-weight: bold;
+            color: #4a4a4a;
+            margin-bottom: 5px;
+        }
+
+        .savings-info {
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            opacity: 0.8;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 12px 16px;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ffffff, #fef7f7);
+            color: #e91e63;
+            border: 2px solid #e91e63;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.3);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: #4a4a4a;
+            border: 2px solid rgba(74, 74, 74, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-tab {
+            padding: 8px 16px;
+            background: #ffffff;
+            border: 2px solid #f8bbd9;
+            border-radius: 20px;
+            color: #e91e63;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+        }
+
+        .filter-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.2);
+        }
+
+        .filter-tab.active {
+            background: linear-gradient(135deg, #f8bbd9, #fce4ec);
+            color: #4a4a4a;
+        }
+
+        /* Form Styles */
+        .checkout-form {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            overflow-y: auto;
+        }
+
+        .form-container {
+            position: relative;
+            margin: 20px auto;
+            background: linear-gradient(135deg, #ffffff 0%, #fef7f7 100%);
+            border-radius: 15px;
+            padding: 30px;
+            width: 95%;
+            max-width: 600px;
+            box-shadow: 0 20px 40px rgba(233, 30, 99, 0.3);
+            border: 2px solid #f8bbd9;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                margin: 10px;
+                width: calc(100% - 20px);
+                padding: 20px;
+            }
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .form-header h2 {
+            color: #e91e63;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: #ad1457;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            color: #e91e63;
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #f8bbd9;
+            border-radius: 8px;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: #4a4a4a;
+            background: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #e91e63;
+            box-shadow: 0 0 0 2px rgba(233, 30, 99, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .checkbox-input {
+            width: 16px;
+            height: 16px;
+            accent-color: #e91e63;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .checkbox-label {
+            color: #6a6a6a;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            cursor: pointer;
+            line-height: 1.4;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        @media (max-width: 480px) {
+            .form-buttons {
+                flex-direction: column;
+            }
+        }
+
+        .form-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-btn-primary {
+            background: linear-gradient(135deg, #e91e63, #ad1457);
+            color: #ffffff;
+        }
+
+        .form-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(233, 30, 99, 0.3);
+        }
+
+        .form-btn-secondary {
+            background: #f8bbd9;
+            color: #4a4a4a;
+            border: 2px solid #f48fb1;
+        }
+
+        .form-btn-secondary:hover {
+            background: #f48fb1;
+            transform: translateY(-1px);
+        }
+
+        .order-summary-section {
+            background: linear-gradient(135deg, #fef7f7, #fce4ec);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #f8bbd9;
+        }
+
+        .order-summary-title {
+            color: #e91e63;
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            font-weight: bold;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid #f8bbd9;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            color: #e91e63;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            margin-top: 8px;
+            padding-top: 12px;
+            border-top: 2px solid #f48fb1;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #f8bbd9, #fce4ec);
+            color: #4a4a4a;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 25px;
+            display: none;
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.2);
+            border: 2px solid #e91e63;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        .success-message h3 {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 8px;
+        }
+
+        .success-message p {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile specific styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+            
+            .category-section {
+                padding: 15px;
+            }
+            
+            .item-card {
+                padding: 12px;
+            }
+            
+            .summary-sidebar {
+                padding: 15px;
+            }
+        }
+
+        /* Loading and transition states */
+        .item-card {
+            transform-origin: center;
+        }
+
+        .category-section {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .item-card {
+                border-width: 3px;
+            }
+            
+            .item-card.selected {
+                border-width: 4px;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>👶 Custom Baby Shower Event Builder</h1>
+            <p>Create the perfect celebration - choose from our complete collection!</p>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <h3>🎊 Baby Shower Package Created Successfully!</h3>
+            <p>Your personalized baby shower event has been submitted. We'll contact you within 2 hours!</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <div class="filter-tab active" onclick="filterCategory('all')">All Services</div>
+            <div class="filter-tab" onclick="filterCategory('digital')">Digital</div>
+            <div class="filter-tab" onclick="filterCategory('decorations')">Decorations</div>
+            <div class="filter-tab" onclick="filterCategory('entertainment')">Entertainment</div>
+            <div class="filter-tab" onclick="filterCategory('catering')">Catering</div>
+            <div class="filter-tab" onclick="filterCategory('premium')">Premium</div>
+        </div>
+
+        <div class="main-layout">
+            <div class="categories-container">
+                <!-- Digital Invitations & Design -->
+                <div class="category-section" data-category="digital">
+                    <div class="category-header">
+                        <div class="category-title">
+                            💌 Digital Invitations & Design
+                        </div>
+                        <div class="category-total" id="digital-total">₹0</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card" data-price="1999" data-category="digital" onclick="toggleItem(this, 'basic-invitation', 1999)">
+                            <div class="item-header">
+                                <div class="item-icon">📱</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Digital Baby Shower Invitation</div>
+                            <div class="item-price">₹1,999</div>
+                            <div class="item-description">Beautiful digital invitation with RSVP tracking</div>
+                            <ul class="item-features">
+                                <li>10+ premium templates</li>
+                                <li>Custom text & photos</li>
+                                <li>RSVP management</li>
+                                <li>WhatsApp ready</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="3999" data-category="digital" onclick="toggleItem(this, 'animated-invitation', 3999)">
+                            <div class="item-header">
+                                <div class="item-icon">✨</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Animated Video Invitation</div>
+                            <div class="item-price">₹3,999</div>
+                            <div class="item-description">Professional animated video invitation</div>
+                            <ul class="item-features">
+                                <li>30-second video</li>
+                                <li>Custom animations</li>
+                                <li>Background music</li>
+                                <li>Social media formats</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="2499" data-category="digital" onclick="toggleItem(this, 'welcome-sign', 2499)">
+                            <div class="item-header">
+                                <div class="item-icon">🎨</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Custom Welcome Signs</div>
+                            <div class="item-price">₹2,499</div>
+                            <div class="item-description">Digital welcome signs for printing</div>
+                            <ul class="item-features">
+                                <li>5 different designs</li>
+                                <li>Print-ready quality</li>
+                                <li>Multiple sizes</li>
+                                <li>Editable templates</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('welcome-sign', -1)">-</button>
+                                <span class="qty-display" id="qty-welcome-sign">1</span>
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('welcome-sign', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="item-card" data-price="1499" data-category="digital" onclick="toggleItem(this, 'thank-cards', 1499)">
+                            <div class="item-header">
+                                <div class="item-icon">💕</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Digital Thank You Cards</div>
+                            <div class="item-price">₹1,499</div>
+                            <div class="item-description">Personalized thank you cards for guests</div>
+                            <ul class="item-features">
+                                <li>Unlimited customization</li>
+                                <li>Bulk personalization</li>
+                                <li>High-resolution files</li>
+                                <li>Ready to send</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Decorations & Setup -->
+                <div class="category-section" data-category="decorations">
+                    <div class="category-header">
+                        <div class="category-title">
+                            🎀 Decorations & Event Setup
+                        </div>
+                        <div class="category-total" id="decorations-total">₹0</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card" data-price="8999" data-category="decorations" onclick="toggleItem(this, 'balloon-arch', 8999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎈</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Premium Balloon Arch</div>
+                            <div class="item-price">₹8,999</div>
+                            <div class="item-description">Stunning balloon arch with organic design</div>
+                            <ul class="item-features">
+                                <li>10ft wide arch</li>
+                                <li>Premium quality balloons</li>
+                                <li>Custom color scheme</li>
+                                <li>Professional installation</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="12999" data-category="decorations" onclick="toggleItem(this, 'backdrop-setup', 12999)">
+                            <div class="item-header">
+                                <div class="item-icon">📸</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Photo Backdrop Setup</div>
+                            <div class="item-price">₹12,999</div>
+                            <div class="item-description">Instagram-worthy photo backdrop</div>
+                            <ul class="item-features">
+                                <li>8x8ft backdrop</li>
+                                <li>Props included</li>
+                                <li>Professional lighting</li>
+                                <li>Setup & breakdown</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="5999" data-category="decorations" onclick="toggleItem(this, 'table-centerpieces', 5999)">
+                            <div class="item-header">
+                                <div class="item-icon">🌸</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Table Centerpieces</div>
+                            <div class="item-price">₹5,999</div>
+                            <div class="item-description">Beautiful floral centerpieces for 6 tables</div>
+                            <ul class="item-features">
+                                <li>Fresh flower arrangements</li>
+                                <li>Matching theme colors</li>
+                                <li>Baby-themed accents</li>
+                                <li>Vase rental included</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('table-centerpieces', -1)">-</button>
+                                <span class="qty-display" id="qty-table-centerpieces">1</span>
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('table-centerpieces', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="item-card" data-price="3999" data-category="decorations" onclick="toggleItem(this, 'ceiling-draping', 3999)">
+                            <div class="item-header">
+                                <div class="item-icon">✨</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Ceiling Draping & Lights</div>
+                            <div class="item-price">₹3,999</div>
+                            <div class="item-description">Elegant ceiling decoration with fairy lights</div>
+                            <ul class="item-features">
+                                <li>Fabric draping</li>
+                                <li>LED fairy lights</li>
+                                <li>Professional installation</li>
+                                <li>Safety compliant</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="2499" data-category="decorations" onclick="toggleItem(this, 'entrance-decor', 2499)">
+                            <div class="item-header">
+                                <div class="item-icon">🚪</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Entrance Decoration</div>
+                            <div class="item-price">₹2,499</div>
+                            <div class="item-description">Welcome entrance with baby shower theme</div>
+                            <ul class="item-features">
+                                <li>Welcome arch</li>
+                                <li>Themed signage</li>
+                                <li>Balloon clusters</li>
+                                <li>Photo opportunity</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entertainment & Activities -->
+                <div class="category-section" data-category="entertainment">
+                    <div class="category-header">
+                        <div class="category-title">
+                            🎉 Entertainment & Activities
+                        </div>
+                        <div class="category-total" id="entertainment-total">₹0</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card" data-price="7999" data-category="entertainment" onclick="toggleItem(this, 'baby-games', 7999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎲</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Baby Shower Games Package</div>
+                            <div class="item-price">₹7,999</div>
+                            <div class="item-description">Complete set of fun baby shower games</div>
+                            <ul class="item-features">
+                                <li>10 different games</li>
+                                <li>Printed game materials</li>
+                                <li>Prize suggestions</li>
+                                <li>Game host guidance</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="15999" data-category="entertainment" onclick="toggleItem(this, 'live-music', 15999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎵</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Live Music Performance</div>
+                            <div class="item-price">₹15,999</div>
+                            <div class="item-description">Professional acoustic music for 2 hours</div>
+                            <ul class="item-features">
+                                <li>Professional musician</li>
+                                <li>Acoustic guitar & vocals</li>
+                                <li>Song requests welcome</li>
+                                <li>Sound system included</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="9999" data-category="entertainment" onclick="toggleItem(this, 'photo-booth', 9999)">
+                            <div class="item-header">
+                                <div class="item-icon">📷</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">DIY Photo Booth</div>
+                            <div class="item-price">₹9,999</div>
+                            <div class="item-description">Fun photo booth with props and instant prints</div>
+                            <ul class="item-features">
+                                <li>Instant print camera</li>
+                                <li>20+ fun props</li>
+                                <li>Custom photo frames</li>
+                                <li>Guest book option</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="4999" data-category="entertainment" onclick="toggleItem(this, 'balloon-artist', 4999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎈</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Balloon Artist</div>
+                            <div class="item-price">₹4,999</div>
+                            <div class="item-description">Professional balloon artist for 2 hours</div>
+                            <ul class="item-features">
+                                <li>Custom balloon creations</li>
+                                <li>Interactive entertainment</li>
+                                <li>Baby-themed designs</li>
+                                <li>Great for kids & adults</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Catering & Refreshments -->
+                <div class="category-section" data-category="catering">
+                    <div class="category-header">
+                        <div class="category-title">
+                            🍰 Catering & Refreshments
+                        </div>
+                        <div class="category-total" id="catering-total">₹0</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card" data-price="12999" data-category="catering" onclick="toggleItem(this, 'custom-cake', 12999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎂</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Custom Baby Shower Cake</div>
+                            <div class="item-price">₹12,999</div>
+                            <div class="item-description">Designer cake with baby shower theme</div>
+                            <ul class="item-features">
+                                <li>2-tier custom design</li>
+                                <li>Serves 25-30 people</li>
+                                <li>Choice of flavors</li>
+                                <li>Edible decorations</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="8999" data-category="catering" onclick="toggleItem(this, 'sweet-treats', 8999)">
+                            <div class="item-header">
+                                <div class="item-icon">🧁</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Sweet Treats Platter</div>
+                            <div class="item-price">₹8,999</div>
+                            <div class="item-description">Assorted cupcakes, cookies, and sweets</div>
+                            <ul class="item-features">
+                                <li>50 mini treats</li>
+                                <li>Baby-themed designs</li>
+                                <li>Multiple flavors</li>
+                                <li>Beautiful presentation</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('sweet-treats', -1)">-</button>
+                                <span class="qty-display" id="qty-sweet-treats">1</span>
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('sweet-treats', 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="item-card" data-price="15999" data-category="catering" onclick="toggleItem(this, 'lunch-catering', 15999)">
+                            <div class="item-header">
+                                <div class="item-icon">🍽️</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Complete Lunch Catering</div>
+                            <div class="item-price">₹15,999</div>
+                            <div class="item-description">Full lunch service for 25 guests</div>
+                            <ul class="item-features">
+                                <li>3-course meal</li>
+                                <li>Vegetarian options</li>
+                                <li>Professional service</li>
+                                <li>Table setup included</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="5999" data-category="catering" onclick="toggleItem(this, 'beverages', 5999)">
+                            <div class="item-header">
+                                <div class="item-icon">🥤</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Beverage Station</div>
+                            <div class="item-price">₹5,999</div>
+                            <div class="item-description">Complete beverage setup with variety</div>
+                            <ul class="item-features">
+                                <li>Hot & cold beverages</li>
+                                <li>Fresh juices</li>
+                                <li>Specialty mocktails</li>
+                                <li>Self-serve station</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="3999" data-category="catering" onclick="toggleItem(this, 'snacks-platter', 3999)">
+                            <div class="item-header">
+                                <div class="item-icon">🥨</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Snacks & Appetizers</div>
+                            <div class="item-price">₹3,999</div>
+                            <div class="item-description">Assorted snacks and finger foods</div>
+                            <ul class="item-features">
+                                <li>6 different snacks</li>
+                                <li>Vegetarian & non-veg</li>
+                                <li>Fresh preparation</li>
+                                <li>Elegant presentation</li>
+                            </ul>
+                            <div class="quantity-control">
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('snacks-platter', -1)">-</button>
+                                <span class="qty-display" id="qty-snacks-platter">1</span>
+                                <button class="qty-btn" onclick="event.stopPropagation(); updateQuantity('snacks-platter', 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Services -->
+                <div class="category-section" data-category="premium">
+                    <div class="category-header">
+                        <div class="category-title">
+                            👑 Premium & Luxury Services
+                        </div>
+                        <div class="category-total" id="premium-total">₹0</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card" data-price="25999" data-category="premium" onclick="toggleItem(this, 'event-coordinator', 25999)">
+                            <div class="item-header">
+                                <div class="item-icon">👩‍💼</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Dedicated Event Coordinator</div>
+                            <div class="item-price">₹25,999</div>
+                            <div class="item-description">Professional event coordinator for the entire day</div>
+                            <ul class="item-features">
+                                <li>Pre-event planning</li>
+                                <li>Day-of coordination</li>
+                                <li>Vendor management</li>
+                                <li>Timeline execution</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="18999" data-category="premium" onclick="toggleItem(this, 'photography', 18999)">
+                            <div class="item-header">
+                                <div class="item-icon">📸</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Professional Photography</div>
+                            <div class="item-price">₹18,999</div>
+                            <div class="item-description">4-hour professional photography session</div>
+                            <ul class="item-features">
+                                <li>Professional photographer</li>
+                                <li>200+ edited photos</li>
+                                <li>Online gallery</li>
+                                <li>Print-ready resolution</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="22999" data-category="premium" onclick="toggleItem(this, 'videography', 22999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎥</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Event Videography</div>
+                            <div class="item-price">₹22,999</div>
+                            <div class="item-description">Complete event filming with highlights reel</div>
+                            <ul class="item-features">
+                                <li>4K video recording</li>
+                                <li>Professional editing</li>
+                                <li>5-minute highlight reel</li>
+                                <li>Raw footage included</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="12999" data-category="premium" onclick="toggleItem(this, 'premium-favors', 12999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎁</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Premium Guest Favors</div>
+                            <div class="item-price">₹12,999</div>
+                            <div class="item-description">Luxurious take-home gifts for 30 guests</div>
+                            <ul class="item-features">
+                                <li>Personalized items</li>
+                                <li>Premium packaging</li>
+                                <li>Baby-themed gifts</li>
+                                <li>Thank you tags</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="35999" data-category="premium" onclick="toggleItem(this, 'complete-package', 35999)">
+                            <div class="item-header">
+                                <div class="item-icon">💎</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Complete Luxury Package</div>
+                            <div class="item-price">₹35,999</div>
+                            <div class="item-description">Everything included - the ultimate baby shower</div>
+                            <ul class="item-features">
+                                <li>All decorations</li>
+                                <li>Full catering</li>
+                                <li>Entertainment</li>
+                                <li>Photography</li>
+                                <li>Event coordination</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add-on Services -->
+                <div class="category-section" data-category="digital">
+                    <div class="category-header">
+                        <div class="category-title">
+                            ⚡ Express & Add-on Services
+                        </div>
+                        <div class="category-total" id="express-total">₹0</div>
+                    </div>
+                    <div class="items-grid">
+                        <div class="item-card" data-price="4999" data-category="digital" onclick="toggleItem(this, 'rush-planning', 4999)">
+                            <div class="item-header">
+                                <div class="item-icon">🚀</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Rush Planning (1 Week)</div>
+                            <div class="item-price">₹4,999</div>
+                            <div class="item-description">Express event planning within 1 week</div>
+                            <ul class="item-features">
+                                <li>Priority scheduling</li>
+                                <li>Dedicated team</li>
+                                <li>Fast-track approvals</li>
+                                <li>Daily updates</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="2999" data-category="digital" onclick="toggleItem(this, 'cleanup-service', 2999)">
+                            <div class="item-header">
+                                <div class="item-icon">🧹</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Post-Event Cleanup</div>
+                            <div class="item-price">₹2,999</div>
+                            <div class="item-description">Complete cleanup after the event</div>
+                            <ul class="item-features">
+                                <li>Full venue cleanup</li>
+                                <li>Decoration removal</li>
+                                <li>Trash disposal</li>
+                                <li>Leave venue spotless</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="1999" data-category="digital" onclick="toggleItem(this, 'setup-service', 1999)">
+                            <div class="item-header">
+                                <div class="item-icon">🔧</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Early Setup Service</div>
+                            <div class="item-price">₹1,999</div>
+                            <div class="item-description">Setup decorations day before event</div>
+                            <ul class="item-features">
+                                <li>Day-before setup</li>
+                                <li>Venue coordination</li>
+                                <li>Security arrangements</li>
+                                <li>Final touch-ups</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="1499" data-category="digital" onclick="toggleItem(this, 'backup-plan', 1499)">
+                            <div class="item-header">
+                                <div class="item-icon">☂️</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Weather Backup Plan</div>
+                            <div class="item-price">₹1,499</div>
+                            <div class="item-description">Alternative arrangements for outdoor events</div>
+                            <ul class="item-features">
+                                <li>Indoor venue option</li>
+                                <li>Tent arrangements</li>
+                                <li>Weather monitoring</li>
+                                <li>Quick pivot plan</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="3499" data-category="digital" onclick="toggleItem(this, 'live-streaming', 3499)">
+                            <div class="item-header">
+                                <div class="item-icon">📹</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Live Streaming Service</div>
+                            <div class="item-price">₹3,499</div>
+                            <div class="item-description">Stream your event live for remote guests</div>
+                            <ul class="item-features">
+                                <li>HD live streaming</li>
+                                <li>Multiple camera angles</li>
+                                <li>Interactive chat</li>
+                                <li>Recording included</li>
+                            </ul>
+                        </div>
+
+                        <div class="item-card" data-price="999" data-category="digital" onclick="toggleItem(this, 'playlist-service', 999)">
+                            <div class="item-header">
+                                <div class="item-icon">🎶</div>
+                                <div class="item-select"></div>
+                            </div>
+                            <div class="item-title">Custom Music Playlist</div>
+                            <div class="item-price">₹999</div>
+                            <div class="item-description">Curated playlist for your event</div>
+                            <ul class="item-features">
+                                <li>3-hour playlist</li>
+                                <li>Baby shower appropriate</li>
+                                <li>Volume control guide</li>
+                                <li>Backup songs included</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Sidebar -->
+            <div class="summary-sidebar collapsed" id="summarySidebar">
+                <button class="mobile-toggle" onclick="toggleSidebar()">
+                    <span id="toggleText">View Bill Summary</span> 
+                    <span id="toggleIcon">▲</span>
+                </button>
+                
+                <div class="summary-header">
+                    <div class="summary-title">🎊 Your Baby Shower</div>
+                    <div class="total-items" id="totalItems">0 services selected</div>
+                </div>
+
+                <div class="summary-categories">
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>💌 Digital</span>
+                            <span id="digital-summary-total">₹0</span>
+                        </div>
+                        <div id="digital-summary-items"></div>
+                    </div>
+
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>🎀 Decorations</span>
+                            <span id="decorations-summary-total">₹0</span>
+                        </div>
+                        <div id="decorations-summary-items"></div>
+                    </div>
+
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>🎉 Entertainment</span>
+                            <span id="entertainment-summary-total">₹0</span>
+                        </div>
+                        <div id="entertainment-summary-items"></div>
+                    </div>
+
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>🍰 Catering</span>
+                            <span id="catering-summary-total">₹0</span>
+                        </div>
+                        <div id="catering-summary-items"></div>
+                    </div>
+
+                    <div class="summary-category">
+                        <div class="summary-category-title">
+                            <span>👑 Premium</span>
+                            <span id="premium-summary-total">₹0</span>
+                        </div>
+                        <div id="premium-summary-items"></div>
+                    </div>
+                </div>
+
+                <div class="grand-total">
+                    <div class="grand-total-amount" id="grandTotal">₹0</div>
+                    <div class="savings-info" id="savingsInfo">Select services to see total</div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="proceedToCheckout()" id="checkoutBtn" disabled>
+                        Book Your Baby Shower
+                    </button>
+                    <button class="btn btn-secondary" onclick="clearAll()">
+                        Clear All Selections
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Form Modal -->
+    <div class="checkout-form" id="checkoutForm">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>👶 Complete Your Baby Shower Booking</h2>
+                <p>Fill in your details to create the perfect celebration</p>
+            </div>
+
+            <form id="babyShowerForm" onsubmit="submitOrder(event)">
+                <!-- Order Summary -->
+                <div class="order-summary-section">
+                    <div class="order-summary-title">📋 Event Summary</div>
+                    <div id="formOrderSummary"></div>
+                </div>
+
+                <!-- Event Details -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Event Date *</label>
+                        <input type="date" class="form-input" name="eventDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Event Time *</label>
+                        <input type="time" class="form-input" name="eventTime" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Event Venue/Address *</label>
+                    <textarea class="form-textarea" name="venue" placeholder="Enter the complete venue address where the baby shower will be held" required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Expected Guests *</label>
+                        <select class="form-select" name="guestCount" required>
+                            <option value="">Select guest count</option>
+                            <option value="10-20">10-20 guests</option>
+                            <option value="20-30">20-30 guests</option>
+                            <option value="30-50">30-50 guests</option>
+                            <option value="50-75">50-75 guests</option>
+                            <option value="75+">75+ guests</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Baby Gender</label>
+                        <select class="form-select" name="babyGender">
+                            <option value="">Select if known</option>
+                            <option value="boy">It's a Boy!</option>
+                            <option value="girl">It's a Girl!</option>
+                            <option value="surprise">Gender Surprise</option>
+                            <option value="reveal">Gender Reveal Party</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Personal Information -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Mom-to-be's Name *</label>
+                        <input type="text" class="form-input" name="momName" placeholder="Enter the expecting mother's name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Contact Person *</label>
+                        <input type="text" class="form-input" name="contactName" placeholder="Event organizer's name" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Phone Number *</label>
+                        <input type="tel" class="form-input" name="phone" placeholder="Your contact number" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address *</label>
+                        <input type="email" class="form-input" name="email" placeholder="your.email@example.com" required>
+                    </div>
+                </div>
+
+                <!-- Theme & Preferences -->
+                <div class="form-group">
+                    <label class="form-label">Preferred Theme/Colors</label>
+                    <select class="form-select" name="theme">
+                        <option value="">Choose a theme</option>
+                        <option value="pink-princess">Pink Princess</option>
+                        <option value="blue-prince">Blue Prince</option>
+                        <option value="neutral-safari">Neutral Safari</option>
+                        <option value="floral-garden">Floral Garden</option>
+                        <option value="rainbow-bright">Rainbow Bright</option>
+                        <option value="rustic-chic">Rustic Chic</option>
+                        <option value="modern-minimal">Modern Minimal</option>
+                        <option value="vintage-classic">Vintage Classic</option>
+                        <option value="custom">Custom Theme</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Special Requests or Instructions</label>
+                    <textarea class="form-textarea" name="specialRequests" placeholder="Any specific requirements, dietary restrictions, accessibility needs, or special touches you'd like to include..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Food Preferences</label>
+                    <select class="form-select" name="foodPreferences">
+                        <option value="">Select food preference</option>
+                        <option value="vegetarian">Pure Vegetarian</option>
+                        <option value="mixed">Vegetarian + Non-Vegetarian</option>
+                        <option value="vegan">Vegan Options</option>
+                        <option value="custom">Custom Menu (specify in notes)</option>
+                    </select>
+                </div>
+
+                <!-- Budget & Timeline -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Planning Timeline</label>
+                        <select class="form-select" name="timeline">
+                            <option value="">How soon is your event?</option>
+                            <option value="rush">Less than 1 week (Rush charges apply)</option>
+                            <option value="1-2weeks">1-2 weeks</option>
+                            <option value="2-4weeks">2-4 weeks</option>
+                            <option value="1-2months">1-2 months</option>
+                            <option value="flexible">More than 2 months</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Budget Range</label>
+                        <select class="form-select" name="budget">
+                            <option value="">Select budget range</option>
+                            <option value="under-25k">Under ₹25,000</option>
+                            <option value="25k-50k">₹25,000 - ₹50,000</option>
+                            <option value="50k-100k">₹50,000 - ₹1,00,000</option>
+                            <option value="100k+">Above ₹1,00,000</option>
+                            <option value="no-limit">No specific limit</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Additional Services -->
+                <div class="form-group">
+                    <label class="form-label">Additional Services Needed</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="additionalServices" value="parking" id="parking">
+                        <label class="checkbox-label" for="parking">Parking coordination</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="additionalServices" value="security" id="security">
+                        <label class="checkbox-label" for="security">Security arrangements</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="additionalServices" value="transport" id="transport">
+                        <label class="checkbox-label" for="transport">Guest transportation</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="additionalServices" value="babysitting" id="babysitting">
+                        <label class="checkbox-label" for="babysitting">Childcare services</label>
+                    </div>
+                </div>
+
+                <!-- Communication Preferences -->
+                <div class="form-group">
+                    <label class="form-label">Preferred Communication Method</label>
+                    <select class="form-select" name="communication">
+                        <option value="">How should we contact you?</option>
+                        <option value="whatsapp">WhatsApp</option>
+                        <option value="phone">Phone Calls</option>
+                        <option value="email">Email</option>
+                        <option value="video-call">Video Calls</option>
+                    </select>
+                </div>
+
+                <!-- Payment Information -->
+                <div class="form-group">
+                    <label class="form-label">Payment Preference</label>
+                    <select class="form-select" name="paymentMethod">
+                        <option value="">Select payment method</option>
+                        <option value="advance-50">50% Advance, 50% on Event Day</option>
+                        <option value="advance-30">30% Advance, 70% on Event Day</option>
+                        <option value="full-advance">Full Payment in Advance</option>
+                        <option value="installments">Monthly Installments</option>
+                    </select>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="terms" id="terms" required>
+                        <label class="checkbox-label" for="terms">I agree to the terms and conditions and cancellation policy *</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="updates" id="updates">
+                        <label class="checkbox-label" for="updates">Send me updates about baby shower trends and special offers</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" class="checkbox-input" name="consultation" id="consultation">
+                        <label class="checkbox-label" for="consultation">Schedule a free consultation call before finalizing</label>
+                    </div>
+                </div>
+
+                <!-- Form Buttons -->
+                <div class="form-buttons">
+                    <button type="submit" class="form-btn form-btn-primary">
+                        👶 Book Baby Shower - ₹<span id="formTotal">0</span>
+                    </button>
+                    <button type="button" class="form-btn form-btn-secondary" onclick="closeForm()">
+                        ← Back to Selection
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let selectedItems = {};
+        let itemQuantities = {};
+        let categoryTotals = {
+            digital: 0,
+            decorations: 0,
+            entertainment: 0,
+            catering: 0,
+            premium: 0,
+            express: 0
+        };
+        let grandTotal = 0;
+        let totalItemCount = 0;
+        let sidebarCollapsed = window.innerWidth <= 1024;
+
+        function toggleItem(element, itemId, price) {
+            const category = element.getAttribute('data-category');
+            
+            if (selectedItems[itemId]) {
+                // Deselect item
+                element.classList.remove('selected');
+                delete selectedItems[itemId];
+                delete itemQuantities[itemId];
+            } else {
+                // Select item
+                element.classList.add('selected');
+                selectedItems[itemId] = {
+                    price: price,
+                    category: category,
+                    element: element,
+                    title: element.querySelector('.item-title').textContent
+                };
+                itemQuantities[itemId] = 1;
+                
+                // Initialize quantity display if it exists
+                const qtyDisplay = element.querySelector(`#qty-${itemId}`);
+                if (qtyDisplay) {
+                    qtyDisplay.textContent = '1';
+                }
+            }
+            
+            updateSummary();
+        }
+
+        function updateQuantity(itemId, change) {
+            if (!selectedItems[itemId]) return;
+            
+            let currentQty = itemQuantities[itemId] || 1;
+            let newQty = Math.max(1, currentQty + change);
+            
+            itemQuantities[itemId] = newQty;
+            
+            const qtyDisplay = document.getElementById(`qty-${itemId}`);
+            if (qtyDisplay) {
+                qtyDisplay.textContent = newQty;
+            }
+            
+            updateSummary();
+        }
+
+        function updateSummary() {
+            // Reset category totals
+            Object.keys(categoryTotals).forEach(cat => categoryTotals[cat] = 0);
+            grandTotal = 0;
+            totalItemCount = 0;
+
+            // Clear summary items
+            Object.keys(categoryTotals).forEach(cat => {
+                const summaryElement = document.getElementById(`${cat}-summary-items`);
+                if (summaryElement) {
+                    summaryElement.innerHTML = '';
+                }
+            });
+
+            // Calculate totals and populate summary
+            Object.keys(selectedItems).forEach(itemId => {
+                const item = selectedItems[itemId];
+                const quantity = itemQuantities[itemId] || 1;
+                const itemTotal = item.price * quantity;
+                const category = item.category;
+
+                // Add to category total
+                categoryTotals[category] += itemTotal;
+                grandTotal += itemTotal;
+                totalItemCount += quantity;
+
+                // Add to summary display
+                const summaryContainer = document.getElementById(`${category}-summary-items`);
+                if (summaryContainer) {
+                    const summaryItem = document.createElement('div');
+                    summaryItem.className = 'summary-item';
+                    summaryItem.innerHTML = `
+                        <span>${item.title}${quantity > 1 ? ` (${quantity}×)` : ''}</span>
+                        <span>₹${itemTotal.toLocaleString('en-IN')}</span>
+                    `;
+                    summaryContainer.appendChild(summaryItem);
+                }
+            });
+
+            // Update category totals in header and summary
+            Object.keys(categoryTotals).forEach(category => {
+                const headerTotal = document.getElementById(`${category}-total`);
+                const summaryTotal = document.getElementById(`${category}-summary-total`);
+                
+                if (headerTotal) {
+                    headerTotal.textContent = `₹${categoryTotals[category].toLocaleString('en-IN')}`;
+                }
+                if (summaryTotal) {
+                    summaryTotal.textContent = `₹${categoryTotals[category].toLocaleString('en-IN')}`;
+                }
+            });
+
+            // Update grand total and item count
+            document.getElementById('grandTotal').textContent = `₹${grandTotal.toLocaleString('en-IN')}`;
+            document.getElementById('totalItems').textContent = `${totalItemCount} service${totalItemCount !== 1 ? 's' : ''} selected`;
+
+            // Update savings info
+            const savingsElement = document.getElementById('savingsInfo');
+            if (grandTotal > 50000) {
+                savingsElement.textContent = 'Premium event package - complimentary consultation included!';
+                savingsElement.style.color = '#e91e63';
+            } else if (grandTotal > 25000) {
+                savingsElement.textContent = 'Add ₹' + (50000 - grandTotal).toLocaleString('en-IN') + ' more for premium benefits';
+                savingsElement.style.color = '#ad1457';
+            } else {
+                savingsElement.textContent = totalItemCount > 0 ? 'Custom baby shower package created' : 'Select services to see total';
+                savingsElement.style.color = '#6a6a6a';
+            }
+
+            // Enable/disable checkout button
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            checkoutBtn.disabled = totalItemCount === 0;
+            checkoutBtn.textContent = totalItemCount === 0 ? 'Select Services to Continue' : `Book Your Event (₹${grandTotal.toLocaleString('en-IN')})`;
+        }
+
+        function filterCategory(category) {
+            // Update active tab
+            document.querySelectorAll('.filter-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Show/hide category sections
+            document.querySelectorAll('.category-section').forEach(section => {
+                if (category === 'all') {
+                    section.style.display = 'block';
+                } else {
+                    const sectionCategory = section.getAttribute('data-category');
+                    section.style.display = sectionCategory === category ? 'block' : 'none';
+                }
+            });
+        }
+
+        function clearAll() {
+            // Reset all data
+            selectedItems = {};
+            itemQuantities = {};
+            Object.keys(categoryTotals).forEach(cat => categoryTotals[cat] = 0);
+            grandTotal = 0;
+            totalItemCount = 0;
+
+            // Remove selected classes
+            document.querySelectorAll('.item-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+
+            // Reset quantity displays
+            document.querySelectorAll('.qty-display').forEach(display => {
+                display.textContent = '1';
+            });
+
+            updateSummary();
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('summarySidebar');
+            const toggleText = document.getElementById('toggleText');
+            const toggleIcon = document.getElementById('toggleIcon');
+            
+            if (sidebarCollapsed) {
+                sidebar.classList.remove('collapsed');
+                toggleText.textContent = 'Hide Bill Summary';
+                toggleIcon.textContent = '▼';
+                sidebarCollapsed = false;
+            } else {
+                sidebar.classList.add('collapsed');
+                toggleText.textContent = 'View Bill Summary';
+                toggleIcon.textContent = '▲';
+                sidebarCollapsed = true;
+            }
+        }
+
+        function proceedToCheckout() {
+            if (totalItemCount === 0) {
+                alert('Please select at least one service to proceed');
+                return;
+            }
+
+            // Update form order summary
+            updateFormOrderSummary();
+            
+            // Show checkout form
+            document.getElementById('checkoutForm').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function updateFormOrderSummary() {
+            const summaryContainer = document.getElementById('formOrderSummary');
+            summaryContainer.innerHTML = '';
+
+            // Add selected items
+            Object.keys(selectedItems).forEach(itemId => {
+                const item = selectedItems[itemId];
+                const quantity = itemQuantities[itemId] || 1;
+                const itemTotal = item.price * quantity;
+
+                const orderItem = document.createElement('div');
+                orderItem.className = 'order-item';
+                orderItem.innerHTML = `
+                    <span>${item.title}${quantity > 1 ? ` (${quantity}×)` : ''}</span>
+                    <span>₹${itemTotal.toLocaleString('en-IN')}</span>
+                `;
+                summaryContainer.appendChild(orderItem);
+            });
+
+            // Add total
+            const totalItem = document.createElement('div');
+            totalItem.className = 'order-item';
+            totalItem.innerHTML = `
+                <span>Total Package Cost</span>
+                <span>₹${grandTotal.toLocaleString('en-IN')}</span>
+            `;
+            summaryContainer.appendChild(totalItem);
+
+            // Update form total
+            document.getElementById('formTotal').textContent = grandTotal.toLocaleString('en-IN');
+        }
+
+        function closeForm() {
+            document.getElementById('checkoutForm').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function submitOrder(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const orderData = {
+                selectedItems: selectedItems,
+                quantities: itemQuantities,
+                categoryTotals: categoryTotals,
+                grandTotal: grandTotal,
+                totalItems: totalItemCount,
+                eventDetails: Object.fromEntries(formData),
+                orderDate: new Date().toISOString(),
+                orderId: 'BS' + Date.now()
+            };
+
+            console.log('Baby Shower Event Booking Submitted:', orderData);
+
+            // Close form
+            closeForm();
+
+            // Show success message
+            document.getElementById('successMessage').classList.add('show');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Reset after success
+            setTimeout(() => {
+                clearAll();
+                document.getElementById('babyShowerForm').reset();
+                setTimeout(() => {
+                    document.getElementById('successMessage').classList.remove('show');
+                }, 5000);
+            }, 2000);
+        }
+
+        // Handle window resize
+        function handleResize() {
+            const sidebar = document.getElementById('summarySidebar');
+            if (window.innerWidth > 1024) {
+                sidebar.classList.remove('collapsed');
+                sidebarCollapsed = false;
+            } else {
+                sidebar.classList.add('collapsed');
+                sidebarCollapsed = true;
+            }
+        }
+
+        // Close form when clicking outside
+        document.getElementById('checkoutForm').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeForm();
+            }
+        });
+
+        // Prevent form close when clicking inside form container
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.form-container')) {
+                e.stopPropagation();
+            }
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSummary();
+            handleResize();
+            
+            // Set minimum date to today
+            const dateInput = document.querySelector('input[name="eventDate"]');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.min = today;
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', handleResize);
+
+        // Add smooth scrolling for mobile
+        document.addEventListener('touchstart', function() {}, true);
+
+        // Prevent zoom on input focus for mobile
+        document.addEventListener('touchend', function(event) {
+            const noZoomTag = document.querySelector('meta[name=viewport]');
+            noZoomTag.content = 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no';
+            setTimeout(function() {
+                noZoomTag.content = 'width=device-width, initial-scale=1';
+            }, 500);
+        });
+    </script>
+</body>
+</html>
