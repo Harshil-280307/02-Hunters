@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Engagement Ceremony Package</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #fef7f0 0%, #ffeee4 30%, #ffded7 70%, #f8cdc8 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #8b4513;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Elements */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-hearts {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(255, 182, 193, 0.6);
+            animation: floatUp 15s infinite linear;
+        }
+
+        .floating-rings {
+            position: absolute;
+            font-size: 25px;
+            color: rgba(255, 215, 0, 0.5);
+            animation: floatUp 18s infinite linear;
+        }
+
+        .floating-flowers {
+            position: absolute;
+            font-size: 18px;
+            color: rgba(255, 160, 122, 0.7);
+            animation: floatUp 20s infinite linear;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #ffd700, transparent);
+            border-radius: 50%;
+            animation: sparkle 3s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Gradient Orbs */
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 182, 193, 0.3), transparent);
+            animation: drift 25s infinite ease-in-out;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translateX(0) translateY(0) scale(1); }
+            25% { transform: translateX(100px) translateY(-50px) scale(1.1); }
+            50% { transform: translateX(-50px) translateY(-100px) scale(0.9); }
+            75% { transform: translateX(-100px) translateY(50px) scale(1.05); }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            color: #b8860b;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 6px rgba(184, 134, 11, 0.3);
+            color: #b8860b;
+            background: linear-gradient(45deg, #b8860b, #daa520, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            color: #cd853f;
+        }
+
+        .premium-package {
+            background: linear-gradient(135deg, #ffffff 0%, #fff8f0 50%, #ffeedd 100%);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 25px 50px rgba(184, 134, 11, 0.2);
+            text-align: center;
+            margin-bottom: 40px;
+            border: 3px solid #daa520;
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 1.2s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .premium-package::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(218, 165, 32, 0.1), transparent);
+            animation: shimmer 4s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .premium-package::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #b8860b, #daa520, #ffd700, #daa520, #b8860b);
+            margin: -40px -40px 30px -40px;
+            border-radius: 25px 25px 0 0;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .package-icon {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 20px;
+            background: radial-gradient(circle, #ffd700, #daa520);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: #8b4513;
+            box-shadow: 0 15px 35px rgba(218, 165, 32, 0.4);
+            position: relative;
+            z-index: 1;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .premium-package h2 {
+            font-size: 2.8rem;
+            color: #b8860b;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .premium-price {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #b8860b;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 1;
+            animation: priceGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes priceGlow {
+            0%, 100% { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15); }
+            50% { text-shadow: 0 0 20px rgba(218, 165, 32, 0.6), 3px 3px 6px rgba(0, 0, 0, 0.15); }
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .features li {
+            padding: 12px 0;
+            color: #8b4513;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .features li:hover {
+            transform: translateX(10px);
+        }
+
+        .features li::before {
+            content: '💍';
+            color: #daa520;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.3rem;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .customer-choice {
+            background: linear-gradient(135deg, #ffffff 0%, #fff8f0 50%, #ffeedd 100%);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 25px 50px rgba(184, 134, 11, 0.15);
+            border: 2px solid #daa520;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .customer-choice h2 {
+            text-align: center;
+            color: #b8860b;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+        }
+
+        .addon-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .addon-option {
+            background: linear-gradient(135deg, #fffaf5 0%, #fff0e6 50%, #ffe4d6 100%);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid #f4a460;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .addon-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(244, 164, 96, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .addon-option:hover::before {
+            left: 100%;
+        }
+
+        .addon-option:hover {
+            background: linear-gradient(135deg, #fff0e6 0%, #ffe4d6 50%, #ffd4c4 100%);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(184, 134, 11, 0.25);
+            border-color: #daa520;
+        }
+
+        .addon-option.selected {
+            border-color: #b8860b;
+            background: linear-gradient(135deg, #ffd4c4 0%, #ffb6a3 50%, #ffa583 100%);
+            box-shadow: 0 20px 45px rgba(184, 134, 11, 0.35);
+            transform: scale(1.05);
+        }
+
+        .addon-option .select-btn {
+            position: absolute;
+            top: -8px;
+            right: 15px;
+            background: linear-gradient(135deg, #daa520, #ffd700);
+            color: #8b4513;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+            z-index: 2;
+            position: relative;
+            box-shadow: 0 6px 15px rgba(218, 165, 32, 0.3);
+        }
+
+        .addon-option.selected .select-btn {
+            background: linear-gradient(135deg, #b8860b, #cd853f);
+            color: #ffffff;
+            animation: selectedPulse 2s infinite;
+        }
+
+        @keyframes selectedPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .addon-option .select-btn:hover {
+            transform: scale(1.1);
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(184, 134, 11, 0.4);
+        }
+
+        .addon-option h4 {
+            color: #b8860b;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .addon-option .price {
+            font-weight: bold;
+            color: #cd853f;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .addon-option small {
+            color: #8b4513;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+        }
+
+        .customer-form {
+            background: linear-gradient(135deg, #ffffff 0%, #fff8f0 50%, #ffeedd 100%);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 25px 50px rgba(184, 134, 11, 0.15);
+            border: 2px solid #f4a460;
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .customer-form h2 {
+            text-align: center;
+            color: #b8860b;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #b8860b;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #f4a460;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: #fffaf5;
+            color: #8b4513;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #daa520;
+            background: #ffffff;
+            box-shadow: 0 0 20px rgba(218, 165, 32, 0.2);
+            transform: scale(1.02);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .total-section {
+            background: radial-gradient(circle at center, #ffd700, #daa520, #b8860b);
+            color: #ffffff;
+            padding: 50px;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 25px 50px rgba(184, 134, 11, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: zoomIn 1.2s ease-out;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .total-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: rotateGradient 15s linear infinite;
+        }
+
+        @keyframes rotateGradient {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .total-section h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .total-price {
+            font-size: 4.5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+            animation: totalPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes totalPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .selected-items {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .selected-items h4 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .selected-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding: 5px 0;
+        }
+
+        .checkout-btn {
+            background: linear-gradient(135deg, #ffffff, #fff8f0);
+            color: #b8860b;
+            border: 3px solid #b8860b;
+            padding: 25px 50px;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            margin-top: 15px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(255, 255, 255, 0.4);
+            background: linear-gradient(135deg, #fff8f0, #ffeedd);
+            text-decoration: none;
+            color: #b8860b;
+            animation: btnGlow 1s ease-in-out;
+        }
+
+        @keyframes btnGlow {
+            0%, 100% { box-shadow: 0 25px 50px rgba(255, 255, 255, 0.4); }
+            50% { box-shadow: 0 25px 50px rgba(255, 255, 255, 0.6), 0 0 30px rgba(218, 165, 32, 0.5); }
+        }
+
+        .checkout-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #ffd700, #daa520);
+            color: #8b4513;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            display: none;
+            box-shadow: 0 20px 40px rgba(218, 165, 32, 0.35);
+            border: 3px solid #b8860b;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: successSlide 0.8s ease;
+        }
+
+        @keyframes successSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .premium-badge {
+            position: absolute;
+            top: -2px;
+            right: -12px;
+            background: linear-gradient(135deg, #b8860b, #cd853f);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 3;
+            box-shadow: 0 6px 18px rgba(184, 134, 11, 0.4);
+            animation: badgeBounce 2s infinite;
+        }
+
+        @keyframes badgeBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .addon-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .total-price {
+                font-size: 3.5rem;
+            }
+
+            .premium-price {
+                font-size: 3rem;
+            }
+
+            .package-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .premium-package,
+            .customer-choice,
+            .customer-form,
+            .total-section {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .total-price {
+                font-size: 2.8rem;
+            }
+
+            .premium-price {
+                font-size: 2.5rem;
+            }
+
+            .checkout-btn {
+                padding: 20px 35px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <!-- Floating Elements -->
+        <div class="floating-hearts" style="left: 10%; animation-delay: 0s;">💕</div>
+        <div class="floating-rings" style="left: 20%; animation-delay: 2s;">💍</div>
+        <div class="floating-flowers" style="left: 30%; animation-delay: 4s;">🌹</div>
+        <div class="floating-hearts" style="left: 40%; animation-delay: 6s;">💖</div>
+        <div class="floating-rings" style="left: 50%; animation-delay: 8s;">💍</div>
+        <div class="floating-flowers" style="left: 60%; animation-delay: 10s;">🌺</div>
+        <div class="floating-hearts" style="left: 70%; animation-delay: 12s;">💝</div>
+        <div class="floating-rings" style="left: 80%; animation-delay: 14s;">💍</div>
+        <div class="floating-flowers" style="left: 90%; animation-delay: 16s;">🌸</div>
+
+        <!-- Sparkles -->
+        <div class="sparkle" style="top: 20%; left: 15%; animation-delay: 0s;"></div>
+        <div class="sparkle" style="top: 40%; left: 25%; animation-delay: 1s;"></div>
+        <div class="sparkle" style="top: 60%; left: 35%; animation-delay: 2s;"></div>
+        <div class="sparkle" style="top: 80%; left: 45%; animation-delay: 3s;"></div>
+        <div class="sparkle" style="top: 30%; left: 55%; animation-delay: 4s;"></div>
+        <div class="sparkle" style="top: 50%; left: 65%; animation-delay: 5s;"></div>
+        <div class="sparkle" style="top: 70%; left: 75%; animation-delay: 6s;"></div>
+        <div class="sparkle" style="top: 90%; left: 85%; animation-delay: 7s;"></div>
+
+        <!-- Gradient Orbs -->
+        <div class="gradient-orb" style="width: 200px; height: 200px; top: 10%; left: 5%; animation-delay: 0s;"></div>
+        <div class="gradient-orb" style="width: 150px; height: 150px; top: 50%; right: 5%; animation-delay: 5s;"></div>
+        <div class="gradient-orb" style="width: 100px; height: 100px; bottom: 20%; left: 20%; animation-delay: 10s;"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>💍 Premium Engagement Ceremony Package</h1>
+            <p>Luxurious engagement celebration with exclusive premium features</p>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <h3>🎊 Premium Engagement Order Submitted Successfully!</h3>
+            <p>Thank you for choosing our Premium Engagement Ceremony Package. Our premium team will contact you within 2 hours to begin crafting your perfect engagement celebration!</p>
+        </div>
+
+        <!-- Premium Package -->
+        <div class="premium-package">
+            <div class="package-icon">💍</div>
+            <h2>Premium Engagement Ceremony Package</h2>
+            <div class="premium-price">₹35,999</div>
+            <ul class="features">
+                <li>Luxury Digital Engagement Invitation Suite</li>
+                <li>Professional Engagement Photo Slideshow (75 photos)</li>
+                <li>Premium Music Collection (30+ romantic tracks)</li>
+                <li>Custom Engagement Typography & Calligraphy</li>
+                <li>Multi-Platform Delivery (Email, WhatsApp, Social Media)</li>
+                <li>Unlimited Design Revisions</li>
+                <li>Exclusive Engagement Templates</li>
+                <li>Advanced Animation & Love Story Transitions</li>
+                <li>4K Ultra HD Quality Export</li>
+                <li>Interactive RSVP & Guest Management</li>
+                <li>Personal Engagement Design Consultant</li>
+                <li>Priority 48-Hour Delivery</li>
+                <li>Luxury Digital Engagement Box</li>
+                <li>Custom QR Code & Website</li>
+                <li>Professional Engagement Voice-over</li>
+                <li>Ring Ceremony Timeline Integration</li>
+                <li>Family Introduction Video</li>
+                <li>Engagement Venue Virtual Tour</li>
+            </ul>
+        </div>
+
+        <!-- Customer Choice Add-ons -->
+        <div class="customer-choice">
+            <h2>✨ Exclusive Engagement Premium Add-ons</h2>
+            <p style="text-align: center; color: #cd853f; margin-bottom: 30px; font-size: 1.1rem;">
+                Make your engagement ceremony unforgettable with these luxury features
+            </p>
+            
+            <div class="addon-options">
+                <div class="addon-option" onclick="toggleAddon(this, 'Royal Engagement Music Collection', 3500)">
+                    <div class="premium-badge">EXCLUSIVE</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🎼 Royal Engagement Music Collection</h4>
+                    <p class="price">+₹3,500</p>
+                    <small>300+ premium engagement songs + custom orchestral arrangements + ring ceremony music</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Ultra Engagement Gallery', 4200)">
+                    <div class="premium-badge">POPULAR</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>📷 Ultra Engagement Gallery (75 more)</h4>
+                    <p class="price">+₹4,200</p>
+                    <small>150 photos total with AI-enhanced quality + engagement story timeline</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Luxury Engagement Print Suite', 6500)">
+                    <div class="premium-badge">LUXURY</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🎨 Luxury Engagement Print Suite</h4>
+                    <p class="price">+₹6,500</p>
+                    <small>Premium engagement cards + save-the-date + thank you cards with gold foiling</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Express Ring Ceremony Delivery', 3800)">
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🚀 Express Ring Ceremony Delivery (12 hours)</h4>
+                    <p class="price">+₹3,800</p>
+                    <small>Ultra-fast 12-hour delivery with dedicated engagement design team</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Couple Portrait Art', 7400)">
+                    <div class="premium-badge">ARTISTIC</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🎭 Custom Couple Portrait Art</h4>
+                    <p class="price">+₹7,400</p>
+                    <small>Professional digital paintings + multiple art styles + engagement frames</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Engagement Gift Experience', 4800)">
+                    <div class="premium-badge">PREMIUM</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🎁 Luxury Engagement Gift Experience</h4>
+                    <p class="price">+₹4,800</p>
+                    <small>Premium presentation + engagement keepsakes + surprise gift elements</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Engagement Love Story Film', 9200)">
+                    <div class="premium-badge">CINEMATIC</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🎬 Cinematic Engagement Love Story</h4>
+                    <p class="price">+₹9,200</p>
+                    <small>15-minute professional film + proposal story + family interviews + ring ceremony</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Multi-Platform Engagement Suite', 2800)">
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>📱 Multi-Platform Engagement Suite</h4>
+                    <p class="price">+₹2,800</p>
+                    <small>All social platforms + smart TV + mobile app + engagement website</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Master Engagement Animation', 8500)">
+                    <div class="premium-badge">EXCLUSIVE</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>✨ Master Engagement Animation Studio</h4>
+                    <p class="price">+₹8,500</p>
+                    <small>Hollywood-grade 3D animations + ring effects + interactive engagement features</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Engagement Timeline Journey', 5800)">
+                    <div class="premium-badge">HERITAGE</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>📅 Complete Engagement Timeline Journey</h4>
+                    <p class="price">+₹5,800</p>
+                    <small>Interactive relationship journey + proposal story + engagement milestones</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Live Orchestra Soundtrack', 4600)">
+                    <div class="premium-badge">MUSICAL</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🎵 Live Orchestra Engagement Soundtrack</h4>
+                    <p class="price">+₹4,600</p>
+                    <small>Custom orchestral composition + live recording + vinyl record option</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'AR Engagement Experience', 6200)">
+                    <div class="premium-badge">TECH</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>📲 Augmented Reality Engagement</h4>
+                    <p class="price">+₹6,200</p>
+                    <small>AR-enabled invitations + 3D ring visualization + mobile app integration</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Celebrity Engagement Narrator', 10500)">
+                    <div class="premium-badge">CELEBRITY</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🎤 Celebrity Engagement Narrator</h4>
+                    <p class="price">+₹10,500</p>
+                    <small>Professional celebrity voice-over for your engagement story narration</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Engagement Venue Photo Shoot', 18000)">
+                    <div class="premium-badge">ULTIMATE</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>📸 Professional Engagement Photo Shoot</h4>
+                    <p class="price">+₹18,000</p>
+                    <small>Professional photographer + venue decoration + 150 edited engagement photos</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Holographic Engagement Display', 15000)">
+                    <div class="premium-badge">FUTURISTIC</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🔮 Holographic Engagement Display</h4>
+                    <p class="price">+₹15,000</p>
+                    <small>3D holographic projection device with your engagement ceremony content</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Information Form -->
+        <div class="customer-form">
+            <h2>📝 Premium Engagement Client Information</h2>
+            <form id="engagementForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="brideName">Bride's Name *</label>
+                        <input type="text" id="brideName" name="brideName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="groomName">Groom's Name *</label>
+                        <input type="text" id="groomName" name="groomName" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="engagementDate">Engagement Date *</label>
+                        <input type="date" id="engagementDate" name="engagementDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="engagementVenue">Engagement Venue *</label>
+                        <input type="text" id="engagementVenue" name="engagementVenue" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="relationshipYears">Years Together</label>
+                        <input type="number" id="relationshipYears" name="relationshipYears" min="1" max="50">
+                    </div>
+                    <div class="form-group">
+                        <label for="proposalDate">Proposal Date</label>
+                        <input type="date" id="proposalDate" name="proposalDate">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="engagementMessage">Engagement Announcement Message *</label>
+                    <textarea id="engagementMessage" name="engagementMessage" placeholder="Share your joy and excitement about this special milestone..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="loveStory">Your Beautiful Love Story</label>
+                    <textarea id="loveStory" name="loveStory" placeholder="Tell us how you met, your journey together, the proposal story, and what makes your love special..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="familyDetails">Family Introduction</label>
+                    <textarea id="familyDetails" name="familyDetails" placeholder="Brief introduction about both families to be included in the engagement presentation..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="deliveryAddress">Luxury Delivery Address (for premium print items)</label>
+                    <textarea id="deliveryAddress" name="deliveryAddress" placeholder="Enter complete address with landmark details for premium delivery service..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="theme">Premium Engagement Theme *</label>
+                        <select id="theme" name="theme" required>
+                            <option value="">Choose your luxury engagement theme...</option>
+                            <option value="royal-gold">Royal Gold Elegance</option>
+                            <option value="rose-gold-blush">Rose Gold & Blush</option>
+                            <option value="vintage-engagement">Vintage Engagement</option>
+                            <option value="modern-luxury">Modern Luxury</option>
+                            <option value="traditional-indian">Traditional Indian</option>
+                            <option value="contemporary-chic">Contemporary Chic</option>
+                            <option value="custom-engagement">Custom Engagement Design</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="colorScheme">Premium Color Palette</label>
+                        <select id="colorScheme" name="colorScheme">
+                            <option value="">Select premium colors...</option>
+                            <option value="gold-burgundy">Gold & Burgundy</option>
+                            <option value="rose-gold-pink">Rose Gold & Pink</option>
+                            <option value="champagne-ivory">Champagne & Ivory</option>
+                            <option value="emerald-gold">Emerald & Gold</option>
+                            <option value="navy-gold">Navy & Gold</option>
+                            <option value="blush-copper">Blush & Copper</option>
+                            <option value="custom-palette">Custom Color Palette</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="guestCount">Expected Guest Count</label>
+                        <input type="number" id="guestCount" name="guestCount" min="10" max="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="ceremonyTime">Ceremony Time</label>
+                        <input type="time" id="ceremonyTime" name="ceremonyTime">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="musicPreference">Music Preferences for Engagement</label>
+                    <textarea id="musicPreference" name="musicPreference" placeholder="Bollywood, Classical, Western, Instrumental, Folk - tell us your musical preferences for the engagement..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="ritualPreferences">Engagement Rituals & Traditions</label>
+                    <textarea id="ritualPreferences" name="ritualPreferences" placeholder="Specific cultural rituals, ring exchange style, traditional elements you'd like to include..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialRequests">Luxury Customization Requests</label>
+                    <textarea id="specialRequests" name="specialRequests" placeholder="Any exclusive requirements, favorite quotes, cultural elements, or ultra-premium features for your engagement..."></textarea>
+                </div>
+            </form>
+        </div>
+
+        <!-- Total Calculator -->
+        <div class="total-section">
+            <h3>💎 Your Premium Engagement Investment</h3>
+            <div class="total-price" id="totalPrice">₹35,999</div>
+            
+            <div class="selected-items" id="selectedItems">
+                <h4>Premium Engagement Package Includes:</h4>
+                <div class="selected-item">
+                    <span>Premium Engagement Ceremony Package</span>
+                    <span>₹35,999</span>
+                </div>
+            </div>
+
+            <a href="#checkout" class="checkout-btn" onclick="submitOrder()">
+                Complete Premium Engagement Order 💍
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let selectedAddons = [];
+        let basePrice = 35999;
+
+        function toggleAddon(element, name, price) {
+            const selectBtn = element.querySelector('.select-btn');
+            
+            // Toggle selection state
+            const isSelected = element.classList.contains('selected');
+            
+            if (isSelected) {
+                // Deselect
+                element.classList.remove('selected');
+                selectBtn.textContent = 'Select';
+                selectedAddons = selectedAddons.filter(addon => addon.name !== name);
+            } else {
+                // Select
+                element.classList.add('selected');
+                selectBtn.textContent = 'Selected';
+                selectedAddons.push({ name, price });
+            }
+            
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const addonTotal = selectedAddons.reduce((sum, addon) => sum + addon.price, 0);
+            const total = basePrice + addonTotal;
+            
+            // Format number with commas for Indian currency
+            document.getElementById('totalPrice').textContent = `₹${total.toLocaleString('en-IN')}`;
+            
+            // Update selected items display
+            const selectedItemsDiv = document.getElementById('selectedItems');
+            let itemsHTML = '<h4>Premium Engagement Package Includes:</h4>';
+            
+            // Base package
+            itemsHTML += `
+                <div class="selected-item">
+                    <span>Premium Engagement Ceremony Package</span>
+                    <span>₹${basePrice.toLocaleString('en-IN')}</span>
+                </div>
+            `;
+            
+            // Add-ons
+            selectedAddons.forEach(addon => {
+                itemsHTML += `
+                    <div class="selected-item">
+                        <span>${addon.name}</span>
+                        <span>+₹${addon.price.toLocaleString('en-IN')}</span>
+                    </div>
+                `;
+            });
+            
+            selectedItemsDiv.innerHTML = itemsHTML;
+        }
+
+        function submitOrder() {
+            const form = document.getElementById('engagementForm');
+            const brideName = document.getElementById('brideName').value;
+            const groomName = document.getElementById('groomName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const engagementDate = document.getElementById('engagementDate').value;
+            const engagementVenue = document.getElementById('engagementVenue').value;
+            const engagementMessage = document.getElementById('engagementMessage').value;
+            const theme = document.getElementById('theme').value;
+
+            // Basic validation for required fields
+            if (!brideName || !groomName || !email || !phone || !engagementDate || !engagementVenue || !engagementMessage || !theme) {
+                alert('Please fill in all required fields (marked with *)');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            // Phone validation (basic Indian format)
+            const phoneRegex = /^[6-9]\d{9}$/;
+            if (!phoneRegex.test(phone.replace(/\D/g, '').slice(-10))) {
+                alert('Please enter a valid 10-digit phone number');
+                return;
+            }
+
+            // Date validation - engagement should be in future
+            const selectedDate = new Date(engagementDate);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            if (selectedDate < today) {
+                alert('Please select a future date for your engagement ceremony');
+                return;
+            }
+
+            // Calculate final total
+            const addonTotal = selectedAddons.reduce((sum, addon) => sum + addon.price, 0);
+            const finalTotal = basePrice + addonTotal;
+
+            // Create order summary
+            const orderData = {
+                customerInfo: {
+                    brideName,
+                    groomName,
+                    email,
+                    phone,
+                    engagementDate,
+                    engagementVenue,
+                    relationshipYears: document.getElementById('relationshipYears').value,
+                    proposalDate: document.getElementById('proposalDate').value,
+                    engagementMessage,
+                    loveStory: document.getElementById('loveStory').value,
+                    familyDetails: document.getElementById('familyDetails').value,
+                    deliveryAddress: document.getElementById('deliveryAddress').value,
+                    theme,
+                    colorScheme: document.getElementById('colorScheme').value,
+                    guestCount: document.getElementById('guestCount').value,
+                    ceremonyTime: document.getElementById('ceremonyTime').value,
+                    musicPreference: document.getElementById('musicPreference').value,
+                    ritualPreferences: document.getElementById('ritualPreferences').value,
+                    specialRequests: document.getElementById('specialRequests').value
+                },
+                package: 'Premium Engagement Ceremony Package',
+                basePrice,
+                addons: selectedAddons,
+                total: finalTotal,
+                orderDate: new Date().toISOString()
+            };
+
+            // In a real application, you would send this data to a server
+            console.log('Premium Engagement Order Data:', orderData);
+
+            // Show success message
+            document.getElementById('successMessage').classList.add('show');
+            
+            // Scroll to top to show success message
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Reset form after successful submission
+            setTimeout(() => {
+                form.reset();
+                
+                // Reset addons
+                selectedAddons = [];
+                document.querySelectorAll('.addon-option').forEach(option => {
+                    option.classList.remove('selected');
+                    option.querySelector('.select-btn').textContent = 'Select';
+                });
+                
+                updateTotal();
+                
+                // Hide success message after 8 seconds
+                setTimeout(() => {
+                    document.getElementById('successMessage').classList.remove('show');
+                }, 8000);
+            }, 2000);
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTotal();
+            
+            // Set minimum date to today for engagement date
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('engagementDate').setAttribute('min', today);
+            
+            // Set maximum date to today for proposal date
+            document.getElementById('proposalDate').setAttribute('max', today);
+
+            // Create more floating elements dynamically
+            createFloatingElements();
+        });
+
+        function createFloatingElements() {
+            const bgAnimation = document.querySelector('.bg-animation');
+            const elements = ['💕', '💍', '🌹', '💖', '🌺', '💝', '🌸', '💐'];
+            
+            // Create additional floating elements
+            for (let i = 0; i < 15; i++) {
+                const element = document.createElement('div');
+                const randomElement = elements[Math.floor(Math.random() * elements.length)];
+                const randomClass = Math.random() > 0.6 ? 'floating-hearts' : 
+                Math.random() > 0.3 ? 'floating-rings' : 'floating-flowers';
+                
+                element.className = randomClass;
+                element.textContent = randomElement;
+                element.style.left = Math.random() * 100 + '%';
+                element.style.animationDelay = Math.random() * 20 + 's';
+                element.style.fontSize = (15 + Math.random() * 10) + 'px';
+                
+                bgAnimation.appendChild(element);
+            }
+
+            // Create additional sparkles
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 3 + 's';
+                
+                bgAnimation.appendChild(sparkle);
+            }
+        }
+    </script>
+</body>
+</html>

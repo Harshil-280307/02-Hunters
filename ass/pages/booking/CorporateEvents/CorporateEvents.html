@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Events - Choose Your Package</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #e2e8f0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background particles */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 50%;
+            animation: float-particle 15s infinite linear;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .particle:nth-child(odd) {
+            background: rgba(16, 185, 129, 0.4);
+            animation-duration: 18s;
+            width: 3px;
+            height: 3px;
+        }
+
+        .particle:nth-child(3n) {
+            background: rgba(245, 158, 11, 0.4);
+            animation-duration: 12s;
+            width: 5px;
+            height: 5px;
+        }
+
+        /* Corporate grid pattern overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+            animation: grid-pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes grid-pulse {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideInFromTop 1s ease-out;
+        }
+
+        @keyframes slideInFromTop {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #3b82f6, #10b981, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .header p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: #94a3b8;
+            animation: fadeInUp 1.5s ease-out 0.5s both;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, auto);
+            gap: 30px;
+            margin-bottom: 50px;
+            padding: 0 10px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 35px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            animation: cardSlideIn 0.8s ease-out;
+            animation-fill-mode: both;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes cardSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(60px) rotateX(-15deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+            }
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.8), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .card:hover::after {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-20px) scale(1.03);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.3),
+                0 0 50px rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .card.basic {
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .card.basic:hover {
+            border-color: rgba(16, 185, 129, 0.6);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.3),
+                0 0 50px rgba(16, 185, 129, 0.2);
+        }
+
+        .card.medium {
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .card.premium {
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .card.premium:hover {
+            border-color: rgba(245, 158, 11, 0.6);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.3),
+                0 0 50px rgba(245, 158, 11, 0.2);
+        }
+
+        .card.custom {
+            border-color: rgba(168, 85, 247, 0.3);
+        }
+
+        .card.custom:hover {
+            border-color: rgba(168, 85, 247, 0.6);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.3),
+                0 0 50px rgba(168, 85, 247, 0.2);
+        }
+
+        .card-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            position: relative;
+            transition: all 0.4s ease;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.2) rotateY(360deg);
+            animation: none;
+        }
+
+        .basic .card-icon {
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
+        }
+
+        .medium .card-icon {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+        }
+
+        .premium .card-icon {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.4);
+        }
+
+        .custom .card-icon {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+        }
+
+        .card h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: #f1f5f9;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .card:hover h3 {
+            transform: scale(1.05);
+        }
+
+        .card .price {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card:hover .price {
+            transform: scale(1.1);
+        }
+
+        .basic .price {
+            background: linear-gradient(135deg, #10b981, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .premium .price {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .custom .price {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .features li {
+            padding: 10px 0;
+            color: #cbd5e1;
+            position: relative;
+            opacity: 0;
+            animation: featureSlideIn 0.5s ease-out forwards;
+            border-bottom: 1px solid rgba(71, 85, 105, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .features li:last-child {
+            border-bottom: none;
+        }
+
+        .features li:hover {
+            color: #f1f5f9;
+            transform: translateX(10px);
+        }
+
+        .features li:nth-child(1) { animation-delay: 0.8s; }
+        .features li:nth-child(2) { animation-delay: 0.9s; }
+        .features li:nth-child(3) { animation-delay: 1.0s; }
+        .features li:nth-child(4) { animation-delay: 1.1s; }
+        .features li:nth-child(5) { animation-delay: 1.2s; }
+        .features li:nth-child(6) { animation-delay: 1.3s; }
+        .features li:nth-child(7) { animation-delay: 1.4s; }
+
+        @keyframes featureSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .features li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 12px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .features li::before {
+            transform: scale(1.3);
+            color: #3b82f6;
+        }
+
+        .btn {
+            text-decoration: none;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: #ffffff;
+            border: none;
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+
+        /* Default Medium Package Button - Ripple Effect */
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.6s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Basic Package Button - Slide Fill Animation */
+        .basic .btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border: 2px solid #10b981;
+            position: relative;
+            z-index: 1;
+        }
+
+        .basic .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #059669, #047857);
+            transition: left 0.5s ease;
+            z-index: -1;
+            border-radius: 50px;
+        }
+
+        .basic .btn:hover::before {
+            left: 0;
+        }
+
+        .basic .btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 25px 50px rgba(16, 185, 129, 0.4);
+            border-color: #059669;
+        }
+
+        .basic .btn:active {
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        /* Premium Package Button - Bouncing Glow Effect */
+        .premium .btn {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            animation: premiumPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes premiumPulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(245, 158, 11, 0.6);
+            }
+        }
+
+        .premium .btn::before {
+            content: '✨';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0;
+            transition: all 0.4s ease;
+            z-index: 2;
+        }
+
+        .premium .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%) skewX(-15deg);
+            transition: transform 0.8s ease;
+        }
+
+        .premium .btn:hover {
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: 0 30px 60px rgba(245, 158, 11, 0.5);
+            animation: premiumBounce 0.6s ease;
+        }
+
+        .premium .btn:hover::before {
+            font-size: 1.2rem;
+            animation: sparkle 0.6s ease;
+        }
+
+        .premium .btn:hover::after {
+            transform: translateX(100%) skewX(-15deg);
+        }
+
+        @keyframes premiumBounce {
+            0%, 100% { transform: translateY(-8px) scale(1.08); }
+            50% { transform: translateY(-12px) scale(1.12); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+            50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.3); }
+        }
+
+        /* Custom Package Button - Morphing Border Animation */
+        .custom .btn {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+
+        .custom .btn::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: conic-gradient(from 0deg, #a855f7, #3b82f6, #10b981, #f59e0b, #a855f7);
+            border-radius: 50px;
+            z-index: -1;
+            animation: customRotate 3s linear infinite;
+        }
+
+        .custom .btn::after {
+            content: '🎨';
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            transition: all 0.4s ease;
+        }
+
+        @keyframes customRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .custom .btn:hover {
+            transform: translateY(-6px) scale(1.06) rotateX(10deg);
+            box-shadow: 0 25px 50px rgba(168, 85, 247, 0.4);
+            perspective: 1000px;
+        }
+
+        .custom .btn:hover::before {
+            animation-speed: 1s;
+        }
+
+        .custom .btn:hover::after {
+            transform: translateY(-50%) rotate(360deg) scale(1.3);
+            right: 15px;
+        }
+
+        /* Add button press animations */
+        .btn:active {
+            transform: translateY(-1px) scale(1.02);
+            transition: all 0.1s ease;
+        }
+
+        /* Add loading state for buttons */
+        .btn.loading {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .btn.loading::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: btnLoading 1s linear infinite;
+        }
+
+        @keyframes btnLoading {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Hover state text animations */
+        .basic .btn:hover {
+            letter-spacing: 2px;
+        }
+
+        .medium .btn:hover {
+            letter-spacing: 1.5px;
+        }
+
+        .premium .btn:hover {
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .custom .btn:hover {
+            letter-spacing: 2.5px;
+            text-shadow: 0 0 15px rgba(168, 85, 247, 0.8);
+        }
+
+        .selected {
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.4),
+                0 0 60px rgba(59, 130, 246, 0.4);
+            border: 2px solid #3b82f6;
+            animation: selectedPulse 2s infinite;
+        }
+
+        @keyframes selectedPulse {
+            0% {
+                box-shadow: 
+                    0 30px 60px rgba(0, 0, 0, 0.4),
+                    0 0 60px rgba(59, 130, 246, 0.4);
+            }
+            50% {
+                box-shadow: 
+                    0 35px 70px rgba(0, 0, 0, 0.5),
+                    0 0 80px rgba(59, 130, 246, 0.6);
+            }
+            100% {
+                box-shadow: 
+                    0 30px 60px rgba(0, 0, 0, 0.4),
+                    0 0 60px rgba(59, 130, 246, 0.4);
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 50px;
+            border-radius: 24px;
+            text-align: center;
+            max-width: 600px;
+            margin: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            animation: modalSlideIn 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            animation: modalShimmer 4s linear infinite;
+        }
+
+        @keyframes modalShimmer {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes modalSlideIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(-50px) rotateY(-15deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0) rotateY(0deg);
+            }
+        }
+
+        .close {
+            float: right;
+            font-size: 32px;
+            cursor: pointer;
+            color: #94a3b8;
+            transition: all 0.3s ease;
+            z-index: 10;
+            position: relative;
+        }
+
+        .close:hover {
+            color: #f1f5f9;
+            transform: rotate(90deg) scale(1.2);
+        }
+
+        /* Corporate celebration particles */
+        .success-particle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: success-fall 3s linear infinite;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes success-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) scale(1.2);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        .success-particle:nth-child(odd) {
+            background: #3b82f6;
+            animation-duration: 2.5s;
+        }
+
+        .success-particle:nth-child(3n) {
+            background: #f59e0b;
+            animation-duration: 3.5s;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .cards-container {
+                max-width: 900px;
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(4, auto);
+                gap: 20px;
+                padding: 0 5px;
+                max-width: 500px;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            .modal-content {
+                padding: 30px;
+                margin: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .cards-container {
+                gap: 15px;
+                max-width: 400px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .card-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 15px 25px;
+                font-size: 1rem;
+            }
+
+            .modal-content {
+                padding: 20px;
+            }
+        }
+
+        /* Tablet landscape optimization */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .cards-container {
+                max-width: 800px;
+                gap: 25px;
+            }
+            
+            .card {
+                padding: 30px;
+            }
+        }
+
+        /* Large screen optimization */
+        @media (min-width: 1400px) {
+            .cards-container {
+                max-width: 1200px;
+                gap: 40px;
+            }
+            
+            .card {
+                padding: 40px;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .card {
+                border-width: 2px;
+            }
+            
+            .features li {
+                border-bottom-width: 2px;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-particles"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>🏢 Corporate Events</h1>
+            <p>Elevate your business gatherings with our premium event management packages</p>
+        </div>
+
+        <div class="cards-container">
+            <!-- Basic Package -->
+            <div class="card basic" onclick="selectCard(this, 'basic')">
+                <div class="card-icon">🎯</div>
+                <h3>Startup Package</h3>
+                <div class="price">₹25,999</div>
+                <ul class="features">
+                    <li>Team Building Activities</li>
+                    <li>Professional Photography</li>
+                    <li>Basic AV Equipment</li>
+                    <li>Venue Coordination</li>
+                    <li>Catering (50 guests)</li>
+                    <li>Event Timeline Planning</li>
+                    <li>Digital Invitation Suite</li>
+                </ul>
+                <a href="../CorporateEvents/StartupPackage.html" class="btn" onclick="event.stopPropagation(); orderPackage('basic', 25999)">Choose Startup</a>
+            </div>
+
+            <!-- Medium Package -->
+            <div class="card medium" onclick="selectCard(this, 'medium')">
+                <div class="card-icon">🚀</div>
+                <h3>Corporate Package</h3>
+                <div class="price">₹75,999</div>
+                <ul class="features">
+                    <li>Professional Event Management</li>
+                    <li>Live Streaming Setup</li>
+                    <li>Premium AV & Lighting</li>
+                    <li>Brand Integration</li>
+                    <li>Full Catering (150 guests)</li>
+                    <li>Transportation Coordination</li>
+                    <li>Post-Event Analytics</li>
+                </ul>
+                <a href="../CorporateEvents/CorporatePackage.html" class="btn" onclick="event.stopPropagation(); orderPackage('medium', 75999)">Choose Corporate</a>
+            </div>
+
+            <!-- Premium Package -->
+            <div class="card premium" onclick="selectCard(this, 'premium')">
+                <div class="card-icon">👑</div>
+                <h3>Enterprise Package</h3>
+                <div class="price">₹1,99,999</div>
+                <ul class="features">
+                    <li>Full-Service Event Production</li>
+                    <li>Executive Coordination</li>
+                    <li>Multi-Location Streaming</li>
+                    <li>VIP Guest Management</li>
+                    <li>Luxury Catering (500+ guests)</li>
+                    <li>Security & Protocol</li>
+                    <li>24/7 Support Team</li>
+                </ul>
+                <a href="../CorporateEvents/EnterprisePackage.html" class="btn" onclick="event.stopPropagation(); orderPackage('premium', 199999)">Choose Enterprise</a>
+            </div>
+
+            <!-- Custom Package -->
+            <div class="card custom" onclick="selectCard(this, 'custom')">
+                <div class="card-icon">⚡</div>
+                <h3>Bespoke Events</h3>
+                <div class="price">Custom</div>
+                <ul class="features">
+                    <li>Fully Customizable Experience</li>
+                    <li>Dedicated Event Director</li>
+                    <li>Global Venue Options</li>
+                    <li>Celebrity Guest Coordination</li>
+                    <li>Unlimited Attendees</li>
+                    <li>Premium Partnerships</li>
+                    <li>White-Glove Service</li>
+                </ul>
+                <a href="../CorporateEvents/BespokeEvents.html" class="btn" onclick="event.stopPropagation(); openCustomModal()">Get Quote</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for custom package -->
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCustomModal()">&times;</span>
+            <h2 style="color: #f1f5f9; margin-bottom: 20px; font-size: 2rem;">Bespoke Event Consultation</h2>
+            <p style="color: #cbd5e1; margin-bottom: 30px; font-size: 1.1rem; line-height: 1.6;">
+                Let's create an extraordinary corporate event that perfectly aligns with your business objectives. Our enterprise team will connect with you within 2 hours to discuss your vision.
+            </p>
+            <a href="../CorporateEvents/BespokeEvents.html" class="btn" onclick="requestConsultation()" style="background: linear-gradient(135deg, #a855f7, #7c3aed);">
+                Schedule Consultation
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let selectedPackage = null;
+
+        // Create animated background particles
+        function createBackgroundParticles() {
+            const particlesContainer = document.querySelector('.bg-particles');
+            
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (Math.random() * 5 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                particlesContainer.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 20000);
+            }, 800);
+        }
+
+        function selectCard(card, packageType) {
+            // Remove previous selection
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+            
+            // Add selection to clicked card
+            card.classList.add('selected');
+            selectedPackage = packageType;
+            
+            // Create success celebration effect
+            createSuccessParticles();
+            
+            // Add haptic feedback (if supported)
+            if (navigator.vibrate) {
+                navigator.vibrate(100);
+            }
+        }
+
+        function createSuccessParticles() {
+            const colors = ['#10b981', '#3b82f6', '#f59e0b', '#a855f7'];
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'success-particle';
+                    particle.style.left = Math.random() * 100 + 'vw';
+                    particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    particle.style.animationDelay = Math.random() * 0.5 + 's';
+                    document.body.appendChild(particle);
+                    
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 4000);
+                }, i * 50);
+            }
+        }
+
+        function orderPackage(packageType, price) {
+            createSuccessParticles();
+            
+            // Add a subtle screen flash effect
+            document.body.style.background = 'linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #059669 50%, #1e293b 75%, #0f172a 100%)';
+            
+            setTimeout(() => {
+                document.body.style.background = 'linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%)';
+                
+                const formattedPrice = price.toLocaleString('en-IN');
+                alert(`🎉 Excellent Choice! You've selected the ${packageType.charAt(0).toUpperCase() + packageType.slice(1)} Package for ₹${formattedPrice}.\n\nOur team will contact you within 24 hours to finalize the details. Get ready for an exceptional corporate event!`);
+            }, 200);
+        }
+
+        function openCustomModal() {
+            document.getElementById('customModal').style.display = 'flex';
+            createSuccessParticles();
+        }
+
+        function closeCustomModal() {
+            document.getElementById('customModal').style.display = 'none';
+        }
+
+        function requestConsultation() {
+            createSuccessParticles();
+            
+            // Create a more elaborate celebration
+            setTimeout(() => {
+                for (let i = 0; i < 50; i++) {
+                    setTimeout(() => {
+                        const particle = document.createElement('div');
+                        particle.className = 'success-particle';
+                        particle.style.left = Math.random() * 100 + 'vw';
+                        particle.style.backgroundColor = '#a855f7';
+                        particle.style.width = '12px';
+                        particle.style.height = '12px';
+                        document.body.appendChild(particle);
+                        
+                        setTimeout(() => {
+                            particle.remove();
+                        }, 4000);
+                    }, i * 30);
+                }
+                
+                setTimeout(() => {
+                    alert('🚀 Thank you for your interest in our Bespoke Events package!\n\nOur enterprise event specialists will contact you within 2 hours to schedule a detailed consultation. We\'re excited to create something extraordinary for your organization!');
+                    closeCustomModal();
+                }, 1000);
+            }, 500);
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('customModal');
+            if (event.target == modal) {
+                closeCustomModal();
+            }
+        }
+
+        // Advanced interaction features
+        function addAdvancedInteractions() {
+            // Add keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeCustomModal();
+                }
+            });
+
+            // Add smooth scroll behavior for better UX
+            document.documentElement.style.scrollBehavior = 'smooth';
+
+            // Add intersection observer for scroll-triggered animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.card').forEach(card => {
+                observer.observe(card);
+            });
+        }
+
+        // Enhanced particle effects for different screen sizes
+        function createResponsiveParticles() {
+            const screenWidth = window.innerWidth;
+            const particleCount = screenWidth > 768 ? 30 : 15;
+            
+            return particleCount;
+        }
+
+        // Add performance optimizations
+        function optimizePerformance() {
+            // Throttle particle creation on smaller screens
+            const isLowPerformance = window.innerWidth < 768 || navigator.hardwareConcurrency < 4;
+            
+            if (isLowPerformance) {
+                // Reduce animation frequency
+                const style = document.createElement('style');
+                style.textContent = `
+                    .particle { animation-duration: 20s !important; }
+                    .success-particle { animation-duration: 4s !important; }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        // Add touch gestures for mobile
+        function addTouchSupport() {
+            let touchStartY = 0;
+            
+            document.addEventListener('touchstart', function(e) {
+                touchStartY = e.touches[0].clientY;
+            });
+            
+            document.addEventListener('touchend', function(e) {
+                const touchEndY = e.changedTouches[0].clientY;
+                const diff = touchStartY - touchEndY;
+                
+                // Add subtle haptic feedback for card interactions
+                if (Math.abs(diff) < 10 && e.target.closest('.card')) {
+                    if (navigator.vibrate) {
+                        navigator.vibrate(50);
+                    }
+                }
+            });
+        }
+
+        // Initialize all features
+        window.addEventListener('load', () => {
+            createBackgroundParticles();
+            addAdvancedInteractions();
+            optimizePerformance();
+            addTouchSupport();
+            
+            // Add a welcome animation
+            setTimeout(() => {
+                createSuccessParticles();
+            }, 2000);
+        });
+
+        // Handle window resize for responsive adjustments
+        window.addEventListener('resize', () => {
+            optimizePerformance();
+        });
+
+        // Add focus management for accessibility
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ensure proper focus management for modal
+            const modal = document.getElementById('customModal');
+            const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            
+            if (focusableElements.length > 0) {
+                focusableElements[0].focus();
+            }
+        });
+    </script>
+</body>
+</html>

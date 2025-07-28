@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Corporate Events Package</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a237e 25%, #283593 50%, #3949ab 75%, #5c6bc0 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #263238;
+            animation: backgroundFlow 15s ease-in-out infinite alternate;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @keyframes backgroundFlow {
+            0% { 
+                background: linear-gradient(135deg, #0a0e27 0%, #1a237e 25%, #283593 50%, #3949ab 75%, #5c6bc0 100%);
+            }
+            25% {
+                background: linear-gradient(165deg, #1a237e 0%, #283593 25%, #3949ab 50%, #5c6bc0 75%, #7986cb 100%);
+            }
+            50% {
+                background: linear-gradient(225deg, #0d47a1 0%, #1565c0 25%, #1976d2 50%, #42a5f5 75%, #64b5f6 100%);
+            }
+            75% {
+                background: linear-gradient(285deg, #1565c0 0%, #1976d2 25%, #2196f3 50%, #64b5f6 75%, #81c784 100%);
+            }
+            100% { 
+                background: linear-gradient(315deg, #283593 0%, #3949ab 25%, #5c6bc0 50%, #7986cb 75%, #9575cd 100%);
+            }
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(33, 150, 243, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+            animation: floatingBubbles 20s ease-in-out infinite;
+        }
+
+        @keyframes floatingBubbles {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(1deg); }
+            50% { transform: translateY(-20px) rotate(-1deg); }
+            75% { transform: translateY(-10px) rotate(0.5deg); }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        .particle:nth-child(odd) {
+            background: rgba(33, 150, 243, 0.4);
+            animation-duration: 25s;
+        }
+
+        .particle:nth-child(3n) {
+            background: rgba(76, 175, 80, 0.3);
+            animation-duration: 30s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            animation: containerEntrance 1.5s ease-out forwards;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes containerEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .header {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 60px;
+            animation: headerSlideIn 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+        }
+
+        @keyframes headerSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-60px) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #ffffff, transparent);
+            animation: headerLine 3s ease-in-out infinite;
+        }
+
+        @keyframes headerLine {
+            0%, 100% { width: 100px; opacity: 0.7; }
+            50% { width: 200px; opacity: 1; }
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.5),
+                0 0 20px rgba(33, 150, 243, 0.3),
+                0 0 30px rgba(33, 150, 243, 0.2);
+            background: linear-gradient(45deg, #ffffff, #e3f2fd, #bbdefb, #ffffff);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShimmer 4s ease-in-out infinite;
+            position: relative;
+        }
+
+        @keyframes textShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .header p {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            color: #e3f2fd;
+            animation: subtitlePulse 3s ease-in-out infinite;
+            margin-bottom: 30px;
+        }
+
+        @keyframes subtitlePulse {
+            0%, 100% { opacity: 0.9; transform: translateY(0); }
+            50% { opacity: 0.7; transform: translateY(-5px); }
+        }
+
+        .feature-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .feature-badge {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: #ffffff;
+            font-size: 0.9rem;
+            animation: badgeFloat 3s ease-in-out infinite;
+            animation-delay: calc(var(--i) * 0.3s);
+        }
+
+        .feature-badge:nth-child(1) { --i: 0; }
+        .feature-badge:nth-child(2) { --i: 1; }
+        .feature-badge:nth-child(3) { --i: 2; }
+        .feature-badge:nth-child(4) { --i: 3; }
+
+        @keyframes badgeFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .basic-package {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 250, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.15),
+                0 0 30px rgba(25, 118, 210, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+            animation: packageEntrance 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s both;
+        }
+
+        @keyframes packageEntrance {
+            0% {
+                opacity: 0;
+                transform: translateX(-150px) rotate(-5deg) scale(0.8);
+            }
+            60% {
+                opacity: 0.8;
+                transform: translateX(20px) rotate(2deg) scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) rotate(0deg) scale(1);
+            }
+        }
+
+        .basic-package::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #1565c0, #1976d2, #2196f3, #64b5f6, #1976d2, #1565c0);
+            background-size: 300% 300%;
+            border-radius: 30px;
+            z-index: -1;
+            animation: borderGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .basic-package::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: packageShimmer 3s infinite;
+        }
+
+        @keyframes packageShimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .package-icon {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #1565c0, #0d47a1, #1976d2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #ffffff;
+            animation: iconRotateScale 6s ease-in-out infinite;
+            box-shadow: 
+                0 15px 35px rgba(13, 71, 161, 0.4),
+                0 0 20px rgba(33, 150, 243, 0.3),
+                inset 0 2px 10px rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        .package-icon::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid rgba(33, 150, 243, 0.3);
+            border-radius: 50%;
+            animation: iconRing 4s linear infinite;
+        }
+
+        @keyframes iconRing {
+            0% { transform: rotate(0deg) scale(1); opacity: 1; }
+            100% { transform: rotate(360deg) scale(1.1); opacity: 0; }
+        }
+
+        @keyframes iconRotateScale {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(10deg) scale(1.1); }
+            50% { transform: rotate(0deg) scale(1.05); }
+            75% { transform: rotate(-10deg) scale(1.1); }
+        }
+
+        .basic-package h2 {
+            font-size: 2.8rem;
+            color: #1565c0;
+            margin-bottom: 20px;
+            animation: titleColorShift 4s ease-in-out infinite;
+            position: relative;
+        }
+
+        @keyframes titleColorShift {
+            0%, 100% { color: #1565c0; text-shadow: 0 2px 10px rgba(21, 101, 192, 0.3); }
+            50% { color: #0d47a1; text-shadow: 0 2px 15px rgba(13, 71, 161, 0.4); }
+        }
+
+        .basic-price {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 40px;
+            animation: priceGlow 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        @keyframes priceGlow {
+            0%, 100% { 
+                color: #1976d2; 
+                text-shadow: 0 0 20px rgba(25, 118, 210, 0.4);
+                transform: scale(1);
+            }
+            50% { 
+                color: #2196f3; 
+                text-shadow: 0 0 30px rgba(33, 150, 243, 0.6);
+                transform: scale(1.05);
+            }
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 40px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features li {
+            padding: 18px 0;
+            color: #37474f;
+            font-size: 1.3rem;
+            opacity: 0;
+            animation: featureSlideIn 1s ease-out forwards;
+            animation-delay: calc(var(--i) * 0.15s);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            border-bottom: 1px solid rgba(21, 101, 192, 0.1);
+        }
+
+        .features li:hover {
+            transform: translateX(15px);
+            color: #1565c0;
+            background: rgba(21, 101, 192, 0.05);
+            padding-left: 20px;
+            border-radius: 10px;
+        }
+
+        .features li:nth-child(1) { --i: 1; }
+        .features li:nth-child(2) { --i: 2; }
+        .features li:nth-child(3) { --i: 3; }
+        .features li:nth-child(4) { --i: 4; }
+        .features li:nth-child(5) { --i: 5; }
+        .features li:nth-child(6) { --i: 6; }
+
+        @keyframes featureSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .features li::before {
+            content: '✨';
+            color: #1976d2;
+            font-weight: bold;
+            margin-right: 25px;
+            font-size: 1.5rem;
+            animation: checkSparkle 3s ease-in-out infinite;
+            animation-delay: calc(var(--i) * 0.2s);
+        }
+
+        @keyframes checkSparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.3) rotate(20deg); }
+        }
+
+        .customer-choice {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 250, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            padding: 60px;
+            margin-bottom: 60px;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.15),
+                0 0 30px rgba(25, 118, 210, 0.1);
+            animation: choiceSlideIn 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes choiceSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateX(150px) rotate(5deg) scale(0.8);
+            }
+            60% {
+                opacity: 0.8;
+                transform: translateX(-20px) rotate(-2deg) scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) rotate(0deg) scale(1);
+            }
+        }
+
+        .customer-choice h2 {
+            text-align: center;
+            color: #1565c0;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            animation: choiceTitleBounce 1.5s ease-out 0.9s both;
+        }
+
+        @keyframes choiceTitleBounce {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            70% { transform: scale(0.9); opacity: 0.9; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .addon-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .addon-option {
+            background: linear-gradient(135deg, rgba(250, 250, 250, 0.9) 0%, rgba(245, 245, 245, 0.8) 100%);
+            backdrop-filter: blur(10px);
+            padding: 35px;
+            border-radius: 25px;
+            border: 2px solid rgba(224, 224, 224, 0.5);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            animation: addonFadeInScale 1s ease-out forwards;
+            animation-delay: calc(var(--addon-i) * 0.1s + 1.2s);
+        }
+
+        .addon-option:nth-child(1) { --addon-i: 1; }
+        .addon-option:nth-child(2) { --addon-i: 2; }
+        .addon-option:nth-child(3) { --addon-i: 3; }
+        .addon-option:nth-child(4) { --addon-i: 4; }
+        .addon-option:nth-child(5) { --addon-i: 5; }
+        .addon-option:nth-child(6) { --addon-i: 6; }
+        .addon-option:nth-child(7) { --addon-i: 7; }
+        .addon-option:nth-child(8) { --addon-i: 8; }
+        .addon-option:nth-child(9) { --addon-i: 9; }
+        .addon-option:nth-child(10) { --addon-i: 10; }
+
+        @keyframes addonFadeInScale {
+            0% {
+                transform: scale(0.95) translateY(20px);
+            }
+            100% {
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .addon-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(33, 150, 243, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .addon-option:hover::before {
+            left: 100%;
+        }
+
+        .addon-option:hover {
+            background: linear-gradient(135deg, rgba(227, 242, 253, 0.9) 0%, rgba(187, 222, 251, 0.8) 100%);
+            transform: translateY(-12px) scale(1.03) rotateX(5deg);
+            box-shadow: 
+                0 20px 40px rgba(25, 118, 210, 0.3),
+                0 0 30px rgba(33, 150, 243, 0.2);
+            border-color: #2196f3;
+        }
+
+        .addon-option.selected {
+            border-color: #1976d2;
+            background: linear-gradient(135deg, rgba(232, 245, 232, 0.9) 0%, rgba(200, 230, 201, 0.8) 100%);
+            box-shadow: 
+                0 20px 40px rgba(76, 175, 80, 0.4),
+                0 0 30px rgba(76, 175, 80, 0.3);
+            animation: selectedPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes selectedPulse {
+            0%, 100% { 
+                box-shadow: 
+                    0 20px 40px rgba(76, 175, 80, 0.4),
+                    0 0 30px rgba(76, 175, 80, 0.3);
+            }
+            50% { 
+                box-shadow: 
+                    0 25px 50px rgba(76, 175, 80, 0.5),
+                    0 0 40px rgba(76, 175, 80, 0.4);
+            }
+        }
+
+        .addon-option .select-btn {
+            position: absolute;
+            top: -15px;
+            right: 25px;
+            background: linear-gradient(135deg, #1976d2, #1565c0);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 6px 20px rgba(25, 118, 210, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .addon-option .select-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .addon-option .select-btn:hover::before {
+            width: 200px;
+            height: 200px;
+        }
+
+        .addon-option.selected .select-btn {
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+            animation: btnSuccessWave 1s ease-out;
+        }
+
+        @keyframes btnSuccessWave {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .addon-option .select-btn:hover {
+            transform: scale(1.1) rotate(2deg);
+            box-shadow: 0 10px 30px rgba(25, 118, 210, 0.5);
+        }
+
+        .addon-option h4 {
+            color: #1565c0;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .addon-option .price {
+            font-weight: bold;
+            color: #1976d2;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .addon-option small {
+            color: #546e7a;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .customer-form {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 250, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            padding: 60px;
+            margin-bottom: 60px;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.15),
+                0 0 30px rgba(25, 118, 210, 0.1);
+            animation: formSlideUp 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.8s both;
+        }
+
+        @keyframes formSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(150px) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .customer-form h2 {
+            text-align: center;
+            color: #1565c0;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 35px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #1565c0;
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-family: inherit;
+            background: rgba(250, 250, 250, 0.8);
+            color: #263238;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            backdrop-filter: blur(5px);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #2196f3;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 
+                0 0 25px rgba(33, 150, 243, 0.3),
+                0 8px 25px rgba(33, 150, 243, 0.1);
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .total-section {
+            background: linear-gradient(135deg, #1565c0 0%, #0d47a1 50%, #1976d2 100%);
+            color: #ffffff;
+            padding: 60px;
+            border-radius: 30px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 
+                0 25px 50px rgba(13, 71, 161, 0.5),
+                0 0 30px rgba(25, 118, 210, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: totalSlideIn 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 2.1s both;
+        }
+
+        @keyframes totalSlideIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.7) rotate(-10deg) translateY(100px);
+            }
+            60% {
+                opacity: 0.8;
+                transform: scale(1.1) rotate(5deg) translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg) translateY(0);
+            }
+        }
+
+        .total-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: totalShimmer 5s infinite;
+        }
+
+        @keyframes totalShimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .total-section h3 {
+            font-size: 2.3rem;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+            50% { text-shadow: 0 0 30px rgba(255, 255, 255, 0.8); }
+        }
+
+        .total-price {
+            font-size: 4.5rem;
+            font-weight: bold;
+            margin: 30px 0;
+            position: relative;
+            z-index: 1;
+            animation: totalPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes totalPulse {
+            0%, 100% { 
+                transform: scale(1);
+                text-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+            }
+            25% { 
+                transform: scale(1.05);
+                text-shadow: 0 0 40px rgba(255, 255, 255, 0.8);
+            }
+            50% { 
+                transform: scale(1.1);
+                text-shadow: 0 0 50px rgba(255, 255, 255, 1);
+            }
+            75% { 
+                transform: scale(1.05);
+                text-shadow: 0 0 40px rgba(255, 255, 255, 0.8);
+            }
+        }
+
+        .selected-items {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .selected-items h4 {
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+        }
+
+        .selected-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding: 10px 0;
+            animation: itemSlideIn 0.6s ease-out;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes itemSlideIn {
+            0% { opacity: 0; transform: translateX(-30px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .checkout-btn {
+            background: linear-gradient(135deg, #ffffff, #f5f5f5);
+            color: #1565c0;
+            border: none;
+            padding: 25px 60px;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4);
+            overflow: hidden;
+        }
+
+        .checkout-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: linear-gradient(135deg, rgba(21, 101, 192, 0.1), rgba(33, 150, 243, 0.1));
+            border-radius: 50%;
+            transition: all 0.6s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .checkout-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-8px) scale(1.05) rotate(2deg);
+            box-shadow: 
+                0 20px 40px rgba(255, 255, 255, 0.5),
+                0 0 30px rgba(21, 101, 192, 0.3);
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+        }
+
+        .checkout-btn:active {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .checkout-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #4caf50, #2e7d32, #388e3c);
+            color: #fff;
+            padding: 30px;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 40px;
+            display: none;
+            box-shadow: 
+                0 20px 40px rgba(76, 175, 80, 0.5),
+                0 0 30px rgba(76, 175, 80, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: successSlideIn 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes successSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-80px) scale(0.7) rotate(-10deg);
+            }
+            60% {
+                transform: translateY(15px) scale(1.1) rotate(5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotate(0deg);
+            }
+        }
+
+        .success-message::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: successShimmer 2s infinite;
+        }
+
+        @keyframes successShimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .addon-options {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 25px;
+            }
+            
+            .container {
+                padding: 0 20px;
+            }
+
+            .header h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .addon-options {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.8rem;
+            }
+
+            .header p {
+                font-size: 1.2rem;
+            }
+            
+            .total-price {
+                font-size: 3.5rem;
+            }
+
+            .basic-package,
+            .customer-choice,
+            .customer-form,
+            .total-section {
+                padding: 40px 30px;
+            }
+
+            .package-icon {
+                width: 120px;
+                height: 120px;
+                font-size: 3.5rem;
+            }
+
+            .feature-badges {
+                gap: 15px;
+            }
+
+            .feature-badge {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .basic-package h2 {
+                font-size: 2.2rem;
+            }
+
+            .basic-price {
+                font-size: 3rem;
+            }
+
+            .total-price {
+                font-size: 2.8rem;
+            }
+
+            .addon-option {
+                padding: 25px;
+            }
+
+            .basic-package,
+            .customer-choice,
+            .customer-form,
+            .total-section {
+                padding: 30px 20px;
+            }
+
+            .package-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 3rem;
+            }
+
+            .checkout-btn {
+                padding: 20px 40px;
+                font-size: 1.2rem;
+            }
+
+            .feature-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Enhanced hover effects for mobile */
+        @media (hover: none) {
+            .addon-option:hover {
+                transform: none;
+                background: linear-gradient(135deg, rgba(250, 250, 250, 0.9) 0%, rgba(245, 245, 245, 0.8) 100%);
+                box-shadow: none;
+            }
+
+            .checkout-btn:hover {
+                transform: none;
+                box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4);
+            }
+        }
+
+        /* Instant page load without loading screen */
+    </style>
+</head>
+<body>
+<!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🏢 Premium Corporate Events</h1>
+            <p>Transform your business events with cutting-edge professional solutions</p>
+            <div class="feature-badges">
+                <div class="feature-badge">✨ Premium Quality</div>
+                <div class="feature-badge">🚀 Fast Delivery</div>
+                <div class="feature-badge">🎯 Result Focused</div>
+                <div class="feature-badge">💼 Professional Team</div>
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <h3>🎊 Proposal Request Submitted Successfully!</h3>
+            <p>Thank you for choosing our Premium Corporate Events Package. Our executive team will contact you within 24 hours with a detailed proposal tailored to your requirements!</p>
+        </div>
+
+        <!-- Basic Package -->
+        <div class="basic-package">
+            <div class="package-icon">🎯</div>
+            <h2>Professional Corporate Events Package</h2>
+            <div class="basic-price">₹25,999</div>
+            <ul class="features">
+                <li>Complete Event Planning & Coordination</li>
+                <li>Professional Photography & Videography (4 hours)</li>
+                <li>Digital Marketing Materials & Branding</li>
+                <li>Premium Audio/Visual Setup & Support</li>
+                <li>Comprehensive Post-Event Analytics Report</li>
+                <li>Dedicated Team of 3+ Professionals</li>
+            </ul>
+        </div>
+
+        <!-- Customer Choice Add-ons -->
+        <div class="customer-choice">
+            <h2>🚀 Premium Business Enhancement Suite</h2>
+            <p style="text-align: center; color: #546e7a; margin-bottom: 40px; font-size: 1.3rem;">
+                Elevate your corporate event with these cutting-edge professional services
+            </p>
+            
+            <div class="addon-options">
+                <div class="addon-option" onclick="toggleAddon(this, 'Live Streaming Pro', 8500)">
+                    <button class="select-btn">Select</button>
+                    <h4>📡 Multi-Platform Live Streaming</h4>
+                    <p class="price">+₹8,500</p>
+                    <small>Professional streaming to LinkedIn, YouTube, Facebook with HD cameras, stable backup internet, and real-time engagement monitoring</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Custom Event Website', 12000)">
+                    <button class="select-btn">Select</button>
+                    <h4>🌐 Premium Event Website & Portal</h4>
+                    <p class="price">+₹12,000</p>
+                    <small>Fully responsive website with registration system, speaker profiles, live agenda, networking tools, and post-event resource center</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Complete Branding Suite', 6500)">
+                    <button class="select-btn">Select</button>
+                    <h4>🎨 Complete Corporate Branding Package</h4>
+                    <p class="price">+₹6,500</p>
+                    <small>Custom banners, digital standees, branded name badges, welcome kits, presentation templates, and promotional materials</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Video Production Pro', 15000)">
+                    <button class="select-btn">Select</button>
+                    <h4>🎬 Professional Video Production Suite</h4>
+                    <p class="price">+₹15,000</p>
+                    <small>Event highlights reel, executive interviews, testimonials, behind-the-scenes content, and promotional videos with professional editing</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Executive Catering', 18000)">
+                    <button class="select-btn">Select</button>
+                    <h4>🍽️ Executive Catering Experience</h4>
+                    <p class="price">+₹18,000</p>
+                    <small>Gourmet multi-cuisine menu for 50 people, professional service staff, dietary accommodations, and premium beverage service</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Tech Support Pro', 9500)">
+                    <button class="select-btn">Select</button>
+                    <h4>💻 Dedicated Technical Support Team</h4>
+                    <p class="price">+₹9,500</p>
+                    <small>On-site IT specialists for presentations, live demos, troubleshooting, backup equipment, and seamless technology integration</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Social Media Pro', 7500)">
+                    <button class="select-btn">Select</button>
+                    <h4>📱 Complete Social Media Management</h4>
+                    <p class="price">+₹7,500</p>
+                    <small>Real-time social media coverage, story creation, live tweeting, engagement management, and post-event content strategy</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Premium Venue Pro', 25000)">
+                    <button class="select-btn">Select</button>
+                    <h4>🏛️ Luxury Venue & Hospitality</h4>
+                    <p class="price">+₹25,000</p>
+                    <small>5-star hotel conference facilities, premium event spaces with all amenities, valet parking, and concierge services</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'VIP Guest Services', 11000)">
+                    <button class="select-btn">Select</button>
+                    <h4>👥 VIP Guest Relations & Protocol</h4>
+                    <p class="price">+₹11,000</p>
+                    <small>Dedicated guest relations managers, airport transfers, accommodation assistance, and personalized attention for key stakeholders</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Digital Marketing Suite', 8000)">
+                    <button class="select-btn">Select</button>
+                    <h4>📧 Post-Event Digital Marketing Campaign</h4>
+                    <p class="price">+₹8,000</p>
+                    <small>Comprehensive email marketing campaign, lead nurturing sequences, event highlights distribution, and ROI analytics reporting</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Information Form -->
+        <div class="customer-form">
+            <h2>📋 Corporate Event Requirements</h2>
+            <form id="corporateForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="companyName">Company Name *</label>
+                        <input type="text" id="companyName" name="companyName" required placeholder="Your Company Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactPerson">Contact Person *</label>
+                        <input type="text" id="contactPerson" name="contactPerson" required placeholder="Primary Contact Name">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Business Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="contact@company.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+91 98765 43210">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="eventDate">Preferred Event Date *</label>
+                        <input type="date" id="eventDate" name="eventDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDuration">Event Duration</label>
+                        <select id="eventDuration" name="eventDuration">
+                            <option value="">Select duration...</option>
+                            <option value="half-day">Half Day (4 hours)</option>
+                            <option value="full-day">Full Day (8 hours)</option>
+                            <option value="multi-day">Multi-day Event</option>
+                            <option value="custom">Custom Duration</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="attendees">Expected Attendees *</label>
+                        <input type="number" id="attendees" name="attendees" min="1" placeholder="Number of attendees" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Budget Range</label>
+                        <select id="budget" name="budget">
+                            <option value="">Select budget range...</option>
+                            <option value="25k-50k">₹25,000 - ₹50,000</option>
+                            <option value="50k-100k">₹50,000 - ₹1,00,000</option>
+                            <option value="100k-200k">₹1,00,000 - ₹2,00,000</option>
+                            <option value="200k+">₹2,00,000+</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventType">Event Type *</label>
+                    <select id="eventType" name="eventType" required>
+                        <option value="">Select event type...</option>
+                        <option value="conference">Business Conference</option>
+                        <option value="seminar">Corporate Seminar</option>
+                        <option value="workshop">Training Workshop</option>
+                        <option value="product-launch">Product Launch</option>
+                        <option value="team-building">Team Building Event</option>
+                        <option value="awards">Awards Ceremony</option>
+                        <option value="networking">Networking Event</option>
+                        <option value="board-meeting">Board Meeting</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventDescription">Event Description & Objectives</label>
+                    <textarea id="eventDescription" name="eventDescription" placeholder="Please describe your event objectives, target audience, key messages, special requirements, and any specific needs..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="venue">Preferred Venue Location</label>
+                    <textarea id="venue" name="venue" placeholder="Mention preferred city/area, specific venue requirements, or let us know if you need venue recommendations..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="industry">Industry Sector</label>
+                        <select id="industry" name="industry">
+                            <option value="">Select industry...</option>
+                            <option value="technology">Technology & IT</option>
+                            <option value="healthcare">Healthcare & Pharmaceuticals</option>
+                            <option value="finance">Finance & Banking</option>
+                            <option value="education">Education & Training</option>
+                            <option value="manufacturing">Manufacturing</option>
+                            <option value="retail">Retail & E-commerce</option>
+                            <option value="consulting">Consulting Services</option>
+                            <option value="real-estate">Real Estate</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="priority">Priority Level</label>
+                        <select id="priority" name="priority">
+                            <option value="">Select priority...</option>
+                            <option value="standard">Standard Planning</option>
+                            <option value="urgent">Urgent (within 2 weeks)</option>
+                            <option value="emergency">Emergency (within 1 week)</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Total Calculator -->
+        <div class="total-section">
+            <h3>💼 Investment Summary</h3>
+            <div class="total-price" id="totalPrice">₹25,999</div>
+            
+            <div class="selected-items" id="selectedItems">
+                <h4>Package Includes:</h4>
+                <div class="selected-item">
+                    <span>Professional Corporate Events Package</span>
+                    <span>₹25,999</span>
+                </div>
+            </div>
+
+            <button class="checkout-btn" onclick="submitOrder()">
+                Request Detailed Proposal 📊
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let selectedAddons = [];
+        let basePrice = 25999;
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 20) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        function toggleAddon(element, name, price) {
+            const selectBtn = element.querySelector('.select-btn');
+            
+            // Toggle selection state
+            const isSelected = element.classList.contains('selected');
+            
+            if (isSelected) {
+                // Deselect
+                element.classList.remove('selected');
+                selectBtn.textContent = 'Select';
+                selectedAddons = selectedAddons.filter(addon => addon.name !== name);
+                
+                // Add deselect animation
+                element.style.animation = 'addonFadeInScale 0.4s ease-out reverse';
+            } else {
+                // Select
+                element.classList.add('selected');
+                selectBtn.textContent = 'Selected ✓';
+                selectedAddons.push({ name, price });
+                
+                // Add select animation
+                element.style.animation = 'selectedPulse 0.8s ease-out';
+            }
+            
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const addonTotal = selectedAddons.reduce((sum, addon) => sum + addon.price, 0);
+            const total = basePrice + addonTotal;
+            
+            // Format number with commas for Indian currency
+            document.getElementById('totalPrice').textContent = `₹${total.toLocaleString('en-IN')}`;
+            
+            // Update selected items display
+            const selectedItemsDiv = document.getElementById('selectedItems');
+            let itemsHTML = '<h4>Package Includes:</h4>';
+            
+            // Base package
+            itemsHTML += `
+                <div class="selected-item">
+                    <span>Professional Corporate Events Package</span>
+                    <span>₹${basePrice.toLocaleString('en-IN')}</span>
+                </div>
+            `;
+            
+            // Add-ons
+            selectedAddons.forEach(addon => {
+                itemsHTML += `
+                    <div class="selected-item">
+                        <span>${addon.name}</span>
+                        <span>+₹${addon.price.toLocaleString('en-IN')}</span>
+                    </div>
+                `;
+            });
+            
+            selectedItemsDiv.innerHTML = itemsHTML;
+            
+            // Animate the total price change
+            const totalPriceElement = document.getElementById('totalPrice');
+            totalPriceElement.style.animation = 'none';
+            setTimeout(() => {
+                totalPriceElement.style.animation = 'totalPulse 4s ease-in-out infinite';
+            }, 10);
+        }
+
+        function submitOrder() {
+            const form = document.getElementById('corporateForm');
+            const companyName = document.getElementById('companyName').value;
+            const contactPerson = document.getElementById('contactPerson').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const eventDate = document.getElementById('eventDate').value;
+            const attendees = document.getElementById('attendees').value;
+            const eventType = document.getElementById('eventType').value;
+
+            // Basic validation
+            if (!companyName || !contactPerson || !email || !phone || !eventDate || !attendees || !eventType) {
+                showValidationAlert('Please fill in all required fields (marked with *)');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showValidationAlert('Please enter a valid email address');
+                return;
+            }
+
+            // Phone validation (basic)
+            const phoneRegex = /^[+]?[\d\s\-\(\)]{10,}$/;
+            if (!phoneRegex.test(phone)) {
+                showValidationAlert('Please enter a valid phone number');
+                return;
+            }
+
+            // Date validation (should be future date)
+            const selectedDate = new Date(eventDate);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            if (selectedDate < today) {
+                showValidationAlert('Event date should be in the future');
+                return;
+            }
+
+            // Calculate final total
+            const addonTotal = selectedAddons.reduce((sum, addon) => sum + addon.price, 0);
+            const finalTotal = basePrice + addonTotal;
+
+            // Create order summary
+            const orderData = {
+                companyInfo: {
+                    companyName,
+                    contactPerson,
+                    email,
+                    phone,
+                    industry: document.getElementById('industry').value
+                },
+                eventDetails: {
+                    eventType,
+                    eventDate,
+                    eventDuration: document.getElementById('eventDuration').value,
+                    attendees: parseInt(attendees),
+                    budget: document.getElementById('budget').value,
+                    priority: document.getElementById('priority').value,
+                    description: document.getElementById('eventDescription').value,
+                    venue: document.getElementById('venue').value
+                },
+                package: 'Professional Corporate Events Package',
+                basePrice,
+                addons: selectedAddons,
+                total: finalTotal,
+                orderDate: new Date().toISOString()
+            };
+
+            // In a real application, you would send this data to a server
+            console.log('Corporate Event Order Data:', orderData);
+
+            // Show success message with animation
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('show');
+            
+            // Scroll to top to show success message
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Add celebration effects
+            createConfetti();
+            createFireworks();
+
+            // Reset form after successful submission
+            setTimeout(() => {
+                form.reset();
+                
+                // Reset addons
+                selectedAddons = [];
+                document.querySelectorAll('.addon-option').forEach(option => {
+                    option.classList.remove('selected');
+                    option.querySelector('.select-btn').textContent = 'Select';
+                });
+                
+                updateTotal();
+                
+                // Hide success message after 10 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 10000);
+            }, 4000);
+        }
+
+        function showValidationAlert(message) {
+            // Create custom alert with animation
+            const alertDiv = document.createElement('div');
+            alertDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #f44336, #d32f2f);
+                color: white;
+                padding: 20px 30px;
+                border-radius: 15px;
+                box-shadow: 0 10px 25px rgba(244, 67, 54, 0.3);
+                font-size: 1.1rem;
+                font-weight: 600;
+                z-index: 10000;
+                animation: alertSlideIn 0.5s ease-out;
+                max-width: 300px;
+            `;
+            alertDiv.innerHTML = `⚠️ ${message}`;
+            
+            // Add alert animation keyframes
+            const alertStyle = document.createElement('style');
+            alertStyle.textContent = `
+                @keyframes alertSlideIn {
+                    0% { opacity: 0; transform: translateX(100px); }
+                    100% { opacity: 1; transform: translateX(0); }
+                }
+                @keyframes alertSlideOut {
+                    0% { opacity: 1; transform: translateX(0); }
+                    100% { opacity: 0; transform: translateX(100px); }
+                }
+            `;
+            document.head.appendChild(alertStyle);
+            
+            document.body.appendChild(alertDiv);
+            
+            // Auto remove after 4 seconds
+            setTimeout(() => {
+                alertDiv.style.animation = 'alertSlideOut 0.5s ease-out';
+                setTimeout(() => {
+                    if (alertDiv.parentNode) {
+                        alertDiv.parentNode.removeChild(alertDiv);
+                    }
+                    if (alertStyle.parentNode) {
+                        alertStyle.parentNode.removeChild(alertStyle);
+                    }
+                }, 500);
+            }, 4000);
+        }
+
+        // Enhanced confetti effect
+        function createConfetti() {
+            const colors = ['#1976d2', '#2196f3', '#4caf50', '#ff9800', '#f44336', '#9c27b0', '#00bcd4'];
+            const confettiCount = 100;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.top = '-20px';
+                    confetti.style.left = Math.random() * window.innerWidth + 'px';
+                    confetti.style.width = (Math.random() * 8 + 6) + 'px';
+                    confetti.style.height = (Math.random() * 8 + 6) + 'px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0%';
+                    confetti.style.pointerEvents = 'none';
+                    confetti.style.zIndex = '9999';
+                    confetti.style.animation = `confettiFall ${3 + Math.random() * 4}s linear forwards`;
+                    
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        if (confetti.parentNode) {
+                            confetti.remove();
+                        }
+                    }, 7000);
+                }, i * 30);
+            }
+        }
+
+        // Fireworks effect
+        function createFireworks() {
+            const fireworksCount = 5;
+            
+            for (let i = 0; i < fireworksCount; i++) {
+                setTimeout(() => {
+                    const firework = document.createElement('div');
+                    firework.style.position = 'fixed';
+                    firework.style.left = Math.random() * window.innerWidth + 'px';
+                    firework.style.top = Math.random() * window.innerHeight * 0.6 + window.innerHeight * 0.2 + 'px';
+                    firework.style.width = '4px';
+                    firework.style.height = '4px';
+                    firework.style.borderRadius = '50%';
+                    firework.style.backgroundColor = '#FFD700';
+                    firework.style.pointerEvents = 'none';
+                    firework.style.zIndex = '9998';
+                    
+                    document.body.appendChild(firework);
+                    
+                    // Create explosion effect
+                    setTimeout(() => {
+                        const particles = 12;
+                        const colors = ['#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'];
+                        
+                        for (let j = 0; j < particles; j++) {
+                            const particle = document.createElement('div');
+                            particle.style.position = 'fixed';
+                            particle.style.left = firework.style.left;
+                            particle.style.top = firework.style.top;
+                            particle.style.width = '3px';
+                            particle.style.height = '3px';
+                            particle.style.borderRadius = '50%';
+                            particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                            particle.style.pointerEvents = 'none';
+                            particle.style.zIndex = '9997';
+                            
+                            const angle = (j * 360 / particles) * Math.PI / 180;
+                            const velocity = 100 + Math.random() * 100;
+                            const vx = Math.cos(angle) * velocity;
+                            const vy = Math.sin(angle) * velocity;
+                            
+                            particle.style.animation = `fireworkParticle 1.5s ease-out forwards`;
+                            particle.style.setProperty('--vx', vx + 'px');
+                            particle.style.setProperty('--vy', vy + 'px');
+                            
+                            document.body.appendChild(particle);
+                            
+                            setTimeout(() => {
+                                if (particle.parentNode) {
+                                    particle.remove();
+                                }
+                            }, 1500);
+                        }
+                        
+                        if (firework.parentNode) {
+                            firework.remove();
+                        }
+                    }, 200);
+                }, i * 800);
+            }
+        }
+
+        // Add firework particle animation
+        const fireworkStyle = document.createElement('style');
+        fireworkStyle.textContent = `
+            @keyframes confettiFall {
+                0% {
+                    transform: translateY(-20px) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(${window.innerHeight + 50}px) rotate(720deg);
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes fireworkParticle {
+                0% {
+                    transform: translate(0, 0);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translate(var(--vx), var(--vy));
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(fireworkStyle);
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create particles
+            createParticles();
+            
+            updateTotal();
+            
+            // Set minimum date to tomorrow for event date
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const tomorrowString = tomorrow.toISOString().split('T')[0];
+            document.getElementById('eventDate').setAttribute('min', tomorrowString);
+
+            // Add smooth scrolling for form focus
+            const formInputs = document.querySelectorAll('input, textarea, select');
+            formInputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    setTimeout(() => {
+                        this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 300);
+                });
+
+                // Add input animation
+                input.addEventListener('input', function() {
+                    this.style.animation = 'inputPulse 0.3s ease-out';
+                    setTimeout(() => {
+                        this.style.animation = '';
+                    }, 300);
+                });
+            });
+
+            // Add input pulse animation
+            const inputStyle = document.createElement('style');
+            inputStyle.textContent = `
+                @keyframes inputPulse {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.02); }
+                    100% { transform: scale(1); }
+                }
+            `;
+            document.head.appendChild(inputStyle);
+
+            // Intersection Observer for scroll animations
+            const animatedElements = document.querySelectorAll('.basic-package, .customer-choice, .customer-form, .total-section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // Add parallax effect to header
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const header = document.querySelector('.header');
+                if (header) {
+                    header.style.transform = `translateY(${scrolled * 0.3}px)`;
+                }
+            });
+
+            // Add mouse trail effect
+            let mouseTrail = [];
+            document.addEventListener('mousemove', (e) => {
+                mouseTrail.push({ x: e.clientX, y: e.clientY, time: Date.now() });
+                
+                // Keep trail length manageable
+                if (mouseTrail.length > 20) {
+                    mouseTrail.shift();
+                }
+                
+                // Create trail particle
+                if (Math.random() < 0.3) {
+                    const particle = document.createElement('div');
+                    particle.style.cssText = `
+                        position: fixed;
+                        left: ${e.clientX}px;
+                        top: ${e.clientY}px;
+                        width: 4px;
+                        height: 4px;
+                        background: rgba(33, 150, 243, 0.6);
+                        border-radius: 50%;
+                        pointer-events: none;
+                        z-index: 9999;
+                        animation: trailFade 1s ease-out forwards;
+                    `;
+                    
+                    document.body.appendChild(particle);
+                    
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.remove();
+                        }
+                    }, 1000);
+                }
+            });
+
+            // Add trail fade animation
+            const trailStyle = document.createElement('style');
+            trailStyle.textContent = `
+                @keyframes trailFade {
+                    0% { opacity: 1; transform: scale(1); }
+                    100% { opacity: 0; transform: scale(0.5); }
+                }
+            `;
+            document.head.appendChild(trailStyle);
+        });
+
+        // Add some interactive hover effects for mobile
+        if ('ontouchstart' in window) {
+            document.querySelectorAll('.addon-option').forEach(option => {
+                option.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                
+                option.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                });
+            });
+        }
+
+        // Prevent form submission on Enter key in text inputs (except textarea)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA' && e.target.type !== 'submit') {
+                e.preventDefault();
+            }
+        });
+
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl/Cmd + Enter to submit form
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                e.preventDefault();
+                submitOrder();
+            }
+        });
+
+        // Add smooth page transitions
+        window.addEventListener('beforeunload', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transform = 'scale(0.95)';
+        });
+
+        // Performance optimization - lazy load animations
+        const lazyAnimations = document.querySelectorAll('[data-lazy-animate]');
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    animationObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        lazyAnimations.forEach(el => {
+            animationObserver.observe(el);
+        });
+    </script>
+</body>
+</html>
