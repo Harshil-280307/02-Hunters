@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUX - Luxury Wedding & Event Planning</title>
+    <script src="/ass/pages/Our_Services/javascript/nav.js" ></script>
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
@@ -13,28 +14,54 @@
 
     <!-- main page file -->
     <link rel="stylesheet" href="./ass/home.css">
+
+    <!-- For Navigation-->
+    <link  rel="stylesheet" href="./ass/pages/Our_Services/style/nav.css">
+
+    <!--For Footer file-->
+    <link rel="stylesheet" href="./ass/pages/booking/footer.css">
 </head>
 <body>
     <!-- ========================
-         HEADER & NAVIGATION
+         NAVIGATION
     ========================== -->
-    <header class="header" id="header">
-        <nav class="nav-container">
-            <a href="#" class="logo">LUX</a>
-            <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+    <nav class="modern-cream-navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="#home" class="navbar-logo">
+                <div class="logo-icon"><img src="../booking/001.png" width="100%" height="100%"></div>
+                <span class="logo-text">LUX EVENTS</span>
+            </a>
+            
+            <ul class="navbar-menu" id="navbarMenu">
+                <li class="navbar-item">
+                    <a href="#home" class="navbar-link">Home</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#about" class="navbar-link">Services</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#services" class="navbar-link">Gallery</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#contact" class="navbar-link">Inquiry</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#contact" class="navbar-link">About</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#get-started" class="navbar-cta">
+                        <span>Booking</span>
+                    </a>
+                </li>
             </ul>
-            <div class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+
+            <div class="mobile-toggle" id="mobileToggle">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
     <!-- ========================
          HERO SECTION
@@ -49,10 +76,7 @@
                     <i class="fas fa-sparkles"></i>
                     Start Your Journey
                 </a>
-                <a href="#gallery" class="btn btn-secondary">
-                    <i class="fas fa-play"></i>
-                    Watch Our Story
-                </a>
+                
             </div>
         </div>
         <div class="scroll-arrow">
@@ -66,97 +90,81 @@
     <section class="services" id="services">
         <div class="container">
             <div class="section-header fade-in">
-                <h2 class="section-title">Signature LUX Services</h2>
-                <p class="section-subtitle">Every celebration is a masterpiece in the making, crafted with unparalleled elegance and attention to detail</p>
+                <h2 class="section-title">Elite Event Management Solutions</h2>
+                <p class="section-subtitle">Comprehensive event orchestration from concept to execution, delivering seamless experiences that exceed expectations</p>
             </div>
 
             <div class="services-grid">
                 <div class="service-card fade-in">
                     <div class="service-icon">
-                        <i class="fas fa-rings-wedding"></i>
+                        <i class="fas fa-clipboard-list"></i>
                     </div>
-                    <h3>Wedding Planning</h3>
-                    <p>End-to-end wedding orchestration with heart, creating unforgettable celebrations that reflect your unique love story.</p>
-                    <a href="#" class="service-link">
-                        Explore More <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <h3>Full-Service Event Planning</h3>
+                    <p>Complete event lifecycle management from initial consultation to post-event analysis, ensuring flawless execution at every stage.</p>
+                    
                 </div>
 
                 <div class="service-card fade-in">
                     <div class="service-icon">
-                        <i class="fas fa-birthday-cake"></i>
+                        <i class="fas fa-map-marked-alt"></i>
                     </div>
-                    <h3>Birthday Parties</h3>
-                    <p>Spectacular birthday celebrations that make every milestone memorable with personalized themes and luxury touches.</p>
-                    <a href="#" class="service-link">
-                        Explore More <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <h3>Venue Selection & Management</h3>
+                    <p>Strategic venue sourcing and comprehensive site management, from luxury hotels to unique destination spaces worldwide.</p>
+                    
                 </div>
 
                 <div class="service-card fade-in">
                     <div class="service-icon">
-                        <i class="fas fa-building"></i>
+                        <i class="fas fa-users-cog"></i>
                     </div>
-                    <h3>Corporate Events</h3>
-                    <p>Professional gatherings elevated to extraordinary experiences with seamless execution and sophisticated design.</p>
-                    <a href="#" class="service-link">
-                        Explore More <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <h3>Vendor Coordination</h3>
+                    <p>Elite supplier network management with quality assurance, contract negotiation, and seamless vendor integration.</p>
+                    
                 </div>
 
                 <div class="service-card fade-in">
                     <div class="service-icon">
-                        <i class="fas fa-om"></i>
+                        <i class="fas fa-calendar-check"></i>
                     </div>
-                    <h3>Cultural & Religious Events</h3>
-                    <p>Sacred ceremonies honored with traditional authenticity and modern luxury, preserving cultural heritage beautifully.</p>
-                    <a href="#" class="service-link">
-                        Explore More <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <h3>Timeline & Logistics</h3>
+                    <p>Precision scheduling and operational excellence with detailed run-of-show coordination and real-time execution management.</p>
+                    
                 </div>
 
                 <div class="service-card fade-in">
                     <div class="service-icon">
-                        <i class="fas fa-camera"></i>
+                        <i class="fas fa-microphone-alt"></i>
                     </div>
-                    <h3>Pre-Wedding Photoshoots</h3>
-                    <p>Romantic sessions capturing your love story in stunning locations with cinematic beauty and artistic vision.</p>
-                    <a href="#" class="service-link">
-                        Explore More <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <h3>Audio Visual & Technology</h3>
+                    <p>Cutting-edge AV solutions and event technology integration, from live streaming to interactive installations.</p>
+                    
                 </div>
 
                 <div class="service-card fade-in">
                     <div class="service-icon">
-                        <i class="fas fa-baby"></i>
+                        <i class="fas fa-concierge-bell"></i>
                     </div>
-                    <h3>Baby Showers</h3>
-                    <p>Celebrating new life with gentle elegance and joyful decorations that create precious memories for families.</p>
-                    <a href="#" class="service-link">
-                        Explore More <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <h3>Guest Experience Design</h3>
+                    <p>Personalized attendee journey creation with VIP services, hospitality management, and memorable touchpoint experiences.</p>
+                    
                 </div>
 
                 <div class="service-card fade-in">
                     <div class="service-icon">
-                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3>Anniversaries</h3>
-                    <p>Milestone celebrations that honor enduring love with romantic ambiance and personalized luxury touches.</p>
-                    <a href="#" class="service-link">
-                        Explore More <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <h3>Budget & Financial Management</h3>
+                    <p>Strategic budget optimization and financial oversight, ensuring maximum ROI with transparent cost management and reporting.</p>
+                    
                 </div>
 
                 <div class="service-card fade-in">
                     <div class="service-icon">
-                        <i class="fas fa-magic"></i>
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h3>Party Event Decoration</h3>
-                    <p>Transformative decor that creates breathtaking atmospheres with artistic flair and luxurious styling.</p>
-                    <a href="#" class="service-link">
-                        Explore More <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <h3>Risk Management & Compliance</h3>
+                    <p>Comprehensive contingency planning with insurance coordination, safety protocols, and regulatory compliance management.</p>
+                    
                 </div>
             </div>
         </div>
@@ -398,55 +406,93 @@
     <!-- ========================
          FOOTER
     ========================== -->
-    <footer class="footer" id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>LUX Events</h3>
-                    <p>Creating extraordinary celebrations that live forever in your heart. From intimate gatherings to grand soirées, we craft moments that matter.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-pinterest"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+    <footer class="premium-events-footer-wrapper">
+        <div class="premium-events-bg-decoration">
+            <div class="premium-events-floating-shape"></div>
+            <div class="premium-events-floating-shape"></div>
+            <div class="premium-events-floating-shape"></div>
+        </div>
+        
+        <div class="premium-events-content-container">
+            <div class="premium-events-main-grid">
+                <!-- Company Information -->
+                <div class="premium-events-section-block">
+                    <h3>Premium Events</h3>
+                    <p>Crafting extraordinary luxury experiences through innovative event planning and flawless execution. We specialize in transforming your dreams into magnificent reality with unparalleled attention to detail.</p>
+                    <div class="premium-events-social-wrapper">
+                        <a href="#" class="premium-events-social-button facebook-btn" title="Join us on Facebook" onclick="handleFacebook()">f</a>
+                        <a href="#" class="premium-events-social-button instagram-btn" title="Follow our Instagram" onclick="handleInstagram()">📷</a>
+                        <a href="#" class="premium-events-social-button twitter-btn" title="Connect on Twitter" onclick="handleTwitter()">🐦</a>
+                        <a href="#" class="premium-events-social-button whatsapp-btn" title="WhatsApp us" onclick="handleWhatsApp()">💬</a>
+                        <a href="#" class="premium-events-social-button linkedin-btn" title="LinkedIn Profile" onclick="handleLinkedIn()">in</a>
                     </div>
                 </div>
 
-                <div class="footer-section">
-                    <h3>Services</h3>
-                    <a href="#">Wedding Planning</a><br>
-                    <a href="#">Corporate Events</a><br>
-                    <a href="#">Birthday Parties</a><br>
-                    <a href="#">Cultural Events</a><br>
-                    <a href="#">Pre-Wedding Shoots</a><br>
-                    <a href="#">Anniversary Celebrations</a>
+                <!-- Our Services -->
+                <div class="premium-events-section-block">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li class="premium-events-nav-link" onclick="goToPage('luxury-weddings')">Luxury Weddings</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('corporate-galas')">Corporate Galas</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('exclusive-parties')">Exclusive Parties</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('premium-dinners')">Premium Dinners</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('brand-launches')">Brand Launches</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('event-consulting')">Event Consulting</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('venue-sourcing')">Venue Sourcing</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('luxury-catering')">Luxury Catering</li>
+                    </ul>
                 </div>
 
-                <div class="footer-section">
-                    <h3>Destinations</h3>
-                    <a href="#">Udaipur Weddings</a><br>
-                    <a href="#">Jaipur Celebrations</a><br>
-                    <a href="#">Goa Beach Events</a><br>
-                    <a href="#">Dubai Luxury</a><br>
-                    <a href="#">Bali Destinations</a><br>
-                    <a href="#">International Events</a>
+                <!-- Navigation Menu -->
+                <div class="premium-events-section-block">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li class="premium-events-nav-link" onclick="goToPage('homepage')">Homepage</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('about-us')">About Us</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('our-services')">Our Services</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('portfolio')">Portfolio</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('pricing')">Pricing</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('testimonials')">Testimonials</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('contact-us')">Contact Us</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('partnerships')">Partnerships</li>
+                    </ul>
                 </div>
 
-                <div class="footer-section">
-                    <h3>Get in Touch</h3>
-                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
-                    <p><i class="fas fa-envelope"></i> hello@luxevents.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Rajkot, Gujarat, India</p>
-                    <br>
-                    <a href="#" class="btn btn-primary">
-                        <i class="fas fa-calendar-plus"></i>
-                        Book Consultation
-                    </a>
+                <!-- Contact Details -->
+                <div class="premium-events-section-block">
+                    <h3>Contact Details</h3>
+                    <div class="premium-events-contact-detail" onclick="openLocationMap()">
+                        <span class="premium-events-contact-symbol">📍</span>
+                        <span>456 Elite Boulevard, Prestige Quarter, Metropolitan 67890</span>
+                    </div>
+                    <div class="premium-events-contact-detail" onclick="initiatePhoneCall()">
+                        <span class="premium-events-contact-symbol">📞</span>
+                        <span>+1 (555) 789-ELITE</span>
+                    </div>
+                    <div class="premium-events-contact-detail" onclick="composeEmail()">
+                        <span class="premium-events-contact-symbol">✉️</span>
+                        <span>info@premiumevents.com</span>
+                    </div>
+                    <div class="premium-events-contact-detail">
+                        <span class="premium-events-contact-symbol">🕐</span>
+                        <span>Monday - Saturday: 8AM - 9PM</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="footer-bottom">
-                <p>&copy; 2025 LUX Events. All rights reserved. Crafted with ❤️ for extraordinary celebrations.</p>
+            <div class="premium-events-footer-base">
+                <div class="premium-events-brand-title">Premium Events</div>
+                <div class="premium-events-bottom-links">
+                    <a href="#" onclick="goToPage('privacy-policy')">Privacy Policy</a>
+                    <a href="#" onclick="goToPage('terms-conditions')">Terms & Conditions</a>
+                    <a href="#" onclick="goToPage('cookie-policy')">Cookie Policy</a>
+                    <a href="#" onclick="goToPage('accessibility')">Accessibility</a>
+                    <a href="#" onclick="goToPage('site-map')">Site Map</a>
+                </div>
+            </div>
+            
+            <div class="premium-events-copyright-text">
+                <p>&copy; 2025 Premium Events. All rights reserved. | Designing luxury experiences since 2015.</p>
             </div>
         </div>
     </footer>
