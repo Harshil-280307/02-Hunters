@@ -182,6 +182,25 @@
             line-height: 1.2;
         }
 
+        @media (prefers-color-scheme: light) {
+            .hero h1 {
+                background: linear-gradient(90deg, #b76e79, #f0ba08); /* rose-gold to soft-gold */
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+        }
+        
+        /* Dark mode */
+        @media (prefers-color-scheme: dark) {
+            .hero h1 {
+                background: linear-gradient(90deg, #fdae86, #b83a8a); /* peach to blush-pink */
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+        }
+
         .hero-subtitle {
             font-size: clamp(1.1rem, 2vw, 1.4rem);
             color: var(--text-secondary);
