@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Wedding Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #fdf8f3 0%, #f5ede4 25%, #ede0d3 50%, #e8d5c4 75%, #dcc7b0 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #8b4513;
+            overflow-x: hidden;
+        }
+
+        /* Floating particles animation */
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #d4af37, #b8860b);
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            50% { transform: translateY(-100px) rotate(180deg); opacity: 0.5; }
+            90% { opacity: 0.7; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header {
+            text-align: center;
+            color: #8b4513;
+            margin-bottom: 50px;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(139, 69, 19, 0.3);
+            background: linear-gradient(45deg, #8b4513, #d4af37, #cd853f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerText 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmerText {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(30deg); }
+        }
+
+        .header p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            opacity: 0.9;
+            color: #a0522d;
+            animation: fadeIn 2s ease-out 0.5s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .premium-package {
+            background: linear-gradient(135deg, #ffffff 0%, #fefbf7 50%, #f9f4ee 100%);
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 0 25px 50px rgba(139, 69, 19, 0.2);
+            text-align: center;
+            margin-bottom: 50px;
+            border: 4px solid #d4af37;
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 1s ease-out 0.3s both;
+            transform: translateY(50px);
+        }
+
+        @keyframes slideInUp {
+            to { transform: translateY(0); }
+        }
+
+        .premium-package::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            animation: shimmer 4s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .premium-package::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #d4af37, #ffd700, #d4af37);
+            border-radius: 25px 25px 0 0;
+        }
+
+        .package-icon {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #8b4513;
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+            position: relative;
+            z-index: 1;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .premium-package h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #8b4513;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .premium-price {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: bold;
+            color: #d4af37;
+            margin-bottom: 35px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+            animation: bounceIn 1.5s ease-out 1s both;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 35px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+            display: grid;
+            gap: 15px;
+        }
+
+        .features li {
+            padding: 15px 0;
+            color: #8b4513;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            padding-left: 20px;
+            animation: fadeInLeft 0.8s ease-out calc(var(--i) * 0.1s) both;
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .features li:hover {
+            background: linear-gradient(135deg, #fefbf7, #f9f4ee);
+            transform: translateX(10px);
+            padding-left: 30px;
+        }
+
+        .features li::before {
+            content: '💎';
+            color: #d4af37;
+            font-weight: bold;
+            margin-right: 20px;
+            font-size: 1.3rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(180deg); }
+        }
+
+        .customer-choice {
+            background: linear-gradient(135deg, #ffffff 0%, #fefbf7 100%);
+            border-radius: 25px;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 25px 50px rgba(139, 69, 19, 0.15);
+            border: 3px solid #cd853f;
+            animation: slideInRight 1s ease-out 0.6s both;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .customer-choice h2 {
+            text-align: center;
+            color: #8b4513;
+            margin-bottom: 35px;
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+        }
+
+        .addon-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .addon-option {
+            background: linear-gradient(135deg, #fefcf9 0%, #f8f4ed 100%);
+            padding: 30px;
+            border-radius: 20px;
+            border: 3px solid #dcc7b0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out calc(var(--i) * 0.1s) both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .addon-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.08), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .addon-option:hover::before {
+            left: 100%;
+        }
+
+        .addon-option:hover {
+            background: linear-gradient(135deg, #f8f4ed 0%, #f0ead6 100%);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(139, 69, 19, 0.25);
+            border-color: #d4af37;
+        }
+
+        .addon-option.selected {
+            border-color: #8b4513;
+            background: linear-gradient(135deg, #f0ead6 0%, #e8d5c4 100%);
+            box-shadow: 0 20px 45px rgba(139, 69, 19, 0.3);
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .addon-option .select-btn {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            color: #8b4513;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            z-index: 2;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .addon-option.selected .select-btn {
+            background: linear-gradient(135deg, #8b4513, #a0522d);
+            color: #ffffff;
+        }
+
+        .addon-option .select-btn:hover {
+            transform: scale(1.1) translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.4);
+        }
+
+        .addon-option h4 {
+            color: #8b4513;
+            margin-bottom: 10px;
+            font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+            position: relative;
+            z-index: 1;
+        }
+
+        .addon-option .price {
+            font-weight: bold;
+            color: #d4af37;
+            font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .addon-option small {
+            color: #8b4513;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
+        .customer-form {
+            background: linear-gradient(135deg, #ffffff 0%, #fefbf7 100%);
+            border-radius: 25px;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 25px 50px rgba(139, 69, 19, 0.15);
+            border: 3px solid #dcc7b0;
+            animation: slideInLeft 1s ease-out 0.9s both;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .customer-form h2 {
+            text-align: center;
+            color: #8b4513;
+            margin-bottom: 40px;
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #8b4513;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 18px;
+            border: 3px solid #dcc7b0;
+            border-radius: 15px;
+            font-size: clamp(0.9rem, 1.8vw, 1rem);
+            font-family: inherit;
+            background: #fefcf9;
+            color: #8b4513;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #d4af37;
+            background: #ffffff;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .total-section {
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            color: #8b4513;
+            padding: 50px;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: zoomIn 1s ease-out 1.2s both;
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .total-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 25s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .total-section h3 {
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .total-price {
+            font-size: clamp(3.5rem, 7vw, 5rem);
+            font-weight: bold;
+            margin: 25px 0;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            14%, 28% { transform: scale(1.05); }
+            42% { transform: scale(1); }
+        }
+
+        .selected-items {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 3px solid rgba(139, 69, 19, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .selected-items h4 {
+            margin-bottom: 20px;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+        }
+
+        .selected-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+        }
+
+        .checkout-btn {
+            background: linear-gradient(135deg, #ffffff, #fefbf7);
+            color: #8b4513;
+            border: 3px solid #8b4513;
+            padding: 25px 50px;
+            border-radius: 60px;
+            font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 15px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .checkout-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .checkout-btn:hover::before {
+            left: 100%;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(139, 69, 19, 0.4);
+            background: linear-gradient(135deg, #fefbf7, #f8f4ed);
+            text-decoration: none;
+            color: #8b4513;
+        }
+
+        .checkout-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            color: #8b4513;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            display: none;
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.4);
+            border: 3px solid #8b4513;
+            animation: successPulse 0.8s ease-out;
+        }
+
+        @keyframes successPulse {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .premium-badge {
+            position: absolute;
+            top: -2px;
+            right: -12px;
+            background: linear-gradient(135deg, #8b4513, #a0522d);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 3;
+            box-shadow: 0 5px 20px rgba(139, 69, 19, 0.4);
+            animation: badgeGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes badgeGlow {
+            0%, 100% { box-shadow: 0 5px 20px rgba(139, 69, 19, 0.4); }
+            50% { box-shadow: 0 5px 30px rgba(212, 175, 55, 0.6); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body { padding: 15px; }
+            .premium-package, .customer-choice, .customer-form { padding: 30px 25px; }
+            .total-section { padding: 35px 25px; }
+            .addon-options { grid-template-columns: 1fr; gap: 20px; }
+            .form-row { grid-template-columns: 1fr; gap: 20px; }
+            .addon-option { padding: 25px 20px; }
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 10px; }
+            .premium-package, .customer-choice, .customer-form, .total-section { padding: 25px 20px; }
+            .package-icon { width: 100px; height: 100px; font-size: 3rem; }
+            .checkout-btn { padding: 20px 35px; }
+        }
+
+        /* Enhanced hover effects for interactive elements */
+        .addon-option, .form-group input, .form-group textarea, .form-group select {
+            will-change: transform;
+        }
+
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+
+        /* Loading animation */
+        .container { animation: containerLoad 1s ease-out; }
+
+        @keyframes containerLoad {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Particles -->
+    <div class="floating-particles" id="particles"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>💐 Premium Wedding Experience</h1>
+            <p>Luxury wedding services with exclusive premium features for your perfect day</p>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <h3>🎊 Premium Wedding Order Submitted Successfully!</h3>
+            <p>Thank you for choosing our Premium Wedding Experience. Our luxury wedding team will contact you within 2 hours to begin planning your dream wedding!</p>
+        </div>
+
+        <!-- Premium Package -->
+        <div class="premium-package">
+            <div class="package-icon">💐</div>
+            <h2>Premium Wedding Experience</h2>
+            <div class="premium-price">₹1,39,999</div>
+            <ul class="features">
+                <li style="--i: 1">Luxury Digital Wedding Invitations with Premium Templates</li>
+                <li style="--i: 2">Professional Wedding Photography (500+ edited photos)</li>
+                <li style="--i: 3">Cinematic Wedding Videography (4K Ultra HD)</li>
+                <li style="--i: 4">Premium Venue Decoration & Setup</li>
+                <li style="--i: 5">Bridal Makeup & Styling Team</li>
+                <li style="--i: 6">Multi-Cuisine Catering Service</li>
+                <li style="--i: 7">Live Music & Entertainment</li>
+                <li style="--i: 8">Wedding Coordination Team</li>
+                <li style="--i: 9">Custom Wedding Website & App</li>
+                <li style="--i: 10">Drone Photography & Aerial Shots</li>
+                <li style="--i: 11">Premium Transportation Arrangements</li>
+                <li style="--i: 12">Luxury Bridal Suite & Accommodations</li>
+                <li style="--i: 13">Pre-Wedding Photoshoot Session</li>
+                <li style="--i: 14">Wedding Cake & Dessert Station</li>
+                <li style="--i: 15">Complete Guest Management System</li>
+            </ul>
+        </div>
+
+        <!-- Customer Choice Add-ons -->
+        <div class="customer-choice">
+            <h2>✨ Exclusive Premium Wedding Add-ons</h2>
+            <p style="text-align: center; color: #a0522d; margin-bottom: 35px; font-size: clamp(1rem, 2vw, 1.2rem);">
+                Elevate your wedding with these ultra-premium luxury features
+            </p>
+            
+            <div class="addon-options">
+                <div class="addon-option" style="--i: 1" onclick="toggleAddon(this, 'Destination Wedding Package', 150000)">
+                    <div class="premium-badge">EXCLUSIVE</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🏝️ Destination Wedding Package</h4>
+                    <p class="price">+₹1,50,000</p>
+                    <small>Exotic location setup + travel arrangements + luxury accommodations for 50 guests</small>
+                </div>
+
+                <div class="addon-option" style="--i: 2" onclick="toggleAddon(this, 'Royal Mandap & Decor', 85000)">
+                    <div class="premium-badge">ROYAL</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>👑 Royal Mandap & Decor</h4>
+                    <p class="price">+₹85,000</p>
+                    <small>Handcrafted royal mandap + premium floral arrangements + luxury lighting</small>
+                </div>
+
+                <div class="addon-option" style="--i: 3" onclick="toggleAddon(this, 'Celebrity Entertainment', 200000)">
+                    <div class="premium-badge">CELEBRITY</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🎤 Celebrity Entertainment</h4>
+                    <p class="price">+₹2,00,000</p>
+                    <small>Famous artist performance + live orchestra + professional sound system</small>
+                </div>
+
+                <div class="addon-option" style="--i: 4" onclick="toggleAddon(this, 'Luxury Transportation Fleet', 75000)">
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🚗 Luxury Transportation Fleet</h4>
+                    <p class="price">+₹75,000</p>
+                    <small>Premium cars for couple + family + decorated vintage car for grand entry</small>
+                </div>
+
+                <div class="addon-option" style="--i: 5" onclick="toggleAddon(this, 'Professional Wedding Film', 120000)">
+                    <div class="premium-badge">CINEMATIC</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🎬 Professional Wedding Film</h4>
+                    <p class="price">+₹1,20,000</p>
+                    <small>Hollywood-style wedding movie + drone footage + same-day editing</small>
+                </div>
+
+                <div class="addon-option" style="--i: 6" onclick="toggleAddon(this, 'Bridal Trousseau Styling', 95000)">
+                    <div class="premium-badge">FASHION</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>👗 Bridal Trousseau Styling</h4>
+                    <p class="price">+₹95,000</p>
+                    <small>Designer outfit curation + jewelry styling + complete makeover package</small>
+                </div>
+
+                <div class="addon-option" style="--i: 7" onclick="toggleAddon(this, 'Gourmet Catering Upgrade', 110000)">
+                    <div class="premium-badge">CULINARY</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🍽️ Gourmet Catering Upgrade</h4>
+                    <p class="price">+₹1,10,000</p>
+                    <small>Celebrity chef + international cuisine + live cooking stations + premium bar</small>
+                </div>
+
+                <div class="addon-option" style="--i: 8" onclick="toggleAddon(this, 'Wellness & Spa Package', 65000)">
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🧘 Wellness & Spa Package</h4>
+                    <p class="price">+₹65,000</p>
+                    <small>Pre-wedding spa treatments + couple massage + relaxation therapy sessions</small>
+                </div>
+
+                <div class="addon-option" style="--i: 9" onclick="toggleAddon(this, 'Fireworks & Light Show', 80000)">
+                    <div class="premium-badge">SPECTACULAR</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🎆 Fireworks & Light Show</h4>
+                    <p class="price">+₹80,000</p>
+                    <small>Grand fireworks display + laser light show + LED installations</small>
+                </div>
+
+                <div class="addon-option" style="--i: 10" onclick="toggleAddon(this, 'Luxury Honeymoon Package', 180000)">
+                    <div class="premium-badge">ROMANTIC</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🌴 Luxury Honeymoon Package</h4>
+                    <p class="price">+₹1,80,000</p>
+                    <small>7-day exotic destination + 5-star resort + romantic experiences + couple activities</small>
+                </div>
+
+                <div class="addon-option" style="--i: 11" onclick="toggleAddon(this, 'Wedding Technology Suite', 45000)">
+                    <div class="premium-badge">TECH</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>📱 Wedding Technology Suite</h4>
+                    <p class="price">+₹45,000</p>
+                    <small>Live streaming + virtual reality experiences + social media integration + digital guestbook</small>
+                </div>
+
+                <div class="addon-option" style="--i: 12" onclick="toggleAddon(this, 'Floral Fantasy Upgrade', 90000)">
+                    <div class="premium-badge">BOTANICAL</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🌸 Floral Fantasy Upgrade</h4>
+                    <p class="price">+₹90,000</p>
+                    <small>Rare exotic flowers + artistic installations + fragrance design + floral jewelry</small>
+                </div>
+
+                <div class="addon-option" style="--i: 13" onclick="toggleAddon(this, 'Heritage Theme Wedding', 125000)">
+                    <div class="premium-badge">CULTURAL</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🏛️ Heritage Theme Wedding</h4>
+                    <p class="price">+₹1,25,000</p>
+                    <small>Palace venue + traditional ceremonies + cultural performances + heritage costumes</small>
+                </div>
+
+                <div class="addon-option" style="--i: 14" onclick="toggleAddon(this, 'Luxury Gift Curation', 55000)">
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🎁 Luxury Gift Curation</h4>
+                    <p class="price">+₹55,000</p>
+                    <small>Premium welcome gifts + personalized favors + luxury packaging + surprise elements</small>
+                </div>
+
+                <div class="addon-option" style="--i: 15" onclick="toggleAddon(this, 'Security & VIP Services', 70000)">
+                    <div class="premium-badge">VIP</div>
+                    <a href="#" class="select-btn" onclick="event.preventDefault()">Select</a>
+                    <h4>🛡️ Security & VIP Services</h4>
+                    <p class="price">+₹70,000</p>
+                    <small>Professional security team + VIP guest management + privacy protection + crowd control</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Information Form -->
+        <div class="customer-form">
+            <h2>📝 Premium Wedding Planning Form</h2>
+            <form id="weddingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="brideName">Bride's Name *</label>
+                        <input type="text" id="brideName" name="brideName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="groomName">Groom's Name *</label>
+                        <input type="text" id="groomName" name="groomName" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contactEmail">Contact Email *</label>
+                        <input type="email" id="contactEmail" name="contactEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactPhone">Contact Phone *</label>
+                        <input type="tel" id="contactPhone" name="contactPhone" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="weddingDate">Wedding Date *</label>
+                        <input type="date" id="weddingDate" name="weddingDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="guestCount">Expected Guest Count *</label>
+                        <input type="number" id="guestCount" name="guestCount" min="50" max="2000" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="budget">Wedding Budget Range</label>
+                        <select id="budget" name="budget">
+                            <option value="">Select budget range...</option>
+                            <option value="3-5-lakhs">₹3-5 Lakhs</option>
+                            <option value="5-10-lakhs">₹5-10 Lakhs</option>
+                            <option value="10-20-lakhs">₹10-20 Lakhs</option>
+                            <option value="20-50-lakhs">₹20-50 Lakhs</option>
+                            <option value="50-lakhs-plus">₹50 Lakhs+</option>
+                            <option value="no-limit">No Budget Limit</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="venueType">Preferred Venue Type</label>
+                        <select id="venueType" name="venueType">
+                            <option value="">Choose venue type...</option>
+                            <option value="luxury-hotel">Luxury Hotel</option>
+                            <option value="heritage-palace">Heritage Palace</option>
+                            <option value="beach-resort">Beach Resort</option>
+                            <option value="garden-venue">Garden Venue</option>
+                            <option value="banquet-hall">Banquet Hall</option>
+                            <option value="destination">Destination Wedding</option>
+                            <option value="farm-house">Farm House</option>
+                            <option value="custom">Custom Venue</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="weddingVision">Your Wedding Vision *</label>
+                    <textarea id="weddingVision" name="weddingVision" placeholder="Describe your dream wedding - theme, style, atmosphere, special moments you want to create..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialRequirements">Special Requirements & Traditions</label>
+                    <textarea id="specialRequirements" name="specialRequirements" placeholder="Religious ceremonies, cultural traditions, dietary restrictions, accessibility needs, special guest requirements..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="weddingAddress">Wedding Venue Address</label>
+                    <textarea id="weddingAddress" name="weddingAddress" placeholder="Current venue address or preferred location area with details..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="weddingTheme">Premium Theme Selection *</label>
+                        <select id="weddingTheme" name="weddingTheme" required>
+                            <option value="">Choose your wedding theme...</option>
+                            <option value="royal-traditional">Royal Traditional</option>
+                            <option value="modern-elegant">Modern Elegant</option>
+                            <option value="vintage-classic">Vintage Classic</option>
+                            <option value="bohemian-chic">Bohemian Chic</option>
+                            <option value="destination-tropical">Destination Tropical</option>
+                            <option value="garden-romantic">Garden Romantic</option>
+                            <option value="palace-luxury">Palace Luxury</option>
+                            <option value="contemporary-fusion">Contemporary Fusion</option>
+                            <option value="cultural-heritage">Cultural Heritage</option>
+                            <option value="custom-theme">Custom Theme</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="colorPalette">Wedding Color Palette</label>
+                        <select id="colorPalette" name="colorPalette">
+                            <option value="">Select color scheme...</option>
+                            <option value="gold-maroon">Gold & Maroon</option>
+                            <option value="rose-gold-blush">Rose Gold & Blush</option>
+                            <option value="ivory-champagne">Ivory & Champagne</option>
+                            <option value="burgundy-gold">Burgundy & Gold</option>
+                            <option value="emerald-gold">Emerald & Gold</option>
+                            <option value="navy-gold">Navy & Gold</option>
+                            <option value="coral-peach">Coral & Peach</option>
+                            <option value="purple-silver">Purple & Silver</option>
+                            <option value="custom-colors">Custom Colors</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="musicPreferences">Music & Entertainment Preferences</label>
+                    <textarea id="musicPreferences" name="musicPreferences" placeholder="DJ, Live Band, Classical, Bollywood, Regional, International - tell us your musical preferences and entertainment style..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="luxuryCustomizations">Luxury Customization Requests</label>
+                    <textarea id="luxuryCustomizations" name="luxuryCustomizations" placeholder="Any exclusive requirements, premium services, celebrity appearances, unique experiences, or ultra-luxury features you'd like..."></textarea>
+                </div>
+            </form>
+        </div>
+
+        <!-- Total Calculator -->
+        <div class="total-section">
+            <h3>💎 Your Premium Wedding Investment</h3>
+            <div class="total-price" id="totalPrice">₹2,49,999</div>
+            
+            <div class="selected-items" id="selectedItems">
+                <h4>Premium Wedding Package Includes:</h4>
+                <div class="selected-item">
+                    <span>Premium Wedding Experience</span>
+                    <span>₹1,39,999</span>
+                </div>
+            </div>
+
+            <a href="#checkout" class="checkout-btn" onclick="submitOrder()">
+                Book Your Dream Wedding 💐
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let selectedAddons = [];
+        let basePrice = 139999;
+
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        function toggleAddon(element, name, price) {
+            const selectBtn = element.querySelector('.select-btn');
+            
+            // Toggle selection state
+            const isSelected = element.classList.contains('selected');
+            
+            if (isSelected) {
+                // Deselect
+                element.classList.remove('selected');
+                selectBtn.textContent = 'Select';
+                selectedAddons = selectedAddons.filter(addon => addon.name !== name);
+            } else {
+                // Select
+                element.classList.add('selected');
+                selectBtn.textContent = 'Selected';
+                selectedAddons.push({ name, price });
+            }
+            
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const addonTotal = selectedAddons.reduce((sum, addon) => sum + addon.price, 0);
+            const total = basePrice + addonTotal;
+            
+            // Format number with commas for Indian currency
+            document.getElementById('totalPrice').textContent = `₹${total.toLocaleString('en-IN')}`;
+            
+            // Update selected items display
+            const selectedItemsDiv = document.getElementById('selectedItems');
+            let itemsHTML = '<h4>Premium Wedding Package Includes:</h4>';
+            
+            // Base package
+            itemsHTML += `
+                <div class="selected-item">
+                    <span>Premium Wedding Experience</span>
+                    <span>₹${basePrice.toLocaleString('en-IN')}</span>
+                </div>
+            `;
+            
+            // Add-ons
+            selectedAddons.forEach(addon => {
+                itemsHTML += `
+                    <div class="selected-item">
+                        <span>${addon.name}</span>
+                        <span>+₹${addon.price.toLocaleString('en-IN')}</span>
+                    </div>
+                `;
+            });
+            
+            selectedItemsDiv.innerHTML = itemsHTML;
+        }
+
+        function submitOrder() {
+            const form = document.getElementById('weddingForm');
+            const brideName = document.getElementById('brideName').value;
+            const groomName = document.getElementById('groomName').value;
+            const contactEmail = document.getElementById('contactEmail').value;
+            const contactPhone = document.getElementById('contactPhone').value;
+            const weddingDate = document.getElementById('weddingDate').value;
+            const guestCount = document.getElementById('guestCount').value;
+            const weddingVision = document.getElementById('weddingVision').value;
+            const weddingTheme = document.getElementById('weddingTheme').value;
+
+            // Basic validation for required fields
+            if (!brideName || !groomName || !contactEmail || !contactPhone || !weddingDate || !guestCount || !weddingVision || !weddingTheme) {
+                alert('Please fill in all required fields (marked with *)');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(contactEmail)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            // Phone validation (basic Indian format)
+            const phoneRegex = /^[6-9]\d{9}$/;
+            if (!phoneRegex.test(contactPhone.replace(/\D/g, '').slice(-10))) {
+                alert('Please enter a valid 10-digit phone number');
+                return;
+            }
+
+            // Date validation (wedding should be in future)
+            const selectedDate = new Date(weddingDate);
+            const today = new Date();
+            if (selectedDate <= today) {
+                alert('Wedding date should be in the future');
+                return;
+            }
+
+            // Calculate final total
+            const addonTotal = selectedAddons.reduce((sum, addon) => sum + addon.price, 0);
+            const finalTotal = basePrice + addonTotal;
+
+            // Create order summary
+            const orderData = {
+                coupleInfo: {
+                    brideName,
+                    groomName,
+                    contactEmail,
+                    contactPhone,
+                    weddingDate,
+                    guestCount: parseInt(guestCount),
+                    budget: document.getElementById('budget').value,
+                    venueType: document.getElementById('venueType').value,
+                    weddingVision,
+                    specialRequirements: document.getElementById('specialRequirements').value,
+                    weddingAddress: document.getElementById('weddingAddress').value,
+                    weddingTheme,
+                    colorPalette: document.getElementById('colorPalette').value,
+                    musicPreferences: document.getElementById('musicPreferences').value,
+                    luxuryCustomizations: document.getElementById('luxuryCustomizations').value
+                },
+                package: 'Premium Wedding Experience',
+                basePrice,
+                addons: selectedAddons,
+                total: finalTotal,
+                orderDate: new Date().toISOString()
+            };
+
+            // In a real application, you would send this data to a server
+            console.log('Premium Wedding Order Data:', orderData);
+
+            // Show success message with animation
+            const successMsg = document.getElementById('successMessage');
+            successMsg.classList.add('show');
+            
+            // Scroll to top to show success message
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Reset form after successful submission
+            setTimeout(() => {
+                form.reset();
+                
+                // Reset addons
+                selectedAddons = [];
+                document.querySelectorAll('.addon-option').forEach(option => {
+                    option.classList.remove('selected');
+                    option.querySelector('.select-btn').textContent = 'Select';
+                });
+                
+                updateTotal();
+                
+                // Hide success message after 8 seconds
+                setTimeout(() => {
+                    successMsg.classList.remove('show');
+                }, 8000);
+            }, 2500);
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            updateTotal();
+            
+            // Set minimum date to today for wedding date
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('weddingDate').setAttribute('min', today);
+            
+            // Add smooth animations on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for scroll animations
+            document.querySelectorAll('.addon-option, .form-group').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Add dynamic background color change based on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            document.body.style.backgroundPositionY = rate + 'px';
+        });
+
+        // Enhanced form interactions
+        document.querySelectorAll('input, textarea, select').forEach(element => {
+            element.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+            });
+            
+            element.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Festival Package</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #1a0d4d 0%, #4a148c 50%, #7b1fa2 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 20px;
+            color: #f5f5dc;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background patterns */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 193, 7, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 87, 34, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(233, 30, 99, 0.1) 0%, transparent 50%);
+            animation: backgroundShift 15s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-20px) translateY(-10px); }
+            50% { transform: translateX(20px) translateY(10px); }
+            75% { transform: translateX(-10px) translateY(20px); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            color: #ffc107;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header::before {
+            content: '🎊';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0px); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            color: #ffc107;
+            background: linear-gradient(45deg, #ffc107, #ff9800, #e91e63);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes textShimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        .header p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            opacity: 0.9;
+            color: #ffeb3b;
+        }
+
+        .festival-package {
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.9), rgba(123, 31, 162, 0.8));
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            margin-bottom: 40px;
+            border: 3px solid rgba(255, 193, 7, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: slideInLeft 1s ease 0.2s both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .festival-package:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(255, 193, 7, 0.2);
+        }
+
+        .festival-package::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 193, 7, 0.2), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .package-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #4a148c;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            animation: pulse 2s infinite, rotate 20s linear infinite;
+            position: relative;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .festival-package h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: #ffc107;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .festival-price {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: bold;
+            color: #ffc107;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: priceGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes priceGlow {
+            from { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 193, 7, 0.3); }
+            to { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 193, 7, 0.6); }
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features li {
+            padding: 15px 0;
+            color: #f5f5dc;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInLeft 0.5s ease forwards;
+        }
+
+        .features li:nth-child(1) { animation-delay: 0.1s; }
+        .features li:nth-child(2) { animation-delay: 0.2s; }
+        .features li:nth-child(3) { animation-delay: 0.3s; }
+        .features li:nth-child(4) { animation-delay: 0.4s; }
+        .features li:nth-child(5) { animation-delay: 0.5s; }
+        .features li:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .features li:hover {
+            color: #ffc107;
+            transform: translateX(10px);
+        }
+
+        .features li::before {
+            content: '🎪';
+            margin-right: 15px;
+            font-size: 1.3rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-5px); }
+            60% { transform: translateY(-3px); }
+        }
+
+        .customer-choice {
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.9), rgba(49, 27, 146, 0.8));
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(255, 193, 7, 0.3);
+            animation: slideInRight 1s ease 0.4s both;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .customer-choice h2 {
+            text-align: center;
+            color: #ffc107;
+            margin-bottom: 30px;
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .addon-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .addon-option {
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.8), rgba(123, 31, 162, 0.6));
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 193, 7, 0.3);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .addon-option:nth-child(1) { animation-delay: 0.1s; }
+        .addon-option:nth-child(2) { animation-delay: 0.2s; }
+        .addon-option:nth-child(3) { animation-delay: 0.3s; }
+        .addon-option:nth-child(4) { animation-delay: 0.4s; }
+        .addon-option:nth-child(5) { animation-delay: 0.5s; }
+        .addon-option:nth-child(6) { animation-delay: 0.6s; }
+        .addon-option:nth-child(7) { animation-delay: 0.7s; }
+        .addon-option:nth-child(8) { animation-delay: 0.8s; }
+        .addon-option:nth-child(9) { animation-delay: 0.9s; }
+        .addon-option:nth-child(10) { animation-delay: 1s; }
+
+        .addon-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 193, 7, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .addon-option:hover::before {
+            transform: translateX(100%);
+        }
+
+        .addon-option:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(255, 193, 7, 0.3);
+            border-color: #ffc107;
+        }
+
+        .addon-option.selected {
+            border-color: #ffc107;
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.2), rgba(255, 152, 0, 0.2));
+            box-shadow: 0 12px 30px rgba(255, 193, 7, 0.4);
+            animation: selectedPulse 2s infinite;
+        }
+
+        @keyframes selectedPulse {
+            0%, 100% { box-shadow: 0 12px 30px rgba(255, 193, 7, 0.4); }
+            50% { box-shadow: 0 12px 30px rgba(255, 193, 7, 0.6), 0 0 20px rgba(255, 193, 7, 0.3); }
+        }
+
+        .addon-option .select-btn {
+            position: absolute;
+            top: 0px;
+            right: 1px;
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #4a148c;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+        }
+
+        .addon-option.selected .select-btn {
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+            color: white;
+            animation: checkmark 0.5s ease;
+        }
+
+        @keyframes checkmark {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .addon-option .select-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.4);
+        }
+
+        .addon-option h4 {
+            color: #ffc107;
+            margin-bottom: 10px;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .addon-option .price {
+            font-weight: bold;
+            color: #ffc107;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .addon-option small {
+            color: #f5f5dc;
+            line-height: 1.5;
+            font-size: clamp(0.85rem, 1.8vw, 1rem);
+        }
+
+        .customer-form {
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.9), rgba(49, 27, 146, 0.8));
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(255, 193, 7, 0.3);
+            animation: slideInUp 1s ease 0.6s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .customer-form h2 {
+            text-align: center;
+            color: #ffc107;
+            margin-bottom: 30px;
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #ffc107;
+            font-weight: 500;
+            margin-bottom: 10px;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255, 193, 7, 0.3);
+            border-radius: 15px;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            font-family: inherit;
+            background: rgba(74, 20, 140, 0.3);
+            backdrop-filter: blur(5px);
+            color: #f5f5dc;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #ffc107;
+            background: rgba(74, 20, 140, 0.5);
+            box-shadow: 0 0 15px rgba(255, 193, 7, 0.3);
+            transform: scale(1.02);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .total-section {
+            background: linear-gradient(135deg, #4a148c, #7b1fa2, #ffc107);
+            color: #f5f5dc;
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(74, 20, 140, 0.4);
+            border: 3px solid rgba(255, 193, 7, 0.5);
+            position: relative;
+            overflow: hidden;
+            animation: zoomIn 1s ease 0.8s both;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .total-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, rgba(255, 193, 7, 0.1), transparent);
+            animation: rotateGradient 4s linear infinite;
+        }
+
+        @keyframes rotateGradient {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .total-section h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .total-price {
+            font-size: clamp(3rem, 8vw, 4.5rem);
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+            animation: totalPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes totalPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .selected-items {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(245, 245, 220, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .selected-items h4 {
+            margin-bottom: 15px;
+            font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .selected-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            opacity: 0;
+            animation: slideInFromLeft 0.5s ease forwards;
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .checkout-btn {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #4a148c;
+            border: none;
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 25px rgba(255, 193, 7, 0.3);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255, 193, 7, 0.5);
+            background: linear-gradient(135deg, #ffeb3b, #ffc107);
+        }
+
+        .checkout-btn:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .checkout-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+            color: #fff;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            display: none;
+            box-shadow: 0 15px 35px rgba(76, 175, 80, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .success-message.show {
+            display: block;
+            animation: successSlideIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        @keyframes successSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .addon-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .festival-package,
+            .customer-choice,
+            .customer-form,
+            .total-section {
+                padding: 25px;
+            }
+            
+            .addon-option {
+                padding: 25px;
+            }
+            
+            .checkout-btn {
+                padding: 18px 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .festival-package,
+            .customer-choice,
+            .customer-form,
+            .total-section {
+                padding: 20px;
+            }
+            
+            .addon-option {
+                padding: 20px;
+            }
+            
+            .package-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Festival decorative elements */
+        .decorative-border {
+            position: relative;
+        }
+
+        .decorative-border::before,
+        .decorative-border::after {
+            content: '🎪 🎊 🎪';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            opacity: 0.6;
+        }
+
+        .decorative-border::before {
+            top: -15px;
+        }
+
+        .decorative-border::after {
+            bottom: -15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header decorative-border">
+            <h1>🎪 Premium Festival Package</h1>
+            <p>Create unforgettable festival experiences with our complete celebration services</p>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <h3>🎉 Order Submitted Successfully!</h3>
+            <p>Thank you for choosing our Premium Festival Package. We'll contact you soon to make your festival extraordinary!</p>
+        </div>
+
+        <!-- Festival Package -->
+        <div class="festival-package">
+            <div class="package-icon">🎪</div>
+            <h2>Complete Festival Experience</h2>
+            <div class="festival-price">₹85,999</div>
+            <ul class="features">
+                <li>Premium Decorations & Venue Setup</li>
+                <li>Live Cultural Performance Shows</li>
+                <li>Traditional Catering (Full Menu)</li>
+                <li>Professional Photography & Videography</li>
+                <li>Complete Stage & Sound System</li>
+                <li>Experienced Cultural Host/MC</li>
+            </ul>
+        </div>
+
+        <!-- Customer Choice Add-ons -->
+        <div class="customer-choice">
+            <h2>🎭 Elevate Your Festival</h2>
+            <p style="text-align: center; color: #ffeb3b; margin-bottom: 30px; font-size: 1.2rem;">
+                Add these premium services to create an even more spectacular festival experience
+            </p>
+            
+            <div class="addon-options">
+                <div class="addon-option" onclick="toggleAddon(this, 'Extended Performance Time', 15000)">
+                    <button class="select-btn">Select</button>
+                    <h4>⏰ Extended Performance Hours</h4>
+                    <p class="price">+₹15,000</p>
+                    <small>Additional 4 hours of live performances and entertainment</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Premium Artist Lineup', 25000)">
+                    <button class="select-btn">Select</button>
+                    <h4>🌟 Celebrity Artist Lineup</h4>
+                    <p class="price">+₹25,000</p>
+                    <small>Featured performances by renowned cultural artists and musicians</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Themed Decorations', 18000)">
+                    <button class="select-btn">Select</button>
+                    <h4>🎨 Custom Themed Decorations</h4>
+                    <p class="price">+₹18,000</p>
+                    <small>Specialized decor matching your festival theme with premium materials</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'VIP Catering', 22000)">
+                    <button class="select-btn">Select</button>
+                    <h4>🍽️ VIP Gourmet Catering</h4>
+                    <p class="price">+₹22,000</p>
+                    <small>Premium multi-cuisine buffet with live cooking stations</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Fireworks Display', 35000)">
+                    <button class="select-btn">Select</button>
+                    <h4>🎆 Grand Fireworks Show</h4>
+                    <p class="price">+₹35,000</p>
+                    <small>Spectacular 15-minute fireworks display with music synchronization</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Photo Booth', 12000)">
+                    <button class="select-btn">Select</button>
+                    <h4>📸 Festival Photo Booth</h4>
+                    <p class="price">+₹12,000</p>
+                    <small>Interactive photo booth with props and instant printing for guests</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Live Streaming', 16000)">
+                    <button class="select-btn">Select</button>
+                    <h4>📡 HD Live Streaming</h4>
+                    <p class="price">+₹16,000</p>
+                    <small>Professional live streaming service for remote attendees</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Security Team', 8000)">
+                    <button class="select-btn">Select</button>
+                    <h4>🛡️ Professional Security</h4>
+                    <p class="price">+₹8,000</p>
+                    <small>Trained security personnel for crowd management and safety</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Transportation', 20000)">
+                    <button class="select-btn">Select</button>
+                    <h4>🚌 Guest Transportation</h4>
+                    <p class="price">+₹20,000</p>
+                    <small>Luxury bus service for guest pickup and drop-off</small>
+                </div>
+
+                <div class="addon-option" onclick="toggleAddon(this, 'Welcome Kit', 15000)">
+                    <button class="select-btn">Select</button>
+                    <h4>🎁 Festival Welcome Kits</h4>
+                    <p class="price">+₹15,000</p>
+                    <small>Customized gift bags with festival merchandise and souvenirs</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Information Form -->
+        <div class="customer-form">
+            <h2>📝 Festival Planning Details</h2>
+            <form id="festivalForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="festivalType">Type of Festival *</label>
+                        <select id="festivalType" name="festivalType" required>
+                            <option value="">Select festival type...</option>
+                            <option value="cultural">Cultural Festival</option>
+                            <option value="religious">Religious Festival</option>
+                            <option value="community">Community Celebration</option>
+                            <option value="corporate">Corporate Festival</option>
+                            <option value="seasonal">Seasonal Festival</option>
+                            <option value="other">Other Festival Type</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="festivalDate">Festival Date *</label>
+                        <input type="date" id="festivalDate" name="festivalDate" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="festivalTheme">Festival Theme *</label>
+                        <input type="text" id="festivalTheme" name="festivalTheme" placeholder="e.g., Diwali, Holi, Navratri, Christmas..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expectedAttendees">Expected Attendees *</label>
+                        <select id="expectedAttendees" name="expectedAttendees" required>
+                            <option value="">Select attendance...</option>
+                            <option value="100-250">100-250 people</option>
+                            <option value="251-500">251-500 people</option>
+                            <option value="501-1000">501-1000 people</option>
+                            <option value="1001-2000">1001-2000 people</option>
+                            <option value="2000+">2000+ people</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="venue">Venue/Location Details *</label>
+                    <textarea id="venue" name="venue" placeholder="Enter complete venue address, indoor/outdoor, size requirements..." required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="duration">Festival Duration</label>
+                        <select id="duration" name="duration">
+                            <option value="4-hours">4 Hours</option>
+                            <option value="6-hours">6 Hours</option>
+                            <option value="8-hours">8 Hours (Full Day)</option>
+                            <option value="2-days">2 Days</option>
+                            <option value="3-days">3 Days</option>
+                            <option value="custom">Custom Duration</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="startTime">Preferred Start Time</label>
+                        <input type="time" id="startTime" name="startTime">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="culturalPreferences">Cultural Performance Preferences</label>
+                    <textarea id="culturalPreferences" name="culturalPreferences" placeholder="Specify preferred dance forms, music genres, regional performances, etc..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="cateringPreferences">Catering Preferences</label>
+                    <textarea id="cateringPreferences" name="cateringPreferences" placeholder="Dietary restrictions, cuisine preferences, special menu items..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="budget">Additional Budget Range</label>
+                        <select id="budget" name="budget">
+                            <option value="standard">Standard Package Only</option>
+                            <option value="1-50k">₹1,00,000 - ₹1,50,000</option>
+                            <option value="1.5-2.5k">₹1,50,000 - ₹2,50,000</option>
+                            <option value="2.5-4k">₹2,50,000 - ₹4,00,000</option>
+                            <option value="4k+">₹4,00,000+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="priority">Priority Services</label>
+                        <select id="priority" name="priority">
+                            <option value="balanced">Balanced Experience</option>
+                            <option value="performance">Focus on Performances</option>
+                            <option value="decoration">Focus on Decorations</option>
+                            <option value="catering">Focus on Catering</option>
+                            <option value="photography">Focus on Photography</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialRequests">Special Requirements & Notes</label>
+                    <textarea id="specialRequests" name="specialRequests" placeholder="Any specific requirements, accessibility needs, VIP arrangements, etc..."></textarea>
+                </div>
+            </form>
+        </div>
+
+        <!-- Total Calculator -->
+        <div class="total-section">
+            <h3>🎪 Your Festival Investment</h3>
+            <div class="total-price" id="totalPrice">₹85,999</div>
+            
+            <div class="selected-items" id="selectedItems">
+                <h4>Festival Package Includes:</h4>
+                <div class="selected-item">
+                    <span>Premium Festival Package</span>
+                    <span>₹85,999</span>
+                </div>
+            </div>
+
+            <button class="checkout-btn" onclick="submitOrder()">
+                Book Your Festival 🎉
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let selectedAddons = [];
+        let basePrice = 85999;
+
+        function toggleAddon(element, name, price) {
+            const selectBtn = element.querySelector('.select-btn');
+            
+            // Toggle selection state with animation
+            const isSelected = element.classList.contains('selected');
+            
+            if (isSelected) {
+                // Deselect with animation
+                element.classList.remove('selected');
+                selectBtn.textContent = 'Select';
+                selectBtn.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    selectBtn.style.transform = 'scale(1)';
+                }, 150);
+                selectedAddons = selectedAddons.filter(addon => addon.name !== name);
+            } else {
+                // Select with animation
+                element.classList.add('selected');
+                selectBtn.textContent = '✓ Selected';
+                selectBtn.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    selectBtn.style.transform = 'scale(1)';
+                }, 150);
+                selectedAddons.push({ name, price });
+            }
+            
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const addonTotal = selectedAddons.reduce((sum, addon) => sum + addon.price, 0);
+            const total = basePrice + addonTotal;
+            
+            // Animate price change
+            const priceElement = document.getElementById('totalPrice');
+            priceElement.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                priceElement.textContent = `₹${total.toLocaleString('en-IN')}`;
+                priceElement.style.transform = 'scale(1)';
+            }, 200);
+            
+            // Update selected items display with animations
+            const selectedItemsDiv = document.getElementById('selectedItems');
+            let itemsHTML = '<h4>Festival Package Includes:</h4>';
+            
+            // Base package
+            itemsHTML += `
+                <div class="selected-item" style="animation-delay: 0.1s;">
+                    <span>Premium Festival Package</span>
+                    <span>₹${basePrice.toLocaleString('en-IN')}</span>
+                </div>
+            `;
+            
+            // Add-ons with staggered animation
+            selectedAddons.forEach((addon, index) => {
+                itemsHTML += `
+                    <div class="selected-item" style="animation-delay: ${0.2 + (index * 0.1)}s;">
+                        <span>${addon.name}</span>
+                        <span>+₹${addon.price.toLocaleString('en-IN')}</span>
+                    </div>
+                `;
+            });
+            
+            selectedItemsDiv.innerHTML = itemsHTML;
+        }
+
+        function submitOrder() {
+            const form = document.getElementById('festivalForm');
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const festivalType = document.getElementById('festivalType').value;
+            const festivalDate = document.getElementById('festivalDate').value;
+            const festivalTheme = document.getElementById('festivalTheme').value;
+            const expectedAttendees = document.getElementById('expectedAttendees').value;
+            const venue = document.getElementById('venue').value;
+
+            // Enhanced validation
+            if (!firstName || !lastName || !email || !phone || !festivalType || !festivalDate || !festivalTheme || !expectedAttendees || !venue) {
+                // Shake animation for error
+                const submitBtn = document.querySelector('.checkout-btn');
+                submitBtn.style.animation = 'shake 0.5s ease-in-out';
+                setTimeout(() => {
+                    submitBtn.style.animation = '';
+                }, 500);
+                
+                alert('Please fill in all required fields (marked with *)');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            // Phone validation (basic)
+            const phoneRegex = /^[0-9]{10}$/;
+            if (!phoneRegex.test(phone.replace(/\D/g, ''))) {
+                alert('Please enter a valid 10-digit phone number');
+                return;
+            }
+
+            // Date validation (festival should be in future)
+            const selectedDate = new Date(festivalDate);
+            const today = new Date();
+            if (selectedDate <= today) {
+                alert('Festival date should be in the future');
+                return;
+            }
+
+            // Calculate final total
+            const addonTotal = selectedAddons.reduce((sum, addon) => sum + addon.price, 0);
+            const finalTotal = basePrice + addonTotal;
+
+            // Create comprehensive order data
+            const orderData = {
+                customerInfo: {
+                    firstName,
+                    lastName,
+                    email,
+                    phone,
+                    festivalType,
+                    festivalDate,
+                    festivalTheme,
+                    expectedAttendees,
+                    venue,
+                    duration: document.getElementById('duration').value,
+                    startTime: document.getElementById('startTime').value,
+                    culturalPreferences: document.getElementById('culturalPreferences').value,
+                    cateringPreferences: document.getElementById('cateringPreferences').value,
+                    budget: document.getElementById('budget').value,
+                    priority: document.getElementById('priority').value,
+                    specialRequests: document.getElementById('specialRequests').value
+                },
+                package: 'Premium Festival Package',
+                basePrice,
+                addons: selectedAddons,
+                total: finalTotal,
+                orderDate: new Date().toISOString(),
+                estimatedSetupDate: calculateSetupDate(festivalDate)
+            };
+
+            // In a real application, this would be sent to a server
+            console.log('Festival Order Data:', orderData);
+
+            // Animate button before success
+            const submitBtn = document.querySelector('.checkout-btn');
+            submitBtn.style.transform = 'scale(0.95)';
+            submitBtn.textContent = 'Processing...';
+            
+            setTimeout(() => {
+                // Show success message with enhanced animation
+                const successMsg = document.getElementById('successMessage');
+                successMsg.classList.add('show');
+                
+                // Scroll to top smoothly
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Reset form after successful submission
+                setTimeout(() => {
+                    form.reset();
+                    
+                    // Reset addons with animation
+                    selectedAddons = [];
+                    document.querySelectorAll('.addon-option').forEach((option, index) => {
+                        setTimeout(() => {
+                            option.classList.remove('selected');
+                            const btn = option.querySelector('.select-btn');
+                            btn.textContent = 'Select';
+                            btn.style.transform = 'scale(0.8)';
+                            setTimeout(() => {
+                                btn.style.transform = 'scale(1)';
+                            }, 100);
+                        }, index * 50);
+                    });
+                    
+                    updateTotal();
+                    
+                    // Reset button
+                    submitBtn.style.transform = 'scale(1)';
+                    submitBtn.textContent = 'Book Your Festival 🎉';
+                    
+                    // Hide success message after 8 seconds
+                    setTimeout(() => {
+                        successMsg.classList.remove('show');
+                    }, 8000);
+                }, 2000);
+            }, 1000);
+        }
+
+        function calculateSetupDate(festivalDate) {
+            const festival = new Date(festivalDate);
+            const setup = new Date(festival);
+            setup.setDate(setup.getDate() - 2); // 2 days before festival for setup
+            return setup.toISOString();
+        }
+
+        // Add shake animation for errors
+        const shakeKeyframes = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        
+        const style = document.createElement('style');
+        style.textContent = shakeKeyframes;
+        document.head.appendChild(style);
+
+        // Initialize the page with enhanced animations
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTotal();
+            
+            // Set minimum date to tomorrow for festival date
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 7); // At least 1 week notice for festival planning
+            const tomorrowStr = tomorrow.toISOString().split('T')[0];
+            document.getElementById('festivalDate').setAttribute('min', tomorrowStr);
+
+            // Add intersection observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for scroll animations
+            document.querySelectorAll('.addon-option, .form-group').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Add hover sound effect simulation (visual feedback)
+            document.querySelectorAll('.addon-option, .checkout-btn').forEach(el => {
+                el.addEventListener('mouseenter', function() {
+                    this.style.transition = 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                });
+            });
+
+            // Parallax effect for background
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallax = document.querySelector('body::before');
+                if (parallax) {
+                    const speed = scrolled * 0.5;
+                    document.body.style.backgroundPosition = `center ${speed}px`;
+                }
+            });
+        });
+
+        // Add festival greeting based on time
+        function setFestivalGreeting() {
+            const hour = new Date().getHours();
+            const headerP = document.querySelector('.header p');
+            
+            if (hour < 12) {
+                headerP.textContent = "🌅 Good Morning! Create unforgettable festival experiences with our complete celebration services";
+            } else if (hour < 17) {
+                headerP.textContent = "☀️ Good Afternoon! Create unforgettable festival experiences with our complete celebration services";
+            } else {
+                headerP.textContent = "🌙 Good Evening! Create unforgettable festival experiences with our complete celebration services";
+            }
+        }
+
+        // Set festival greeting on load
+        setFestivalGreeting();
+
+        // Add smooth transitions for form inputs
+        document.querySelectorAll('input, textarea, select').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+                this.parentElement.style.transition = 'transform 0.3s ease';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

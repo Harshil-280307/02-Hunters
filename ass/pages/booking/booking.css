@@ -1,0 +1,486 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #faf8f3 0%, #f8f4e6 50%, #faf5e6 100%);
+            color: #5d2a0a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Particles Animation */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(45deg, #daa520, #8b4513);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 3s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 4s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 5s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 1.5s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 2.5s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 3.5s; }
+        .particle:nth-child(10) { left: 95%; animation-delay: 4.5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) scale(0); }
+            10% { transform: translateY(90vh) scale(1); }
+            90% { transform: translateY(10vh) scale(1); }
+            100% { transform: translateY(0vh) scale(0); }
+        }
+
+        /* Container - Responsive */
+        .lux-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 25px clamp(15px, 4vw, 40px);
+        }
+
+        /* Header Section - Fully Responsive */
+        .lux-header {
+            text-align: center;
+            padding: clamp(40px, 8vw, 80px) 0 clamp(30px, 6vw, 60px);
+            background: linear-gradient(135deg, #f5f5dc 0%, #faf0e6 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lux-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><path d="M0 10 L25 0 L50 10 L75 0 L100 10 L100 20 L0 20 Z" fill="rgba(139,69,19,0.05)"/></svg>') repeat-x;
+            background-size: clamp(100px, 20vw, 200px) clamp(20px, 4vw, 40px);
+            animation: zigzagMove 20s linear infinite;
+        }
+
+        @keyframes zigzagMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-200px); }
+        }
+
+        .lux-header-title {
+            font-size: clamp(1.8rem, 6vw, 4rem);
+            font-weight: 800;
+            color: #5d2a0a;
+            margin-bottom: clamp(15px, 3vw, 20px);
+            text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.1);
+            position: relative;
+            z-index: 2;
+            line-height: 1.2;
+        }
+
+        .lux-header-subtitle {
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            color: #8b4513;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
+
+        /* Services Section - Enhanced Responsiveness */
+        .lux-services-section {
+            padding: clamp(40px, 8vw, 80px) 0;
+            background: linear-gradient(135deg, #fefcf7 0%, #faf8f3 100%);
+        }
+
+        .lux-service-card {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(20px, 5vw, 60px);
+            align-items: center;
+            margin-bottom: clamp(40px, 8vw, 100px);
+            padding: clamp(20px, 4vw, 40px);
+            background: linear-gradient(135deg, rgba(245, 245, 220, 0.8) 0%, rgba(250, 240, 230, 0.8) 100%);
+            border-radius: clamp(15px, 3vw, 20px);
+            box-shadow: 0 15px 40px rgba(139, 69, 19, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(139, 69, 19, 0.1);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(50px);
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Desktop Layout - Two Columns */
+        @media screen and (min-width: 769px) {
+            .lux-service-card {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            /* Zigzag Pattern - Even cards have image on right */
+            .lux-service-card:nth-child(even) .lux-service-content {
+                order: 1;
+            }
+
+            .lux-service-card:nth-child(even) .lux-service-image {
+                order: 2;
+            }
+
+            /* Odd cards have image on left */
+            .lux-service-card:nth-child(odd) .lux-service-content {
+                order: 2;
+            }
+
+            .lux-service-card:nth-child(odd) .lux-service-image {
+                order: 1;
+            }
+        }
+
+        /* Mobile Layout - Single Column (all images on top) */
+        @media screen and (max-width: 768px) {
+            .lux-service-card .lux-service-content {
+                order: 2;
+            }
+
+            .lux-service-card .lux-service-image {
+                order: 1;
+            }
+        }
+
+        /* Animation delays for staggered effect */
+        .lux-service-card:nth-child(1) { animation-delay: 0.1s; }
+        .lux-service-card:nth-child(2) { animation-delay: 0.2s; }
+        .lux-service-card:nth-child(3) { animation-delay: 0.3s; }
+        .lux-service-card:nth-child(4) { animation-delay: 0.4s; }
+        .lux-service-card:nth-child(5) { animation-delay: 0.5s; }
+        .lux-service-card:nth-child(6) { animation-delay: 0.6s; }
+        .lux-service-card:nth-child(7) { animation-delay: 0.7s; }
+
+        .lux-service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139, 69, 19, 0.05) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.6s ease;
+        }
+
+        .lux-service-card:hover::before {
+            transform: scale(1);
+        }
+
+        /* Service Image - Fully Responsive */
+        .lux-service-image {
+            position: relative;
+            border-radius: clamp(10px, 2vw, 15px);
+            overflow: hidden;
+            height: clamp(200px, 40vw, 350px);
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.2);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            animation: zigzagFloat 4s ease-in-out infinite;
+            width: 100%;
+        }
+
+        .lux-service-image:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(139, 69, 19, 0.3);
+            z-index: 10;
+        }
+
+        /* Reduce hover effects on mobile */
+        @media screen and (max-width: 768px) {
+            .lux-service-image:hover {
+                transform: translateY(-5px) scale(1.01);
+                box-shadow: 0 15px 30px rgba(139, 69, 19, 0.25);
+            }
+        }
+
+        .lux-service-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(139, 69, 19, 0.7), rgba(218, 165, 32, 0.7));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lux-service-image:hover .lux-service-overlay {
+            opacity: 1;
+        }
+
+        .lux-overlay-icon {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes zigzagFloat {
+            0%, 100% { 
+                transform: translateY(0px); 
+            }
+            50% { 
+                transform: translateY(-10px); 
+            }
+        }
+
+        /* Stagger the floating animation */
+        .lux-service-card:nth-child(1) .lux-service-image { animation-delay: 0s; }
+        .lux-service-card:nth-child(2) .lux-service-image { animation-delay: 1s; }
+        .lux-service-card:nth-child(3) .lux-service-image { animation-delay: 2s; }
+        .lux-service-card:nth-child(4) .lux-service-image { animation-delay: 3s; }
+        .lux-service-card:nth-child(5) .lux-service-image { animation-delay: 0.5s; }
+        .lux-service-card:nth-child(6) .lux-service-image { animation-delay: 1.5s; }
+        .lux-service-card:nth-child(7) .lux-service-image { animation-delay: 2.5s; }
+
+        /* Service Content - Responsive */
+        .lux-service-content {
+            padding: clamp(10px, 3vw, 20px);
+        }
+
+        .lux-service-title {
+            font-size: clamp(1.4rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: #5d2a0a;
+            margin-bottom: clamp(15px, 3vw, 20px);
+            position: relative;
+            display: inline-block;
+            line-height: 1.3;
+        }
+
+        .lux-service-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8b4513, #daa520);
+            transition: width 0.4s ease;
+        }
+
+        .lux-service-card:hover .lux-service-title::after {
+            width: 100%;
+        }
+
+        .lux-service-description {
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            color: #8b4513;
+            margin-bottom: clamp(20px, 4vw, 30px);
+            line-height: 1.7;
+        }
+
+        .lux-service-features {
+            list-style: none;
+            margin-bottom: clamp(20px, 4vw, 30px);
+        }
+
+        .lux-service-features li {
+            padding: clamp(6px, 1.5vw, 8px) 0;
+            color: #6b3410;
+            position: relative;
+            padding-left: 25px;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+        }
+
+        .lux-service-features li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+            color: #daa520;
+            font-size: clamp(0.8rem, 1.8vw, 1rem);
+        }
+
+        /* Buttons - Fully Responsive */
+        .lux-service-buttons {
+            display: flex;
+            gap: clamp(10px, 2vw, 15px);
+            flex-wrap: wrap;
+        }
+
+        .lux-btn {
+            padding: clamp(12px, 3vw, 15px) clamp(20px, 5vw, 30px);
+            border: none;
+            border-radius: 50px;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            min-width: clamp(120px, 25vw, 140px);
+            justify-content: center;
+            flex: 1;
+        }
+
+        .lux-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.4s ease;
+        }
+
+        .lux-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .lux-btn-primary {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 25%, #cd853f 75%, #daa520 100%);
+            color: white;
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+        }
+
+        .lux-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(139, 69, 19, 0.4);
+        }
+
+        .lux-btn-secondary {
+            background: linear-gradient(135deg, rgba(245, 245, 220, 0.9) 0%, rgba(250, 240, 230, 0.9) 100%);
+            color: #5d2a0a;
+            border: 2px solid rgba(139, 69, 19, 0.3);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+        }
+
+        .lux-btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+            background: linear-gradient(135deg, #f5f5dc 0%, #faf0e6 100%);
+        }
+
+        .lux-btn span {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Mobile-specific button adjustments */
+        @media screen and (max-width: 768px) {
+            .lux-service-buttons {
+                justify-content: center;
+            }
+
+            .lux-btn:hover {
+                transform: translateY(-2px);
+            }
+        }
+
+        /* Very small screens */
+        @media screen and (max-width: 480px) {
+            .lux-service-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .lux-btn {
+                width: 100%;
+                min-width: unset;
+            }
+        }
+
+        /* Tablet-specific adjustments */
+        @media screen and (min-width: 769px) and (max-width: 1024px) {
+            .lux-service-card {
+                gap: 40px;
+                padding: 30px;
+                margin-bottom: 60px;
+            }
+
+            .lux-service-image {
+                height: 300px;
+            }
+        }
+
+        /* Large desktop adjustments */
+        @media screen and (min-width: 1400px) {
+            .lux-service-card {
+                padding: 50px;
+                gap: 80px;
+            }
+
+            .lux-service-image {
+                height: 400px;
+            }
+        }
+
+        /* Custom placeholder images using CSS gradients */
+        .service-anniversary { background: linear-gradient(45deg, #ff6b9d, #ffc3d8); }
+        .service-babyshower { background: linear-gradient(45deg, #74b9ff, #a8e6cf); }
+        .service-birthday { background: linear-gradient(45deg, #fd79a8, #fdcb6e); }
+        .service-corporate { background: linear-gradient(45deg, #2d3436, #636e72); }
+        .service-prewedding { background: linear-gradient(45deg, #fab1a0, #ff7675); }
+        .service-cultural { background: linear-gradient(45deg, #fd79a8, #e17055); }
+        .service-wedding { background: linear-gradient(45deg, #ffffff, #ddd6fe); }
+
+        .placeholder-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Touch-friendly improvements for mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .lux-service-card:hover::before,
+            .lux-service-image:hover,
+            .lux-service-image:hover .lux-service-overlay,
+            .lux-service-card:hover .lux-service-title::after,
+            .lux-btn:hover {
+                /* Disable hover effects on touch devices */
+                transform: none;
+                opacity: initial;
+                width: initial;
+                box-shadow: initial;
+            }
+        }
