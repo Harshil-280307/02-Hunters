@@ -769,7 +769,7 @@
             border-radius: 15px;
             font-size: 1rem;
             font-family: 'Georgia', 'Times New Roman', serif;
-            color: #ffffff;
+            color: #f0f0f0;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             transition: all 0.4s ease;
@@ -985,4 +985,8 @@
                 padding: 25px;
                 width: 95%;
             }
+        }
+
+        option{
+            color: #1a0033;
         }
