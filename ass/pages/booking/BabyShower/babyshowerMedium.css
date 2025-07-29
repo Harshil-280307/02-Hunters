@@ -634,3 +634,103 @@
                 padding: 30px 20px;
             }
         }
+
+
+
+
+        
+
+
+
+        
+        .prev-button {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            align-items: flex-start;
+            padding-top: 20px;
+            padding-left: 20px;
+            margin: 0;
+            box-sizing: border-box;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: rgba(238, 5, 5, 0.1);
+            border: 2px solid rgba(88, 28, 28, 0.2);
+            border-radius: 50px;
+            color: cyan; 
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .prev-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 20, 147, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .prev-button:hover::before {
+            left: 100%;
+        }
+
+        .prev-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4);
+            border-color: rgba(255, 20, 147, 0.6);
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.3), rgba(138, 43, 226, 0.3));
+            color: #fff;
+        }
+
+        .prev-button:active {
+            transform: translateY(0);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-arrow {
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .prev-button:hover .btn-arrow {
+            transform: translateX(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .btn-container {
+                padding-left: 10px;
+                padding-top: 10px;
+            }
+            
+            .prev-button {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .prev-button {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+        }
+
+        /* Ripple animation */
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
