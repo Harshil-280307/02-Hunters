@@ -248,8 +248,8 @@
     </section>
 
     <!-- Section 9: Embedded Video -->
-  <!-- Section 9: Embedded Video -->
-<section class="video-block fade-in">
+    <!-- Section 9: Embedded Video -->
+<section class="video-block fade-in" id="glamHighlights">
     <div class="container">
         <h2 class="section-title" style="color: white;">Glam Highlights</h2>
         <div class="video-container">
@@ -257,19 +257,40 @@
                 <i class="fas fa-play"></i>
             </div>
             
-            <!-- Add actual video (YouTube embed or local MP4) -->
+            <!-- HTML5 Video Element -->
             <div class="embedded-video" id="videoFrame" style="display: none;">
-                <iframe width="100%" height="400" src="https://www.youtube.com/embed/Co2Ot_nnI-8?si=JfRwU6qlNaRL_Let" 
-                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <video width="100%" height="400" controls>
+                    <source src="../../videos/01.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
-
+            
             <p class="video-caption">See just how stunning every detail truly is — pure elegance in motion.</p>
         </div>
     </div>
 </section>
 
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const videoSection = document.getElementById("videoFrame");
+        const video = videoSection.querySelector("video");
 
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    videoSection.style.display = "block";     // Show the video
+                    video.play();                             // Start playing
+                    observer.unobserve(videoSection);         // Run only once
+                }
+            });
+        }, {
+            threshold: 0.5 // Trigger when 50% of the video section is visible
+        });
+
+        observer.observe(videoSection);
+    });
+</script>
     <script src="./javascript/weding.js"></script>
 
     <script src="./javascript/nav.js"></script>
