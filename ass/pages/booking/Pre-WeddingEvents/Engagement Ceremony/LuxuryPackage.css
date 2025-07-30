@@ -1,0 +1,653 @@
+     * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #faf8ff 0%, #f5f0ff 50%, #ede5ff 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #4a3d5c;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: #7c4dff;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(124, 77, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.1; }
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(124, 77, 255, 0.3);
+            color: #7c4dff;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(45deg, #7c4dff, #b388ff, #d1c4e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            color: #9575cd;
+            position: relative;
+            z-index: 1;
+        }
+
+        .luxury-package {
+            background: linear-gradient(135deg, #ffffff 0%, #faf8ff 50%, #f3e5f5 100%);
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 0 25px 50px rgba(124, 77, 255, 0.2);
+            text-align: center;
+            margin-bottom: 50px;
+            border: 3px solid #b388ff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .luxury-package::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(179, 136, 255, 0.15), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .luxury-package::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #7c4dff, #b388ff, #d1c4e9, #b388ff, #7c4dff);
+            margin: -50px -50px 40px -50px;
+            border-radius: 25px 25px 0 0;
+        }
+
+        .package-icon {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #7c4dff, #b388ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            box-shadow: 0 15px 40px rgba(124, 77, 255, 0.4);
+            position: relative;
+            z-index: 1;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .luxury-package h2 {
+            font-size: 3rem;
+            color: #7c4dff;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .luxury-price {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #7c4dff;
+            margin-bottom: 40px;
+            text-shadow: 3px 3px 6px rgba(124, 77, 255, 0.2);
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(45deg, #7c4dff, #9c27b0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 40px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .features li {
+            padding: 15px 0;
+            color: #7c4df9;
+            font-size: 1.2rem;
+            border-bottom: 1px solid rgba(124, 77, 255, 0.1);
+        }
+
+        .features li::before {
+            content: '💎';
+            color: #7c4dff;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.3rem;
+        }
+
+        .customer-choice {
+            background: linear-gradient(135deg, #ffffff 0%, #faf8ff 100%);
+            border-radius: 25px;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 25px 50px rgba(124, 77, 255, 0.15);
+            border: 2px solid #b388ff;
+        }
+
+        .customer-choice h2 {
+            text-align: center;
+            color: #7c4dff;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+
+        .addon-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .addon-option {
+            background: linear-gradient(135deg, #fefeff 0%, #f8f5ff 100%);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid #d1c4e9;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+        }
+
+        .addon-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(124, 77, 255, 0.08), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .addon-option:hover::before {
+            left: 100%;
+        }
+
+        .addon-option:hover {
+            background: linear-gradient(135deg, #f8f5ff 0%, #ede5ff 100%);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(124, 77, 255, 0.25);
+            border-color: #b388ff;
+        }
+
+        .addon-option.selected {
+            border-color: #7c4dff;
+            background: linear-gradient(135deg, #ede5ff 0%, #d1c4e9 100%);
+            box-shadow: 0 20px 45px rgba(124, 77, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .addon-option .select-btn {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: linear-gradient(135deg, #b388ff, #d1c4e9);
+            color: #4a3d5c;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+            z-index: 2;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(179, 136, 255, 0.3);
+        }
+
+        .addon-option.selected .select-btn {
+            background: linear-gradient(135deg, #7c4dff, #9c27b0);
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+
+        .addon-option .select-btn:hover {
+            transform: scale(1.1);
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(124, 77, 255, 0.4);
+        }
+
+        .addon-option h4 {
+            color: #7c4dff;
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .addon-option .price {
+            font-weight: bold;
+            color: #9c27b0;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .addon-option small {
+            color: #6a5d7a;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+            font-size: 1rem;
+        }
+
+        .customer-form {
+            background: linear-gradient(135deg, #ffffff 0%, #faf8ff 100%);
+            border-radius: 25px;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 25px 50px rgba(124, 77, 255, 0.15);
+            border: 2px solid #d1c4e9;
+        }
+
+        .customer-form h2 {
+            text-align: center;
+            color: #7c4dff;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #7c4dff;
+            font-weight: 500;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 18px;
+            border: 2px solid #d1c4e9;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-family: inherit;
+            background: #fefeff;
+            color: #4a3d5c;
+            transition: all 0.4s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #b388ff;
+            box-shadow: 0 0 20px rgba(179, 136, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        .total-section {
+            background: linear-gradient(135deg, #7c4dff, #b388ff);
+            color: #ffffff;
+            padding: 50px;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 25px 50px rgba(124, 77, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .total-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            animation: rotate 25s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .total-section h3 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .total-price {
+            font-size: 4.5rem;
+            font-weight: bold;
+            margin: 25px 0;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .selected-items {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .selected-items h4 {
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .selected-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            font-size: 1.1rem;
+        }
+
+        .checkout-btn {
+            background: linear-gradient(135deg, #ffffff, #faf8ff);
+            color: #7c4dff;
+            border: 3px solid #ffffff;
+            padding: 25px 50px;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            margin-top: 15px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(255, 255, 255, 0.4);
+            background: linear-gradient(135deg, #faf8ff, #ede5ff);
+            text-decoration: none;
+            color: #7c4dff;
+            scale: 1.05;
+        }
+
+        .checkout-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #7c4dff, #b388ff);
+            color: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            display: none;
+            box-shadow: 0 20px 40px rgba(124, 77, 255, 0.3);
+            border: 3px solid #9c27b0;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideIn 0.6s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .luxury-badge {
+            position: absolute;
+            top: -2px;
+            right: -12px;
+            background: linear-gradient(135deg, #9c27b0, #e91e63);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            z-index: 3;
+            box-shadow: 0 6px 20px rgba(156, 39, 176, 0.4);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 6px 20px rgba(156, 39, 176, 0.4); }
+            to { box-shadow: 0 6px 25px rgba(156, 39, 176, 0.6); }
+        }
+
+        /* Enhanced Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                max-width: 95%;
+            }
+            
+            .header h1 {
+                font-size: 3rem;
+            }
+            
+            .luxury-package {
+                padding: 40px;
+            }
+            
+            .customer-choice {
+                padding: 40px;
+            }
+            
+            .customer-form {
+                padding: 40px;
+            }
+            
+            .total-section {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .addon-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .luxury-price {
+                font-size: 3rem;
+            }
+            
+            .total-price {
+                font-size: 3.5rem;
+            }
+            
+            .luxury-package {
+                padding: 30px;
+            }
+            
+            .customer-choice {
+                padding: 30px;
+            }
+            
+            .customer-form {
+                padding: 30px;
+            }
+            
+            .total-section {
+                padding: 30px;
+            }
+            
+            .addon-option {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .luxury-price {
+                font-size: 2.5rem;
+            }
+            
+            .total-price {
+                font-size: 2.8rem;
+            }
+            
+            .package-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 3rem;
+            }
+            
+            .luxury-package {
+                padding: 20px;
+            }
+            
+            .customer-choice {
+                padding: 20px;
+            }
+            
+            .customer-form {
+                padding: 20px;
+            }
+            
+            .total-section {
+                padding: 25px;
+            }
+        }
+
+        /* Enhanced Animation for mobile */
+        @media (prefers-reduced-motion: no-preference) {
+            .addon-option {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .form-group input:focus,
+            .form-group textarea:focus,
+            .form-group select:focus {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(135deg, #1a1625 0%, #2d1b3d 50%, #3d2352 100%);
+            }
+            
+            .luxury-package,
+            .customer-choice,
+            .customer-form {
+                background: linear-gradient(135deg, #2a1f3d 0%, #3d2352 100%);
+                color: #e1d5f0;
+            }
+            
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                background: #1a1625;
+                color: #e1d5f0;
+                border-color: #5c4a7c;
+            }
+        }
