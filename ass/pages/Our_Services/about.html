@@ -5,8 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - EventCraft</title>
     <link href="./style/about.css" rel="stylesheet">
+    
+    <!-- For Navigation-->
+    <!-- <link  rel="stylesheet" href="./ass/pages/Our_Services/style/nav.css"> -->
+
+    <!--For Footer file-->
+    <link rel="stylesheet" href="./style/nav.css">
 </head>
 <body>
+
+     <!-- ========================
+         NAVIGATION
+    ========================== -->
+    <nav class="modern-cream-navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="./index.html" class="navbar-logo">
+                <div class="logo-icon"><img src="../booking/001.png" width="100%" height="100%"></div>
+                <span class="logo-text">LUX EVENTS</span>
+            </a>
+            
+            <ul class="navbar-menu" id="navbarMenu">
+                <li class="navbar-item">
+                    <a href="./index.html" class="navbar-link">Home</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="./ass/pages/Our_Services/Services.html" class="navbar-link">Services</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="./ass/pages/gallary/gallery.html" class="navbar-link">Gallery</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="./ass/pages/Our_Services/inquriy/inquriy.html" class="navbar-link">Inquiry</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="./ass/pages/Our_Services/about.html" class="navbar-link">About</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="./ass/pages/booking/booking.html" class="navbar-cta">
+                        <span>Booking NOW</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="mobile-toggle" id="mobileToggle">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+            </div>
+        </div>
+    </nav>
+
+
     <!------------------------------- Header ---------------------------------------------->
     <header class="header page-load-in page-load-delay-1">
         <div class="container">
@@ -236,5 +285,102 @@
         </section>
     </main>
     <script src="./style/about.js"></script>
+
+      <!-- ========================
+         FOOTER
+    ========================== -->
+    <footer class="premium-events-footer-wrapper">
+        <div class="premium-events-bg-decoration">
+            <div class="premium-events-floating-shape"></div>
+            <div class="premium-events-floating-shape"></div>
+            <div class="premium-events-floating-shape"></div>
+        </div>
+        
+        <div class="premium-events-content-container">
+            <div class="premium-events-main-grid">
+                <!-- Company Information -->
+                <div class="premium-events-section-block">
+                    <h3>Premium Events</h3>
+                    <p>Crafting extraordinary luxury experiences through innovative event planning and flawless execution. We specialize in transforming your dreams into magnificent reality with unparalleled attention to detail.</p>
+                    <div class="premium-events-social-wrapper">
+                        <a href="#" class="premium-events-social-button facebook-btn" title="Join us on Facebook" onclick="handleFacebook()">f</a>
+                        <a href="#" class="premium-events-social-button instagram-btn" title="Follow our Instagram" onclick="handleInstagram()">📷</a>
+                        <a href="#" class="premium-events-social-button twitter-btn" title="Connect on Twitter" onclick="handleTwitter()">🐦</a>
+                        <a href="#" class="premium-events-social-button whatsapp-btn" title="WhatsApp us" onclick="handleWhatsApp()">💬</a>
+                        <a href="#" class="premium-events-social-button linkedin-btn" title="LinkedIn Profile" onclick="handleLinkedIn()">in</a>
+                    </div>
+                </div>
+
+                <!-- Our Services -->
+                <div class="premium-events-section-block">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li class="premium-events-nav-link" onclick="goToPage('weding.html')">Luxury Weddings</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('birth.html')">Birthday Parties</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('corporate.html')">Corporate Events</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('babyshower.html')">Baby Showers</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('anniversary.html')">Anniversaries</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('preWed.html')">Pre-Wedding Shoots</li>
+                        <!-- <li class="premium-events-nav-link" onclick="goToPage('venue-sourcing')">Venue Sourcing</li> -->
+                        <li class="premium-events-nav-link" onclick="goToPage('culture.html')">Cultural & Religious Events</li>
+                    </ul>
+                </div>
+
+                <!-- Navigation Menu -->
+                <div class="premium-events-section-block">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li class="premium-events-nav-link" onclick="goToPageN('./index.html')">Homepage</li>
+                        <li class="premium-events-nav-link" onclick="goToPageN('./ass/pages/Our_Services/about.html')">About Us</li>
+                        <li class="premium-events-nav-link" onclick="goToPageN('./ass/pages/Our_Services/Services.html')">Our Services</li>
+                        <li class="premium-events-nav-link" onclick="goToPageN('./ass/pages/gallery/gallery.html')">Gallery</li>
+                        <li class="premium-events-nav-link" onclick="goToPageN('./ass/pages/Our_Services/inquriy/inquriy.html')">inquriy</li>
+                        <li class="premium-events-nav-link" onclick="goToPageN('./ass/pages/booking/booking.html')">BOOK NOW</li>
+                        <!-- <li class="premium-events-nav-link" onclick="goToPageN('contact-us')">Contact Us</li> -->
+                        <!-- <li class="premium-events-nav-link" onclick="goToPageN('partnerships')">Partnerships</li> -->
+                    </ul>
+                </div>
+
+                <!-- Contact Details -->
+                <div class="premium-events-section-block">
+                    <h3>Contact Details</h3>
+                    <div class="premium-events-contact-detail" onclick="openLocationMap()">
+                        <span class="premium-events-contact-symbol">📍</span>
+                        <span>456 Elite Boulevard, Prestige Quarter, Metropolitan 67890</span>
+                    </div>
+                    <div class="premium-events-contact-detail" onclick="initiatePhoneCall()">
+                        <span class="premium-events-contact-symbol">📞</span>
+                        <span>+1 (555) 789-ELITE</span>
+                    </div>
+                    <div class="premium-events-contact-detail" onclick="composeEmail()">
+                        <span class="premium-events-contact-symbol">✉️</span>
+                        <span>info@premiumevents.com</span>
+                    </div>
+                    <div class="premium-events-contact-detail">
+                        <span class="premium-events-contact-symbol">🕐</span>
+                        <span>Monday - Saturday: 8AM - 9PM</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="premium-events-footer-base">
+                <div class="premium-events-brand-title">Premium Events</div>
+                <div class="premium-events-bottom-links">
+                    <a href="#" onclick="goToPage('privacy-policy')">Privacy Policy</a>
+                    <a href="#" onclick="goToPage('terms-conditions')">Terms & Conditions</a>
+                    <a href="#" onclick="goToPage('cookie-policy')">Cookie Policy</a>
+                    <a href="#" onclick="goToPage('accessibility')">Accessibility</a>
+                    <a href="#" onclick="goToPage('site-map')">Site Map</a>
+                </div>
+            </div>
+            
+            <div class="premium-events-copyright-text">
+                <p>&copy; 2025 Premium Events. All rights reserved. | Designing luxury experiences since 2015.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../Our_Services/javascript/nav.js"></script>
+
 </body>
 </html>
