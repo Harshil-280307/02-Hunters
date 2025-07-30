@@ -212,7 +212,7 @@ p, span, a {
     margin-bottom: 10px;
 }
 .timeline-step span {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: bold;
     color: var(--dark);
 }
