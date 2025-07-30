@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Gallery - Capturing Your Perfect Moments</title>
+    <link href="../Our_Services/style/nav.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -21,9 +22,13 @@
 
         .container {
             max-width: 1400px;
-            margin: 0 auto;
+            margin: 100px auto;
             padding: 20px;
         }
+        /* NAVIGATION */
+
+
+
 
         /* Header */
         .header {
@@ -233,7 +238,8 @@
             font-size: 1.3rem;
         }
 
-        .video-item iframe {
+        .video-item iframe,
+        .video-item video {
             width: 100%;
             height: 250px;
             border-radius: 10px;
@@ -319,6 +325,47 @@
     </style>
 </head>
 <body>
+
+    <nav class="modern-cream-navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="../../../index.html" class="navbar-logo">
+                <div class="logo-icon"><img src="../booking/001.png" width="100%" height="100%"></div>
+                <span class="logo-text">LUX EVENTS</span>
+            </a>
+            
+            <ul class="navbar-menu" id="navbarMenu">
+                <li class="navbar-item">
+                    <a href="../../../index.html" class="navbar-link">Home</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../Our_Services/Services.html" class="navbar-link">Services</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="gallery.html" class="navbar-link">Gallery</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../Our_Services/inquriy/inquriy.html" class="navbar-link">Inquiry</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../Our_Services/about.html" class="navbar-link">About</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#get-started" class="navbar-cta">
+                        <span>Booking</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="mobile-toggle" id="mobileToggle">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+            </div>
+        </div>
+    </nav>
+
+
+
     <div class="container">
         <!-- Header -->
         <div class="header">
@@ -339,43 +386,36 @@
         <div class="gallery" id="gallery">
             <!-- Wedding Images -->
             <div class="gallery-item visible" data-category="weddings">
-                <img src="ceremony.jpg" alt="Wedding Ceremony">
+                <img src="../../photos/wedding_caremony.jpg" alt="Wedding Ceremony">
                 <div class="gallery-overlay">Wedding Ceremony</div>
             </div>
             <div class="gallery-item visible" data-category="weddings">
-                <img src="pre2.jpg" alt="Wedding Reception">
+                <img src="../../photos/wedding_reception.jpg" alt="Wedding Reception">
                 <div class="gallery-overlay">Wedding Reception</div>
             </div>
             <div class="gallery-item visible" data-category="weddings">
-                <img src="" alt="Wedding Dance">
-                <div class="gallery-overlay">First Dance</div>
+                <img src="../../photos/wedding_dance.jpg" alt="Wedding Dance">
+                <div class="gallery-overlay">Wedding Dance</div>
             </div>
 
             <!-- Birthday Images -->
             <div class="gallery-item visible" data-category="birthdays">
-                <img src="../../photos/bir1.webp" alt="Birthday Party">
+                <img src="../../photos/birthday_cake.jpg" alt="Birthday Party">
                 <div class="gallery-overlay">Birthday Celebration</div>
             </div>
-            <div class="gallery-item visible" data-category="birthdays">
-                <img src="birh2.jpg" alt="Birthday Cake">
-                <div class="gallery-overlay">Birthday Cake</div>
-            </div>
-            <div class="gallery-item visible" data-category="birthdays">
-                <img src="kids.jpg" alt="Kids Party">
-                <div class="gallery-overlay">Kids Birthday</div>
-            </div>
+            
 
             <!-- Corporate Images -->
             <div class="gallery-item visible" data-category="corporate">
-                <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=400&h=250&fit=crop" alt="Corporate Event">
+                <img src="../../photos/corporate_event.jpg" alt="Corporate Event">
                 <div class="gallery-overlay">Corporate Event</div>
             </div>
             <div class="gallery-item visible" data-category="corporate">
-                <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=400&h=250&fit=crop" alt="Business Meeting">
+                <img src="../../photos/business_conference.jpg" alt="Business Meeting">
                 <div class="gallery-overlay">Business Conference</div>
             </div>
             <div class="gallery-item visible" data-category="corporate">
-                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=250&fit=crop" alt="Team Building">
+                <img src="../../photos/team_build.jpg" alt="Team Building">
                 <div class="gallery-overlay">Team Building</div>
             </div>
 
@@ -385,21 +425,21 @@
                 <div class="gallery-overlay">Pre-Wedding Shoot</div>
             </div>
             <div class="gallery-item visible" data-category="pre-wedding">
-                <img src="pre2.jpg" alt="Engagement Photos">
+                <img src="../../photos/engagement.jpg" alt="Engagement Photos">
                 <div class="gallery-overlay">Engagement Session</div>
             </div>
             <div class="gallery-item visible" data-category="pre-wedding">
-                <img src="pre3.jpg" alt="Couple Portrait">
+                <img src="../../photos/couple_portrait.jpg" alt="Couple Portrait">
                 <div class="gallery-overlay">Couple Portrait</div>
             </div>
 
             <!-- Video Items -->
             <div class="gallery-item visible" data-category="weddings">
-                <video src="https://youtu.be/-u9Qtvevark?si=HZnVxtSWNEJjPavt" muted loop></video>
+                <video src="../../videos/wedding_highlight.mp4"></video>
                 <div class="gallery-overlay">Wedding Highlight</div>
             </div>
             <div class="gallery-item visible" data-category="corporate">
-                <video src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4" muted loop></video>
+                <video src="../../videos/corporate_meet.mp4" muted loop></video>
                 <div class="gallery-overlay">Corporate Video</div>
             </div>
         </div>
@@ -410,19 +450,19 @@
             <div class="video-grid">
                 <div class="video-item">
                     <h3>Magical Wedding Highlights</h3>
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    <video src="../../videos/hightlight_one.mp4" allowfullscreen></video>
                 </div>
                 <div class="video-item">
                     <h3>Corporate Gala 2024</h3>
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    <video src="../../videos/corpoarte_gala.mp4" allowfullscreen></video>
                 </div>
                 <div class="video-item">
                     <h3>Birthday Bash Compilation</h3>
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    <video src="../../videos/birthday_bash.mp4" allowfullscreen></video>
                 </div>
                 <div class="video-item">
                     <h3>Pre-Wedding Story</h3>
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    <video src="../../videos/pre_wedding.mp4" allowfullscreen></video>
                 </div>
             </div>
         </div>
@@ -433,6 +473,98 @@
         <span class="lightbox-close" id="lightboxClose">&times;</span>
         <div class="lightbox-content" id="lightboxContent"></div>
     </div>
+
+
+    <footer class="premium-events-footer-wrapper">
+        <div class="premium-events-bg-decoration">
+            <div class="premium-events-floating-shape"></div>
+            <div class="premium-events-floating-shape"></div>
+            <div class="premium-events-floating-shape"></div>
+        </div>
+        
+        <div class="premium-events-content-container">
+            <div class="premium-events-main-grid">
+                <!-- Company Information -->
+                <div class="premium-events-section-block">
+                    <h3>Premium Events</h3>
+                    <p>Crafting extraordinary luxury experiences through innovative event planning and flawless execution. We specialize in transforming your dreams into magnificent reality with unparalleled attention to detail.</p>
+                    <div class="premium-events-social-wrapper">
+                        <a href="#" class="premium-events-social-button facebook-btn" title="Join us on Facebook" onclick="handleFacebook()">f</a>
+                        <a href="#" class="premium-events-social-button instagram-btn" title="Follow our Instagram" onclick="handleInstagram()">📷</a>
+                        <a href="#" class="premium-events-social-button twitter-btn" title="Connect on Twitter" onclick="handleTwitter()">🐦</a>
+                        <a href="#" class="premium-events-social-button whatsapp-btn" title="WhatsApp us" onclick="handleWhatsApp()">💬</a>
+                        <a href="#" class="premium-events-social-button linkedin-btn" title="LinkedIn Profile" onclick="handleLinkedIn()">in</a>
+                    </div>
+                </div>
+
+                <!-- Our Services -->
+                <div class="premium-events-section-block">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li class="premium-events-nav-link" onclick="goToPage('luxury-weddings')">Luxury Weddings</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('corporate-galas')">Corporate Galas</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('exclusive-parties')">Exclusive Parties</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('premium-dinners')">Premium Dinners</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('brand-launches')">Brand Launches</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('event-consulting')">Event Consulting</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('venue-sourcing')">Venue Sourcing</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('luxury-catering')">Luxury Catering</li>
+                    </ul>
+                </div>
+
+                <!-- Navigation Menu -->
+                <div class="premium-events-section-block">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li class="premium-events-nav-link" onclick="goToPage('homepage')">Homepage</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('about-us')">About Us</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('our-services')">Our Services</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('portfolio')">Portfolio</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('pricing')">Pricing</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('testimonials')">Testimonials</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('contact-us')">Contact Us</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('partnerships')">Partnerships</li>
+                    </ul>
+                </div>
+
+                <!-- Contact Details -->
+                <div class="premium-events-section-block">
+                    <h3>Contact Details</h3>
+                    <div class="premium-events-contact-detail" onclick="openLocationMap()">
+                        <span class="premium-events-contact-symbol">📍</span>
+                        <span>456 Elite Boulevard, Prestige Quarter, Metropolitan 67890</span>
+                    </div>
+                    <div class="premium-events-contact-detail" onclick="initiatePhoneCall()">
+                        <span class="premium-events-contact-symbol">📞</span>
+                        <span>+1 (555) 789-ELITE</span>
+                    </div>
+                    <div class="premium-events-contact-detail" onclick="composeEmail()">
+                        <span class="premium-events-contact-symbol">✉️</span>
+                        <span>info@premiumevents.com</span>
+                    </div>
+                    <div class="premium-events-contact-detail">
+                        <span class="premium-events-contact-symbol">🕐</span>
+                        <span>Monday - Saturday: 8AM - 9PM</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="premium-events-footer-base">
+                <div class="premium-events-brand-title">Premium Events</div>
+                <div class="premium-events-bottom-links">
+                    <a href="#" onclick="goToPage('privacy-policy')">Privacy Policy</a>
+                    <a href="#" onclick="goToPage('terms-conditions')">Terms & Conditions</a>
+                    <a href="#" onclick="goToPage('cookie-policy')">Cookie Policy</a>
+                    <a href="#" onclick="goToPage('accessibility')">Accessibility</a>
+                    <a href="#" onclick="goToPage('site-map')">Site Map</a>
+                </div>
+            </div>
+            
+            <div class="premium-events-copyright-text">
+                <p>&copy; 2025 Premium Events. All rights reserved. | Designing luxury experiences since 2015.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // Gallery filtering functionality
@@ -560,6 +692,55 @@
 
         // Smooth scrolling for better UX
         document.documentElement.style.scrollBehavior = 'smooth';
+
+
+         const ytPlayers = {};
+
+    // YouTube API Ready
+    function onYouTubeIframeAPIReady() {
+        const iframes = document.querySelectorAll('iframe[src*="youtube.com/embed"]');
+        iframes.forEach((iframe) => {
+            const id = iframe.getAttribute('id');
+            if (!id) return;
+
+            ytPlayers[id] = new YT.Player(id, {
+                events: {
+                    'onReady': (event) => setupYouTubeHover(event, id)
+                }
+            });
+        });
+    }
+
+    function setupYouTubeHover(event, id) {
+        const player = ytPlayers[id];
+        const iframe = document.getElementById(id);
+        const container = iframe.closest('.video-item');
+
+        if (container) {
+            container.addEventListener('mouseenter', () => {
+                player.mute();
+                player.playVideo();
+            });
+
+            container.addEventListener('mouseleave', () => {
+                player.pauseVideo();
+            });
+        }
+    }
+
+    // Local video hover autoplay
+    const localVideos = document.querySelectorAll('video');
+    localVideos.forEach(video => {
+        video.addEventListener('mouseenter', () => {
+            video.play();
+        });
+
+        video.addEventListener('mouseleave', () => {
+            video.pause();
+            video.currentTime = 0;
+        });
+    });
+
     </script>
 </body>
 </html>
