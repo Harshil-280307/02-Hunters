@@ -26,22 +26,22 @@
             
             <ul class="navbar-menu" id="navbarMenu">
                 <li class="navbar-item">
-                    <a href="./index.html" class="navbar-link">Home</a>
+                    <a href="../../../index.html" class="navbar-link">Home</a>
                 </li>
                 <li class="navbar-item">
-                    <a href="./ass/pages/Our_Services/Services.html" class="navbar-link">Services</a>
+                    <a href="../Our_Services/Services.html" class="navbar-link">Services</a>
                 </li>
                 <li class="navbar-item">
-                    <a href="./ass/pages/gallary/gallery.html" class="navbar-link">Gallery</a>
+                    <a href="../gallary/gallery.html" class="navbar-link">Gallery</a>
                 </li>
                 <li class="navbar-item">
-                    <a href="./ass/pages/Our_Services/inquriy/inquriy.html" class="navbar-link">Inquiry</a>
+                    <a href="../Our_Services/inquriy/inquriy.html" class="navbar-link">Inquiry</a>
                 </li>
                 <li class="navbar-item">
-                    <a href="./ass/pages/Our_Services/about.html" class="navbar-link">About</a>
+                    <a href="./about.html" class="navbar-link">About</a>
                 </li>
                 <li class="navbar-item">
-                    <a href="./ass/pages/booking/booking.html" class="navbar-cta">
+                    <a href="../booking/booking.html" class="navbar-cta">
                         <span>Booking NOW</span>
                     </a>
                 </li>
@@ -330,12 +330,12 @@
                 <div class="premium-events-section-block">
                     <h3>Navigation</h3>
                     <ul>
-                        <li class="premium-events-nav-link" onclick="goToPageN('./index.html')">Homepage</li>
-                        <li class="premium-events-nav-link" onclick="goToPageN('./ass/pages/Our_Services/about.html')">About Us</li>
-                        <li class="premium-events-nav-link" onclick="goToPageN('./ass/pages/Our_Services/Services.html')">Our Services</li>
-                        <li class="premium-events-nav-link" onclick="goToPageN('./ass/pages/gallery/gallery.html')">Gallery</li>
-                        <li class="premium-events-nav-link" onclick="goToPageN('./ass/pages/Our_Services/inquriy/inquriy.html')">inquriy</li>
-                        <li class="premium-events-nav-link" onclick="goToPageN('./ass/pages/booking/booking.html')">BOOK NOW</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('../../../index.html')">Homepage</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('./about.html')">About Us</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('./Service.html')">Our Services</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('../gallary/gallery.html')">Gallery</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('./inquriy/inquriy.html')">inquriy</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('../booking/booking.html')">BOOK NOW</li>
                         <!-- <li class="premium-events-nav-link" onclick="goToPageN('contact-us')">Contact Us</li> -->
                         <!-- <li class="premium-events-nav-link" onclick="goToPageN('partnerships')">Partnerships</li> -->
                     </ul>
@@ -379,6 +379,20 @@
             </div>
         </div>
     </footer>
+
+    <script src="">
+
+         // Page Navigation Functions
+ function goToPage(pageName) {
+
+const path = `${pageName}`;
+window.location.href = path;
+
+// console.log('Navigating to:', pageName);
+// alert(`Would navigate to ${pageName} page`);
+}
+
+    </script>
 
     <script src="../Our_Services/javascript/nav.js"></script>
 
