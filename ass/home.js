@@ -235,3 +235,27 @@
         };
 
         window.addEventListener('scroll', throttledScroll);
+
+
+
+
+ // Page Navigation Functions
+function goToPage(pageName) {
+
+    const path = `./ass/pages/Our_Services/${pageName}`;
+    window.location.href = path;
+
+    // console.log('Navigating to:', pageName);
+    // alert(`Would navigate to ${pageName} page`);
+}
+
+
+ // Page Navigation Functions
+ function goToPageN(pageName) {
+
+    const path = `${pageName}`;
+    window.location.href = path;
+
+    // console.log('Navigating to:', pageName);
+    // alert(`Would navigate to ${pageName} page`);
+}

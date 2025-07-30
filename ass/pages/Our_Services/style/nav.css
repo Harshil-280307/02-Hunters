@@ -111,7 +111,7 @@ img{
 }
 
 .navbar-logo:hover .logo-icon {
-    transform: rotateY(180deg) scale(1.1);
+    transform: rotateY(350deg) scale(1.1);
     box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
 }
 
