@@ -364,6 +364,7 @@ p, span, a {
     transform: translateY(-2px);
 }
 /* Section 9: Video Block */
+
 .video-block {
     padding: 60px 0;
     background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
