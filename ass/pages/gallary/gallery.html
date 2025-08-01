@@ -28,8 +28,6 @@
         /* NAVIGATION */
 
 
-
-
         /* Header */
         .header {
             text-align: center;
@@ -474,7 +472,9 @@
         <div class="lightbox-content" id="lightboxContent"></div>
     </div>
 
-
+<!-- ========================
+            FOOTER
+    ========================== -->
     <footer class="premium-events-footer-wrapper">
         <div class="premium-events-bg-decoration">
             <div class="premium-events-floating-shape"></div>
@@ -501,14 +501,14 @@
                 <div class="premium-events-section-block">
                     <h3>Our Services</h3>
                     <ul>
-                        <li class="premium-events-nav-link" onclick="goToPage('luxury-weddings')">Luxury Weddings</li>
-                        <li class="premium-events-nav-link" onclick="goToPage('corporate-galas')">Corporate Galas</li>
-                        <li class="premium-events-nav-link" onclick="goToPage('exclusive-parties')">Exclusive Parties</li>
-                        <li class="premium-events-nav-link" onclick="goToPage('premium-dinners')">Premium Dinners</li>
-                        <li class="premium-events-nav-link" onclick="goToPage('brand-launches')">Brand Launches</li>
-                        <li class="premium-events-nav-link" onclick="goToPage('event-consulting')">Event Consulting</li>
-                        <li class="premium-events-nav-link" onclick="goToPage('venue-sourcing')">Venue Sourcing</li>
-                        <li class="premium-events-nav-link" onclick="goToPage('luxury-catering')">Luxury Catering</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('weding.html')">Luxury Weddings</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('birth.html')">Birthday Parties</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('corporate.html')">Corporate Events</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('babyshower.html')">Baby Showers</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('anniversary.html')">Anniversaries</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('preWed.html')">Pre-Wedding Shoots</li>
+                        <!-- <li class="premium-events-nav-link" onclick="goToPage('venue-sourcing')">Venue Sourcing</li> -->
+                        <li class="premium-events-nav-link" onclick="goToPage('culture.html')">Cultural & Religious Events</li>
                     </ul>
                 </div>
 
@@ -516,14 +516,14 @@
                 <div class="premium-events-section-block">
                     <h3>Navigation</h3>
                     <ul>
-                        <li class="premium-events-nav-link" onclick="goToPage('homepage')">Homepage</li>
-                        <li class="premium-events-nav-link" onclick="goToPage('about-us')">About Us</li>
-                        <li class="premium-events-nav-link" onclick="goToPage('our-services')">Our Services</li>
-                        <li class="premium-events-nav-link" onclick="goToPage('portfolio')">Portfolio</li>
-                        <li class="premium-events-nav-link" onclick="goToPage('pricing')">Pricing</li>
-                        <li class="premium-events-nav-link" onclick="goToPage('testimonials')">Testimonials</li>
-                        <li class="premium-events-nav-link" onclick="goToPage('contact-us')">Contact Us</li>
-                        <li class="premium-events-nav-link" onclick="goToPage('partnerships')">Partnerships</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('../../../index.html')">Homepage</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('../Our_Services/about.html')">About Us</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('../Our_Services/Services.html')">Our Services</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('../gallary/gallery.html')">Gallery</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('./inquriy/inquriy.html')">inquriy</li>
+                        <li class="premium-events-nav-link" onclick="goToPage('../booking/booking.html')">BOOK NOW</li>
+                        <!-- <li class="premium-events-nav-link" onclick="goToPageN('contact-us')">Contact Us</li> -->
+                        <!-- <li class="premium-events-nav-link" onclick="goToPageN('partnerships')">Partnerships</li> -->
                     </ul>
                 </div>
 
@@ -565,6 +565,8 @@
             </div>
         </div>
     </footer>
+
+    <script src="../Our_Services/style/nav.css"></script>
 
     <script>
         // Gallery filtering functionality
@@ -694,7 +696,7 @@
         document.documentElement.style.scrollBehavior = 'smooth';
 
 
-         const ytPlayers = {};
+        const ytPlayers = {};
 
     // YouTube API Ready
     function onYouTubeIframeAPIReady() {
