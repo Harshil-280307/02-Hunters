@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../anniversari/anniversary.css">
+    <title>Anniversary Celebrations - Choose Your Package</title>
+
+</head>
+<body>
+
+    <div class="floating-hearts"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>🎉 Anniversary Celebrations</h1>
+            <p>Choose the perfect package for your special day</p>
+        </div>
+
+        <div class="cards-container">
+            <!-- Basic Package -->
+            <div class="card basic" onclick="selectCard(this, 'basic')">
+                <div class="card-icon">💝</div>
+                <h3>Basic Package</h3>
+                <div class="price">₹2,999</div>
+                <ul class="features">
+                    <li>Digital Anniversary Card</li>
+                    <li>Photo Slideshow (10 photos)</li>
+                    <li>Custom Message</li>
+                    <li>Email Delivery</li>
+                    <li>1 Revision</li>
+                </ul>
+                <!-- <button class="btn" onclick="orderPackage('basic', 7999)" >Choose Basic</button> -->
+                <a href="../anniversari/BasicAnniversary.html" class="btn" onclick="event.stopPropagation(); orderPackage('basic', 7999)">Choose Basic</a>
+            </div>
+
+            <!-- Medium Package -->
+            <div class="card medium" onclick="selectCard(this, 'medium')">
+                <div class="card-icon">💖</div>
+                <h3>Medium Package</h3>
+                <div class="price">₹5,999</div>
+                <ul class="features">
+                    <li>Premium Anniversary Card</li>
+                    <li>Photo Slideshow (25 photos)</li>
+                    <li>Custom Message & Music</li>
+                    <li>Print + Digital Version</li>
+                    <li>3 Revisions</li>
+                </ul>
+                <!-- <button class="btn" onclick="orderPackage('medium', 15999)">Choose Medium</button> -->
+                <a href="../anniversari/MediumPackage.html" class="btn" onclick="event.stopPropagation(); orderPackage('medium', 15999)">Choose Medium</a>
+            </div>
+
+            <!-- Premium Package -->
+            <div class="card premium" onclick="selectCard(this, 'premium')">
+                <div class="card-icon">👑</div>
+                <h3>Premium Package</h3>
+                <div class="price">₹29,999</div>
+                <ul class="features">
+                    <li>Luxury Anniversary Album</li>
+                    <li>Photo Slideshow (50 photos)</li>
+                    <li>Professional Video (5 min)</li>
+                    <li>Custom Song/Music</li>
+                    <li>Premium Print Materials</li>
+                    <li>Unlimited Revisions</li>
+                </ul>
+                <!-- <button class="btn" onclick="orderPackage('premium', 29999)">Choose Premium</button> -->                
+                <a href="../anniversari/PremiumPackage.html" class="btn" onclick="event.stopPropagation(); orderPackage('premium', 29999)">Choose Premium</a>
+            </div>
+
+            <!-- Custom Package -->
+            <div class="card custom" onclick="selectCard(this, 'custom')">
+                <div class="card-icon">🎨</div>
+                <h3>Custom Choice</h3>
+                <div class="price">₹₹₹</div>
+                <ul class="features">
+                    <li>Fully Customizable</li>
+                    <li>Your Vision, Our Creation</li>
+                    <li>Personal Consultation</li>
+                    <li>Flexible Pricing</li>
+                    <li>All Format Options</li>
+                    <li>Priority Support</li>
+                </ul>
+                <!-- <button class="btn" onclick="openCustomModal()">Customize Now</button> -->
+                <a href="../anniversari/CustomChoice.html" class="btn" onclick="event.stopPropagation(); openCustomModal()">Customize Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for custom package -->
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCustomModal()">&times;</span>
+            <h2 style="color: #5d4e37; margin-bottom: 20px;">Custom Package Consultation</h2>
+            <p style="color: #8b7355; margin-bottom: 20px;">
+                Let's create something unique for your anniversary! Our team will contact you within 24 hours to discuss your vision.
+            </p>
+            <button class="btn" onclick="requestConsultation()" style="background: linear-gradient(135deg, #f4a460, #deb887); color: #5d4e37;">
+                Request Consultation
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let selectedPackage = null;
+
+        // Create floating hearts
+        function createFloatingHearts() {
+            const heartsContainer = document.querySelector('.floating-hearts');
+            const hearts = ['💕', '💖', '💗', '💝', '💓'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 8) + 's';
+                heartsContainer.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 15000);
+            }, 2000);
+        }
+
+        function selectCard(card, packageType) {
+            // Remove previous selection
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+            
+            // Add selection to clicked card
+            card.classList.add('selected');
+            selectedPackage = packageType;
+            
+            // Create celebration effect
+            createConfetti();
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = ['#d4af37', '#b8860b', '#cd853f', '#daa520'][Math.floor(Math.random() * 4)];
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 4000);
+                }, i * 100);
+            }
+        }
+
+        function orderPackage(packageType, price) {
+            createConfetti();
+            setTimeout(() => {
+                alert(`You selected the ${packageType.charAt(0).toUpperCase() + packageType.slice(1)} Package for ₹${price.toLocaleString('en-IN')}. Redirecting to checkout...`);
+            }, 500);
+        }
+
+        function openCustomModal() {
+            document.getElementById('customModal').style.display = 'flex';
+        }
+
+        function closeCustomModal() {
+            document.getElementById('customModal').style.display = 'none';
+        }
+
+        function requestConsultation() {
+            createConfetti();
+            setTimeout(() => {
+                alert('Thank you! We will contact you within 24 hours to discuss your custom anniversary package.');
+                closeCustomModal();
+            }, 1000);
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('customModal');
+            if (event.target == modal) {
+                closeCustomModal();
+            }
+        }
+
+        // Initialize animations
+        window.addEventListener('load', () => {
+            createFloatingHearts();
+        });
+    </script>
+</body>
+</html>

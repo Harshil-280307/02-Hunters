@@ -1,4 +1,4 @@
-        * {
+   * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -10,6 +10,14 @@
             color: #5d2a0a;
             line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        img{
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0; /* Removed rounded corners */
         }
 
         /* Particles Animation */
@@ -198,22 +206,24 @@
             transform: scale(1);
         }
 
-        /* Service Image - Fully Responsive */
+        /* Service Image - Rectangular Box Style */
         .lux-service-image {
             position: relative;
-            border-radius: clamp(10px, 2vw, 15px);
+            border-radius: 0; /* Removed rounded corners for rectangular look */
             overflow: hidden;
             height: clamp(200px, 40vw, 350px);
             box-shadow: 0 10px 30px rgba(139, 69, 19, 0.2);
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             animation: zigzagFloat 4s ease-in-out infinite;
             width: 100%;
+            border: 3px solid rgba(139, 69, 19, 0.2); /* Added border for defined box look */
         }
 
         .lux-service-image:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 20px 40px rgba(139, 69, 19, 0.3);
             z-index: 10;
+            border-color: rgba(139, 69, 19, 0.4); /* Darker border on hover */
         }
 
         /* Reduce hover effects on mobile */
@@ -243,8 +253,10 @@
         }
 
         .lux-overlay-icon {
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: clamp(1rem, 3vw, 1.2rem);
             color: white;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             animation: pulse 2s infinite;
         }
 
@@ -322,11 +334,12 @@
         }
 
         .lux-service-features li::before {
-            content: '✨';
+            content: '•';
             position: absolute;
             left: 0;
             color: #daa520;
             font-size: clamp(0.8rem, 1.8vw, 1rem);
+            font-weight: bold;
         }
 
         /* Buttons - Fully Responsive */
@@ -449,25 +462,6 @@
             .lux-service-image {
                 height: 400px;
             }
-        }
-
-        /* Custom placeholder images using CSS gradients */
-        .service-anniversary { background: linear-gradient(45deg, #ff6b9d, #ffc3d8); }
-        .service-babyshower { background: linear-gradient(45deg, #74b9ff, #a8e6cf); }
-        .service-birthday { background: linear-gradient(45deg, #fd79a8, #fdcb6e); }
-        .service-corporate { background: linear-gradient(45deg, #2d3436, #636e72); }
-        .service-prewedding { background: linear-gradient(45deg, #fab1a0, #ff7675); }
-        .service-cultural { background: linear-gradient(45deg, #fd79a8, #e17055); }
-        .service-wedding { background: linear-gradient(45deg, #ffffff, #ddd6fe); }
-
-        .placeholder-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            font-size: clamp(2rem, 5vw, 3rem);
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         /* Touch-friendly improvements for mobile */
